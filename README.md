@@ -1,6 +1,6 @@
-# Calico Pathway Resources (CPR) in R!
+# Napistu in R!
 
-An R package which is part of the [Calico Pathway Resources (CPR)](https://github.com/calico/opencpr) project.
+The `napistu` R package which is part of the [Napitsu project](https://github.com/napistu/napistu).
 
 ## Repo Contents
 
@@ -13,17 +13,16 @@ An R package which is part of the [Calico Pathway Resources (CPR)](https://githu
 This package can be installed in several ways:
 
 1.  Install from GitHub with a PAT:
-    1.  Add "GITHUB_PAT" as a secret in your .Renviron. This key can be obtained through your user settings in GitHub. (This instruction can be dropped once rcpr is open-sourced.)
-    2.  Install `rcpr` in an interactive R session using remotes (or devtools) from GitHub:
+    1. Install `napistu-r` in an interactive R session using remotes (or devtools) from GitHub:
 
 ```r
-remotes::install_github("calicolabs/opencpr",  subdir = "lib/rcpr)
+remotes::install_github("napistu/napistu-r")
 ```
 
 2.  Clone and build locally:
 
 ```bash
 !bash
-git clone git@github.com:calico/opencpr.git
-R CMD build lib/rcpr
+git clone https://github.com/napistu/napistu-r.git
+R CMD build napistu-r
 ```
