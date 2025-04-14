@@ -11,7 +11,7 @@ plot_shortest_path_network(
 )
 }
 \arguments{
-\item{shortest_paths_list}{results from cpr$network$find_all_shortest_reaction_paths}
+\item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
 
 \item{consensus_graph}{igraph model of network}
 

@@ -83,7 +83,7 @@ summarize_shortest_paths <- function(source_species_id, dest_species_id, consens
 
 #' Plot Shortest Path Network
 #'
-#' @param shortest_paths_list results from cpr$network$find_all_shortest_reaction_paths
+#' @param shortest_paths_list results from napistu$network$find_all_shortest_reaction_paths
 #' @inheritParams create_neighborhood_table
 #' @inheritParams plot_one_neighborhood
 #'
