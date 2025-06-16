@@ -1,8 +1,8 @@
 url: https://jubilant-adventure-4k6g1zo.pages.github.io/
 reference:
-- title: Using CPR Python Functionality from R
+- title: Using Napistu Python Functionality from R
   desc: These functions include Shiny modules and other pretty plotting functions
-    which are used for visualizing CPR's network information either statically or
+    which are used for visualizing Napistu's network information either statically or
     dynamically.
 - subtitle: Binding a Pathway
 - contents:
@@ -48,36 +48,18 @@ reference:
   - summarize_open_targets_targets
   - summarize_diseases
   - summarize_indication
-- title: R-Based Functionality Supporting CPR Pathway Transformations
-  desc: These functions are used to pull data and metadata into the CPR framework.
-    Many of these functions are accessed through the rpy2 module of the CPR Python
+- title: R-Based Functionality Supporting Napistu Pathway Transformations
+  desc: These functions are used to pull data and metadata into the Napistu framework.
+    Many of these functions are accessed through the rpy2 module of the Napistu Python
     package or through its CLI. With time hopefully some or all of these R calls from
     Python can be replaced with pure Python.
 - subtitle: Gene Metadata
-  desc: Many of the functions in CPR depend on genic metadata which is currently pulled
+  desc: Many of the functions in Napistu depend on genic metadata which is currently pulled
     from specialized species-level Bioconductor packages.
 - contents:
   - bioconductor_org_function
   - bioconductor_org_library
   - bioconductor_org_package_prefix
-- subtitle: Netcontextr
-  desc: Functions for contextualizing networks based on gene expression, protein localization
-    or other functional information.
-- contents:
-  - createStringGraph
-  - load_and_clean_hpa_data
-  - load_and_clean_gtex_data
-  - compartmentalize_string
-  - annotate_genes
-  - trim_network_by_edge_weight
-  - trim_network_by_gene_attribute
-  - trim_network_by_nodes
-  - trim_reactions_by_gene_attribute
-  - gene_expression_by_tissue
-  - detect_unexpressed
-  - tall_data_detect_unexpressed
-  - discretize_expression
-  - extract_gene_annotations
 - title: Data
 - contents:
   - efo_diseases
@@ -86,6 +68,6 @@ reference:
   - example_protein_subcellular_localizations
 - title: Dev Area
 - contents:
-  - rcpr
+  - napistu
   - create_mock_reactions
 

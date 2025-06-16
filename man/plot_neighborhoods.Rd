@@ -6,7 +6,7 @@
 \usage{
 plot_neighborhoods(
   neighborhood_table,
-  consensus_graph,
+  napistu_graph,
   score_overlay = NULL,
   score_label = NULL,
   ...
@@ -16,7 +16,7 @@ plot_neighborhoods(
 \item{neighborhood_table}{Neighborhood table created by
 \code{create_neighborhood_table}}
 
-\item{consensus_graph}{igraph model of network}
+\item{napistu_graph}{igraph model of network}
 
 \item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
 
@@ -32,23 +32,23 @@ Summarize Neighborhoods
 if (interactive()) {
   interactive_initialization_wrapper(TRUE)
 
-  species_id <- rownames(consensus_model$species)[
-    consensus_model$species$s_name == "cAMP"
+  species_id <- rownames(sbml_dfs$species)[
+    sbml_dfs$species$s_name == "cAMP"
     ]
-  species_id <- sample(rownames(consensus_model$species), 1)
+  species_id <- sample(rownames(sbml_dfs$species), 1)
 
   neighborhood_table <- create_neighborhood_table(
     species_id = species_id,
-    consensus_model = consensus_model,
-    consensus_graph = consensus_graph,
-    cpr = cpr,
+    sbml_dfs = sbml_dfs,
+    napistu_graph = napistu_graph,
+    napistu = napistu,
     max_steps = 3L,
     max_neighbors = 40L,
   )
 
  # score_overlay <- summarize_indication(
  #   disease_id = "EFO_0000400",
- #   consensus_model,
+ #   sbml_dfs,
  #   create_neighborhood_summary_table(neighborhood_table),
  #   species_identifiers
  # )
@@ -63,7 +63,7 @@ if (interactive()) {
 
   neighborhood_summaries <- plot_neighborhoods(
     neighborhood_table,
-    consensus_graph,
+    napistu_graph,
     score_overlay,
     score_label = "diabetes mellitus",
     score_palette = "log2 fold-change"

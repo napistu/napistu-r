@@ -4,6 +4,6 @@ test_that("Species name to R package", {
 })
 
 test_that("Calling functions from org package works", {
-  results <- bioconductor_org_function("ENZYME", "Saccharomyces cerevisae") # org.Sc.sgd is a suggested dependency
+  results <- bioconductor_org_function("ENZYME", "Saccharomyces cerevisae") # org.Sc.sgd.db is a suggested dependency
   expect_equal(colnames(results), c("systematic_name", "ec_number"))
 })

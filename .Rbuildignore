@@ -1,2 +1,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+assets
+LICENSE.md
+cran-comments.md
+^CRAN-RELEASE$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
+data-raw
+.git

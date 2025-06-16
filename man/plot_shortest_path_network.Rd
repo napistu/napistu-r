@@ -6,14 +6,14 @@
 \usage{
 plot_shortest_path_network(
   shortest_paths_list,
-  consensus_graph,
+  napistu_graph,
   max_labeled_species = 10L
 )
 }
 \arguments{
 \item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
 
-\item{consensus_graph}{igraph model of network}
+\item{napistu_graph}{igraph model of network}
 
 \item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
 }
@@ -29,22 +29,22 @@ if (interactive()) {
   source_species_id <- end_points[1]
   dest_species_id <- end_points[2]
 
-  target_species_paths <- cpr$network$compartmentalize_species_pairs(
-    consensus_model,
+  target_species_paths <- napistu$network$compartmentalize_species_pairs(
+    sbml_dfs,
     source_species_id,
     dest_species_id
     )
 
-  shortest_paths_list <- try(cpr$network$find_all_shortest_reaction_paths(
-    consensus_graph,
-    consensus_model,
+  shortest_paths_list <- try(napistu$network$find_all_shortest_reaction_paths(
+    napistu_graph,
+    sbml_dfs,
     target_species_paths,
     weight_var = "weights"
     ),silent = TRUE)
 
   plot_shortest_path_network(
     shortest_paths_list,
-    consensus_graph,
+    napistu_graph,
     max_labeled_species = 10L
     )
 }

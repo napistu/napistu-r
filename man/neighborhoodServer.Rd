@@ -8,9 +8,9 @@ neighborhoodServer(
   id,
   species_names,
   species_identifiers,
-  consensus_model,
-  consensus_graph,
-  cpr
+  sbml_dfs,
+  napistu_graph,
+  napistu
 )
 }
 \arguments{
@@ -21,11 +21,11 @@ UI function.}
 
 \item{species_identifiers}{A tibble containing systematic identifiers for all reaction species nested by ontology.}
 
-\item{consensus_model}{A python pathway object with class cpr.sbml.SBML_dfs}
+\item{sbml_dfs}{A python pathway object with class napistu.sbml_dfs_core.SBML_dfs}
 
-\item{consensus_graph}{A python igraph network of \code{consensus_model}}
+\item{napistu_graph}{A python igraph network of \code{sbml_dfs}}
 
-\item{cpr}{reticulate connection to the cpr python package}
+\item{napistu}{reticulate connection to the napistu python package}
 }
 \value{
 Nothing; used for side-effects

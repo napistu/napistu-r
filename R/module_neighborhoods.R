@@ -10,29 +10,29 @@
 #'
 #' if (interactive()) {
 #'   interactive_initialization_wrapper()
-#'   cpr <- reticulate::import("cpr")
+#'   napistu <- reticulate::import("napistu")
 #'
 #'   shiny_neighborhood_test(
 #'     species_names,
 #'     species_identifiers,
-#'     consensus_model,
-#'     consensus_graph,
-#'     cpr = cpr
+#'     sbml_dfs,
+#'     napistu_graph,
+#'     napistu = napistu
 #'   )
 #' }
 #' @export
 shiny_neighborhood_test <- function(
   species_names,
   species_identifiers,
-  consensus_model,
-  consensus_graph,
-  cpr
+  sbml_dfs,
+  napistu_graph,
+  napistu
   ) {
   checkmate::assertDataFrame(species_names)
   checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(consensus_graph, "igraph.Graph")
-  checkmate::assertClass(cpr, "python.builtin.module")
+  checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+  checkmate::assertClass(napistu_graph, "igraph.Graph")
+  checkmate::assertClass(napistu, "python.builtin.module")
 
   shiny::shinyApp(
     ui = shiny::fluidPage(
@@ -43,9 +43,9 @@ shiny_neighborhood_test <- function(
         "neighborhood_app",
         species_names,
         species_identifiers,
-        consensus_model,
-        consensus_graph,
-        cpr
+        sbml_dfs,
+        napistu_graph,
+        napistu
       )
     }
   )
@@ -147,9 +147,9 @@ neighborhoodInput <- function(id) {
 #'
 #' @inheritParams shiny::moduleServer
 #' @inheritParams selectEntityServer
-#' @param consensus_model A python pathway object with class cpr.sbml.SBML_dfs
-#' @param consensus_graph A python igraph network of \code{consensus_model}
-#' @param cpr reticulate connection to the cpr python package
+#' @param sbml_dfs A python pathway object with class napistu.sbml_dfs_core.SBML_dfs
+#' @param napistu_graph A python igraph network of \code{sbml_dfs}
+#' @param napistu reticulate connection to the napistu python package
 #'
 #' @returns Nothing; used for side-effects
 #'
@@ -157,16 +157,16 @@ neighborhoodInput <- function(id) {
 neighborhoodServer <- function(id,
                                species_names,
                                species_identifiers,
-                               consensus_model,
-                               consensus_graph,
-                               cpr) {
+                               sbml_dfs,
+                               napistu_graph,
+                               napistu) {
 
   checkmate::assertCharacter(id, len = 1)
   checkmate::assertDataFrame(species_names)
   checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(consensus_graph, "igraph.Graph")
-  checkmate::assertClass(cpr, "python.builtin.module")
+  checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+  checkmate::assertClass(napistu_graph, "igraph.Graph")
+  checkmate::assertClass(napistu, "python.builtin.module")
 
   shiny::moduleServer(
     id,
@@ -214,12 +214,12 @@ neighborhoodServer <- function(id,
         # Find the neighbors of a species in each compartment and format as a table
         create_neighborhood_table(
           selected_neighborhood_central_entity(),
-          consensus_model,
-          consensus_graph,
+          sbml_dfs,
+          napistu_graph,
           network_type = input$network_type,
           max_steps = input$max_steps_slider,
           max_neighbors = input$max_neighbors,
-          cpr
+          napistu
         )
       })
 
@@ -262,7 +262,7 @@ neighborhoodServer <- function(id,
 
           indication_overlay <- summarize_indication(
             efo_id,
-            consensus_model,
+            sbml_dfs,
             neighborhood_summary_table(),
             species_identifiers
           )
@@ -302,7 +302,7 @@ neighborhoodServer <- function(id,
       arranged_neighborhood_plots <- shiny::reactive({
         plot_neighborhoods(
           neighborhood_table(),
-          consensus_graph,
+          napistu_graph,
           indication_overlay = indication_overlay(),
           indication_label = input$overlaid_disease
         )
@@ -350,7 +350,7 @@ neighborhoodServer <- function(id,
         shiny::req(neighborhood_summary_table())
 
         target_information <- summarize_diseases(
-          consensus_model,
+          sbml_dfs,
           neighborhood_summary_table(),
           species_identifiers
         )

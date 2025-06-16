@@ -7,8 +7,8 @@
 \format{
 A tibble with 18,497 rows and 2 columns:
 \describe{
-  \item{id}{The EFO ID}
-  \item{name}{The name of the EFO phenotype}
+    \item{id}{The EFO ID}
+    \item{name}{The name of the EFO phenotype}
 }
 }
 \usage{

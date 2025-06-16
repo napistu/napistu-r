@@ -21,5 +21,4 @@ Call a function from one of the bioconductor org packages
 \dontrun{
 bioconductor_org_function("ENZYME", "Homo sapiens")
 }
-
 }

@@ -4,7 +4,7 @@
 \alias{basicInfoServer}
 \title{Basic Info Server}
 \usage{
-basicInfoServer(id, species_names, species_identifiers, consensus_model, cpr)
+basicInfoServer(id, species_names, species_identifiers, sbml_dfs, napistu)
 }
 \arguments{
 \item{id}{An ID string that corresponds with the ID used to call the module's
@@ -14,9 +14,9 @@ UI function.}
 
 \item{species_identifiers}{A tibble containing systematic identifiers for all reaction species nested by ontology.}
 
-\item{consensus_model}{A python pathway object with class cpr.sbml.SBML_dfs}
+\item{sbml_dfs}{A python pathway object with class napistu.sbml_dfs_core.SBML_dfs}
 
-\item{cpr}{reticulate connection to the cpr python package}
+\item{napistu}{reticulate connection to the napistu python package}
 }
 \value{
 Nothing; used for side-effects

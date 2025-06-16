@@ -7,9 +7,9 @@
 summarize_shortest_paths(
   source_species_id,
   dest_species_id,
-  consensus_model,
-  consensus_graph,
-  cpr
+  sbml_dfs,
+  napistu_graph,
+  napistu
 )
 }
 \arguments{
@@ -17,11 +17,11 @@ summarize_shortest_paths(
 
 \item{dest_species_id}{species id to end at}
 
-\item{consensus_model}{network reconstruction}
+\item{sbml_dfs}{network reconstruction}
 
-\item{consensus_graph}{igraph model of network}
+\item{napistu_graph}{igraph model of network}
 
-\item{cpr}{binding to cpr python library}
+\item{napistu}{binding to napistu python library}
 }
 \description{
 Summarize Shortest Paths
@@ -44,9 +44,9 @@ if (interactive()) {
   summarize_shortest_paths(
     source_species_id,
     dest_species_id,
-    consensus_model,
-    consensus_graph,
-    cpr = cpr
+    sbml_dfs,
+    napistu_graph,
+    napistu = napistu
   )
 }
 }

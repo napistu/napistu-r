@@ -4,14 +4,10 @@
 \alias{summarize_diseases}
 \title{Summarize Diseases}
 \usage{
-summarize_diseases(
-  consensus_model,
-  neighborhood_summary_table,
-  species_identifiers
-)
+summarize_diseases(sbml_dfs, neighborhood_summary_table, species_identifiers)
 }
 \arguments{
-\item{consensus_model}{network reconstruction}
+\item{sbml_dfs}{network reconstruction}
 
 \item{neighborhood_summary_table}{tibble produced by
 \code{create_neighborhood_summary_table}}
@@ -30,20 +26,20 @@ Using a molecular neighborhood, target and indication summaries for all
 if (interactive()) {
   interactive_initialization_wrapper()
 
-  species_id <- rownames(consensus_model$species)[
-    consensus_model$species$s_name == "KRAS:GTP"
+  species_id <- rownames(sbml_dfs$species)[
+    sbml_dfs$species$s_name == "KRAS:GTP"
   ]
   neighborhood_summary_table <- create_neighborhood_summary_table(
     create_neighborhood_table(
       species_id,
-      consensus_model,
-      consensus_graph,
-      cpr = cpr,
+      sbml_dfs,
+      napistu_graph,
+      napistu = napistu,
       max_steps = 7L
     )
   )
   summarize_diseases(
-    consensus_model,
+    sbml_dfs,
     neighborhood_summary_table,
     species_identifiers
     )

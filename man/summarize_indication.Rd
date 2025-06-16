@@ -6,7 +6,7 @@
 \usage{
 summarize_indication(
   disease_id,
-  consensus_model,
+  sbml_dfs,
   neighborhood_summary_table,
   species_identifiers
 )
@@ -14,7 +14,7 @@ summarize_indication(
 \arguments{
 \item{disease_id}{A disease to search from the EFO ontology}
 
-\item{consensus_model}{network reconstruction}
+\item{sbml_dfs}{network reconstruction}
 
 \item{neighborhood_summary_table}{tibble produced by
 \code{create_neighborhood_summary_table}}
@@ -32,19 +32,19 @@ Using a molecular neighborhood, find all Open Target scores for a specified dise
 if (interactive()) {
   interactive_initialization_wrapper()
 
-  species_id <- rownames(consensus_model$species)[
-    consensus_model$species$s_name == "pyruvate kinase tetramer"
+  species_id <- rownames(sbml_dfs$species)[
+    sbml_dfs$species$s_name == "pyruvate kinase tetramer"
   ]
   neighborhood_summary_table <- create_neighborhood_summary_table(
     create_neighborhood_table(
       species_id,
-      consensus_model,
-      consensus_graph,
-      cpr = cpr,
+      sbml_dfs,
+      napistu_graph,
+      napistu = napistu,
       max_steps = 7L
     )
   )
   disease_id <- "EFO_0000400" # diabetes
-  summarize_indication(disease_id, consensus_model, neighborhood_summary_table, species_identifiers)
+  summarize_indication(disease_id, sbml_dfs, neighborhood_summary_table, species_identifiers)
 }
 }
