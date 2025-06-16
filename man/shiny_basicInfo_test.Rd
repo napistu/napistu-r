@@ -4,16 +4,16 @@
 \alias{shiny_basicInfo_test}
 \title{Shiny Basic Info Test}
 \usage{
-shiny_basicInfo_test(species_names, species_identifiers, consensus_model, cpr)
+shiny_basicInfo_test(species_names, species_identifiers, sbml_dfs, napistu)
 }
 \arguments{
 \item{species_names}{A tibble containing names of all reaction species.}
 
 \item{species_identifiers}{A tibble containing systematic identifiers for all reaction species nested by ontology.}
 
-\item{consensus_model}{A python pathway object with class cpr.sbml.SBML_dfs}
+\item{sbml_dfs}{A python pathway object with class napistu.sbml_dfs_core.SBML_dfs}
 
-\item{cpr}{reticulate connection to the cpr python package}
+\item{napistu}{reticulate connection to the napistu python package}
 }
 \value{
 a shiny app
@@ -25,13 +25,13 @@ Demo for querying the reactions a species participates in.
 
 if (interactive()) {
   interactive_initialization_wrapper()
-  cpr <- reticulate::import("cpr")
+  napistu <- reticulate::import("napistu")
 
   shiny_basicInfo_test(
     species_names,
     species_identifiers,
-    consensus_model,
-    cpr = cpr
+    sbml_dfs,
+    napistu = napistu
   )
 }
 }

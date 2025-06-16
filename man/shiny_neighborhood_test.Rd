@@ -7,9 +7,9 @@
 shiny_neighborhood_test(
   species_names,
   species_identifiers,
-  consensus_model,
-  consensus_graph,
-  cpr
+  sbml_dfs,
+  napistu_graph,
+  napistu
 )
 }
 \arguments{
@@ -17,11 +17,11 @@ shiny_neighborhood_test(
 
 \item{species_identifiers}{A tibble containing systematic identifiers for all reaction species nested by ontology.}
 
-\item{consensus_model}{A python pathway object with class cpr.sbml.SBML_dfs}
+\item{sbml_dfs}{A python pathway object with class napistu.sbml_dfs_core.SBML_dfs}
 
-\item{consensus_graph}{A python igraph network of \code{consensus_model}}
+\item{napistu_graph}{A python igraph network of \code{sbml_dfs}}
 
-\item{cpr}{reticulate connection to the cpr python package}
+\item{napistu}{reticulate connection to the napistu python package}
 }
 \value{
 A shiny app
@@ -33,14 +33,14 @@ Demo for interrogating the neighborhood of an entity.
 
 if (interactive()) {
   interactive_initialization_wrapper()
-  cpr <- reticulate::import("cpr")
+  napistu <- reticulate::import("napistu")
 
   shiny_neighborhood_test(
     species_names,
     species_identifiers,
-    consensus_model,
-    consensus_graph,
-    cpr = cpr
+    sbml_dfs,
+    napistu_graph,
+    napistu = napistu
   )
 }
 }

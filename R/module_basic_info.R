@@ -10,32 +10,30 @@
 #'
 #' if (interactive()) {
 #'   interactive_initialization_wrapper()
-#'   cpr <- reticulate::import("cpr")
+#'   napistu <- reticulate::import("napistu")
 #'
 #'   shiny_basicInfo_test(
 #'     species_names,
 #'     species_identifiers,
-#'     consensus_model,
-#'     cpr = cpr
+#'     sbml_dfs,
+#'     napistu = napistu
 #'   )
 #' }
 #' @export
-shiny_basicInfo_test <- function(species_names, species_identifiers, consensus_model, cpr) {
-  checkmate::assertDataFrame(species_names)
-  checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(cpr, "python.builtin.module")
-
-  shiny::shinyApp(
-    ui = shiny::fluidPage(
-      basicInfoInput("entity_info_app")
-    ),
-    server = function(input, output, session) {
-      basicInfoServer("entity_info_app", species_names, species_identifiers, consensus_model, cpr)
-    }
-  )
+shiny_basicInfo_test <- function(species_names, species_identifiers, sbml_dfs, napistu) {
+    checkmate::assertDataFrame(species_names)
+    checkmate::assertDataFrame(species_identifiers)
+    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+    checkmate::assertClass(napistu, "python.builtin.module")
+    shiny::shinyApp(
+        ui = shiny::fluidPage(
+            basicInfoInput("entity_info_app")
+        ),
+        server = function(input, output, session) {
+            basicInfoServer("entity_info_app", species_names, species_identifiers, sbml_dfs, napistu)
+        }
+    )
 }
-
 #' Basic Info Input
 #'
 #' UI components for the basic info shiny module
@@ -47,18 +45,15 @@ shiny_basicInfo_test <- function(species_names, species_identifiers, consensus_m
 #'
 #' @export
 basicInfoInput <- function(id, gui_label) {
-  checkmate::assertCharacter(id, len = 1)
-
-  ns <- shiny::NS(id)
-
-  shiny::sidebarLayout(
-    shiny::sidebarPanel(
-      selectEntityInput(ns("basic_info_entity"), "test entity")
-    ),
-    shiny::mainPanel(DT::dataTableOutput(ns("summary_table")))
-  )
+    checkmate::assertCharacter(id, len = 1)
+    ns <- shiny::NS(id)
+    shiny::sidebarLayout(
+        shiny::sidebarPanel(
+            selectEntityInput(ns("basic_info_entity"), "test entity")
+        ),
+        shiny::mainPanel(DT::dataTableOutput(ns("summary_table")))
+    )
 }
-
 #' Basic Info Server
 #'
 #' Server-side components for basic info shiny module
@@ -73,28 +68,25 @@ basicInfoInput <- function(id, gui_label) {
 basicInfoServer <- function(id,
                             species_names,
                             species_identifiers,
-                            consensus_model,
-                            cpr) {
-  checkmate::assertCharacter(id, len = 1)
-  checkmate::assertDataFrame(species_names)
-  checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(cpr, "python.builtin.module")
-
-  shiny::moduleServer(
-    id,
-    ## Below is the module function
-    function(input, output, session) {
-      selected_basic_entity <- selectEntityServer("basic_info_entity", species_names, species_identifiers)
-
-      shiny::observe({
-        shiny::req(selected_basic_entity())
-        print(glue::glue("You selected species ID: {selected_basic_entity()}"))
-
-        species_status <- cpr$sbml$species_status(selected_basic_entity(), consensus_model)
-        req(species_status)
-        output$summary_table <- DT::renderDataTable(species_status)
-      })
-    }
-  )
+                            sbml_dfs,
+                            napistu) {
+    checkmate::assertCharacter(id, len = 1)
+    checkmate::assertDataFrame(species_names)
+    checkmate::assertDataFrame(species_identifiers)
+    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+    checkmate::assertClass(napistu, "python.builtin.module")
+    shiny::moduleServer(
+        id,
+        ## Below is the module function
+        function(input, output, session) {
+            selected_basic_entity <- selectEntityServer("basic_info_entity", species_names, species_identifiers)
+            shiny::observe({
+                shiny::req(selected_basic_entity())
+                cli::cli_alert_info("You selected species ID: {selected_basic_entity()}")
+                species_status <- napistu$sbml$species_status(selected_basic_entity(), sbml_dfs)
+                req(species_status)
+                output$summary_table <- DT::renderDataTable(species_status)
+            })
+        }
+    )
 }

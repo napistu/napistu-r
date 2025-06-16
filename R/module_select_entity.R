@@ -88,8 +88,8 @@ selectEntityServer <- function(id, species_names, species_identifiers) {
     id,
     ## Below is the module function
     function(input, output, session) {
-      debugr::dwatch(msg = "Starting selectEntityServer [cpr<module_select_entity.R>::selectEntityServer]")
-
+      
+      cli::cli_alert_info("Starting selectEntityServer")
       ns <- session$ns
 
       # create sorting ui based on selected sort mode
@@ -106,8 +106,8 @@ selectEntityServer <- function(id, species_names, species_identifiers) {
         })
       })
 
-      debugr::dwatch(msg = "Select entity by name or ontology done [cpr<module_select_entity.R>::selectEntityServer]")
-
+      cli::cli_alert_info("Select entity by name or ontology done")
+      
       # initialize a client-side selectize input
 
       shiny::observe({
@@ -134,7 +134,7 @@ selectEntityServer <- function(id, species_names, species_identifiers) {
         shiny::updateSelectizeInput(session, "selected_entity", choices = entity_choices, server = TRUE)
       })
 
-      debugr::dwatch(msg = "Available entities have been updated [cpr<module_select_entity.R>::selectEntityServer]")
+      cli::cli_alert_info("Available entities have been updated")
 
       # find the species ID corresponding to the selected name / identifier
 
@@ -153,12 +153,11 @@ selectEntityServer <- function(id, species_names, species_identifiers) {
 
           ontology_data$s_id[ontology_data$identifier == input$selected_entity]
         } else {
-          s
-          stop("Invalid select entity choice")
+          cli::cli_abort("Invalid select entity choice")
         }
       })
 
-      debugr::dwatch(msg = "Finished selectEntityServer [cpr<module_select_entity.R>::selectEntityServer]")
+      cli::cli_alert_info(msg = "Finished selectEntityServer")
 
       unique_selected_entity <- reactive({
         req(selected_entity())

@@ -10,7 +10,7 @@ plot_one_neighborhood(
   edge_sources,
   sc_id,
   sc_name,
-  consensus_graph,
+  napistu_graph,
   score_overlay = NULL,
   score_label = NULL,
   score_palette = NULL,
@@ -30,7 +30,7 @@ plot_one_neighborhood(
 
 \item{sc_name}{name of focal node}
 
-\item{consensus_graph}{igraph model of network}
+\item{napistu_graph}{igraph model of network}
 
 \item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
 
@@ -55,17 +55,17 @@ Plot One Neighborhood
 if (interactive()) {
   interactive_initialization_wrapper(TRUE)
 
-  #species_id <- rownames(consensus_model$species)[
-  #  consensus_model$species$s_name == "pyruvate kinase tetramer"
+  #species_id <- rownames(sbml_dfs$species)[
+  #  sbml_dfs$species$s_name == "pyruvate kinase tetramer"
   #  ]
-  species_id <- sample(rownames(consensus_model$species), 1)
+  species_id <- sample(rownames(sbml_dfs$species), 1)
 
   neighborhood_table <- create_neighborhood_table(
     species_id,
-    consensus_model,
-    consensus_graph,
+    sbml_dfs,
+    napistu_graph,
     network_type = "hourglass",
-    cpr = cpr,
+    napistu = napistu,
     max_neighbors = 30L,
     max_steps = 15L
   )
@@ -84,7 +84,7 @@ if (interactive()) {
 
   # score_overlay <- summarize_indication(
   #   disease_id = "EFO_0000400",
-  #   consensus_model,
+  #   sbml_dfs,
   #   create_neighborhood_summary_table(neighborhood_table),
   #   species_identifiers
   #   )
@@ -95,7 +95,7 @@ if (interactive()) {
     edge_sources,
     sc_id,
     sc_name,
-    consensus_graph,
+    napistu_graph,
     score_overlay = NULL
   )
 
@@ -105,7 +105,7 @@ if (interactive()) {
     edge_sources,
     sc_id,
     sc_name,
-    consensus_graph,
+    napistu_graph,
     score_overlay = score_overlay,
     score_palette = "log2 fold-change"
   )

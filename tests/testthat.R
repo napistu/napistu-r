@@ -1,4 +1,4 @@
 library(testthat)
-library(rcpr)
+library(napistu.r)
 
-test_check("rcpr")
+test_check("napistu.r")

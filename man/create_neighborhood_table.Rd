@@ -6,27 +6,27 @@
 \usage{
 create_neighborhood_table(
   species_id,
-  consensus_model,
-  consensus_graph,
+  sbml_dfs,
+  napistu_graph,
   precomputed_distances = NULL,
   network_type = "downstream",
   max_steps = 3L,
   max_neighbors = 10L,
-  cpr
+  napistu
 )
 }
 \arguments{
 \item{species_id}{species identifier for focal node}
 
-\item{consensus_model}{network reconstruction}
+\item{sbml_dfs}{network reconstruction}
 
-\item{consensus_graph}{igraph model of network}
+\item{napistu_graph}{igraph model of network}
 
 \item{precomputed_distances}{A table of precomputed distances between pairs of
 molecular species. Or, NULL to calculate this on-the-fly (default).}
 
 \item{network_type}{what type of neighborhood should be formed (ignored
-if \code{consensus_graph} is undirected).
+if \code{napistu_graph} is undirected).
 \describe{
   \item{downstream}{descendants of the focal node}
   \item{upstream}{ancestors of the focal node}
@@ -38,7 +38,7 @@ if \code{consensus_graph} is undirected).
 \item{max_neighbors}{prune to this number of upstream regulators and
 downstream targets}
 
-\item{cpr}{binding to cpr python library}
+\item{napistu}{binding to napistu python library}
 }
 \description{
 Create Neighborhood Table
@@ -51,20 +51,20 @@ if (interactive()) {
 
   create_neighborhood_table(
     species_id,
-    consensus_model,
-    consensus_graph,
+    sbml_dfs,
+    napistu_graph,
     network_type = "hourglass",
-    cpr = cpr
+    napistu = napistu
   )
 
  # calculating distances on-the-fly
   create_neighborhood_table(
     species_id,
-    consensus_model,
-    consensus_graph,
+    sbml_dfs,
+    napistu_graph,
     precomputed_distances = precomputed_distances,
     network_type = "hourglass",
-    cpr = cpr
+    napistu = napistu
   )
 }
 }

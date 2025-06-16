@@ -10,43 +10,46 @@
 #'
 #' if (interactive()) {
 #'   interactive_initialization_wrapper()
-#'   cpr <- reticulate::import("cpr")
+#'   napistu <- reticulate::import("napistu")
 #'
 #'   shiny_shortestPaths_test(
 #'     species_names,
 #'     species_identifiers,
-#'     consensus_model,
-#'     consensus_graph,
-#'     cpr = cpr
+#'     sbml_dfs,
+#'     napistu_graph,
+#'     napistu = napistu
 #'     )
 #' }
 #' @export
-shiny_shortestPaths_test <- function(species_names,
-                                     species_identifiers,
-                                     consensus_model,
-                                     consensus_graph,
-                                     cpr) {
-  checkmate::assertDataFrame(species_names)
-  checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(consensus_graph, "igraph.Graph")
-  checkmate::assertClass(cpr, "python.builtin.module")
-
-  shiny::shinyApp(
-    ui = shiny::fluidPage(
-      shortestPathsInput("shortest_paths_app")
-    ),
-    server = function(input, output, session) {
-      shortestPathsServer(
-        "shortest_paths_app",
-        species_names,
-        species_identifiers,
-        consensus_model,
-        consensus_graph,
-        cpr
-      )
-    }
-  )
+shiny_shortestPaths_test <- function(
+    species_names,
+    species_identifiers,
+    sbml_dfs,
+    napistu_graph,
+    napistu
+    ) {
+  
+    checkmate::assertDataFrame(species_names)
+    checkmate::assertDataFrame(species_identifiers)
+    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+    checkmate::assertClass(napistu_graph, "igraph.Graph")
+    checkmate::assertClass(napistu, "python.builtin.module")
+  
+    shiny::shinyApp(
+        ui = shiny::fluidPage(
+            shortestPathsInput("shortest_paths_app")
+        ),
+        server = function(input, output, session) {
+            shortestPathsServer(
+                "shortest_paths_app",
+                species_names,
+                species_identifiers,
+                sbml_dfs,
+                napistu_graph,
+                napistu
+            )
+        }
+    )
 }
 
 #' Shortest Paths Input
@@ -103,15 +106,15 @@ shortestPathsInput <- function(id) {
 shortestPathsServer <- function(id,
                                 species_names,
                                 species_identifiers,
-                                consensus_model,
-                                consensus_graph,
-                                cpr) {
+                                sbml_dfs,
+                                napistu_graph,
+                                napistu) {
   checkmate::assertCharacter(id, len = 1)
   checkmate::assertDataFrame(species_names)
   checkmate::assertDataFrame(species_identifiers)
-  checkmate::assertClass(consensus_model, "cpr.sbml.SBML_dfs")
-  checkmate::assertClass(consensus_graph, "igraph.Graph")
-  checkmate::assertClass(cpr, "python.builtin.module")
+  checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+  checkmate::assertClass(napistu_graph, "igraph.Graph")
+  checkmate::assertClass(napistu, "python.builtin.module")
 
   shiny::moduleServer(
     id,
@@ -124,15 +127,15 @@ shortestPathsServer <- function(id,
 
       shiny::observe({
         req(selected_source_entity(), selected_dest_entity())
-        debugr::dwatch(msg = glue::glue("Finding path from {selected_source_entity()} to {selected_dest_entity()} [cpr<utils.R>::shortestPathsServer]"))
+        cli::cli_alert_info("Finding path from {selected_source_entity()} to {selected_dest_entity()}")
 
         # find shortest paths
         shortest_paths_summary <- summarize_shortest_paths(
           selected_source_entity(),
           selected_dest_entity(),
-          consensus_model,
-          consensus_graph,
-          cpr
+          sbml_dfs,
+          napistu_graph,
+          napistu
         )
 
         req(shortest_paths_summary)
