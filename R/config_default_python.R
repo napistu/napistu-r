@@ -38,7 +38,7 @@ create_default_conda_env <- function(
                 "Failed to set up Python environment for napistu",
                 "x" = "Miniconda installation failed: {install_error$message}",
                 "i" = "Please manually configure Python {min_python}+ using:",
-                "i" = "  config <- napistu_config(python = list(virtualenv = '/path/to/python{min_python}/venv'))"
+                "i" = "  napistu_config <- napistu_config(python = list(virtualenv = '/path/to/python{min_python}/venv'))"
             ))
         })
     }, error = function(e) {
@@ -208,12 +208,12 @@ confirm_install_miniconda <- function () {
         if (response != "1") {
             cli::cli_abort(c(
                 "Setup cancelled by user",
-                "i" = "Configure manually with: config <- napistu_config(python = list(conda = 'your-env'))"
+                "i" = "Configure manually with: napistu_config <- napistu_config(python = list(conda = 'your-env'))"
             ))
         }
     }
     
-    return (invsible(NULL))
+    return (invisible(NULL))
 }
 
 
@@ -226,22 +226,23 @@ confirm_install_miniconda <- function () {
 #' 
 #' @export
 cleanup_napistu <- function(napistu_list, force = FALSE) {
-    checkmate::assert_class(napistu_list, "napistu_env")
+    
+    checkmate::assert_class(napistu_list, NAPISTU_CONSTANTS$NAPISTU_LIST_CLASS)
     checkmate::assert_logical(force, len = 1)
     
-    if (!napistu_env$python_environment$created_by_napistu) {
+    python_env <- napistu_list$python_environment
+    
+    if (!python_env$created_by_napistu) {
         cli::cli_inform("Python environment was not created by napistu - no cleanup needed")
         return(invisible(NULL))
     }
     
-    napistu_env_info <- napistu_env$python_environment
-    
     if (!force && interactive()) {
         cleanup_items <- character()
-        if (env_info$type == "conda") {
-            cleanup_items <- c(cleanup_items, glue::glue("conda environment '{env_info$path}'"))
+        if (python_env$type == "conda") {
+            cleanup_items <- c(cleanup_items, glue::glue("conda environment '{python_env$path}'"))
         }
-        if (env_info$miniconda_installed) {
+        if (python_env$miniconda_installed) {
             cleanup_items <- c(cleanup_items, "miniconda installation")
         }
         
@@ -256,7 +257,7 @@ cleanup_napistu <- function(napistu_list, force = FALSE) {
     }
     
     # Remove miniconda if we installed it
-    if (napistu_env_info$miniconda_installed) {
+    if (python_env$miniconda_installed) {
         cli::cli_inform("Removing miniconda installation")
         tryCatch({
             reticulate::miniconda_uninstall()
@@ -269,10 +270,10 @@ cleanup_napistu <- function(napistu_list, force = FALSE) {
     }
     
     # Remove conda environment - skip if we removed conda already
-    if (napistu_env_info$type == "conda") {
-        cli::cli_inform("Removing conda environment: {.val {napistu_env_info$path}}")
+    if (python_env$type == "conda") {
+        cli::cli_inform("Removing conda environment: {.val {python_env$path}}")
         tryCatch({
-            reticulate::conda_remove(envname = napistu_env_info$path)
+            reticulate::conda_remove(envname = python_env$path)
             cli::cli_alert_success("Conda environment removed")
         }, error = function(e) {
             cli::cli_warn("Failed to remove conda environment: {e$message}")

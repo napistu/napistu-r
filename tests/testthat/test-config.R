@@ -60,35 +60,34 @@ test_that("load_napistu_config fails on missing files", {
     )
 })
 
-# Integration test without external dependencies
-test_that("asset loading workflow with directory config", {
+test_that("load_assets handles directory config correctly", {
     temp_dir <- tempfile()
     dir.create(temp_dir)
     
-    # Create standard asset files
-    asset_files <- c("sbml_dfs.pkl", "napistu_graph.pkl", "species_identifiers.tsv")
-    for (file in asset_files) {
-        writeLines("mock content", file.path(temp_dir, file))
-    }
+    # Create a real TSV file (works without Python)
+    tsv_file <- file.path(temp_dir, "species_identifiers.tsv")
+    writeLines(c("id\tname", "S1\tglucose"), tsv_file)
     
-    # Create config
+    # Create empty pickle files
+    file.create(file.path(temp_dir, "sbml_dfs.pkl"))
+    file.create(file.path(temp_dir, "napistu_graph.pkl"))
+    
+    # Create config that points to this directory
     napistu_config <- create_napistu_config(assets = list(asset_dir = temp_dir))
     
-    # Mock the actual loading functions to avoid reticulate dependencies
+    # Mock only the external dependency (reticulate)
     testthat::local_mocked_bindings(
-        load_single_asset = function(path, name) {
-            paste("loaded", name, "from", basename(path))
-        }
+        py_load_object = function(path) list(mock = basename(path)),
+        .package = "reticulate"
     )
     
-    # Test the workflow
-    sources <- get_configured_asset_sources(napistu_config$assets, verbose = FALSE)
-    expect_length(sources, 3)
-    expect_true(all(file.exists(unlist(sources))))
+    # Test the actual public function
+    assets <- load_assets(napistu_config, verbose = FALSE)
     
-    assets <- load_assets_from_sources(sources, verbose = FALSE)
-    expect_length(assets, 3)
-    expect_true(all(grepl("loaded", assets)))
+    # Verify structure
+    expect_type(assets, "list")
+    expect_true("species_identifiers" %in% names(assets))
+    expect_s3_class(assets$species_identifiers, "data.frame")
     
     unlink(temp_dir, recursive = TRUE)
 })

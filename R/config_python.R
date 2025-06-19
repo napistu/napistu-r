@@ -6,10 +6,10 @@
 #' @return List containing Python modules and environment info
 setup_python_env <- function(napistu_config, verbose = TRUE) {
     
-    checkmate::assert_class(config, "napistu_config")
+    checkmate::assert_class(napistu_config, "napistu_config")
     checkmate::assertLogical(verbose, len = 1)
     
-    python_config <- config$python
+    python_config <- napistu_config$python
     
     # Handle different Python environment configurations
     if (length(python_config) == 0) {
@@ -22,7 +22,7 @@ setup_python_env <- function(napistu_config, verbose = TRUE) {
     }
     
     # Validate and import required modules
-    modules <- validate_and_import_modules(env_info$path)
+    modules <- validate_and_import_modules(verbose = verbose)
     
     # Return both modules and environment metadata
     list(
@@ -146,7 +146,7 @@ validate_python_version <- function(verbose) {
         }
         
         if (verbose) {
-            cli::cli_inform("Python version {py_version} meets requirements")
+            cli::cli_inform("Python version {current_py_version} meets requirements")
         }
         
     }, error = function(e) {

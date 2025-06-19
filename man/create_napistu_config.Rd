@@ -20,7 +20,7 @@ Create Napistu Configuration
 \examples{
 \dontrun{
 # Direct configuration
-config <- create_napistu_config(
+napistu_config <- create_napistu_config(
   python = list(virtualenv = "/path/to/venv"),
   assets = list(
     sbml_dfs = "/path/to/sbml.pkl",
@@ -30,6 +30,6 @@ config <- create_napistu_config(
 )
 
 # Minimal configuration (uses defaults)
-config <- create_napistu_config()
+napistu_config <- create_napistu_config()
 }
 }

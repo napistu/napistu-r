@@ -1,15 +1,14 @@
 #' Load Assets
 #'
-#' @param config Napistu configuration object
 #' @inheritParams setup_napistu_list
 #' 
-#' @return List of loaded assets
-load_assets <- function(config, verbose = TRUE) {
+#' @export
+load_assets <- function(napistu_config, verbose = TRUE) {
     
-    checkmate::assert_class(config, "napistu_config")
+    checkmate::assert_class(napistu_config, NAPISTU_CONSTANTS$NAPISTU_CONFIG_CLASS)
     checkmate::assert_logical(verbose, len = 1)
     
-    assets_config <- config$assets
+    assets_config <- napistu_config$assets
     
     if (length(assets_config) == 0) {
         if (verbose) {
@@ -23,8 +22,11 @@ load_assets <- function(config, verbose = TRUE) {
         asset_sources <- get_configured_asset_sources(assets_config, verbose)
     }
     
-    load_assets_from_sources(asset_sources, verbose)
+    assets <- load_assets_from_sources(asset_sources, verbose)
+    
+    return(assets)
 }
+
 
 #' Get Bundled Asset Sources
 #'
@@ -133,7 +135,7 @@ load_assets_from_sources <- function(asset_sources, verbose = TRUE) {
             if (verbose) {
                 cli::cli_inform("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
             }
-           assets[[asset_name]] <- load_single_asset(asset_path, asset_name)
+            assets[[asset_name]] <- load_single_asset(asset_path, asset_name)
         } else {
             if (verbose) {
                 cli::cli_inform("Optional asset {.field {asset_name}} not available")   
@@ -143,7 +145,7 @@ load_assets_from_sources <- function(asset_sources, verbose = TRUE) {
     
     if (verbose) {
         cli::cli_alert_success("Assets loaded successfully")
-        }
+    }
     
     assets
 }
@@ -198,6 +200,8 @@ resolve_directory_assets <- function(assets_config, verbose = TRUE) {
 #' @param file_path Path to asset file
 #' @param asset_name Name of asset for context
 #' @return Loaded asset object
+#' 
+#' @export
 load_single_asset <- function(file_path, asset_name) {
     file_ext <- tools::file_ext(file_path)
     

@@ -7,9 +7,9 @@
 load_napistu_config(file_path, verbose = TRUE)
 }
 \arguments{
-\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+\item{file_path}{Path to YAML configuration file}
 
-\item{path}{Path to YAML configuration file}
+\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
 }
 \value{
 Configuration object

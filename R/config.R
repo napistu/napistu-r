@@ -33,7 +33,7 @@ setup_napistu_list <- function(
     checkmate::assertLogical(overwrite, len = 1)
     checkmate::assertLogical(verbose, len = 1)
     
-    if (napistu_list_object %in% ls() && !overwrite) {
+    if (napistu_list_object %in% ls(envir = parent.frame()) && !overwrite) {
         # the environment is already configured; nothing to do
         return (invisible(NULL))
     } 
@@ -55,13 +55,13 @@ setup_napistu_list <- function(
     assets <- load_assets(napistu_config, verbose)
     
     # Create combined environment object
-    napistu_env <- structure(
+    napistu_list <- structure(
         c(
             assets,
             list(
                 python_modules = python_env$modules,
                 python_environment = python_env$environment,
-                config = config,
+                napistu_config = napistu_config,
                 loaded_at = Sys.time()
             )
         ),
@@ -72,7 +72,7 @@ setup_napistu_list <- function(
         cli::cli_alert_success("Napistu environment setup complete - creating {.field {napistu_list_object}} object in the parent environment")
     }
         
-    assign(napistu_env, napistu_list_object, envir = parent.frame())
+    assign(napistu_list_object, napistu_list, envir = parent.frame())
     
     return(invisible(NULL))
 }
@@ -89,7 +89,7 @@ setup_napistu_list <- function(
 #' @examples
 #' \dontrun{
 #' # Direct configuration
-#' config <- create_napistu_config(
+#' napistu_config <- create_napistu_config(
 #'   python = list(virtualenv = "/path/to/venv"),
 #'   assets = list(
 #'     sbml_dfs = "/path/to/sbml.pkl",
@@ -99,7 +99,7 @@ setup_napistu_list <- function(
 #' )
 #' 
 #' # Minimal configuration (uses defaults)
-#' config <- create_napistu_config()
+#' napistu_config <- create_napistu_config()
 #' }
 create_napistu_config <- function(python = list(), assets = list()) {
     
@@ -119,7 +119,7 @@ create_napistu_config <- function(python = list(), assets = list()) {
 
 #' Load Napistu Configuration from YAML
 #'
-#' @param path Path to YAML configuration file
+#' @param file_path Path to YAML configuration file
 #' @inheritParams setup_napistu_list
 #' 
 #' @return Configuration object
@@ -180,10 +180,10 @@ print.napistu_config <- function(x, ...) {
 }
 
 #' @export
-print.napistu_env <- function(x, ...) {
+print.napistu_list <- function(x, ...) {
     cli::cli_h2("Napistu Environment")
     
-    asset_names <- setdiff(names(x), c("python_modules", "python_environment", "config", "loaded_at"))
+    asset_names <- setdiff(names(x), c("python_modules", "python_environment", "napistu_config", "loaded_at"))
     cli::cli_text("Assets: {.field {asset_names}}")
     cli::cli_text("Python modules: {.field {names(x$python_modules)}}")
     cli::cli_text("Python environment: {.val {x$python_environment$path}} ({.val {x$python_environment$type}})")
