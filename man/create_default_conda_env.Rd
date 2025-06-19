@@ -4,10 +4,15 @@
 \alias{create_default_conda_env}
 \title{Create Default Conda Environment}
 \usage{
-create_default_conda_env(env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME)
+create_default_conda_env(
+  env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{env_name}{The name of the to-be-created conda environment}
+
+\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
 }
 \value{
 List with environment info and metadata

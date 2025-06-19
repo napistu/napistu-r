@@ -1,11 +1,16 @@
 #' Create Default Conda Environment
 #'
 #' @param env_name The name of the to-be-created conda environment
+#' @inheritParams setup_napistu_list
 #'
 #' @return List with environment info and metadata
 create_default_conda_env <- function(
-    env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME
+    env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME,
+    verbose = TRUE
     ) {
+    
+    checkmate::assertString(env_name)
+    checkmate::assertLogical(verbose, len = 1)
     
     min_python <- NAPISTU_CONSTANTS$MINIMUM_PYTHON_VERSION
     miniconda_installed <- FALSE
@@ -13,26 +18,32 @@ create_default_conda_env <- function(
     # Get conda installation (install miniconda if needed)
     conda_exe <- tryCatch({
         get_conda_installation()
-    }, error = function(e) {
+    }, conda_not_available_error = function(e) {
         # If conda not found, try installing miniconda
-        cli::cli_inform("Conda not available, installing miniconda...")
+        cli::cli_alert_danger("Conda not available, installing miniconda...")
+        
+        # ask for user confirmation in an interactive session
+        confirm_install_miniconda()
         
         tryCatch({
             reticulate::install_miniconda(force = FALSE)
             miniconda_installed <- TRUE
-            cli::cli_alert_success("Miniconda installed successfully")
+            cli::cli_alert_success("Miniconda installed successfully. You can remove it with {.field cleanup_napistu(napistu_list)} once you're done")
             
             # Now try to get conda again
             get_conda_installation()
             
         }, error = function(install_error) {
-            cli::cli_abort(
+            cli::cli_abort(c(
                 "Failed to set up Python environment for napistu",
-                x = "Miniconda installation failed: {install_error$message}",
-                i = "Please manually configure Python {min_python}+ using:",
-                i = "  config <- napistu_config(python = list(virtualenv = '/path/to/python{min_python}/venv'))"
-            )
+                "x" = "Miniconda installation failed: {install_error$message}",
+                "i" = "Please manually configure Python {min_python}+ using:",
+                "i" = "  config <- napistu_config(python = list(virtualenv = '/path/to/python{min_python}/venv'))"
+            ))
         })
+    }, error = function(e) {
+        # Re-throw other errors (broken installations, etc.)
+        rlang::abort(e$message, parent = e)
     })
     
     # Check if environment already exists
@@ -42,8 +53,8 @@ create_default_conda_env <- function(
         reticulate::use_condaenv(env_name, conda = conda_exe, required = TRUE)
         
         # Validate Python version and packages
-        validate_python_version()
-        validate_and_import_modules_current()
+        validate_python_version(verbose)
+        validate_and_import_modules(verbose = verbose)
         
         return(list(
             path = env_name,
@@ -92,12 +103,12 @@ get_conda_installation <- function() {
         }
         
         if (!file.exists(conda_exe)) {
-            cli::cli_abort(
+            cli::cli_abort(c(
                 "Miniconda installation found but conda executable is missing",
-                i = "Miniconda path: {.path {miniconda_path}}",
-                i = "Expected conda at: {.path {conda_exe}}",
-                i = "Please reinstall miniconda or manually configure Python"
-            )
+                "i" = "Miniconda path: {.path {miniconda_path}}",
+                "i" = "Expected conda at: {.path {conda_exe}}",
+                "i" = "Please reinstall miniconda or manually configure Python"
+            ))
         }
         
         if (validate_conda_executable(conda_exe)) {
@@ -106,11 +117,7 @@ get_conda_installation <- function() {
     }
     
     # No conda found anywhere
-    cli::cli_abort(
-        "Conda is not available",
-        i = "Please install conda/miniconda or manually configure Python using:",
-        i = "  config <- napistu_config(python = list(virtualenv = '/path/to/venv'))"
-    )
+    rlang::abort("Conda is not available", class = "conda_not_available_error")
 }
 
 #' Validate Conda Executable
@@ -124,17 +131,17 @@ validate_conda_executable <- function(conda_exe) {
             return(TRUE)
         }
         
-        cli::cli_abort(
+        cli::cli_abort(c(
             "Conda executable found but not working",
-            i = "Conda path: {.path {conda_exe}}",
-            i = "Please check your conda installation"
-        )
+            "i" = "Conda path: {.path {conda_exe}}",
+            "i" = "Please check your conda installation"
+        ))
     }, error = function(e) {
-        cli::cli_abort(
+        cli::cli_abort(c(
             "Conda executable failed to run",
-            i = "Conda path: {.path {conda_exe}}",
-            i = "Error: {e$message}"
-        )
+            "i" = "Conda path: {.path {conda_exe}}",
+            "i" = "Error: {e$message}"
+        ))
     })
 }
 
@@ -177,22 +184,50 @@ create_conda_environment <- function(env_name, python_version, conda_exe) {
             conda = conda_exe
         )
         
-        cli::cli_alert_success("Conda environment {.val {env_name}} created successfully")
+        cli::cli_alert_success(c("Conda environment {.val {env_name}} created successfully"))
+        cli::cli_alert_info("It can be removed with {.field cleanup_napistu()}")
         
     }, error = function(e) {
         cli::cli_abort("Failed to create conda environment: {e$message}")
     })
 }
 
+confirm_install_miniconda <- function () {
+    if (interactive()) {
+        cli::cli_rule("Python Environment Setup")
+        cli::cli_alert_warning("Conda not available for napistu setup")
+        cli::cli_text("")
+        cli::cli_text("Options:")
+        cli::cli_text("  1. Install miniconda automatically (recommended)")
+        cli::cli_text("  2. Cancel and configure manually")
+        cli::cli_text("")
+        cli::cli_text("Miniconda will be installed to: {.path {reticulate::miniconda_path()}}")
+        cli::cli_text("If you install it you can remove it once you're done with: {.field cleanup_napistu()}")
+        
+        response <- readline("Choice (1/2): ")
+        if (response != "1") {
+            cli::cli_abort(c(
+                "Setup cancelled by user",
+                "i" = "Configure manually with: config <- napistu_config(python = list(conda = 'your-env'))"
+            ))
+        }
+    }
+    
+    return (invsible(NULL))
+}
+
+
 #' Clean Up Napistu Environment
 #'
 #' Removes conda environment and miniconda if they were created by napistu
 #'
-#' @param env Napistu environment object
+#' @param napistu_list Napistu environment object
 #' @param force Logical, whether to force removal without confirmation
+#' 
 #' @export
-cleanup_napistu_env <- function(napistu_env, force = FALSE) {
-    checkmate::assert_class(napistu_env, "napistu_env")
+cleanup_napistu <- function(napistu_list, force = FALSE) {
+    checkmate::assert_class(napistu_list, "napistu_env")
+    checkmate::assert_logical(force, len = 1)
     
     if (!napistu_env$python_environment$created_by_napistu) {
         cli::cli_inform("Python environment was not created by napistu - no cleanup needed")

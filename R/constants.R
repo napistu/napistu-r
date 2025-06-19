@@ -7,6 +7,10 @@ NAPISTU_CONSTANTS <- list(
         precomputed_distances = "precomputed_distances.json"
     ),
     
+    NAPISTU_LIST_OBJECT = "napistu_list",
+    NAPISTU_LIST_CLASS = "napistu_list",
+    NAPISTU_CONFIG_CLASS = "napistu_config",
+    
     # Asset requirements
     REQUIRED_ASSETS = c("sbml_dfs", "napistu_graph", "species_identifiers"),
     OPTIONAL_ASSETS = c("precomputed_distances"),

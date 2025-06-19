@@ -4,9 +4,11 @@
 \alias{load_napistu_config}
 \title{Load Napistu Configuration from YAML}
 \usage{
-load_napistu_config(file_path)
+load_napistu_config(file_path, verbose = TRUE)
 }
 \arguments{
+\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+
 \item{path}{Path to YAML configuration file}
 }
 \value{
