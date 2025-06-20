@@ -1,7 +1,7 @@
 Package: napistu.r
 Type: Package
 Title: Napistu R
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: c(
     person(
       given = "Sean",
@@ -27,6 +27,7 @@ Imports:
     DT,
     ggplot2,
     glue,
+    jsonlite,
     purrr,
     readr,
     rlang,
@@ -34,7 +35,8 @@ Imports:
     shiny,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    yaml
 Suggests:
     googleCloudStorageR,
     ggraph,

@@ -5,12 +5,12 @@
 \title{Plot One Neighborhood}
 \usage{
 plot_one_neighborhood(
+  napistu_list,
   vertices,
   edges,
   edge_sources,
   sc_id,
   sc_name,
-  napistu_graph,
   score_overlay = NULL,
   score_label = NULL,
   score_palette = NULL,
@@ -20,6 +20,34 @@ plot_one_neighborhood(
 )
 }
 \arguments{
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
+
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
 \item{vertices}{table of species and reactions, produced by \link{create_neighborhood_table}}
 
 \item{edges}{table of connections between species and reactions, produced by \link{create_neighborhood_table}}
@@ -29,8 +57,6 @@ plot_one_neighborhood(
 \item{sc_id}{compartmentalized species identifier of focal node}
 
 \item{sc_name}{name of focal node}
-
-\item{napistu_graph}{igraph model of network}
 
 \item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
 
@@ -53,61 +79,55 @@ Plot One Neighborhood
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper(TRUE)
+    setup_napistu_list(create_napistu_config())
+    species_id <- random_species(napistu_list)
 
-  #species_id <- rownames(sbml_dfs$species)[
-  #  sbml_dfs$species$s_name == "pyruvate kinase tetramer"
-  #  ]
-  species_id <- sample(rownames(sbml_dfs$species), 1)
+    neighborhood_table <- create_neighborhood_table(
+        napistu_list,
+        species_id,
+        network_type = "hourglass",
+        max_neighbors = 30L,
+        max_steps = 15L
+    )
 
-  neighborhood_table <- create_neighborhood_table(
-    species_id,
-    sbml_dfs,
-    napistu_graph,
-    network_type = "hourglass",
-    napistu = napistu,
-    max_neighbors = 30L,
-    max_steps = 15L
-  )
-  entry <- 1
-  vertices <- neighborhood_table$vertices[[entry]]
-  edges <- neighborhood_table$edges[[entry]]
-  edge_sources <- neighborhood_table$edge_sources[[entry]]
-  sc_id <- neighborhood_table$sc_id[entry]
-  sc_name <- neighborhood_table$sc_name[entry]
+    entry <- 1
+    vertices <- neighborhood_table$vertices[[entry]]
+    edges <- neighborhood_table$edges[[entry]]
+    edge_sources <- neighborhood_table$edge_sources[[entry]]
+    sc_id <- neighborhood_table$sc_id[entry]
+    sc_name <- neighborhood_table$sc_name[entry]
 
-  score_overlay <- vertices \%>\%
-    dplyr::filter(node_type == "species") \%>\%
-    dplyr::distinct(s_id) \%>\%
-    dplyr::sample_frac(0.5) \%>\%
-    dplyr::mutate(score = rnorm(n()))
+    score_overlay <- vertices \%>\%
+      dplyr::filter(node_type == "species") \%>\%
+      dplyr::distinct(s_id) \%>\%
+      dplyr::sample_frac(0.5) \%>\%
+      dplyr::mutate(score = stats::rnorm(dplyr::n()))
 
-  # score_overlay <- summarize_indication(
-  #   disease_id = "EFO_0000400",
-  #   sbml_dfs,
-  #   create_neighborhood_summary_table(neighborhood_table),
-  #   species_identifiers
-  #   )
+    # score_overlay <- summarize_indication(
+    #   napistu_list,
+    #   disease_id = "EFO_0000400",
+    #   create_neighborhood_summary_table(neighborhood_table)
+    #   )
 
-  plot_one_neighborhood(
-    vertices,
-    edges,
-    edge_sources,
-    sc_id,
-    sc_name,
-    napistu_graph,
-    score_overlay = NULL
-  )
+    plot_one_neighborhood(
+        napistu_list,
+        vertices,
+        edges,
+        edge_sources,
+        sc_id,
+        sc_name,
+        score_overlay = NULL
+    )
 
-  plot_one_neighborhood(
-    vertices,
-    edges,
-    edge_sources,
-    sc_id,
-    sc_name,
-    napistu_graph,
-    score_overlay = score_overlay,
-    score_palette = "log2 fold-change"
-  )
+    plot_one_neighborhood(
+        napistu_list,
+        vertices,
+        edges,
+        edge_sources,
+        sc_id,
+        sc_name,
+        score_overlay = score_overlay,
+        score_palette = "log2 fold-change"
+    )
 }
 }

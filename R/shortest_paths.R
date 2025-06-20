@@ -2,43 +2,36 @@
 #'
 #' @param source_species_id species id to start with
 #' @param dest_species_id species id to end at
-#' @inheritParams create_neighborhood_table
+#' @inheritParams validate_napistu_list
 #'
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper()
-#'
-#'   # end_points <- sample(rownames(species_names), 2)
-#'   # source_species_id <- end_points[1]
-#'   # dest_species_id <- end_points[2]
-#'
-#'   # source_species_id <- "S00002615"
-#'   # dest_species_id <- "S00004885"
-#'
-#'   source_species_id <- "S00002615"
-#'   dest_species_id <- "S00000374"
+#'   setup_napistu_list(create_napistu_config())
+#'   source_species_id <- random_species(napistu_list)
+#'   dest_species_id <- random_species(napistu_list)
 #'
 #'   summarize_shortest_paths(
-#'     source_species_id,
-#'     dest_species_id,
-#'     sbml_dfs,
-#'     napistu_graph,
-#'     napistu = napistu
+#'       napistu_list,
+#'       source_species_id,
+#'       dest_species_id
 #'   )
 #' }
 #' @export
-summarize_shortest_paths <- function(source_species_id, dest_species_id, sbml_dfs, napistu_graph, napistu) {
+summarize_shortest_paths <- function(napistu_list, source_species_id, dest_species_id) {
+    
+    validate_napistu_list(napistu_list)
+    sbml_dfs <- napistu_list$sbml_dfs
+    napistu_graph <- napistu_list$napistu_graph
+    napistu <- napistu_list$python_modules$napistu
+    
     checkmate::assertCharacter(source_species_id)
     checkmate::assertCharacter(dest_species_id)
-    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
-    checkmate::assertClass(napistu_graph, "igraph.Graph")
-    checkmate::assertClass(napistu, "python.builtin.module")
     
     cli::cli_alert_info("Starting summarize_shortest_paths")
     print(glue::glue("Searching for path between {source_species_id} and {dest_species_id}"))
     
-    target_species_paths <- napistu$network$compartmentalize_species_pairs(sbml_dfs, source_species_id, dest_species_id)
+    target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(sbml_dfs, source_species_id, dest_species_id)
     
     if (nrow(target_species_paths) > 10) {
         cli::cli_alert_info("{nrow(target_species_paths)} pairs of source and destination species; will only us the first 10")
@@ -47,7 +40,7 @@ summarize_shortest_paths <- function(source_species_id, dest_species_id, sbml_df
     }
     
     shortest_paths_list <- try(
-        napistu$network$find_all_shortest_reaction_paths(
+        napistu$network$paths$find_all_shortest_reaction_paths(
             napistu_graph,
             sbml_dfs,
             target_species_paths,
@@ -59,7 +52,7 @@ summarize_shortest_paths <- function(source_species_id, dest_species_id, sbml_df
     cli::cli_alert_info("Shortest paths calculated")
     
     if (inherits(shortest_paths_list, "try-error")) {
-        cli::cli_alert_warning(paste0("napistu$network$find_all_shortest_reaction_paths errored due to: ", attr(shortest_paths_list, "condition")))
+        cli::cli_alert_warning(paste0("napistu$network$paths$find_all_shortest_reaction_paths errored due to: ", attr(shortest_paths_list, "condition")))
         
         disconnected_plot <- ggplot(data.frame(x = 0, y = 0), aes(x = x, y = y)) +
             geom_text(label = glue::glue("No path exists between these species"), size = 10) +
@@ -83,26 +76,29 @@ summarize_shortest_paths <- function(source_species_id, dest_species_id, sbml_df
 
 #' Plot Shortest Path Network
 #'
+#' @inheritParams validate_napistu_list
 #' @param shortest_paths_list results from napistu$network$find_all_shortest_reaction_paths
-#' @inheritParams create_neighborhood_table
 #' @inheritParams plot_one_neighborhood
 #'
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper()
+#'   setup_napistu_list(create_napistu_config())
+#'   sbml_dfs <- napistu_list$sbml_dfs
+#'   napistu_graph <- napistu_list$napistu_graph
+#'   species_names <- napistu_list$species_names
 #'
 #'   end_points <- sample(rownames(species_names), 2)
 #'   source_species_id <- end_points[1]
 #'   dest_species_id <- end_points[2]
 #'
-#'   target_species_paths <- napistu$network$compartmentalize_species_pairs(
+#'   target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(
 #'     sbml_dfs,
 #'     source_species_id,
 #'     dest_species_id
 #'     )
 #'
-#'   shortest_paths_list <- try(napistu$network$find_all_shortest_reaction_paths(
+#'   shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_paths(
 #'     napistu_graph,
 #'     sbml_dfs,
 #'     target_species_paths,
@@ -116,7 +112,14 @@ summarize_shortest_paths <- function(source_species_id, dest_species_id, sbml_df
 #'     )
 #' }
 #' @export
-plot_shortest_path_network <- function(shortest_paths_list, napistu_graph, max_labeled_species = 10L) {
+plot_shortest_path_network <- function(
+    napistu_list,
+    shortest_paths_list,
+    max_labeled_species = 10L
+    ) {
+    
+    validate_napistu_list(napistu_list)
+    napistu_graph <- napistu_list$napistu_graph
     checkmate::assertList(shortest_paths_list, len = 4)
     checkmate::assertCount(max_labeled_species)
     
@@ -162,7 +165,6 @@ plot_shortest_path_network <- function(shortest_paths_list, napistu_graph, max_l
                 TRUE ~ NA_character_
             )
         )
-    
     all_shortest_reaction_path_edges_df <- shortest_paths_list[[2]] %>%
         dplyr::relocate(from, to)
     

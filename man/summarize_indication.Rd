@@ -4,22 +4,41 @@
 \alias{summarize_indication}
 \title{Summarize Indications}
 \usage{
-summarize_indication(
-  disease_id,
-  sbml_dfs,
-  neighborhood_summary_table,
-  species_identifiers
-)
+summarize_indication(napistu_list, disease_id, neighborhood_summary_table)
 }
 \arguments{
-\item{disease_id}{A disease to search from the EFO ontology}
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
 
-\item{sbml_dfs}{network reconstruction}
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
+\item{disease_id}{A disease to search from the EFO ontology}
 
 \item{neighborhood_summary_table}{tibble produced by
 \code{create_neighborhood_summary_table}}
-
-\item{species_identifiers}{A tibble containing systematic identifiers for all reaction species nested by ontology.}
 }
 \value{
 A tibble of species names and disease scores
@@ -30,21 +49,17 @@ Using a molecular neighborhood, find all Open Target scores for a specified dise
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper()
+    setup_napistu_list(create_napistu_config())
+    species_id <- random_species(napistu_list)
 
-  species_id <- rownames(sbml_dfs$species)[
-    sbml_dfs$species$s_name == "pyruvate kinase tetramer"
-  ]
-  neighborhood_summary_table <- create_neighborhood_summary_table(
-    create_neighborhood_table(
-      species_id,
-      sbml_dfs,
-      napistu_graph,
-      napistu = napistu,
-      max_steps = 7L
-    )
-  )
-  disease_id <- "EFO_0000400" # diabetes
-  summarize_indication(disease_id, sbml_dfs, neighborhood_summary_table, species_identifiers)
+    neighborhood_summary_table <- create_neighborhood_table(
+        napistu_list,
+        species_id,
+        max_steps = 7L
+        ) \%>\%
+        create_neighborhood_summary_table()
+   
+     disease_id <- "EFO_0000400" # diabetes
+     summarize_indication(disease_id, sbml_dfs, neighborhood_summary_table, species_identifiers)
 }
 }

@@ -5,18 +5,44 @@
 \title{Summarize Neighborhoods}
 \usage{
 plot_neighborhoods(
+  napistu_list,
   neighborhood_table,
-  napistu_graph,
   score_overlay = NULL,
   score_label = NULL,
   ...
 )
 }
 \arguments{
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
+
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
 \item{neighborhood_table}{Neighborhood table created by
 \code{create_neighborhood_table}}
-
-\item{napistu_graph}{igraph model of network}
 
 \item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
 
@@ -30,43 +56,36 @@ Summarize Neighborhoods
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper(TRUE)
-
-  species_id <- rownames(sbml_dfs$species)[
-    sbml_dfs$species$s_name == "cAMP"
-    ]
-  species_id <- sample(rownames(sbml_dfs$species), 1)
+  setup_napistu_list(create_napistu_config())
+  species_id <- random_species(napistu_list)
 
   neighborhood_table <- create_neighborhood_table(
-    species_id = species_id,
-    sbml_dfs = sbml_dfs,
-    napistu_graph = napistu_graph,
-    napistu = napistu,
-    max_steps = 3L,
-    max_neighbors = 40L,
+      napistu_list,
+      species_id = species_id,
+      max_steps = 3L,
+      max_neighbors = 40L,
   )
 
  # score_overlay <- summarize_indication(
+ #   napistu_list,
  #   disease_id = "EFO_0000400",
- #   sbml_dfs,
- #   create_neighborhood_summary_table(neighborhood_table),
- #   species_identifiers
+ #   create_neighborhood_summary_table(neighborhood_table)
  # )
 
  score_overlay <- neighborhood_table \%>\%
-   dplyr::select(vertices) \%>\%
-   tidyr::unnest(vertices) \%>\%
-   dplyr::filter(node_type == "species") \%>\%
-   dplyr::distinct(s_id) \%>\%
-   dplyr::sample_frac(0.5) \%>\%
-   dplyr::mutate(score = rnorm(n()))
+     dplyr::select(vertices) \%>\%
+     tidyr::unnest(vertices) \%>\%
+     dplyr::filter(node_type == "species") \%>\%
+     dplyr::distinct(s_id) \%>\%
+     dplyr::sample_frac(0.5) \%>\%
+     dplyr::mutate(score = rnorm(dplyr::n()))
 
-  neighborhood_summaries <- plot_neighborhoods(
-    neighborhood_table,
-    napistu_graph,
-    score_overlay,
-    score_label = "diabetes mellitus",
-    score_palette = "log2 fold-change"
-  )
+ neighborhood_summaries <- plot_neighborhoods(
+     napistu_list,
+     neighborhood_table,
+     score_overlay,
+     score_label = "diabetes mellitus",
+     score_palette = "log2 fold-change"
+ )
 }
 }

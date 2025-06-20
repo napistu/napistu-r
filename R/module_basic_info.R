@@ -2,35 +2,27 @@
 #'
 #' Demo for querying the reactions a species participates in.
 #'
-#' @inheritParams basicInfoServer
+#' @inheritParams validate_napistu_list
 #'
 #' @returns a shiny app
 #'
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper()
-#'   napistu <- reticulate::import("napistu")
-#'
-#'   shiny_basicInfo_test(
-#'     species_names,
-#'     species_identifiers,
-#'     sbml_dfs,
-#'     napistu = napistu
-#'   )
+#'   setup_napistu_list(create_napistu_config())
+#'   shiny_basicInfo_test(napistu_list)
 #' }
 #' @export
-shiny_basicInfo_test <- function(species_names, species_identifiers, sbml_dfs, napistu) {
-    checkmate::assertDataFrame(species_names)
-    checkmate::assertDataFrame(species_identifiers)
-    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
-    checkmate::assertClass(napistu, "python.builtin.module")
+shiny_basicInfo_test <- function(napistu_list) {
+    
+    validate_napistu_list(napistu_list)
+    
     shiny::shinyApp(
         ui = shiny::fluidPage(
             basicInfoInput("entity_info_app")
         ),
         server = function(input, output, session) {
-            basicInfoServer("entity_info_app", species_names, species_identifiers, sbml_dfs, napistu)
+            basicInfoServer("entity_info_app", napistu_list)
         }
     )
 }
@@ -59,31 +51,27 @@ basicInfoInput <- function(id, gui_label) {
 #' Server-side components for basic info shiny module
 #'
 #' @inheritParams shiny::moduleServer
-#' @inheritParams selectEntityServer
-#' @inheritParams neighborhoodServer
+#' @inheritParams validate_napistu_list
 #'
 #' @returns Nothing; used for side-effects
 #'
 #' @export
-basicInfoServer <- function(id,
-                            species_names,
-                            species_identifiers,
-                            sbml_dfs,
-                            napistu) {
+basicInfoServer <- function(id, napistu_list) {
+    
     checkmate::assertCharacter(id, len = 1)
-    checkmate::assertDataFrame(species_names)
-    checkmate::assertDataFrame(species_identifiers)
-    checkmate::assertClass(sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
-    checkmate::assertClass(napistu, "python.builtin.module")
+    validate_napistu_list(napistu_list)
+    napistu <- napistu_list$python_modules$napistu
+    sbml_dfs <- napistu_list$sbml_dfs
+    
     shiny::moduleServer(
         id,
         ## Below is the module function
         function(input, output, session) {
-            selected_basic_entity <- selectEntityServer("basic_info_entity", species_names, species_identifiers)
+            selected_basic_entity <- selectEntityServer("basic_info_entity", napistu_list)
             shiny::observe({
                 shiny::req(selected_basic_entity())
                 cli::cli_alert_info("You selected species ID: {selected_basic_entity()}")
-                species_status <- napistu$sbml$species_status(selected_basic_entity(), sbml_dfs)
+                species_status <- napistu$sbml_dfs_core$species_status(selected_basic_entity(), sbml_dfs)
                 req(species_status)
                 output$summary_table <- DT::renderDataTable(species_status)
             })
