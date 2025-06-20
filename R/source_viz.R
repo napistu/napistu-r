@@ -31,7 +31,7 @@ layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_path
         ) %>%
         dplyr::group_by(label) %>%
         dplyr::summarize(
-            n_species = n(),
+            n_species = dplyr::n(),
             x_min = min(x),
             x_max = max(x),
             y_min = min(y),

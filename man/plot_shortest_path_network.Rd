@@ -5,15 +5,41 @@
 \title{Plot Shortest Path Network}
 \usage{
 plot_shortest_path_network(
+  napistu_list,
   shortest_paths_list,
-  napistu_graph,
   max_labeled_species = 10L
 )
 }
 \arguments{
-\item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
 
-\item{napistu_graph}{igraph model of network}
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
+\item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
 
 \item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
 }
@@ -23,19 +49,22 @@ Plot Shortest Path Network
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper()
+  setup_napistu_list(create_napistu_config())
+  sbml_dfs <- napistu_list$sbml_dfs
+  napistu_graph <- napistu_list$napistu_graph
+  species_names <- napistu_list$species_names
 
   end_points <- sample(rownames(species_names), 2)
   source_species_id <- end_points[1]
   dest_species_id <- end_points[2]
 
-  target_species_paths <- napistu$network$compartmentalize_species_pairs(
+  target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(
     sbml_dfs,
     source_species_id,
     dest_species_id
     )
 
-  shortest_paths_list <- try(napistu$network$find_all_shortest_reaction_paths(
+  shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_paths(
     napistu_graph,
     sbml_dfs,
     target_species_paths,

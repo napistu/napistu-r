@@ -49,7 +49,7 @@ test_that("resolve_directory_assets fails on missing directory", {
     )
 })
 
-test_that("get_configured_asset_sources handles absolute paths", {
+test_that("get_configured_asset_paths handles absolute paths", {
     temp_dir <- tempfile()
     dir.create(temp_dir)
     
@@ -66,7 +66,7 @@ test_that("get_configured_asset_sources handles absolute paths", {
         species_identifiers = species_file
     )
     
-    sources <- get_configured_asset_sources(assets_config)
+    sources <- get_configured_asset_paths(assets_config)
     
     expect_equal(sources$sbml_dfs, sbml_file)
     expect_equal(sources$napistu_graph, graph_file)
@@ -75,20 +75,20 @@ test_that("get_configured_asset_sources handles absolute paths", {
     unlink(temp_dir, recursive = TRUE)
 })
 
-test_that("get_configured_asset_sources fails on missing required assets", {
+test_that("get_configured_asset_paths fails on missing required assets", {
     assets_config <- list(
         sbml_dfs = "/path/to/file.pkl"
         # Missing other required assets
     )
     
     expect_error(
-        get_configured_asset_sources(assets_config),
+        get_configured_asset_paths(assets_config),
         "Required assets missing from configuration",
         class = "rlang_error"
     )
 })
 
-test_that("get_configured_asset_sources fails on missing files", {
+test_that("get_configured_asset_paths fails on missing files", {
     assets_config <- list(
         sbml_dfs = "/nonexistent/file.pkl",
         napistu_graph = "/nonexistent/graph.pkl", 
@@ -96,7 +96,7 @@ test_that("get_configured_asset_sources fails on missing files", {
     )
     
     expect_error(
-        get_configured_asset_sources(assets_config),
+        get_configured_asset_paths(assets_config),
         "Asset file not found",
         class = "rlang_error"
     )

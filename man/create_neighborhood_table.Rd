@@ -5,25 +5,43 @@
 \title{Create Neighborhood Table}
 \usage{
 create_neighborhood_table(
+  napistu_list,
   species_id,
-  sbml_dfs,
-  napistu_graph,
-  precomputed_distances = NULL,
   network_type = "downstream",
   max_steps = 3L,
-  max_neighbors = 10L,
-  napistu
+  max_neighbors = 10L
 )
 }
 \arguments{
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
+
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
 \item{species_id}{species identifier for focal node}
-
-\item{sbml_dfs}{network reconstruction}
-
-\item{napistu_graph}{igraph model of network}
-
-\item{precomputed_distances}{A table of precomputed distances between pairs of
-molecular species. Or, NULL to calculate this on-the-fly (default).}
 
 \item{network_type}{what type of neighborhood should be formed (ignored
 if \code{napistu_graph} is undirected).
@@ -37,8 +55,6 @@ if \code{napistu_graph} is undirected).
 
 \item{max_neighbors}{prune to this number of upstream regulators and
 downstream targets}
-
-\item{napistu}{binding to napistu python library}
 }
 \description{
 Create Neighborhood Table
@@ -46,23 +62,12 @@ Create Neighborhood Table
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper()
+  setup_napistu_list(create_napistu_config())
   species_id <- "S00000061"
 
   create_neighborhood_table(
     species_id,
-    sbml_dfs,
-    napistu_graph,
-    network_type = "hourglass",
-    napistu = napistu
-  )
-
- # calculating distances on-the-fly
-  create_neighborhood_table(
-    species_id,
-    sbml_dfs,
-    napistu_graph,
-    precomputed_distances = precomputed_distances,
+    napistu_list = napistu_list,
     network_type = "hourglass",
     napistu = napistu
   )

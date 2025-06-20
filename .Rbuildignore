@@ -4,7 +4,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-assets
 LICENSE.md
 cran-comments.md
 ^CRAN-RELEASE$

@@ -1,5 +1,6 @@
 #' Summarize Neighborhoods
 #'
+#' @inheritParams validate_napistu_list
 #' @param neighborhood_table Neighborhood table created by
 #'   \code{create_neighborhood_table}
 #' @inheritParams create_neighborhood_table
@@ -9,56 +10,49 @@
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper(TRUE)
-#'
-#'   species_id <- rownames(sbml_dfs$species)[
-#'     sbml_dfs$species$s_name == "cAMP"
-#'     ]
-#'   species_id <- sample(rownames(sbml_dfs$species), 1)
+#'   setup_napistu_list(create_napistu_config())
+#'   species_id <- random_species(napistu_list)
 #'
 #'   neighborhood_table <- create_neighborhood_table(
-#'     species_id = species_id,
-#'     sbml_dfs = sbml_dfs,
-#'     napistu_graph = napistu_graph,
-#'     napistu = napistu,
-#'     max_steps = 3L,
-#'     max_neighbors = 40L,
+#'       napistu_list,
+#'       species_id = species_id,
+#'       max_steps = 3L,
+#'       max_neighbors = 40L,
 #'   )
 #'
 #'  # score_overlay <- summarize_indication(
+#'  #   napistu_list,
 #'  #   disease_id = "EFO_0000400",
-#'  #   sbml_dfs,
-#'  #   create_neighborhood_summary_table(neighborhood_table),
-#'  #   species_identifiers
+#'  #   create_neighborhood_summary_table(neighborhood_table)
 #'  # )
 #'
 #'  score_overlay <- neighborhood_table %>%
-#'    dplyr::select(vertices) %>%
-#'    tidyr::unnest(vertices) %>%
-#'    dplyr::filter(node_type == "species") %>%
-#'    dplyr::distinct(s_id) %>%
-#'    dplyr::sample_frac(0.5) %>%
-#'    dplyr::mutate(score = rnorm(n()))
+#'      dplyr::select(vertices) %>%
+#'      tidyr::unnest(vertices) %>%
+#'      dplyr::filter(node_type == "species") %>%
+#'      dplyr::distinct(s_id) %>%
+#'      dplyr::sample_frac(0.5) %>%
+#'      dplyr::mutate(score = rnorm(dplyr::n()))
 #'
-#'   neighborhood_summaries <- plot_neighborhoods(
-#'     neighborhood_table,
-#'     napistu_graph,
-#'     score_overlay,
-#'     score_label = "diabetes mellitus",
-#'     score_palette = "log2 fold-change"
-#'   )
+#'  neighborhood_summaries <- plot_neighborhoods(
+#'      napistu_list,
+#'      neighborhood_table,
+#'      score_overlay,
+#'      score_label = "diabetes mellitus",
+#'      score_palette = "log2 fold-change"
+#'  )
 #' }
 #' @export
 plot_neighborhoods <- function(
+    napistu_list,
     neighborhood_table,
-    napistu_graph,
     score_overlay = NULL,
     score_label = NULL,
     ...
 ) {
-    
+   
+    validate_napistu_list(napistu_list)
     checkmate::assertDataFrame(neighborhood_table)
-    checkmate::assertClass(napistu_graph, "igraph.Graph")
     checkmate::assertDataFrame(score_overlay, null.ok = TRUE)
     checkmate::assertString(score_label, null.ok = TRUE)
     
@@ -70,14 +64,14 @@ plot_neighborhoods <- function(
             list(
                 vertices, edges, edge_sources, sc_id, sc_name),
                 plot_one_neighborhood,
-                napistu_graph = napistu_graph,
+                napistu_list = napistu_list,
                 score_overlay = score_overlay,
                 score_label = score_label,
                 ...
                 )
             )
     
-    cli::cli_alert_info(msg = "Aggregating neighborhood plots")
+    cli::cli_alert_info("Aggregating neighborhood plots")
     
     if (nrow(neighborhood_table) > 4) {
         cli::cli_alert_info(
@@ -114,11 +108,8 @@ plot_neighborhoods <- function(
 
 #' Create Neighborhood Table
 #'
+#' @inheritParams validate_napistu_list
 #' @param species_id species identifier for focal node
-#' @param sbml_dfs network reconstruction
-#' @param napistu_graph igraph model of network
-#' @param precomputed_distances A table of precomputed distances between pairs of
-#'   molecular species. Or, NULL to calculate this on-the-fly (default).
 #' @param network_type what type of neighborhood should be formed (ignored
 #'   if \code{napistu_graph} is undirected).
 #'   \describe{
@@ -129,50 +120,39 @@ plot_neighborhoods <- function(
 #' @param max_steps number of steps away from focal node allowed
 #' @param max_neighbors prune to this number of upstream regulators and
 #'   downstream targets
-#' @param napistu binding to napistu python library
 #'
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper()
+#'   setup_napistu_list(create_napistu_config())
 #'   species_id <- "S00000061"
 #'
 #'   create_neighborhood_table(
 #'     species_id,
-#'     sbml_dfs,
-#'     napistu_graph,
-#'     network_type = "hourglass",
-#'     napistu = napistu
-#'   )
-#'
-#'  # calculating distances on-the-fly
-#'   create_neighborhood_table(
-#'     species_id,
-#'     sbml_dfs,
-#'     napistu_graph,
-#'     precomputed_distances = precomputed_distances,
+#'     napistu_list = napistu_list,
 #'     network_type = "hourglass",
 #'     napistu = napistu
 #'   )
 #' }
 #' @export
 create_neighborhood_table <- function(
+    napistu_list,
     species_id,
-    sbml_dfs,
-    napistu_graph,
-    precomputed_distances = NULL,
     network_type = "downstream",
     max_steps = 3L,
-    max_neighbors = 10L,
-    napistu
+    max_neighbors = 10L
 ) {
-    
+   
+    validate_napistu_list(napistu_list)
+    napistu_graph <- napistu_list$napistu_graph
+    sbml_dfs <- napistu_list$sbml_dfs
+    napistu <- napistu_list$python_modules$napistu
+    precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
+     
     checkmate::assertCharacter(species_id, len = 1)
-    checkmate::assertClass(napistu_graph, "igraph.Graph")
     checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
     checkmate::assertInteger(max_steps, len = 1, lower = 1)
     checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
-    checkmate::assertClass(napistu, "python.builtin.module")
     
     cli::cli_alert_info("Starting create_neighborhood_table")
     
@@ -214,7 +194,7 @@ create_neighborhood_table <- function(
         top_n = max_neighbors
     )
     
-    cli::cli_alert_info(msg = "Extracting neighborhood attributes")
+    cli::cli_alert_info("Extracting neighborhood attributes")
     
     neighborhood_table <- compartmentalized_species_attrs %>%
         dplyr::mutate(
@@ -276,6 +256,7 @@ extract_neighborhood_df <- function(entry_list, entry_field, is_null_valid = TRU
 
 #' Plot One Neighborhood
 #'
+#' @inheritParams validate_napistu_list
 #' @param vertices table of species and reactions, produced by \link{create_neighborhood_table}
 #' @param edges table of connections between species and reactions, produced by \link{create_neighborhood_table}
 #' @param edge_sources table describing the model(s) each reaction comes from, produced by \link{create_neighborhood_table}
@@ -294,71 +275,65 @@ extract_neighborhood_df <- function(entry_list, entry_field, is_null_valid = TRU
 #' @examples
 #'
 #' if (interactive()) {
-#'   interactive_initialization_wrapper(TRUE)
+#'     setup_napistu_list(create_napistu_config())
+#'     species_id <- random_species(napistu_list)
 #'
-#'   #species_id <- rownames(sbml_dfs$species)[
-#'   #  sbml_dfs$species$s_name == "pyruvate kinase tetramer"
-#'   #  ]
-#'   species_id <- sample(rownames(sbml_dfs$species), 1)
+#'     neighborhood_table <- create_neighborhood_table(
+#'         napistu_list,
+#'         species_id,
+#'         network_type = "hourglass",
+#'         max_neighbors = 30L,
+#'         max_steps = 15L
+#'     )
 #'
-#'   neighborhood_table <- create_neighborhood_table(
-#'     species_id,
-#'     sbml_dfs,
-#'     napistu_graph,
-#'     network_type = "hourglass",
-#'     napistu = napistu,
-#'     max_neighbors = 30L,
-#'     max_steps = 15L
-#'   )
-#'   entry <- 1
-#'   vertices <- neighborhood_table$vertices[[entry]]
-#'   edges <- neighborhood_table$edges[[entry]]
-#'   edge_sources <- neighborhood_table$edge_sources[[entry]]
-#'   sc_id <- neighborhood_table$sc_id[entry]
-#'   sc_name <- neighborhood_table$sc_name[entry]
+#'     entry <- 1
+#'     vertices <- neighborhood_table$vertices[[entry]]
+#'     edges <- neighborhood_table$edges[[entry]]
+#'     edge_sources <- neighborhood_table$edge_sources[[entry]]
+#'     sc_id <- neighborhood_table$sc_id[entry]
+#'     sc_name <- neighborhood_table$sc_name[entry]
 #'
-#'   score_overlay <- vertices %>%
-#'     dplyr::filter(node_type == "species") %>%
-#'     dplyr::distinct(s_id) %>%
-#'     dplyr::sample_frac(0.5) %>%
-#'     dplyr::mutate(score = rnorm(n()))
+#'     score_overlay <- vertices %>%
+#'       dplyr::filter(node_type == "species") %>%
+#'       dplyr::distinct(s_id) %>%
+#'       dplyr::sample_frac(0.5) %>%
+#'       dplyr::mutate(score = stats::rnorm(dplyr::n()))
 #'
-#'   # score_overlay <- summarize_indication(
-#'   #   disease_id = "EFO_0000400",
-#'   #   sbml_dfs,
-#'   #   create_neighborhood_summary_table(neighborhood_table),
-#'   #   species_identifiers
-#'   #   )
+#'     # score_overlay <- summarize_indication(
+#'     #   napistu_list,
+#'     #   disease_id = "EFO_0000400",
+#'     #   create_neighborhood_summary_table(neighborhood_table)
+#'     #   )
 #'
-#'   plot_one_neighborhood(
-#'     vertices,
-#'     edges,
-#'     edge_sources,
-#'     sc_id,
-#'     sc_name,
-#'     napistu_graph,
-#'     score_overlay = NULL
-#'   )
+#'     plot_one_neighborhood(
+#'         napistu_list,
+#'         vertices,
+#'         edges,
+#'         edge_sources,
+#'         sc_id,
+#'         sc_name,
+#'         score_overlay = NULL
+#'     )
 #'
-#'   plot_one_neighborhood(
-#'     vertices,
-#'     edges,
-#'     edge_sources,
-#'     sc_id,
-#'     sc_name,
-#'     napistu_graph,
-#'     score_overlay = score_overlay,
-#'     score_palette = "log2 fold-change"
-#'   )
+#'     plot_one_neighborhood(
+#'         napistu_list,
+#'         vertices,
+#'         edges,
+#'         edge_sources,
+#'         sc_id,
+#'         sc_name,
+#'         score_overlay = score_overlay,
+#'         score_palette = "log2 fold-change"
+#'     )
 #' }
 #' @export
 plot_one_neighborhood <- function(
+    napistu_list,
     vertices,
     edges,
     edge_sources,
     sc_id,
     sc_name,
-    napistu_graph,
     score_overlay = NULL,
     score_label = NULL,
     score_palette = NULL,
@@ -367,6 +342,8 @@ plot_one_neighborhood <- function(
     edge_width = 0.1
 ) {
     
+    validate_napistu_list(napistu_list)
+    napistu_graph <- napistu_list$napistu_graph
     checkmate::assertDataFrame(vertices)
     checkmate::assertDataFrame(edges)
     stopifnot(class(sc_id) %in% c("factor", "character"), length(sc_id) == 1)
@@ -427,7 +404,7 @@ plot_one_neighborhood <- function(
         dplyr::distinct(path_length) %>%
         dplyr::filter(!is.na(path_length)) %>%
         dplyr::arrange(path_length) %>%
-        dplyr::mutate(path_color = grDevices::colorRampPalette(c("white", "dodgerblue"))(n()))
+        dplyr::mutate(path_color = grDevices::colorRampPalette(c("white", "dodgerblue"))(dplyr::n()))
     
     neighborhood_network <- igraph::graph_from_data_frame(
         edges,
@@ -599,7 +576,7 @@ ggraph_get_edges_by_reversibility <- function (
     format = "short",
     collapse = "none",
     ...
-    ) {
+) {
     
     # modification of ggraph::get_edges to include filtering to subsets of edges
     

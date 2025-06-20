@@ -12,7 +12,8 @@ create_default_conda_env(
 \arguments{
 \item{env_name}{The name of the to-be-created conda environment}
 
-\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+\item{verbose}{Logical scalar; if TRUE (default), prints informative messages
+about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 List with environment info and metadata

@@ -12,7 +12,8 @@ validate_and_import_modules(
 \arguments{
 \item{required_modules}{a character vector of modules to import}
 
-\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+\item{verbose}{Logical scalar; if TRUE (default), prints informative messages
+about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 List of imported Python modules

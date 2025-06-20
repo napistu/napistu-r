@@ -12,14 +12,17 @@ setup_napistu_list(
 )
 }
 \arguments{
-\item{napistu_config}{Napistu configuration object or path to config file}
+\item{napistu_config}{A napistu configuration object of class 'napistu_config'
+containing all necessary configuration settings for the loading required
+assets and configuring and/or using an exiting appropriate Python environment}
 
 \item{napistu_list_object}{The name that setup_napistu_env() will be assigned to.
 If this object already exists then setup will be skipped unless `overwrite` is TRUE}
 
-\item{overwrite}{Recreate a Napistu environment object even if `napistu_list_object` exists}
+\item{overwrite}{Overwrite existing caches}
 
-\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+\item{verbose}{Logical scalar; if TRUE (default), prints informative messages
+about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 None; output is assigned to `napistu_list_object`
@@ -31,6 +34,8 @@ Load a config specifying a Python environment and paths to Napistu assets
 \examples{
 \dontrun{
 # Using configuration object
+library(napistu.r)
+
 napistu_config <- create_napistu_config()
 setup_napistu_list(napistu_config)
 

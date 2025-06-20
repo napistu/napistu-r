@@ -1,29 +1,67 @@
 #' Load Assets
 #'
-#' @inheritParams setup_napistu_list
+#' Load a set of Napistu files
+#'
+#' @inheritParams validate_napistu_config
+#' @inheritParams validate_verbose
+#' 
+#' @return A list containing loaded assets including:
+#'   \describe{
+#'     \item{sbml_dfs}{
+#'         SBML_dfs - the core pathway representation of the Napistu Python library
+#'         }
+#'     \item{napistu_graph}{
+#'         Network graph - a Python igraph subclass with Napistu-specific
+#'         attributes and methods
+#'         }
+#'     \item{species_identifiers}{Species identifier mappings}
+#'     \item{precomputed_distances}{optional, distances between species nodes}
+#'     \item{species_names}{
+#'          A tibble containing the names of all genes, proteins, molecules, etc
+#'          }
+#'     \item{identifiers_nest}{
+#'          A tibble with one row per ontology and a nested tibble containing
+#'          all the identifiers and their corresponding molecular species
+#'          }
+#'   }
 #' 
 #' @export
 load_assets <- function(napistu_config, verbose = TRUE) {
     
-    checkmate::assert_class(napistu_config, NAPISTU_CONSTANTS$NAPISTU_CONFIG_CLASS)
-    checkmate::assert_logical(verbose, len = 1)
+    validate_napistu_config(napistu_config)
+    validate_verbose(verbose)
     
-    assets_config <- napistu_config$assets
+    assets_config <- napistu_config$assets_config
     
     if (length(assets_config) == 0) {
         if (verbose) {
             cli::cli_inform("No assets configuration specified, loading bundled package data")
         }
-        asset_sources <- get_bundled_asset_sources()
+        asset_paths <- get_bundled_asset_paths()
     } else {
         if (verbose) {
             cli::cli_inform("Loading assets from configured paths")
         }
-        asset_sources <- get_configured_asset_sources(assets_config, verbose)
+        asset_paths <- get_configured_asset_paths(assets_config, verbose)
     }
     
-    assets <- load_assets_from_sources(asset_sources, verbose)
+    assets <- load_assets_from_paths(asset_paths, verbose) %>%
+        create_derived_assets()
     
+    return(assets)
+}
+
+create_derived_assets <- function (assets) {
+    
+    assets$species_names <- assets$sbml_dfs$species %>%
+        dplyr::select(-s_Identifiers, -s_Source)
+    
+    assets$identifiers_nest <- assets$species_identifiers %>%
+        tidyr::nest(ontology_ids = -ontology) %>%
+        dplyr::mutate(n = purrr::map_int(ontology_ids, nrow)) %>%
+        dplyr::arrange(dplyr::desc(n)) %>%
+        dplyr::mutate(ontology = factor(ontology, levels = ontology))
+
     return(assets)
 }
 
@@ -31,14 +69,14 @@ load_assets <- function(napistu_config, verbose = TRUE) {
 #' Get Bundled Asset Sources
 #'
 #' @return Named list of asset file paths for bundled assets
-get_bundled_asset_sources <- function() {
+get_bundled_asset_paths <- function() {
     
     bundled_test_pathway_path <- system.file("extdata/test_pathway", package = "napistu.r")
     asset_filenames <- NAPISTU_CONSTANTS$ASSET_FILENAMES
     
     # Create sources list for all assets (required + optional)
     all_assets <- c(NAPISTU_CONSTANTS$REQUIRED_ASSETS, NAPISTU_CONSTANTS$OPTIONAL_ASSETS)
-    sources <- list()
+    asset_paths <- list()
     
     for (asset_name in all_assets) {
         file_name <- asset_filenames[[asset_name]]
@@ -46,23 +84,23 @@ get_bundled_asset_sources <- function() {
         
         # Only include if file actually exists
         if (file.exists(asset_path)) {
-            sources[[asset_name]] <- asset_path
+            asset_paths[[asset_name]] <- asset_path
         }
     }
     
-    sources
+    return(asset_paths)
 }
 
 #' Get Configured Asset Sources
 #'
-#' @param assets_config Assets configuration from user
-#' @inheritParams setup_napistu_list
+#' @inheritParams validate_assets_config
+#' @inheritParams validate_verbose
 #'
 #' @return Named list of asset file paths for configured assets
-get_configured_asset_sources <- function(assets_config, verbose = TRUE) {
+get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
     
-    checkmate::assert_list(assets_config)
-    checkmate::assert_logical(verbose, len = 1)
+    validate_assets_config(assets_config)
+    validate_verbose(verbose)
     
     # Handle directory-based configuration first
     if ("asset_dir" %in% names(assets_config)) {
@@ -100,22 +138,22 @@ get_configured_asset_sources <- function(assets_config, verbose = TRUE) {
     sources
 }
 
-#' Load Assets from Sources
+#' Load Assets from Paths
 #'
-#' @param asset_sources Named list of asset file paths
-#' @inheritParams setup_napistu_list
+#' @inheritParams validate_asset_paths
+#' @inheritParams validate_verbose
 #' 
 #' @return List of loaded assets
-load_assets_from_sources <- function(asset_sources, verbose = TRUE) {
+load_assets_from_paths <- function(asset_paths, verbose = TRUE) {
     
-    checkmate::assertList(asset_sources)
-    checkmate::assertLogical(verbose, len = 1)
+    validate_asset_paths(asset_paths)
+    validate_verbose(verbose)
     
     assets <- list()
     
     # Load required assets
     for (asset_name in NAPISTU_CONSTANTS$REQUIRED_ASSETS) {
-        asset_path <- asset_sources[[asset_name]]
+        asset_path <- asset_paths[[asset_name]]
         
         if (is.null(asset_path)) {
             cli::cli_abort("Required asset not found: {.field {asset_name}}")
@@ -129,7 +167,7 @@ load_assets_from_sources <- function(asset_sources, verbose = TRUE) {
     
     # Load optional assets if available
     for (asset_name in NAPISTU_CONSTANTS$OPTIONAL_ASSETS) {
-        asset_path <- asset_sources[[asset_name]]
+        asset_path <- asset_paths[[asset_name]]
         
         if (!is.null(asset_path)) {
             if (verbose) {
@@ -147,19 +185,19 @@ load_assets_from_sources <- function(asset_sources, verbose = TRUE) {
         cli::cli_alert_success("Assets loaded successfully")
     }
     
-    assets
+    return(assets)
 }
 
 #' Resolve Directory-Based Asset Configuration
 #'
-#' @param assets_config Assets configuration with asset_dir path
-#' @inheritParams setup_napistu_list
+#' @inheritParams validate_assets_config
+#' @inheritParams validate_verbose
 #' 
 #' @return Resolved assets configuration with individual file paths
 resolve_directory_assets <- function(assets_config, verbose = TRUE) {
     
-    checkmate::assertList(assets_config)
-    checkmate::assertLogical(verbose, len = 1)
+    validate_assets_config(assets_config)
+    validate_verbose(verbose)
     
     assets_dir <- assets_config$asset_dir
     
@@ -199,10 +237,15 @@ resolve_directory_assets <- function(assets_config, verbose = TRUE) {
 #'
 #' @param file_path Path to asset file
 #' @param asset_name Name of asset for context
+#' 
 #' @return Loaded asset object
 #' 
 #' @export
 load_single_asset <- function(file_path, asset_name) {
+    
+    checkmate::assert_file_exists(file_path)
+    checkmate::assertString(asset_name)
+    
     file_ext <- tools::file_ext(file_path)
     
     # Validate supported file extension
@@ -225,4 +268,4 @@ load_single_asset <- function(file_path, asset_name) {
             "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
         )
     })
-}
+} 

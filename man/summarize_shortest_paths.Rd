@@ -4,24 +4,40 @@
 \alias{summarize_shortest_paths}
 \title{Summarize Shortest Paths}
 \usage{
-summarize_shortest_paths(
-  source_species_id,
-  dest_species_id,
-  sbml_dfs,
-  napistu_graph,
-  napistu
-)
+summarize_shortest_paths(napistu_list, source_species_id, dest_species_id)
 }
 \arguments{
+\item{napistu_list}{A list containing loaded assets and bindings to
+  Python modules.
+
+\describe{
+    \item{sbml_dfs}{
+        SBML_dfs - the core pathway representation of the Napistu Python library
+        }
+    \item{napistu_graph}{
+        Network graph - a Python igraph subclass with Napistu-specific
+        attributes and methods
+        }
+    \item{species_identifiers}{Species identifier mappings}
+    \item{precomputed_distances}{optional, distances between species nodes}
+    \item{species_names}{
+         A tibble containing the names of all genes, proteins, molecules, etc
+         }
+    \item{identifiers_nest}{
+         A tibble with one row per ontology and a nested tibble containing
+         all the identifiers and their corresponding molecular species
+         }
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+    \item{napistu_config}{
+        A `napistu_config` object dictating how the `napistu_list` was initialized
+    }
+    \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
+  }}
+
 \item{source_species_id}{species id to start with}
 
 \item{dest_species_id}{species id to end at}
-
-\item{sbml_dfs}{network reconstruction}
-
-\item{napistu_graph}{igraph model of network}
-
-\item{napistu}{binding to napistu python library}
 }
 \description{
 Summarize Shortest Paths
@@ -29,24 +45,14 @@ Summarize Shortest Paths
 \examples{
 
 if (interactive()) {
-  interactive_initialization_wrapper()
-
-  # end_points <- sample(rownames(species_names), 2)
-  # source_species_id <- end_points[1]
-  # dest_species_id <- end_points[2]
-
-  # source_species_id <- "S00002615"
-  # dest_species_id <- "S00004885"
-
-  source_species_id <- "S00002615"
-  dest_species_id <- "S00000374"
+  setup_napistu_list(create_napistu_config())
+  source_species_id <- random_species(napistu_list)
+  dest_species_id <- random_species(napistu_list)
 
   summarize_shortest_paths(
-    source_species_id,
-    dest_species_id,
-    sbml_dfs,
-    napistu_graph,
-    napistu = napistu
+      napistu_list,
+      source_species_id,
+      dest_species_id
   )
 }
 }

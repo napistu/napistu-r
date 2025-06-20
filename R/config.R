@@ -3,11 +3,11 @@
 #' Load a config specifying a Python environment and paths to Napistu assets
 #'   as a list providing defaults as fall-backs.
 #'
-#' @param napistu_config Napistu configuration object or path to config file
+#' @inheritParams validate_napistu_config
 #' @param napistu_list_object The name that setup_napistu_env() will be assigned to.
 #'   If this object already exists then setup will be skipped unless `overwrite` is TRUE
-#' @param overwrite Recreate a Napistu environment object even if `napistu_list_object` exists
-#' @param verbose if TRUE provide extra logging (default); FALSE to silence logging.
+#' @inheritParams validate_overwrite
+#' @inheritParams validate_verbose
 #' 
 #' @return None; output is assigned to `napistu_list_object`
 #' 
@@ -16,6 +16,8 @@
 #' @examples
 #' \dontrun{
 #' # Using configuration object
+#' library(napistu.r)
+#' 
 #' napistu_config <- create_napistu_config()
 #' setup_napistu_list(napistu_config)
 #' 
@@ -79,8 +81,8 @@ setup_napistu_list <- function(
 
 #' Create Napistu Configuration
 #'
-#' @param python List of Python environment configuration options
-#' @param assets List of asset file paths or configuration
+#' @inheritParams validate_python_config
+#' @inheritParams validate_assets_config
 #' 
 #' @return Configuration object
 #' 
@@ -90,8 +92,8 @@ setup_napistu_list <- function(
 #' \dontrun{
 #' # Direct configuration
 #' napistu_config <- create_napistu_config(
-#'   python = list(virtualenv = "/path/to/venv"),
-#'   assets = list(
+#'   python_config = list(virtualenv = "/path/to/venv"),
+#'   assets_config = list(
 #'     sbml_dfs = "/path/to/sbml.pkl",
 #'     napistu_graph = "/path/to/graph.pkl",
 #'     species_identifiers = "/path/to/species.tsv"
@@ -101,14 +103,14 @@ setup_napistu_list <- function(
 #' # Minimal configuration (uses defaults)
 #' napistu_config <- create_napistu_config()
 #' }
-create_napistu_config <- function(python = list(), assets = list()) {
+create_napistu_config <- function(python_config = list(), assets_config = list()) {
     
-    checkmate::assert_list(python, names = "named")
-    checkmate::assert_list(assets, names = "named")
+    validate_python_config(python_config)
+    validate_assets_config(assets_config)
     
     napistu_config <- list(
-        python = python,
-        assets = assets,
+        python_config = python_config,
+        assets_config = assets_config,
         created_at = Sys.time()
     )
     
@@ -120,7 +122,7 @@ create_napistu_config <- function(python = list(), assets = list()) {
 #' Load Napistu Configuration from YAML
 #'
 #' @param file_path Path to YAML configuration file
-#' @inheritParams setup_napistu_list
+#' @inheritParams validate_verbose
 #' 
 #' @return Configuration object
 #' 
@@ -128,7 +130,7 @@ create_napistu_config <- function(python = list(), assets = list()) {
 load_napistu_config <- function(file_path, verbose = TRUE) {
     
     checkmate::assert_file_exists(file_path)
-    checkmate::assertLogical(verbose, len = 1)
+    validate_verbose(verbose)
     
     if (!requireNamespace("yaml", quietly = TRUE)) {
         cli::cli_abort("Package {.pkg yaml} is required for loading config files")
@@ -146,12 +148,12 @@ load_napistu_config <- function(file_path, verbose = TRUE) {
     )
     
     # Apply defaults for missing sections
-    python_config <- config_data$python %||% list()
-    assets_config <- config_data$assets %||% list()
+    python_config <- config_data$python_config %||% list()
+    assets_config <- config_data$assets_config %||% list()
     
     napistu_config <- create_napistu_config(
-        python = python_config,
-        assets = assets_config
+        python_config = python_config,
+        assets_config = assets_config
     )
     
     return(napistu_config)

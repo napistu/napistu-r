@@ -9,7 +9,8 @@ configure_existing_python(python_config, verbose = TRUE)
 \arguments{
 \item{python_config}{Python configuration list}
 
-\item{verbose}{if TRUE provide extra logging (default); FALSE to silence logging.}
+\item{verbose}{Logical scalar; if TRUE (default), prints informative messages
+about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 List with environment path and metadata

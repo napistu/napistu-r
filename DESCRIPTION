@@ -27,6 +27,7 @@ Imports:
     DT,
     ggplot2,
     glue,
+    jsonlite,
     purrr,
     readr,
     rlang,
@@ -34,7 +35,8 @@ Imports:
     shiny,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    yaml
 Suggests:
     googleCloudStorageR,
     ggraph,
