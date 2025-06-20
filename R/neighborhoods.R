@@ -581,6 +581,14 @@ ggraph_get_edges_by_reversibility <- function (
     # modification of ggraph::get_edges to include filtering to subsets of edges
     
     checkmate::assertLogical(is_reversible, len = 1)
+    checkmate::assertString(format)
+    checkmate::assertString(collapse)
+    
+    collapse_all_edges <- get("collapse_all_edges", envir = asNamespace("ggraph"))
+    collapse_dir_edges <- get("collapse_dir_edges", envir = asNamespace("ggraph"))
+    format_short_edges <- get("format_short_edges", envir = asNamespace("ggraph"))
+    format_long_edges <- get("format_long_edges", envir = asNamespace("ggraph"))
+    data_frame0 <- get("data_frame0", envir = asNamespace("ggraph"))
     
     if (!collapse %in% c("none", "all", "direction")) {
         cli::cli_abort("{.arg collapse} must be either {.val none}, {.val all} or {.val direction}")
@@ -602,13 +610,13 @@ ggraph_get_edges_by_reversibility <- function (
         edges <- switch(
             collapse,
             none = edges,
-            all = ggraph::collapse_all_edges(edges),
-            direction = ggraph::collapse_dir_edges(edges)
+            all = collapse_all_edges(edges),
+            direction = collapse_dir_edges(edges)
         )
         edges <- switch(
             format,
-            short = ggraph:::format_short_edges(edges, layout),
-            long = ggraph:::format_long_edges(edges, layout),
+            short = format_short_edges(edges, layout),
+            long = format_long_edges(edges, layout),
             cli::cli_abort("Unknown {.arg format}. Use either {.val short} or {.val long}")
         )
         
@@ -617,7 +625,7 @@ ggraph_get_edges_by_reversibility <- function (
             rep(val, length.out = nrow(edges))
         })
         if (length(extra_data) > 0) {
-            edges <- cbind(edges, ggraph:::data_frame0(!!!extra_data))
+            edges <- cbind(edges, data_frame0(!!!extra_data))
         }
         attr(edges, "type_ggraph") <- "edge_ggraph"
         edges
