@@ -156,7 +156,7 @@ create_neighborhood_table <- function(
     
     cli::cli_alert_info("Starting create_neighborhood_table")
     
-    compartmentalized_species <- napistu$network$net_utils$compartmentalize_species(sbml_dfs, species_id)
+    compartmentalized_species <- napistu$network$ng_utils$compartmentalize_species(sbml_dfs, species_id)
     compartmentalized_species_ids <- compartmentalized_species[["sc_id"]]
     
     compartmentalized_species_attrs <- sbml_dfs$compartmentalized_species %>%
