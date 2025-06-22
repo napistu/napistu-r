@@ -8,40 +8,38 @@
 #' @param ... extra arguments passed to \code{\link{plot_one_neighborhood}}
 #'
 #' @examples
+#' suppressPackageStartupMessages(library(dplyr))
+#' setup_napistu_list(create_napistu_config())
+#' species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'   setup_napistu_list(create_napistu_config())
-#'   species_id <- random_species(napistu_list)
+#' neighborhood_table <- create_neighborhood_table(
+#'     napistu_list,
+#'     species_id = species_id,
+#'     max_steps = 3L,
+#'     max_neighbors = 40L,
+#' )
 #'
-#'   neighborhood_table <- create_neighborhood_table(
-#'       napistu_list,
-#'       species_id = species_id,
-#'       max_steps = 3L,
-#'       max_neighbors = 40L,
-#'   )
+#' # score_overlay <- summarize_indication(
+#' #   napistu_list,
+#' #   disease_id = "EFO_0000400",
+#' #   create_neighborhood_summary_table(neighborhood_table)
+#' # )
 #'
-#'  # score_overlay <- summarize_indication(
-#'  #   napistu_list,
-#'  #   disease_id = "EFO_0000400",
-#'  #   create_neighborhood_summary_table(neighborhood_table)
-#'  # )
+#' score_overlay <- neighborhood_table %>%
+#'     dplyr::select(vertices) %>%
+#'     tidyr::unnest(vertices) %>%
+#'     dplyr::filter(node_type == "species") %>%
+#'     dplyr::distinct(s_id) %>%
+#'     dplyr::sample_frac(0.5) %>%
+#'     dplyr::mutate(score = stats::rnorm(dplyr::n()))
 #'
-#'  score_overlay <- neighborhood_table %>%
-#'      dplyr::select(vertices) %>%
-#'      tidyr::unnest(vertices) %>%
-#'      dplyr::filter(node_type == "species") %>%
-#'      dplyr::distinct(s_id) %>%
-#'      dplyr::sample_frac(0.5) %>%
-#'      dplyr::mutate(score = rnorm(dplyr::n()))
-#'
-#'  neighborhood_summaries <- plot_neighborhoods(
-#'      napistu_list,
-#'      neighborhood_table,
-#'      score_overlay,
-#'      score_label = "diabetes mellitus",
-#'      score_palette = "log2 fold-change"
-#'  )
-#' }
+#' neighborhood_summaries <- plot_neighborhoods(
+#'     napistu_list,
+#'     neighborhood_table,
+#'     score_overlay,
+#'     score_label = "random scores",
+#'     score_palette = "log2 fold-change"
+#' )
 #' @export
 plot_neighborhoods <- function(
     napistu_list,
@@ -52,7 +50,7 @@ plot_neighborhoods <- function(
 ) {
    
     validate_napistu_list(napistu_list)
-    checkmate::assertDataFrame(neighborhood_table)
+    validate_neighborhood_table(neighborhood_table)
     checkmate::assertDataFrame(score_overlay, null.ok = TRUE)
     checkmate::assertString(score_label, null.ok = TRUE)
     
@@ -121,19 +119,27 @@ plot_neighborhoods <- function(
 #' @param max_neighbors prune to this number of upstream regulators and
 #'   downstream targets
 #'
+#' @returns a tibble containing one row per neighborhood with nested lists as attributes:
+#' \describe{
+#'     \item{sc_name}{A human readible name for the focal vertex}
+#'     \item{s_id}{The internal unique species id of the focal vertex}
+#'     \item{c_id}{The internal unique compartment id of the focal vertex}
+#'     \item{sc_id}{The internal unique compartmentalized species id of the focal vertex}
+#'     \item{sc_Source}{The Source object for the focal vertex}
+#'     \item{vertices}{The vertices in the focal vertex's neighborhood}
+#'     \item{edges}{The edges in the focal vertex's neighborhood}
+#'     \item{edge_source}{The source pathways of the reaction vertices}
+#' }
+#'
 #' @examples
+#' setup_napistu_list(create_napistu_config(), overwrite = TRUE)
+#' species_id <- "S00000061"
 #'
-#' if (interactive()) {
-#'   setup_napistu_list(create_napistu_config())
-#'   species_id <- "S00000061"
-#'
-#'   create_neighborhood_table(
+#' create_neighborhood_table(
 #'     species_id,
 #'     napistu_list = napistu_list,
-#'     network_type = "hourglass",
-#'     napistu = napistu
-#'   )
-#' }
+#'     network_type = "hourglass"
+#' )
 #' @export
 create_neighborhood_table <- function(
     napistu_list,
@@ -226,34 +232,6 @@ create_neighborhood_table <- function(
     return(neighborhood_table)
 }
 
-create_neighborhood_summary_table <- function(neighborhood_table) {
-    neighborhood_summary_table <- neighborhood_table %>%
-        dplyr::select(sc_name, vertices) %>%
-        tidyr::unnest(vertices) %>%
-        dplyr::rename(
-            neighbor_sc_id = name,
-            neighbor_sc_name = node_name
-        )
-    
-    return(neighborhood_summary_table)
-}
-
-
-extract_neighborhood_df <- function(entry_list, entry_field, is_null_valid = TRUE) {
-    chosen_table <- entry_list[[entry_field]]
-    
-    if (is.null(chosen_table)) {
-        if (is_null_valid) {
-            return(NULL)
-        } else {
-            stop("entry_list was NULL and is_null_valid was TRUE")
-        }
-    }
-    
-    reticulate::py_to_r(chosen_table) %>%
-        dplyr::as_tibble()
-}
-
 #' Plot One Neighborhood
 #'
 #' @inheritParams validate_napistu_list
@@ -273,59 +251,57 @@ extract_neighborhood_df <- function(entry_list, entry_field, is_null_valid = TRU
 #' @returns a ggplot2 grob
 #'
 #' @examples
+#' suppressPackageStartupMessages(library(dplyr))
+#' setup_napistu_list(create_napistu_config())
+#' species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'     setup_napistu_list(create_napistu_config())
-#'     species_id <- random_species(napistu_list)
+#' neighborhood_table <- create_neighborhood_table(
+#'     napistu_list,
+#'     species_id,
+#'     network_type = "hourglass",
+#'     max_neighbors = 30L,
+#'     max_steps = 15L
+#' )
 #'
-#'     neighborhood_table <- create_neighborhood_table(
-#'         napistu_list,
-#'         species_id,
-#'         network_type = "hourglass",
-#'         max_neighbors = 30L,
-#'         max_steps = 15L
-#'     )
+#' entry <- 1
+#' vertices <- neighborhood_table$vertices[[entry]]
+#' edges <- neighborhood_table$edges[[entry]]
+#' edge_sources <- neighborhood_table$edge_sources[[entry]]
+#' sc_id <- neighborhood_table$sc_id[entry]
+#' sc_name <- neighborhood_table$sc_name[entry]
 #'
-#'     entry <- 1
-#'     vertices <- neighborhood_table$vertices[[entry]]
-#'     edges <- neighborhood_table$edges[[entry]]
-#'     edge_sources <- neighborhood_table$edge_sources[[entry]]
-#'     sc_id <- neighborhood_table$sc_id[entry]
-#'     sc_name <- neighborhood_table$sc_name[entry]
+#' score_overlay <- vertices %>%
+#'     dplyr::filter(node_type == "species") %>%
+#'     dplyr::distinct(s_id) %>%
+#'     dplyr::sample_frac(0.5) %>%
+#'     dplyr::mutate(score = stats::rnorm(dplyr::n()))
 #'
-#'     score_overlay <- vertices %>%
-#'       dplyr::filter(node_type == "species") %>%
-#'       dplyr::distinct(s_id) %>%
-#'       dplyr::sample_frac(0.5) %>%
-#'       dplyr::mutate(score = stats::rnorm(dplyr::n()))
+#' # score_overlay <- summarize_indication(
+#' #   napistu_list,
+#' #   disease_id = "EFO_0000400",
+#' #   create_neighborhood_summary_table(neighborhood_table)
+#' #   )
 #'
-#'     # score_overlay <- summarize_indication(
-#'     #   napistu_list,
-#'     #   disease_id = "EFO_0000400",
-#'     #   create_neighborhood_summary_table(neighborhood_table)
-#'     #   )
+#' plot_one_neighborhood(
+#'     napistu_list,
+#'     vertices,
+#'     edges,
+#'     edge_sources,
+#'     sc_id,
+#'     sc_name,
+#'     score_overlay = NULL
+#' )
 #'
-#'     plot_one_neighborhood(
-#'         napistu_list,
-#'         vertices,
-#'         edges,
-#'         edge_sources,
-#'         sc_id,
-#'         sc_name,
-#'         score_overlay = NULL
-#'     )
-#'
-#'     plot_one_neighborhood(
-#'         napistu_list,
-#'         vertices,
-#'         edges,
-#'         edge_sources,
-#'         sc_id,
-#'         sc_name,
-#'         score_overlay = score_overlay,
-#'         score_palette = "log2 fold-change"
-#'     )
-#' }
+#' plot_one_neighborhood(
+#'     napistu_list,
+#'     vertices,
+#'     edges,
+#'     edge_sources,
+#'     sc_id,
+#'     sc_name,
+#'     score_overlay = score_overlay,
+#'     score_palette = "log2 fold-change"
+#' )
 #' @export
 plot_one_neighborhood <- function(
     napistu_list,
@@ -817,4 +793,41 @@ select_score_overlay_palette <- function(score_palette, ...) {
     }
     
     return(score_palette_obj)
+}
+
+#' Create Neighborhood Summary Table
+#' 
+#' Unnest the neighborhoods' vertices
+#'
+#' @inheritParams validate_neighborhood_table
+#' 
+#' @returns an unnested table of vertices across all neighborhoods
+#' @export
+create_neighborhood_summary_table <- function(neighborhood_table) {
+    validate_neighborhood_table(neighborhood_table)
+    
+    neighborhood_summary_table <- neighborhood_table %>%
+        dplyr::select(sc_name, vertices) %>%
+        tidyr::unnest(vertices) %>%
+        dplyr::rename(
+            neighbor_sc_id = name,
+            neighbor_sc_name = node_name
+        )
+    
+    return(neighborhood_summary_table)
+}
+
+extract_neighborhood_df <- function(entry_list, entry_field, is_null_valid = TRUE) {
+    chosen_table <- entry_list[[entry_field]]
+    
+    if (is.null(chosen_table)) {
+        if (is_null_valid) {
+            return(NULL)
+        } else {
+            stop("entry_list was NULL and is_null_valid was TRUE")
+        }
+    }
+    
+    reticulate::py_to_r(chosen_table) %>%
+        dplyr::as_tibble()
 }

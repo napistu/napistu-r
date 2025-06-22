@@ -4,12 +4,18 @@
 \alias{load_assets}
 \title{Load Assets}
 \usage{
-load_assets(napistu_config, verbose = TRUE)
+load_assets(napistu_config, python_list, verbose = TRUE)
 }
 \arguments{
 \item{napistu_config}{A napistu configuration object of class 'napistu_config'
 containing all necessary configuration settings for the loading required
 assets and configuring and/or using an exiting appropriate Python environment}
+
+\item{python_list}{A list containing reticulate bindings to Python packages and summaries of the Python environment.
+\describe{
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+}}
 
 \item{verbose}{Logical scalar; if TRUE (default), prints informative messages
 about the current operation progress. If FALSE, runs silently.}

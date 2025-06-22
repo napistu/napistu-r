@@ -158,7 +158,7 @@ validate_napistu_list <- function (napistu_list) {
 #'          all the identifiers and their corresponding molecular species
 #'          }
 #'   }
-#'
+#'   
 #' @return Invisible TRUE if valid, throws error if invalid
 #' 
 #' @keywords internal
@@ -168,20 +168,20 @@ validate_asset_list <- function (asset_list) {
     ensure_required_keys(names(asset_list), REQUIRED_KEYS, "asset_list")
     
     # required attributes
-    checkmate::assertClass(asset_list$sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
-    checkmate::assertClass(asset_list$napistu_graph, "igraph.Graph")
-    checkmate::assertDataFrame(asset_list$species_identifiers)
+    checkmate::assert_class(asset_list$sbml_dfs, "napistu.sbml_dfs_core.SBML_dfs")
+    checkmate::assert_class(asset_list$napistu_graph, "igraph.Graph")
+    checkmate::assert_data_frame(asset_list$species_identifiers)
     
     # optional attributes
     # TO DO - this needs to be deserialized correctly
     if (!is.null(asset_list$precomputed_distances)) {
-        checkmate::assertString(asset_list$precomputed_distances)
+        checkmate::assert_data_frame(asset_list$precomputed_distances)
     }
     
     # required derived attributes
     
-    checkmate::assertDataFrame(asset_list$species_names)
-    checkmate::assertDataFrame(asset_list$identifiers_nest)
+    checkmate::assert_data_frame(asset_list$species_names)
+    checkmate::assert_data_frame(asset_list$identifiers_nest)
     
     return(invisible(TRUE))
 }
@@ -204,7 +204,10 @@ validate_python_list <- function (python_list) {
     
     # validate modules
     python_modules <- names(python_list$python_modules)
-    missing_modules <- setdiff(NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES, python_modules)
+    missing_modules <- setdiff(
+        names(NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES),
+        python_modules
+    )
     if (length(missing_modules) > 0) {
         cli::cli_abort("The {.arg  python_list$python_modules} is missing reticulate bindings to the following package{?s}: {.field {missing_modules}}")
     }
@@ -242,6 +245,63 @@ validate_python_environment <- function (python_environment) {
     return(invisible(TRUE))
 }
 
+#' Validate Neighborhood Table
+#' 
+#' Determine whether the neighborhood table follows the expected structure.
+#' Neighborhoods are a subnetwork of molecular species and reactions tightly connected to
+#' a focal vertex.
+#' 
+#' @param neighborhood_table a tibble produced by \link{create_neighborhood_table}
+#' containing one row per neighborhood with nested lists as attributes:
+#' \describe{
+#'     \item{sc_name}{A human readible name for the focal vertex}
+#'     \item{s_id}{The internal unique species id of the focal vertex}
+#'     \item{c_id}{The internal unique compartment id of the focal vertex}
+#'     \item{sc_id}{The internal unique compartmentalized species id of the focal vertex}
+#'     \item{sc_Source}{The Source object for the focal vertex}
+#'     \item{vertices}{The vertices in the focal vertex's neighborhood}
+#'     \item{edges}{The edges in the focal vertex's neighborhood}
+#'     \item{edge_source}{The source pathways of the reaction vertices}
+#' }
+#' 
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_neighborhood_table <- function (neighborhood_table) {
+    
+    checkmate::assert_character(neighborhood_table$sc_name)
+    checkmate::assert_character(neighborhood_table$s_id)
+    checkmate::assert_character(neighborhood_table$c_id)
+    checkmate::assert_factor(neighborhood_table$sc_id)
+    
+    purrr::walk(
+        neighborhood_table$sc_Source, 
+        checkmate::assert_class,
+        "napistu.source.Source",
+        null.ok = TRUE
+    )
+    
+    purrr::walk(
+        neighborhood_table$vertices, 
+        checkmate::assert_data_frame,
+        null.ok = TRUE
+    )
+
+    purrr::walk(
+        neighborhood_table$edges, 
+        checkmate::assert_data_frame,
+        null.ok = TRUE
+    )
+    
+    purrr::walk(
+        neighborhood_table$edge_sources, 
+        checkmate::assert_data_frame,
+        null.ok = TRUE
+    )
+    
+    return(invisible(TRUE))
+}
+
 ensure_required_keys <- function (keys, required_keys, object_name) {
     
     checkmate::assert_character(keys)
@@ -253,4 +313,21 @@ ensure_required_keys <- function (keys, required_keys, object_name) {
         cli::cli_abort("The {.arg {object_name}} list is malformed; it is missing the following key{?s}: {.field {missing_keys}}")
     }
     
+}
+
+validate_asset_list_thorough <- function (napistu_list) {
+    
+    sbml_dfs = napistu_list$sbml_dfs
+    napistu_graph = napistu_list$napistu_graph
+    species_identifiers = napistu_list$species_identifiers
+    precomputed_distances = load_optional_list_value(napistu_list, "precomputed_distances")
+
+    napistu_list$python_modules$napistu$network$ng_utils$validate_assets(
+        sbml_dfs = sbml_dfs,
+        napistu_graph = napistu_graph,
+        precomputed_distances = precomputed_distances,
+        identifiers_df = species_identifiers
+    )
+    
+    return(invisible(TRUE))
 }

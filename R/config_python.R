@@ -3,7 +3,7 @@
 #' @param napistu_config Napistu configuration object
 #' @param verbose provide extra logging
 #' 
-#' @return List containing Python modules and environment info
+#' @return A `python_list` containing Python modules and environment info
 setup_python_env <- function(napistu_config, verbose = TRUE) {
     
     checkmate::assert_class(napistu_config, "napistu_config")
@@ -16,18 +16,18 @@ setup_python_env <- function(napistu_config, verbose = TRUE) {
         if (verbose) {
             cli::cli_inform("No Python configuration specified, setting up conda environment")
         }
-        env_info <- create_default_conda_env()
+        python_environment <- create_default_conda_env()
     } else {
-        env_info <- configure_existing_python(python_config)
+        python_environment <- configure_existing_python(python_config)
     }
     
     # Validate and import required modules
-    modules <- validate_and_import_modules(verbose = verbose)
+    python_modules <- validate_and_import_modules(verbose = verbose)
     
     # Return both modules and environment metadata
     list(
-        modules = modules,
-        environment = env_info
+        python_modules = python_modules,
+        python_environment = python_environment
     )
 }
 
@@ -95,41 +95,49 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
 
 #' Validate and Import Python Modules
 #'
-#' @param required_modules a character vector of modules to import
 #' @inheritParams setup_napistu_list
 #'
 #' @return List of imported Python modules
-validate_and_import_modules <- function(
-    required_modules = NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES,
-    verbose = TRUE
-    ) {
+validate_and_import_modules <- function(verbose = TRUE) {
     
-    checkmate::assertCharacter(required_modules)
-    checkmate::assertLogical(verbose, len = 1)
+    required_modules <- NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES
+    installed_modules <- reticulate::py_list_packages()
     
-    modules <- list()
-    
-    for (module_name in required_modules) {
-        cli::cli_inform("Importing Python module: {.pkg {module_name}}")
-        
-        modules[[module_name]] <- tryCatch({
-            reticulate::import(module_name)
-        }, error = function(e) {
-            cli::cli_abort(c(
-                "Failed to import required Python module {.pkg {module_name}}: {e$message}",
-                "i" = "The existing conda environment may be missing {.pkg {module_name}}",
-                "i" = "Consider not passing a Python environment to let Napistu create one"
-            ))
-        })
+    # Check for presence of all required modules
+    missing_modules <- setdiff(names(required_modules), installed_modules$package)
+    if (length(missing_modules) > 0) {
+        cli::cli_abort("The following required Python module{?s} {?is/are} not installed: {.field {missing_modules}}")
     }
     
-    cli::cli_alert_success("Python environment validated successfully")
+    # Check for minimum versions
+    for (module_name in names(required_modules)) {
+        min_version <- required_modules[[module_name]]
+        if (!is.na(min_version)) {
+            installed_version <- installed_modules[
+                installed_modules$package == module_name, "version"
+            ]
+            if (utils::compareVersion(installed_version, min_version) < 0) {
+                cli::cli_abort(
+                    "Python module {module_name} requires version {min_version}
+                    or higher, but version {installed_version} is installed."
+                )
+            }
+        }
+    }
     
-    return(modules)
+    # Import modules if all checks pass
+    imported_modules <- list()
+    for (module_name in names(required_modules)) {
+        imported_modules[[module_name]] <- reticulate::import(
+            module_name,
+            delay_load = TRUE
+        )
+    }
+    
+    return(imported_modules)
 }
 
 validate_python_version <- function(verbose) {
-    
     checkmate::assertLogical(verbose, len = 1)
     
     min_version <- NAPISTU_CONSTANTS$MINIMUM_PYTHON_VERSION
@@ -137,6 +145,10 @@ validate_python_version <- function(verbose) {
     tryCatch({
         # Get version from reticulate
         current_py_version <- as.character(reticulate::py_version())
+        if (length(current_py_version) == 0) {
+            cli::cli_alert_info("Python version not available for validation")
+            return (NULL)
+        }
         
         if (utils::compareVersion(current_py_version, min_version) < 0) {
             cli::cli_abort(c(
@@ -152,4 +164,6 @@ validate_python_version <- function(verbose) {
     }, error = function(e) {
         cli::cli_warn("Could not validate Python version: {e$message}")
     })
+    
+    return(TRUE)
 }

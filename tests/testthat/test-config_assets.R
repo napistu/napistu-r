@@ -110,7 +110,7 @@ test_that("load_single_asset handles TSV files", {
     tsv_file <- file.path(temp_dir, "test.tsv")
     writeLines(c("col1\tcol2", "val1\tval2"), tsv_file)
     
-    result <- load_single_asset(tsv_file, "test_tsv")
+    result <- load_single_asset(tsv_file, napistu_list, "test_tsv")
     
     expect_s3_class(result, "data.frame")
     expect_equal(colnames(result), c("col1", "col2"))
@@ -132,7 +132,7 @@ test_that("load_single_asset handles pickle files", {
         .package = "reticulate"
     )
     
-    result <- load_single_asset(pkl_file, "test_pkl")
+    result <- load_single_asset(pkl_file, napistu_list, "test_pkl")
     expect_equal(result$mock, "pickle_data")
     
     unlink(temp_dir, recursive = TRUE)
@@ -146,7 +146,7 @@ test_that("load_single_asset handles JSON files", {
     json_file <- file.path(temp_dir, "test.json")
     writeLines('{"test": "value"}', json_file)
     
-    result <- load_single_asset(json_file, "test_json")
+    result <- load_single_asset(json_file, napistu_list, "test_json")
     expect_equal(result$test, "value")
     
     unlink(temp_dir, recursive = TRUE)
@@ -157,7 +157,7 @@ test_that("load_single_asset fails on unsupported file types", {
     file.create(temp_file)
     
     expect_error(
-        load_single_asset(temp_file, "test_asset"),
+        load_single_asset(temp_file, napistu_list, "test_asset"),
         "Unsupported file type",
         class = "rlang_error"
     )

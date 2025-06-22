@@ -4,10 +4,16 @@
 \alias{load_single_asset}
 \title{Load Single Asset File}
 \usage{
-load_single_asset(file_path, asset_name)
+load_single_asset(file_path, python_list, asset_name)
 }
 \arguments{
 \item{file_path}{Path to asset file}
+
+\item{python_list}{A list containing reticulate bindings to Python packages and summaries of the Python environment.
+\describe{
+    \item{python_modules}{A named list of Python modules: `napistu`}
+    \item{python_environment}{See \link{validate_python_environment}}
+}}
 
 \item{asset_name}{Name of asset for context}
 }

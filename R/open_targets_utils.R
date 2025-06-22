@@ -113,7 +113,7 @@ summarize_open_targets_targets <- function(target_ensembl_gene_ids) {
     # summarize how readily druggable each target seems to be
     
     if (!("tractability" %in% colnames(targets_spread))) {
-        tractability <- tibble(
+        tractability <- tibble::tibble(
             approvedSymbol = NA_character_,
             ab_tractability = NA_character_,
             sm_tractability = NA_character_,
@@ -125,7 +125,7 @@ summarize_open_targets_targets <- function(target_ensembl_gene_ids) {
             dplyr::filter(!purrr::map_lgl(tractability, is.null))
         
         if (nrow(tractability) == 0) {
-            tractability <- tibble(
+            tractability <- tibble::tibble(
                 approvedSymbol = NA_character_,
                 ab_tractability = NA_character_,
                 sm_tractability = NA_character_,

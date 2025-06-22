@@ -74,6 +74,7 @@ utils::globalVariables(c(
     "oe",
     "ontology",
     "ontology_ids",
+    "origin",
     "p.value",
     "path",
     "path_label",

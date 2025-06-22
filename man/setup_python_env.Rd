@@ -12,7 +12,7 @@ setup_python_env(napistu_config, verbose = TRUE)
 \item{verbose}{provide extra logging}
 }
 \value{
-List containing Python modules and environment info
+A `python_list` containing Python modules and environment info
 }
 \description{
 Setup Python Environment

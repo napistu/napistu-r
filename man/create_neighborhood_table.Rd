@@ -56,20 +56,29 @@ if \code{napistu_graph} is undirected).
 \item{max_neighbors}{prune to this number of upstream regulators and
 downstream targets}
 }
+\value{
+a tibble containing one row per neighborhood with nested lists as attributes:
+\describe{
+    \item{sc_name}{A human readible name for the focal vertex}
+    \item{s_id}{The internal unique species id of the focal vertex}
+    \item{c_id}{The internal unique compartment id of the focal vertex}
+    \item{sc_id}{The internal unique compartmentalized species id of the focal vertex}
+    \item{sc_Source}{The Source object for the focal vertex}
+    \item{vertices}{The vertices in the focal vertex's neighborhood}
+    \item{edges}{The edges in the focal vertex's neighborhood}
+    \item{edge_source}{The source pathways of the reaction vertices}
+}
+}
 \description{
 Create Neighborhood Table
 }
 \examples{
+setup_napistu_list(create_napistu_config(), overwrite = TRUE)
+species_id <- "S00000061"
 
-if (interactive()) {
-  setup_napistu_list(create_napistu_config())
-  species_id <- "S00000061"
-
-  create_neighborhood_table(
+create_neighborhood_table(
     species_id,
     napistu_list = napistu_list,
-    network_type = "hourglass",
-    napistu = napistu
-  )
-}
+    network_type = "hourglass"
+)
 }

@@ -43,16 +43,13 @@ summarize_shortest_paths(napistu_list, source_species_id, dest_species_id)
 Summarize Shortest Paths
 }
 \examples{
+setup_napistu_list(create_napistu_config())
+source_species_id <- random_species(napistu_list)
+dest_species_id <- random_species(napistu_list)
 
-if (interactive()) {
-  setup_napistu_list(create_napistu_config())
-  source_species_id <- random_species(napistu_list)
-  dest_species_id <- random_species(napistu_list)
-
-  summarize_shortest_paths(
-      napistu_list,
-      source_species_id,
-      dest_species_id
-  )
-}
+summarize_shortest_paths(
+    napistu_list,
+    source_species_id,
+    dest_species_id
+)
 }

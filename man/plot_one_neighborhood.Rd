@@ -77,57 +77,55 @@ a ggplot2 grob
 Plot One Neighborhood
 }
 \examples{
+suppressPackageStartupMessages(library(dplyr))
+setup_napistu_list(create_napistu_config())
+species_id <- random_species(napistu_list)
 
-if (interactive()) {
-    setup_napistu_list(create_napistu_config())
-    species_id <- random_species(napistu_list)
+neighborhood_table <- create_neighborhood_table(
+    napistu_list,
+    species_id,
+    network_type = "hourglass",
+    max_neighbors = 30L,
+    max_steps = 15L
+)
 
-    neighborhood_table <- create_neighborhood_table(
-        napistu_list,
-        species_id,
-        network_type = "hourglass",
-        max_neighbors = 30L,
-        max_steps = 15L
-    )
+entry <- 1
+vertices <- neighborhood_table$vertices[[entry]]
+edges <- neighborhood_table$edges[[entry]]
+edge_sources <- neighborhood_table$edge_sources[[entry]]
+sc_id <- neighborhood_table$sc_id[entry]
+sc_name <- neighborhood_table$sc_name[entry]
 
-    entry <- 1
-    vertices <- neighborhood_table$vertices[[entry]]
-    edges <- neighborhood_table$edges[[entry]]
-    edge_sources <- neighborhood_table$edge_sources[[entry]]
-    sc_id <- neighborhood_table$sc_id[entry]
-    sc_name <- neighborhood_table$sc_name[entry]
+score_overlay <- vertices \%>\%
+    dplyr::filter(node_type == "species") \%>\%
+    dplyr::distinct(s_id) \%>\%
+    dplyr::sample_frac(0.5) \%>\%
+    dplyr::mutate(score = stats::rnorm(dplyr::n()))
 
-    score_overlay <- vertices \%>\%
-      dplyr::filter(node_type == "species") \%>\%
-      dplyr::distinct(s_id) \%>\%
-      dplyr::sample_frac(0.5) \%>\%
-      dplyr::mutate(score = stats::rnorm(dplyr::n()))
+# score_overlay <- summarize_indication(
+#   napistu_list,
+#   disease_id = "EFO_0000400",
+#   create_neighborhood_summary_table(neighborhood_table)
+#   )
 
-    # score_overlay <- summarize_indication(
-    #   napistu_list,
-    #   disease_id = "EFO_0000400",
-    #   create_neighborhood_summary_table(neighborhood_table)
-    #   )
+plot_one_neighborhood(
+    napistu_list,
+    vertices,
+    edges,
+    edge_sources,
+    sc_id,
+    sc_name,
+    score_overlay = NULL
+)
 
-    plot_one_neighborhood(
-        napistu_list,
-        vertices,
-        edges,
-        edge_sources,
-        sc_id,
-        sc_name,
-        score_overlay = NULL
-    )
-
-    plot_one_neighborhood(
-        napistu_list,
-        vertices,
-        edges,
-        edge_sources,
-        sc_id,
-        sc_name,
-        score_overlay = score_overlay,
-        score_palette = "log2 fold-change"
-    )
-}
+plot_one_neighborhood(
+    napistu_list,
+    vertices,
+    edges,
+    edge_sources,
+    sc_id,
+    sc_name,
+    score_overlay = score_overlay,
+    score_palette = "log2 fold-change"
+)
 }

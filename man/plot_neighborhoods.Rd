@@ -54,38 +54,36 @@ plot_neighborhoods(
 Summarize Neighborhoods
 }
 \examples{
+suppressPackageStartupMessages(library(dplyr))
+setup_napistu_list(create_napistu_config())
+species_id <- random_species(napistu_list)
 
-if (interactive()) {
-  setup_napistu_list(create_napistu_config())
-  species_id <- random_species(napistu_list)
+neighborhood_table <- create_neighborhood_table(
+    napistu_list,
+    species_id = species_id,
+    max_steps = 3L,
+    max_neighbors = 40L,
+)
 
-  neighborhood_table <- create_neighborhood_table(
-      napistu_list,
-      species_id = species_id,
-      max_steps = 3L,
-      max_neighbors = 40L,
-  )
+# score_overlay <- summarize_indication(
+#   napistu_list,
+#   disease_id = "EFO_0000400",
+#   create_neighborhood_summary_table(neighborhood_table)
+# )
 
- # score_overlay <- summarize_indication(
- #   napistu_list,
- #   disease_id = "EFO_0000400",
- #   create_neighborhood_summary_table(neighborhood_table)
- # )
+score_overlay <- neighborhood_table \%>\%
+    dplyr::select(vertices) \%>\%
+    tidyr::unnest(vertices) \%>\%
+    dplyr::filter(node_type == "species") \%>\%
+    dplyr::distinct(s_id) \%>\%
+    dplyr::sample_frac(0.5) \%>\%
+    dplyr::mutate(score = stats::rnorm(dplyr::n()))
 
- score_overlay <- neighborhood_table \%>\%
-     dplyr::select(vertices) \%>\%
-     tidyr::unnest(vertices) \%>\%
-     dplyr::filter(node_type == "species") \%>\%
-     dplyr::distinct(s_id) \%>\%
-     dplyr::sample_frac(0.5) \%>\%
-     dplyr::mutate(score = rnorm(dplyr::n()))
-
- neighborhood_summaries <- plot_neighborhoods(
-     napistu_list,
-     neighborhood_table,
-     score_overlay,
-     score_label = "diabetes mellitus",
-     score_palette = "log2 fold-change"
- )
-}
+neighborhood_summaries <- plot_neighborhoods(
+    napistu_list,
+    neighborhood_table,
+    score_overlay,
+    score_label = "random scores",
+    score_palette = "log2 fold-change"
+)
 }
