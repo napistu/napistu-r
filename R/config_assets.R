@@ -105,7 +105,7 @@ get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
     validate_verbose(verbose)
     
     # Handle directory-based configuration first
-    if ("asset_dir" %in% names(assets_config)) {
+    if ("assets_dir" %in% names(assets_config)) {
         assets_config <- resolve_directory_assets(assets_config, verbose)
     }
     
@@ -122,7 +122,7 @@ get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
     
     # Validate all specified files exist
     sources <- list()
-    all_specified <- names(assets_config)[names(assets_config) != "asset_dir"]
+    all_specified <- names(assets_config)[names(assets_config) != "assets_dir"]
     
     for (asset_name in all_specified) {
         asset_path <- assets_config[[asset_name]]
@@ -203,7 +203,7 @@ resolve_directory_assets <- function(assets_config, verbose = TRUE) {
     validate_assets_config(assets_config)
     validate_verbose(verbose)
     
-    assets_dir <- assets_config$asset_dir
+    assets_dir <- assets_config$assets_dir
     
     if (!dir.exists(assets_dir)) {
         cli::cli_abort("Assets directory does not exist: {.path {assets_dir}}")
