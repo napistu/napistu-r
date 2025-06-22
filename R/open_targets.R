@@ -10,23 +10,22 @@
 #' @returns A list containing targets and indications
 #'
 #' @examples
+#' suppressPackageStartupMessages(library(dplyr))
+#' setup_napistu_list(create_napistu_config())
+#' species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'     setup_napistu_list(create_napistu_config())
-#'     species_id <- random_species(napistu_list)
-#'
-#'     neighborhood_summary_table <- create_neighborhood_table(
-#'         napistu_list,
-#'         species_id,
-#'         max_steps = 7L
-#'     ) %>%
-#'         create_neighborhood_summary_table()
-#'       
-#'     summarize_diseases(
-#'         napistu_list,
-#'         neighborhood_summary_table
-#'     )
-#' }
+#' neighborhood_summary_table <- create_neighborhood_table(
+#'     napistu_list,
+#'     species_id,
+#'     max_steps = 7L
+#' ) %>%
+#'     create_neighborhood_summary_table()
+#' 
+#' # TO DO - uncomment once https://github.com/napistu/napistu/issues/14 is addressed      
+#' # summarize_diseases(
+#' #        napistu_list,
+#' #        neighborhood_summary_table
+#' #    )
 #' @export
 summarize_diseases <- function(
     napistu_list,
@@ -46,8 +45,8 @@ summarize_diseases <- function(
     
     if (nrow(neighborhood_ensembl_ids) == 0) {
         return(list(
-            targets = tibble(),
-            indications = tibble()
+            targets = tibble::tibble(),
+            indications = tibble::tibble()
         ))
     }
     
@@ -118,21 +117,20 @@ format_neighborhood_ensembl_ids <- function(
 #' @returns A tibble of species names and disease scores
 #'
 #' @examples
+#' suppressPackageStartupMessages(library(dplyr))
+#' setup_napistu_list(create_napistu_config())
+#' species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'     setup_napistu_list(create_napistu_config())
-#'     species_id <- random_species(napistu_list)
-#'
-#'     neighborhood_summary_table <- create_neighborhood_table(
-#'         napistu_list,
-#'         species_id,
-#'         max_steps = 7L
-#'         ) %>%
-#'         create_neighborhood_summary_table()
+#' neighborhood_summary_table <- create_neighborhood_table(
+#'     napistu_list,
+#'     species_id,
+#'     max_steps = 7L
+#'     ) %>%
+#'     create_neighborhood_summary_table()
 #'    
-#'      disease_id <- "EFO_0000400" # diabetes
-#'      summarize_indication(disease_id, sbml_dfs, neighborhood_summary_table, species_identifiers)
-#' }
+#' disease_id <- "EFO_0000400" # diabetes
+#' # uncomment once https://github.com/napistu/napistu/issues/14 is resolved
+#' # summarize_indication(napistu_list, disease_id, neighborhood_summary_table)
 #' @export
 summarize_indication <- function(
     napistu_list,

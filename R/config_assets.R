@@ -3,6 +3,7 @@
 #' Load a set of Napistu files
 #'
 #' @inheritParams validate_napistu_config
+#' @inheritParams validate_python_list
 #' @inheritParams validate_verbose
 #' 
 #' @return A list containing loaded assets including:
@@ -26,9 +27,10 @@
 #'   }
 #' 
 #' @export
-load_assets <- function(napistu_config, verbose = TRUE) {
+load_assets <- function(napistu_config, python_list, verbose = TRUE) {
     
     validate_napistu_config(napistu_config)
+    validate_python_list(python_list)
     validate_verbose(verbose)
     
     assets_config <- napistu_config$assets_config
@@ -45,7 +47,7 @@ load_assets <- function(napistu_config, verbose = TRUE) {
         asset_paths <- get_configured_asset_paths(assets_config, verbose)
     }
     
-    assets <- load_assets_from_paths(asset_paths, verbose) %>%
+    assets <- load_assets_from_paths(asset_paths, python_list, verbose) %>%
         create_derived_assets()
     
     return(assets)
@@ -141,12 +143,14 @@ get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
 #' Load Assets from Paths
 #'
 #' @inheritParams validate_asset_paths
+#' @inheritParams validate_python_list
 #' @inheritParams validate_verbose
 #' 
 #' @return List of loaded assets
-load_assets_from_paths <- function(asset_paths, verbose = TRUE) {
+load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
     
     validate_asset_paths(asset_paths)
+    validate_python_list(python_list)
     validate_verbose(verbose)
     
     assets <- list()
@@ -162,7 +166,7 @@ load_assets_from_paths <- function(asset_paths, verbose = TRUE) {
         if (verbose) {
             cli::cli_inform("Loading {.field {asset_name}} from {.file {basename(asset_path)}}")
         }
-        assets[[asset_name]] <- load_single_asset(asset_path, asset_name)
+        assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
     }
     
     # Load optional assets if available
@@ -173,7 +177,7 @@ load_assets_from_paths <- function(asset_paths, verbose = TRUE) {
             if (verbose) {
                 cli::cli_inform("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
             }
-            assets[[asset_name]] <- load_single_asset(asset_path, asset_name)
+            assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
         } else {
             if (verbose) {
                 cli::cli_inform("Optional asset {.field {asset_name}} not available")   
@@ -236,17 +240,35 @@ resolve_directory_assets <- function(assets_config, verbose = TRUE) {
 #' Load Single Asset File
 #'
 #' @param file_path Path to asset file
+#' @inheritParams validate_python_list 
 #' @param asset_name Name of asset for context
 #' 
 #' @return Loaded asset object
 #' 
 #' @export
-load_single_asset <- function(file_path, asset_name) {
+load_single_asset <- function(file_path, python_list, asset_name) {
     
     checkmate::assert_file_exists(file_path)
+    validate_python_list(python_list)
+    napistu <- python_list$python_modules$napistu
     checkmate::assertString(asset_name)
     
     file_ext <- tools::file_ext(file_path)
+    
+    # load using dedicated loading functions
+    obj <- tryCatch({
+        switch(asset_name,
+               "precomputed_distances" = napistu$network$precompute$load_precomputed_distances(file_path)
+        )
+    }, error = function(e) {
+        cli::cli_abort(
+            "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
+        )
+    })
+    
+    if (!is.null(obj)) {
+        return(obj)
+    }
     
     # Validate supported file extension
     if (!file_ext %in% NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS) {
@@ -257,7 +279,7 @@ load_single_asset <- function(file_path, asset_name) {
         ))
     }
     
-    tryCatch({
+    obj <- tryCatch({
         switch(file_ext,
                "pkl" = reticulate::py_load_object(file_path),
                "tsv" = readr::read_tsv(file_path, show_col_types = FALSE),
@@ -268,4 +290,6 @@ load_single_asset <- function(file_path, asset_name) {
             "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
         )
     })
+    
+    return(obj)
 } 

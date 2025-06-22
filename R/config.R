@@ -15,9 +15,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Using configuration object
-#' library(napistu.r)
-#' 
 #' napistu_config <- create_napistu_config()
 #' setup_napistu_list(napistu_config)
 #' 
@@ -29,7 +26,7 @@ setup_napistu_list <- function(
     napistu_list_object = NAPISTU_CONSTANTS$NAPISTU_LIST_OBJECT,
     overwrite = FALSE,
     verbose = TRUE
-    ) {
+) {
     
     checkmate::assertString(napistu_list_object)
     checkmate::assertLogical(overwrite, len = 1)
@@ -51,24 +48,25 @@ setup_napistu_list <- function(
     }
     
     # Setup Python environment
-    python_env <- setup_python_env(napistu_config, verbose)
+    python_list <- setup_python_env(napistu_config, verbose)
     
     # Load assets
-    assets <- load_assets(napistu_config, verbose)
+    asset_list <- load_assets(napistu_config, python_list, verbose)
     
     # Create combined environment object
     napistu_list <- structure(
         c(
-            assets,
+            asset_list,
+            python_list,
             list(
-                python_modules = python_env$modules,
-                python_environment = python_env$environment,
                 napistu_config = napistu_config,
                 loaded_at = Sys.time()
             )
         ),
         class = NAPISTU_CONSTANTS$NAPISTU_LIST_CLASS
     )
+    
+    validate_asset_list_thorough(napistu_list)
     
     if (verbose) {
         cli::cli_alert_success("Napistu environment setup complete - creating {.field {napistu_list_object}} object in the parent environment")

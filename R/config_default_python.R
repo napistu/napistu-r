@@ -176,10 +176,13 @@ create_conda_environment <- function(env_name, python_version, conda_exe) {
             conda = conda_exe
         )
         
-        cli::cli_inform("Installing {.pkg {NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES}} in conda environment")
+        # Extract package names from module spec
+        modules_spec <- process_required_modules_spec(NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES)
+        
+        cli::cli_inform("Installing {.pkg {modules_spec}} in conda environment")
         reticulate::conda_install(
             envname = env_name,
-            packages = NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES,
+            packages = modules_spec,
             pip = TRUE,
             conda = conda_exe
         )
@@ -281,4 +284,29 @@ cleanup_napistu <- function(napistu_list, force = FALSE) {
     }
     
     return (invisible(NULL))
+}
+
+#' Process Required Modules Specification
+#'
+#' @param required_modules Named character vector of modules with optional version constraints
+#' @return Character vector of package specifications for conda/pip
+process_required_modules_spec <- function(required_modules) {
+    checkmate::assertNamed(required_modules)
+    
+    # Build package specifications with version constraints
+    package_specs <- character(length(required_modules))
+    for (i in seq_along(required_modules)) {
+        package_name <- names(required_modules)[i]
+        version <- required_modules[[i]]
+        
+        if (is.na(version) || version == "") {
+            # No version constraint
+            package_specs[i] <- package_name
+        } else {
+            # Add version constraint
+            package_specs[i] <- paste0(package_name, ">=", version)
+        }
+    }
+    
+    return(package_specs)
 }

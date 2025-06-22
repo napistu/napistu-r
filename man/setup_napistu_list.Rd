@@ -33,9 +33,6 @@ Load a config specifying a Python environment and paths to Napistu assets
 }
 \examples{
 \dontrun{
-# Using configuration object
-library(napistu.r)
-
 napistu_config <- create_napistu_config()
 setup_napistu_list(napistu_config)
 

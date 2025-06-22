@@ -4,14 +4,9 @@
 \alias{validate_and_import_modules}
 \title{Validate and Import Python Modules}
 \usage{
-validate_and_import_modules(
-  required_modules = NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES,
-  verbose = TRUE
-)
+validate_and_import_modules(verbose = TRUE)
 }
 \arguments{
-\item{required_modules}{a character vector of modules to import}
-
 \item{verbose}{Logical scalar; if TRUE (default), prints informative messages
 about the current operation progress. If FALSE, runs silently.}
 }

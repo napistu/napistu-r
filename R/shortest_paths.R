@@ -5,18 +5,15 @@
 #' @inheritParams validate_napistu_list
 #'
 #' @examples
+#' setup_napistu_list(create_napistu_config())
+#' source_species_id <- random_species(napistu_list)
+#' dest_species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'   setup_napistu_list(create_napistu_config())
-#'   source_species_id <- random_species(napistu_list)
-#'   dest_species_id <- random_species(napistu_list)
-#'
-#'   summarize_shortest_paths(
-#'       napistu_list,
-#'       source_species_id,
-#'       dest_species_id
-#'   )
-#' }
+#' summarize_shortest_paths(
+#'     napistu_list,
+#'     source_species_id,
+#'     dest_species_id
+#' )
 #' @export
 summarize_shortest_paths <- function(napistu_list, source_species_id, dest_species_id) {
     
@@ -24,6 +21,7 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
     sbml_dfs <- napistu_list$sbml_dfs
     napistu_graph <- napistu_list$napistu_graph
     napistu <- napistu_list$python_modules$napistu
+    precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
     
     checkmate::assertCharacter(source_species_id)
     checkmate::assertCharacter(dest_species_id)
@@ -44,7 +42,8 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
             napistu_graph,
             sbml_dfs,
             target_species_paths,
-            weight_var = "weights"
+            weight_var = "weights",
+            precomputed_distances = precomputed_distances
         ),
         silent = TRUE
     )
@@ -60,11 +59,11 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
         
         return(list(
             shortest_paths_plot = disconnected_plot,
-            shortest_paths_table = tibble()
+            shortest_paths_table = tibble::tibble()
         ))
     }
     
-    shortest_paths_grob <- plot_shortest_path_network(shortest_paths_list, napistu_graph, max_labeled_species = 10L)
+    shortest_paths_grob <- plot_shortest_path_network(napistu_list, shortest_paths_list, max_labeled_species = 10L)
     
     return(list(
         shortest_paths_plot = shortest_paths_grob,
@@ -81,34 +80,32 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
 #' @inheritParams plot_one_neighborhood
 #'
 #' @examples
+#' # NOTE - you may have to run this a few times to find a valid path between 2 random nodes
+#' setup_napistu_list(create_napistu_config())
+#' sbml_dfs <- napistu_list$sbml_dfs
+#' napistu_graph <- napistu_list$napistu_graph
+#' napistu <- napistu_list$python_modules$napistu
+#' source_species_id <- random_species(napistu_list)
+#' dest_species_id <- random_species(napistu_list)
 #'
-#' if (interactive()) {
-#'   setup_napistu_list(create_napistu_config())
-#'   sbml_dfs <- napistu_list$sbml_dfs
-#'   napistu_graph <- napistu_list$napistu_graph
-#'   species_names <- napistu_list$species_names
-#'
-#'   end_points <- sample(rownames(species_names), 2)
-#'   source_species_id <- end_points[1]
-#'   dest_species_id <- end_points[2]
-#'
-#'   target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(
+#' target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(
 #'     sbml_dfs,
 #'     source_species_id,
 #'     dest_species_id
-#'     )
+#' )
 #'
-#'   shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_paths(
+#' shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_paths(
 #'     napistu_graph,
 #'     sbml_dfs,
 #'     target_species_paths,
 #'     weight_var = "weights"
-#'     ),silent = TRUE)
+#' ),silent = TRUE)
 #'
-#'   plot_shortest_path_network(
-#'     shortest_paths_list,
-#'     napistu_graph,
-#'     max_labeled_species = 10L
+#' if (!("try-error" %in% class(shortest_paths_list))) {
+#'     plot_shortest_path_network(
+#'         napistu_list,
+#'         shortest_paths_list,
+#'         max_labeled_species = 10L
 #'     )
 #' }
 #' @export
@@ -116,7 +113,7 @@ plot_shortest_path_network <- function(
     napistu_list,
     shortest_paths_list,
     max_labeled_species = 10L
-    ) {
+) {
     
     validate_napistu_list(napistu_list)
     napistu_graph <- napistu_list$napistu_graph
@@ -129,12 +126,12 @@ plot_shortest_path_network <- function(
         c(
             shortest_paths_list[[1]] %>%
                 {
-                    .$node[.$node == .$source | .$node == .$dest]
+                    .$node[.$node == .$origin | .$node == .$dest]
                 } %>%
                 unique(),
             shortest_paths_list[[1]] %>%
                 dplyr::filter(
-                    !(node == source | node == dest),
+                    !(node == origin | node == dest),
                     node_type == "species"
                 ) %>%
                 dplyr::distinct(node, weights) %>%
@@ -153,11 +150,11 @@ plot_shortest_path_network <- function(
         dplyr::mutate(
             special_node = factor(
                 dplyr::case_when(
-                    node == source ~ "source",
+                    node == origin ~ "origin",
                     node == dest ~ "destination",
                     TRUE ~ "mediator"
                 ),
-                levels = c("source", "destination", "mediator")
+                levels = c("origin", "destination", "mediator")
             ),
             node_name = label,
             label = dplyr::case_when(
@@ -170,9 +167,9 @@ plot_shortest_path_network <- function(
     
     # summarize path
     path_labels <- all_shortest_reaction_path_edges_df %>%
-        dplyr::group_by(source, dest, path) %>%
+        dplyr::group_by(origin, dest, path) %>%
         dplyr::summarize(
-            steps = n(),
+            steps = dplyr::n(),
             score = sum(weights),
             .groups = "drop"
         ) %>%
@@ -180,7 +177,7 @@ plot_shortest_path_network <- function(
         dplyr::group_by(dest) %>%
         dplyr::slice(1) %>%
         dplyr::ungroup() %>%
-        dplyr::filter(!is.na(source), !is.na(dest)) %>%
+        dplyr::filter(!is.na(origin), !is.na(dest)) %>%
         dplyr::group_by(dest) %>%
         dplyr::mutate(
             path_qual_score = dplyr::case_when(
@@ -209,9 +206,10 @@ plot_shortest_path_network <- function(
             dplyr::bind_rows(reaction_sources %>% dplyr::distinct(node = pathway_id))
     }
     
-    shortest_paths_network <- igraph::graph_from_data_frame(all_shortest_reaction_path_edges_df,
-                                                            directed = napistu_graph$is_directed(),
-                                                            vertices = all_shortest_reaction_paths_df
+    shortest_paths_network <- igraph::graph_from_data_frame(
+        all_shortest_reaction_path_edges_df,
+        directed = napistu_graph$is_directed(),
+        vertices = all_shortest_reaction_paths_df
     )
     
     cli::cli_alert_info("R igraph network created")
@@ -227,7 +225,7 @@ plot_shortest_path_network <- function(
     
     plot_title <- glue::glue(
         "Shortest path(s)<br>
-     **from:** {terminal_species$species_name[terminal_species$special_node == 'source']}<br>
+     **from:** {terminal_species$species_name[terminal_species$special_node == 'origin']}<br>
      **to:** {terminal_species$species_name[terminal_species$special_node == 'destination']}
      "
     )
@@ -260,7 +258,7 @@ plot_shortest_path_network <- function(
     }
     
     shortest_paths_grob <- shortest_paths_grob +
-        ggraph::geom_edge_link(color = "gray25", arrow = grid::arrow(type = "closed"), length = unit(0.15, "inches")) +
+        ggraph::geom_edge_link(color = "gray25", arrow = grid::arrow(type = "closed", length = unit(0.15, "inches"))) +
         ggraph::geom_node_point(aes(shape = factor(node_type), color = special_node), size = 3) +
         ggraph::geom_node_label(aes(label = label, color = special_node),
                                 repel = TRUE, alpha = 0.7, size = 4,
@@ -268,7 +266,7 @@ plot_shortest_path_network <- function(
         ) +
         ggtext::geom_richtext(data = path_labels_layout, aes(x = x + 0.2, y = y, label = path_label), color = "RED", hjust = 0, size = 3) +
         scale_shape_manual("Type", values = c("reaction" = 15, "species" = 19)) +
-        scale_color_manual(values = c("source" = "blue", "destination" = "red", "mediator" = "gray25")) +
+        scale_color_manual(values = c("origin" = "blue", "destination" = "red", "mediator" = "gray25")) +
         guides(
             shape = guide_legend(override.aes = list(size = 8, color = "gray25"), nrow = 2),
             fill = guide_legend(nrow = 2, byrow = TRUE),
@@ -286,4 +284,52 @@ plot_shortest_path_network <- function(
         labs(title = plot_title)
     
     return(shortest_paths_grob)
+}
+
+#' Find All Shortest Reaction Paths
+#' 
+#' @inheritParams validate_napistu_list
+#' @param source_species_id species ID of the upstream/source vertex
+#' @param dest_species_id species ID of the downstream/destination vertex
+#' @param weights_var variable in edges to use for edge weights
+#'
+#' @returns All the shortest paths between `source_species_id` and `dest_species_id`
+#'
+#' @examples
+#' setup_napistu_list(create_napistu_config())
+#' source_species_id <- random_species(napistu_list)
+#' dest_species_id <- random_species(napistu_list)
+#' find_all_shortest_paths(napistu_list, source_species_id, dest_species_id)
+#' @export
+find_all_shortest_paths <- function(
+    napistu_list,
+    source_species_id,
+    dest_species_id,
+    weights_var = "weights"
+) {
+    
+    validate_napistu_list(napistu_list)
+    sbml_dfs <- napistu_list$sbml_dfs
+    napistu_graph <- napistu_list$napistu_graph
+    precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
+    napistu <- napistu_list$python_modules$napistu
+    
+    target_species_paths <- napistu$network$ng_utils$compartmentalize_species_pairs(
+        sbml_dfs,
+        source_species_id,
+        dest_species_id
+    )
+    
+    shortest_paths_list <- try(
+        napistu$network$paths$find_all_shortest_reaction_paths(
+            napistu_graph,
+            sbml_dfs,
+            target_species_paths,
+            weight_var = "weights",
+            precomputed_distances = precomputed_distances
+        ),
+        silent = TRUE
+    )
+   
+    return(shortest_paths_list)
 }

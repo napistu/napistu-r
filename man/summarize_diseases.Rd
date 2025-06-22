@@ -46,21 +46,20 @@ Using a molecular neighborhood, target and indication summaries for all
   genes from Open Targets.
 }
 \examples{
+suppressPackageStartupMessages(library(dplyr))
+setup_napistu_list(create_napistu_config())
+species_id <- random_species(napistu_list)
 
-if (interactive()) {
-    setup_napistu_list(create_napistu_config())
-    species_id <- random_species(napistu_list)
+neighborhood_summary_table <- create_neighborhood_table(
+    napistu_list,
+    species_id,
+    max_steps = 7L
+) \%>\%
+    create_neighborhood_summary_table()
 
-    neighborhood_summary_table <- create_neighborhood_table(
-        napistu_list,
-        species_id,
-        max_steps = 7L
-    ) \%>\%
-        create_neighborhood_summary_table()
-      
-    summarize_diseases(
-        napistu_list,
-        neighborhood_summary_table
-    )
-}
+# TO DO - uncomment once https://github.com/napistu/napistu/issues/14 is addressed      
+# summarize_diseases(
+#        napistu_list,
+#        neighborhood_summary_table
+#    )
 }
