@@ -4,7 +4,7 @@ NAPISTU_CONSTANTS <- list(
         sbml_dfs = "sbml_dfs.pkl",
         napistu_graph = "napistu_graph.pkl",
         species_identifiers = "species_identifiers.tsv",
-        precomputed_distances = "precomputed_distances.json"
+        precomputed_distances = "precomputed_distances.parquet"
     ),
     
     NAPISTU_LIST_OBJECT = "napistu_list",
@@ -21,12 +21,12 @@ NAPISTU_CONSTANTS <- list(
     PYTHON_CONFIG_VARS = c("python_environment", "python_modules"),
     PYTHON_ENV_VARS = c("path", "type", "created_by_napistu", "miniconda_installed"),
     PYTHON_ENV_TYPES = c("virtualenv", "conda", "python"),
-    REQUIRED_PYTHON_MODULES = c("napistu" = "0.3.3"),
+    REQUIRED_PYTHON_MODULES = c("napistu" = "0.4.0"),
     MINIMUM_PYTHON_VERSION = "3.11",
     DEFAULT_CONDA_ENV_NAME = "napistu-env",
     
     # File extensions
-    SUPPORTED_EXTENSIONS = c("pkl", "tsv", "json"),
+    SUPPORTED_EXTENSIONS = c("pkl", "tsv", "json", "parquet"),
     
     # Default paths
     DEFAULT_VENV_NAME = ".venv"

@@ -255,21 +255,6 @@ load_single_asset <- function(file_path, python_list, asset_name) {
     
     file_ext <- tools::file_ext(file_path)
     
-    # load using dedicated loading functions
-    obj <- tryCatch({
-        switch(asset_name,
-               "precomputed_distances" = napistu$network$precompute$load_precomputed_distances(file_path)
-        )
-    }, error = function(e) {
-        cli::cli_abort(
-            "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
-        )
-    })
-    
-    if (!is.null(obj)) {
-        return(obj)
-    }
-    
     # Validate supported file extension
     if (!file_ext %in% NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS) {
         cli::cli_abort(c(
@@ -283,7 +268,8 @@ load_single_asset <- function(file_path, python_list, asset_name) {
         switch(file_ext,
                "pkl" = reticulate::py_load_object(file_path),
                "tsv" = readr::read_tsv(file_path, show_col_types = FALSE),
-               "json" = jsonlite::fromJSON(file_path)
+               "json" = jsonlite::fromJSON(file_path),
+               "parquet" = napistu$utils$load_parquet(file_path)
         )
     }, error = function(e) {
         cli::cli_abort(

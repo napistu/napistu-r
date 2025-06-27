@@ -1,6 +1,5 @@
 s_id	entry	ontology	identifier	url	bqb	s_name
 S00000000	0	reactome	R-HSA-198511	https://reactome.org/content/detail/R-HSA-198511	BQB_IS	MDH2 dimer
-S00000000	1	uniprot	P40926	https://purl.uniprot.org/uniprot/P40926	BQB_HAS_PART	MDH2 dimer
 S00000000	2	reactome	R-MMU-198511	https://reactome.org/content/detail/R-MMU-198511	BQB_IS_HOMOLOG_TO	MDH2 dimer
 S00000000	3	reactome	R-RNO-198511	https://reactome.org/content/detail/R-RNO-198511	BQB_IS_HOMOLOG_TO	MDH2 dimer
 S00000000	4	reactome	R-CFA-198511	https://reactome.org/content/detail/R-CFA-198511	BQB_IS_HOMOLOG_TO	MDH2 dimer
@@ -29,8 +28,6 @@ S00000005	0	chebi	15378	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:153
 S00000005	1	reactome	R-ALL-113529	https://reactome.org/content/detail/R-ALL-113529	BQB_IS	H+
 S00000005	2	reactome	R-ALL-70106	https://reactome.org/content/detail/R-ALL-70106	BQB_IS	H+
 S00000006	0	reactome	R-HSA-9012264	https://reactome.org/content/detail/R-HSA-9012264	BQB_IS	ME2:Mg2+ tetramer
-S00000006	1	uniprot	P23368	https://purl.uniprot.org/uniprot/P23368	BQB_HAS_PART	ME2:Mg2+ tetramer
-S00000006	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ME2:Mg2+ tetramer
 S00000006	3	reactome	R-MMU-9012264	https://reactome.org/content/detail/R-MMU-9012264	BQB_IS_HOMOLOG_TO	ME2:Mg2+ tetramer
 S00000006	4	reactome	R-RNO-9012264	https://reactome.org/content/detail/R-RNO-9012264	BQB_IS_HOMOLOG_TO	ME2:Mg2+ tetramer
 S00000006	5	reactome	R-CFA-9012264	https://reactome.org/content/detail/R-CFA-9012264	BQB_IS_HOMOLOG_TO	ME2:Mg2+ tetramer
@@ -52,7 +49,6 @@ S00000009	3	reactome	R-ALL-29358	https://reactome.org/content/detail/R-ALL-29358
 S00000010	0	chebi	18012	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18012	BQB_IS	FUMA
 S00000010	1	reactome	R-ALL-113588	https://reactome.org/content/detail/R-ALL-113588	BQB_IS	FUMA
 S00000011	0	reactome	R-HSA-451041	https://reactome.org/content/detail/R-HSA-451041	BQB_IS	FH tetramer
-S00000011	1	uniprot	P07954	https://purl.uniprot.org/uniprot/P07954	BQB_HAS_PART	FH tetramer
 S00000011	2	reactome	R-MMU-451041	https://reactome.org/content/detail/R-MMU-451041	BQB_IS_HOMOLOG_TO	FH tetramer
 S00000011	3	reactome	R-RNO-451041	https://reactome.org/content/detail/R-RNO-451041	BQB_IS_HOMOLOG_TO	FH tetramer
 S00000011	4	reactome	R-CFA-451041	https://reactome.org/content/detail/R-CFA-451041	BQB_IS_HOMOLOG_TO	FH tetramer
@@ -69,15 +65,7 @@ S00000012	0	chebi	15377	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:153
 S00000012	1	reactome	R-ALL-113521	https://reactome.org/content/detail/R-ALL-113521	BQB_IS	H2O
 S00000012	2	reactome	R-ALL-29356	https://reactome.org/content/detail/R-ALL-29356	BQB_IS	H2O
 S00000012	3	reactome	R-ALL-113519	https://reactome.org/content/detail/R-ALL-113519	BQB_IS	H2O
-S00000013	0	pubmed	2188967	http://www.ncbi.nlm.nih.gov/pubmed/2188967	BQB_IS_DESCRIBED_BY	lipo-aKGDH
-S00000013	1	pubmed	9727038	http://www.ncbi.nlm.nih.gov/pubmed/9727038	BQB_IS_DESCRIBED_BY	lipo-aKGDH
 S00000013	2	reactome	R-HSA-69996	https://reactome.org/content/detail/R-HSA-69996	BQB_IS	lipo-aKGDH
-S00000013	3	chebi	58937	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58937	BQB_HAS_PART	lipo-aKGDH
-S00000013	4	uniprot	Q02218	https://purl.uniprot.org/uniprot/Q02218	BQB_HAS_PART	lipo-aKGDH
-S00000013	5	chebi	17460	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17460	BQB_HAS_PART	lipo-aKGDH
-S00000013	6	uniprot	P36957	https://purl.uniprot.org/uniprot/P36957	BQB_HAS_PART	lipo-aKGDH
-S00000013	7	uniprot	P09622	https://purl.uniprot.org/uniprot/P09622	BQB_HAS_PART	lipo-aKGDH
-S00000013	8	chebi	16238	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16238	BQB_HAS_PART	lipo-aKGDH
 S00000013	9	reactome	R-MMU-69996	https://reactome.org/content/detail/R-MMU-69996	BQB_IS_HOMOLOG_TO	lipo-aKGDH
 S00000013	10	reactome	R-RNO-69996	https://reactome.org/content/detail/R-RNO-69996	BQB_IS_HOMOLOG_TO	lipo-aKGDH
 S00000013	11	reactome	R-SSC-69996	https://reactome.org/content/detail/R-SSC-69996	BQB_IS_HOMOLOG_TO	lipo-aKGDH
@@ -98,8 +86,6 @@ S00000015	1	reactome	R-ALL-29374	https://reactome.org/content/detail/R-ALL-29374
 S00000016	0	chebi	57292	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57292	BQB_IS	SUCC-CoA
 S00000016	1	reactome	R-ALL-70958	https://reactome.org/content/detail/R-ALL-70958	BQB_IS	SUCC-CoA
 S00000017	0	reactome	R-HSA-450982	https://reactome.org/content/detail/R-HSA-450982	BQB_IS	IDH2 dimer
-S00000017	1	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	IDH2 dimer
-S00000017	2	uniprot	P48735	https://purl.uniprot.org/uniprot/P48735	BQB_HAS_PART	IDH2 dimer
 S00000017	3	reactome	R-MMU-450982	https://reactome.org/content/detail/R-MMU-450982	BQB_IS_HOMOLOG_TO	IDH2 dimer
 S00000017	4	reactome	R-RNO-450982	https://reactome.org/content/detail/R-RNO-450982	BQB_IS_HOMOLOG_TO	IDH2 dimer
 S00000017	5	reactome	R-CFA-450982	https://reactome.org/content/detail/R-CFA-450982	BQB_IS_HOMOLOG_TO	IDH2 dimer
@@ -117,11 +103,6 @@ S00000020	0	chebi	16474	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:164
 S00000020	1	reactome	R-ALL-113600	https://reactome.org/content/detail/R-ALL-113600	BQB_IS	NADPH
 S00000020	2	reactome	R-ALL-29364	https://reactome.org/content/detail/R-ALL-29364	BQB_IS	NADPH
 S00000021	0	reactome	R-HSA-70990	https://reactome.org/content/detail/R-HSA-70990	BQB_IS	SDH complex (ox.)
-S00000021	1	uniprot	P31040	https://purl.uniprot.org/uniprot/P31040	BQB_HAS_PART	SDH complex (ox.)
-S00000021	2	chebi	16238	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16238	BQB_HAS_PART	SDH complex (ox.)
-S00000021	3	uniprot	P21912	https://purl.uniprot.org/uniprot/P21912	BQB_HAS_PART	SDH complex (ox.)
-S00000021	4	uniprot	O14521	https://purl.uniprot.org/uniprot/O14521	BQB_HAS_PART	SDH complex (ox.)
-S00000021	5	uniprot	Q99643	https://purl.uniprot.org/uniprot/Q99643	BQB_HAS_PART	SDH complex (ox.)
 S00000021	6	reactome	R-MMU-70990	https://reactome.org/content/detail/R-MMU-70990	BQB_IS_HOMOLOG_TO	SDH complex (ox.)
 S00000021	7	reactome	R-RNO-70990	https://reactome.org/content/detail/R-RNO-70990	BQB_IS_HOMOLOG_TO	SDH complex (ox.)
 S00000021	8	reactome	R-CFA-70990	https://reactome.org/content/detail/R-CFA-70990	BQB_IS_HOMOLOG_TO	SDH complex (ox.)
@@ -136,8 +117,6 @@ S00000021	16	reactome	R-SCE-70990	https://reactome.org/content/detail/R-SCE-7099
 S00000022	0	chebi	30031	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:30031	BQB_IS	SUCCA
 S00000022	1	reactome	R-ALL-113536	https://reactome.org/content/detail/R-ALL-113536	BQB_IS	SUCCA
 S00000023	0	reactome	R-HSA-156625	https://reactome.org/content/detail/R-HSA-156625	BQB_IS	SUCLA2:SUCLG1
-S00000023	1	uniprot	Q9P2R7	https://purl.uniprot.org/uniprot/Q9P2R7	BQB_HAS_PART	SUCLA2:SUCLG1
-S00000023	2	uniprot	P53597	https://purl.uniprot.org/uniprot/P53597	BQB_HAS_PART	SUCLA2:SUCLG1
 S00000023	3	reactome	R-MMU-156625	https://reactome.org/content/detail/R-MMU-156625	BQB_IS_HOMOLOG_TO	SUCLA2:SUCLG1
 S00000023	4	reactome	R-RNO-156625	https://reactome.org/content/detail/R-RNO-156625	BQB_IS_HOMOLOG_TO	SUCLA2:SUCLG1
 S00000023	5	reactome	R-DRE-156625	https://reactome.org/content/detail/R-DRE-156625	BQB_IS_HOMOLOG_TO	SUCLA2:SUCLG1
@@ -157,8 +136,6 @@ S00000025	1	reactome	R-ALL-113548	https://reactome.org/content/detail/R-ALL-1135
 S00000025	2	reactome	R-ALL-29372	https://reactome.org/content/detail/R-ALL-29372	BQB_IS	Pi
 S00000025	3	reactome	R-ALL-113551	https://reactome.org/content/detail/R-ALL-113551	BQB_IS	Pi
 S00000026	0	reactome	R-HSA-9012356	https://reactome.org/content/detail/R-HSA-9012356	BQB_IS	ME3:Mg2+ tetramer
-S00000026	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ME3:Mg2+ tetramer
-S00000026	2	uniprot	Q16798	https://purl.uniprot.org/uniprot/Q16798	BQB_HAS_PART	ME3:Mg2+ tetramer
 S00000026	3	reactome	R-MMU-9012356	https://reactome.org/content/detail/R-MMU-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
 S00000026	4	reactome	R-RNO-9012356	https://reactome.org/content/detail/R-RNO-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
 S00000026	5	reactome	R-CFA-9012356	https://reactome.org/content/detail/R-CFA-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
@@ -170,12 +147,7 @@ S00000026	10	reactome	R-GGA-9012356	https://reactome.org/content/detail/R-GGA-90
 S00000026	11	reactome	R-DME-9012356	https://reactome.org/content/detail/R-DME-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
 S00000026	12	reactome	R-CEL-9012356	https://reactome.org/content/detail/R-CEL-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
 S00000026	13	reactome	R-DDI-9012356	https://reactome.org/content/detail/R-DDI-9012356	BQB_IS_HOMOLOG_TO	ME3:Mg2+ tetramer
-S00000027	0	pubmed	20435888	http://www.ncbi.nlm.nih.gov/pubmed/20435888	BQB_IS_DESCRIBED_BY	IDH3 complex
 S00000027	1	reactome	R-HSA-70965	https://reactome.org/content/detail/R-HSA-70965	BQB_IS	IDH3 complex
-S00000027	2	uniprot	O43837	https://purl.uniprot.org/uniprot/O43837	BQB_HAS_PART	IDH3 complex
-S00000027	3	uniprot	P50213	https://purl.uniprot.org/uniprot/P50213	BQB_HAS_PART	IDH3 complex
-S00000027	4	uniprot	P51553	https://purl.uniprot.org/uniprot/P51553	BQB_HAS_PART	IDH3 complex
-S00000027	5	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	IDH3 complex
 S00000027	6	reactome	R-MMU-70965	https://reactome.org/content/detail/R-MMU-70965	BQB_IS_HOMOLOG_TO	IDH3 complex
 S00000027	7	reactome	R-RNO-70965	https://reactome.org/content/detail/R-RNO-70965	BQB_IS_HOMOLOG_TO	IDH3 complex
 S00000027	8	reactome	R-DRE-70965	https://reactome.org/content/detail/R-DRE-70965	BQB_IS_HOMOLOG_TO	IDH3 complex
@@ -204,8 +176,6 @@ S00000029	0	chebi	30769	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:307
 S00000029	1	reactome	R-ALL-29654	https://reactome.org/content/detail/R-ALL-29654	BQB_IS	CIT
 S00000029	2	reactome	R-ALL-76190	https://reactome.org/content/detail/R-ALL-76190	BQB_IS	CIT
 S00000030	0	reactome	R-HSA-9012057	https://reactome.org/content/detail/R-HSA-9012057	BQB_IS	FAHD1:Mg2+ dimer
-S00000030	1	uniprot	Q6P587	https://purl.uniprot.org/uniprot/Q6P587	BQB_HAS_PART	FAHD1:Mg2+ dimer
-S00000030	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	FAHD1:Mg2+ dimer
 S00000030	3	reactome	R-MMU-9012057	https://reactome.org/content/detail/R-MMU-9012057	BQB_IS_HOMOLOG_TO	FAHD1:Mg2+ dimer
 S00000030	4	reactome	R-RNO-9012057	https://reactome.org/content/detail/R-RNO-9012057	BQB_IS_HOMOLOG_TO	FAHD1:Mg2+ dimer
 S00000030	5	reactome	R-BTA-9012057	https://reactome.org/content/detail/R-BTA-9012057	BQB_IS_HOMOLOG_TO	FAHD1:Mg2+ dimer
@@ -219,7 +189,6 @@ S00000030	12	reactome	R-DDI-9012057	https://reactome.org/content/detail/R-DDI-90
 S00000030	13	reactome	R-SPO-9012057	https://reactome.org/content/detail/R-SPO-9012057	BQB_IS_HOMOLOG_TO	FAHD1:Mg2+ dimer
 S00000030	14	reactome	R-SCE-9012057	https://reactome.org/content/detail/R-SCE-9012057	BQB_IS_HOMOLOG_TO	FAHD1:Mg2+ dimer
 S00000031	0	reactome	R-HSA-451008	https://reactome.org/content/detail/R-HSA-451008	BQB_IS	NNT dimer
-S00000031	1	uniprot	Q13423	https://purl.uniprot.org/uniprot/Q13423	BQB_HAS_PART	NNT dimer
 S00000031	2	reactome	R-MMU-451008	https://reactome.org/content/detail/R-MMU-451008	BQB_IS_HOMOLOG_TO	NNT dimer
 S00000031	3	reactome	R-RNO-451008	https://reactome.org/content/detail/R-RNO-451008	BQB_IS_HOMOLOG_TO	NNT dimer
 S00000031	4	reactome	R-CFA-451008	https://reactome.org/content/detail/R-CFA-451008	BQB_IS_HOMOLOG_TO	NNT dimer
@@ -231,7 +200,6 @@ S00000031	9	reactome	R-CEL-451008	https://reactome.org/content/detail/R-CEL-4510
 S00000031	10	reactome	R-DDI-451008	https://reactome.org/content/detail/R-DDI-451008	BQB_IS_HOMOLOG_TO	NNT dimer
 S00000031	11	reactome	R-PFA-451008	https://reactome.org/content/detail/R-PFA-451008	BQB_IS_HOMOLOG_TO	NNT dimer
 S00000032	0	reactome	R-HSA-70973	https://reactome.org/content/detail/R-HSA-70973	BQB_IS	CS dimer
-S00000032	1	uniprot	O75390	https://purl.uniprot.org/uniprot/O75390	BQB_HAS_PART	CS dimer
 S00000032	2	reactome	R-MMU-70973	https://reactome.org/content/detail/R-MMU-70973	BQB_IS_HOMOLOG_TO	CS dimer
 S00000032	3	reactome	R-RNO-70973	https://reactome.org/content/detail/R-RNO-70973	BQB_IS_HOMOLOG_TO	CS dimer
 S00000032	4	reactome	R-CFA-70973	https://reactome.org/content/detail/R-CFA-70973	BQB_IS_HOMOLOG_TO	CS dimer
@@ -250,8 +218,6 @@ S00000033	0	chebi	15351	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:153
 S00000033	1	reactome	R-ALL-113559	https://reactome.org/content/detail/R-ALL-113559	BQB_IS	Ac-CoA
 S00000033	2	reactome	R-ALL-76183	https://reactome.org/content/detail/R-ALL-76183	BQB_IS	Ac-CoA
 S00000034	0	reactome	R-HSA-156627	https://reactome.org/content/detail/R-HSA-156627	BQB_IS	SUCLG1:SUCLG2
-S00000034	1	uniprot	Q96I99	https://purl.uniprot.org/uniprot/Q96I99	BQB_HAS_PART	SUCLG1:SUCLG2
-S00000034	2	uniprot	P53597	https://purl.uniprot.org/uniprot/P53597	BQB_HAS_PART	SUCLG1:SUCLG2
 S00000034	3	reactome	R-MMU-156627	https://reactome.org/content/detail/R-MMU-156627	BQB_IS_HOMOLOG_TO	SUCLG1:SUCLG2
 S00000034	4	reactome	R-RNO-156627	https://reactome.org/content/detail/R-RNO-156627	BQB_IS_HOMOLOG_TO	SUCLG1:SUCLG2
 S00000034	5	reactome	R-CFA-156627	https://reactome.org/content/detail/R-CFA-156627	BQB_IS_HOMOLOG_TO	SUCLG1:SUCLG2
@@ -268,11 +234,7 @@ S00000035	2	reactome	R-ALL-29420	https://reactome.org/content/detail/R-ALL-29420
 S00000036	0	chebi	15996	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15996	BQB_IS	GTP
 S00000036	1	reactome	R-ALL-113573	https://reactome.org/content/detail/R-ALL-113573	BQB_IS	GTP
 S00000036	2	reactome	R-ALL-29438	https://reactome.org/content/detail/R-ALL-29438	BQB_IS	GTP
-S00000037	0	pubmed	9357955	http://www.ncbi.nlm.nih.gov/pubmed/9357955	BQB_IS_DESCRIBED_BY	TKT dimer
 S00000037	1	reactome	R-HSA-71322	https://reactome.org/content/detail/R-HSA-71322	BQB_IS	TKT dimer
-S00000037	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	TKT dimer
-S00000037	3	uniprot	P29401	https://purl.uniprot.org/uniprot/P29401	BQB_HAS_PART	TKT dimer
-S00000037	4	chebi	58937	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58937	BQB_HAS_PART	TKT dimer
 S00000037	5	reactome	R-MMU-71322	https://reactome.org/content/detail/R-MMU-71322	BQB_IS_HOMOLOG_TO	TKT dimer
 S00000037	6	reactome	R-RNO-71322	https://reactome.org/content/detail/R-RNO-71322	BQB_IS_HOMOLOG_TO	TKT dimer
 S00000037	7	reactome	R-CFA-71322	https://reactome.org/content/detail/R-CFA-71322	BQB_IS_HOMOLOG_TO	TKT dimer
@@ -322,9 +284,6 @@ S00000045	12	reactome	R-SCE-71304	https://reactome.org/content/detail/R-SCE-7130
 S00000046	0	chebi	17363	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17363	BQB_IS	RU5P
 S00000046	1	reactome	R-ALL-29732	https://reactome.org/content/detail/R-ALL-29732	BQB_IS	RU5P
 S00000047	0	reactome	R-HSA-8957329	https://reactome.org/content/detail/R-HSA-8957329	BQB_IS	RPE:Fe2+ dimers
-S00000047	1	uniprot	Q2QD12	https://purl.uniprot.org/uniprot/Q2QD12	BQB_HAS_PART	RPE:Fe2+ dimers
-S00000047	2	chebi	29033	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29033	BQB_HAS_PART	RPE:Fe2+ dimers
-S00000047	3	uniprot	Q96AT9	https://purl.uniprot.org/uniprot/Q96AT9	BQB_HAS_PART	RPE:Fe2+ dimers
 S00000047	4	reactome	R-MMU-8957329	https://reactome.org/content/detail/R-MMU-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
 S00000047	5	reactome	R-RNO-8957329	https://reactome.org/content/detail/R-RNO-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
 S00000047	6	reactome	R-CFA-8957329	https://reactome.org/content/detail/R-CFA-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
@@ -339,9 +298,7 @@ S00000047	14	reactome	R-DDI-8957329	https://reactome.org/content/detail/R-DDI-89
 S00000047	15	reactome	R-SPO-8957329	https://reactome.org/content/detail/R-SPO-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
 S00000047	16	reactome	R-SCE-8957329	https://reactome.org/content/detail/R-SCE-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
 S00000047	17	reactome	R-PFA-8957329	https://reactome.org/content/detail/R-PFA-8957329	BQB_IS_HOMOLOG_TO	RPE:Fe2+ dimers
-S00000048	0	pubmed	10869557	http://www.ncbi.nlm.nih.gov/pubmed/10869557	BQB_IS_DESCRIBED_BY	TALDO1 dimer
 S00000048	1	reactome	R-HSA-5659970	https://reactome.org/content/detail/R-HSA-5659970	BQB_IS	TALDO1 dimer
-S00000048	2	uniprot	P37837	https://purl.uniprot.org/uniprot/P37837	BQB_HAS_PART	TALDO1 dimer
 S00000048	3	reactome	R-MMU-5659970	https://reactome.org/content/detail/R-MMU-5659970	BQB_IS_HOMOLOG_TO	TALDO1 dimer
 S00000048	4	reactome	R-RNO-5659970	https://reactome.org/content/detail/R-RNO-5659970	BQB_IS_HOMOLOG_TO	TALDO1 dimer
 S00000048	5	reactome	R-CFA-5659970	https://reactome.org/content/detail/R-CFA-5659970	BQB_IS_HOMOLOG_TO	TALDO1 dimer
@@ -357,9 +314,7 @@ S00000049	0	chebi	16897	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:168
 S00000049	1	reactome	R-ALL-29878	https://reactome.org/content/detail/R-ALL-29878	BQB_IS	E4P
 S00000050	0	chebi	57634	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57634	BQB_IS	Fru(6)P
 S00000050	1	reactome	R-ALL-29512	https://reactome.org/content/detail/R-ALL-29512	BQB_IS	Fru(6)P
-S00000051	0	pubmed	4328836	http://www.ncbi.nlm.nih.gov/pubmed/4328836	BQB_IS_DESCRIBED_BY	PRPS2 dimer, PRPS1L dimer
 S00000051	1	reactome	R-HSA-189812	https://reactome.org/content/detail/R-HSA-189812	BQB_IS	PRPS2 dimer, PRPS1L dimer
-S00000051	2	uniprot	P60891	https://purl.uniprot.org/uniprot/P60891	BQB_HAS_PART	PRPS2 dimer, PRPS1L dimer
 S00000051	3	reactome	R-MMU-189812	https://reactome.org/content/detail/R-MMU-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
 S00000051	4	reactome	R-RNO-189812	https://reactome.org/content/detail/R-RNO-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
 S00000051	5	reactome	R-CFA-189812	https://reactome.org/content/detail/R-CFA-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
@@ -374,818 +329,800 @@ S00000051	13	reactome	R-DDI-189812	https://reactome.org/content/detail/R-DDI-189
 S00000051	14	reactome	R-SPO-189812	https://reactome.org/content/detail/R-SPO-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
 S00000051	15	reactome	R-SCE-189812	https://reactome.org/content/detail/R-SCE-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
 S00000051	16	reactome	R-PFA-189812	https://reactome.org/content/detail/R-PFA-189812	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	17	reactome	R-HSA-73485	https://reactome.org/content/detail/R-HSA-73485	BQB_IS	PRPS2 dimer, PRPS1L dimer
+S00000051	18	reactome	R-MMU-73485	https://reactome.org/content/detail/R-MMU-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	19	reactome	R-RNO-73485	https://reactome.org/content/detail/R-RNO-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	20	reactome	R-CFA-73485	https://reactome.org/content/detail/R-CFA-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	21	reactome	R-BTA-73485	https://reactome.org/content/detail/R-BTA-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	22	reactome	R-SSC-73485	https://reactome.org/content/detail/R-SSC-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	23	reactome	R-DRE-73485	https://reactome.org/content/detail/R-DRE-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	24	reactome	R-XTR-73485	https://reactome.org/content/detail/R-XTR-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	25	reactome	R-GGA-73485	https://reactome.org/content/detail/R-GGA-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	26	reactome	R-DDI-73485	https://reactome.org/content/detail/R-DDI-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	27	reactome	R-SPO-73485	https://reactome.org/content/detail/R-SPO-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	28	reactome	R-SCE-73485	https://reactome.org/content/detail/R-SCE-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
+S00000051	29	reactome	R-PFA-73485	https://reactome.org/content/detail/R-PFA-73485	BQB_IS_HOMOLOG_TO	PRPS2 dimer, PRPS1L dimer
 S00000052	0	chebi	16027	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16027	BQB_IS	AMP
 S00000052	1	reactome	R-ALL-76577	https://reactome.org/content/detail/R-ALL-76577	BQB_IS	AMP
 S00000053	0	chebi	17111	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17111	BQB_IS	PRPP
 S00000053	1	reactome	R-ALL-73566	https://reactome.org/content/detail/R-ALL-73566	BQB_IS	PRPP
-S00000054	0	pubmed	4328836	http://www.ncbi.nlm.nih.gov/pubmed/4328836	BQB_IS_DESCRIBED_BY	PRPS1 dimer
-S00000054	1	reactome	R-HSA-73485	https://reactome.org/content/detail/R-HSA-73485	BQB_IS	PRPS1 dimer
-S00000054	2	uniprot	P60891	https://purl.uniprot.org/uniprot/P60891	BQB_HAS_PART	PRPS1 dimer
-S00000054	3	reactome	R-MMU-73485	https://reactome.org/content/detail/R-MMU-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	4	reactome	R-RNO-73485	https://reactome.org/content/detail/R-RNO-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	5	reactome	R-CFA-73485	https://reactome.org/content/detail/R-CFA-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	6	reactome	R-BTA-73485	https://reactome.org/content/detail/R-BTA-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	7	reactome	R-SSC-73485	https://reactome.org/content/detail/R-SSC-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	8	reactome	R-DRE-73485	https://reactome.org/content/detail/R-DRE-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	9	reactome	R-XTR-73485	https://reactome.org/content/detail/R-XTR-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	10	reactome	R-GGA-73485	https://reactome.org/content/detail/R-GGA-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	11	reactome	R-DME-73485	https://reactome.org/content/detail/R-DME-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	12	reactome	R-CEL-73485	https://reactome.org/content/detail/R-CEL-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	13	reactome	R-DDI-73485	https://reactome.org/content/detail/R-DDI-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	14	reactome	R-SPO-73485	https://reactome.org/content/detail/R-SPO-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	15	reactome	R-SCE-73485	https://reactome.org/content/detail/R-SCE-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000054	16	reactome	R-PFA-73485	https://reactome.org/content/detail/R-PFA-73485	BQB_IS_HOMOLOG_TO	PRPS1 dimer
-S00000055	0	chebi	16284	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16284	BQB_IS	dATP
-S00000055	1	reactome	R-ALL-110644	https://reactome.org/content/detail/R-ALL-110644	BQB_IS	dATP
-S00000056	0	chebi	17713	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17713	BQB_IS	2'-deoxyadenosine 5'-monophosphate
-S00000056	1	reactome	R-ALL-109386	https://reactome.org/content/detail/R-ALL-109386	BQB_IS	2'-deoxyadenosine 5'-monophosphate
-S00000057	0	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_IS	Mg2+
-S00000057	1	reactome	R-ALL-29926	https://reactome.org/content/detail/R-ALL-29926	BQB_IS	Mg2+
-S00000058	0	uniprot	Q9UHJ6	https://purl.uniprot.org/uniprot/Q9UHJ6	BQB_IS	SHPK
-S00000058	1	reactome	R-HSA-8959710	https://reactome.org/content/detail/R-HSA-8959710	BQB_IS	SHPK
-S00000058	2	reactome	R-MMU-8959710	https://reactome.org/content/detail/R-MMU-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	3	reactome	R-RNO-8959710	https://reactome.org/content/detail/R-RNO-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	4	reactome	R-CFA-8959710	https://reactome.org/content/detail/R-CFA-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	5	reactome	R-BTA-8959710	https://reactome.org/content/detail/R-BTA-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	6	reactome	R-SSC-8959710	https://reactome.org/content/detail/R-SSC-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	7	reactome	R-DRE-8959710	https://reactome.org/content/detail/R-DRE-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	8	reactome	R-XTR-8959710	https://reactome.org/content/detail/R-XTR-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	9	reactome	R-GGA-8959710	https://reactome.org/content/detail/R-GGA-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000058	10	reactome	R-CEL-8959710	https://reactome.org/content/detail/R-CEL-8959710	BQB_IS_HOMOLOG_TO	SHPK
-S00000059	0	chebi	16802	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16802	BQB_IS	Sedo
-S00000059	1	reactome	R-ALL-8959707	https://reactome.org/content/detail/R-ALL-8959707	BQB_IS	Sedo
-S00000060	0	uniprot	Q9H477	https://purl.uniprot.org/uniprot/Q9H477	BQB_IS	RBKS
-S00000060	1	reactome	R-HSA-8955847	https://reactome.org/content/detail/R-HSA-8955847	BQB_IS	RBKS
-S00000060	2	reactome	R-MMU-8955847	https://reactome.org/content/detail/R-MMU-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	3	reactome	R-RNO-8955847	https://reactome.org/content/detail/R-RNO-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	4	reactome	R-CFA-8955847	https://reactome.org/content/detail/R-CFA-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	5	reactome	R-BTA-8955847	https://reactome.org/content/detail/R-BTA-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	6	reactome	R-SSC-8955847	https://reactome.org/content/detail/R-SSC-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	7	reactome	R-DRE-8955847	https://reactome.org/content/detail/R-DRE-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	8	reactome	R-XTR-8955847	https://reactome.org/content/detail/R-XTR-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	9	reactome	R-GGA-8955847	https://reactome.org/content/detail/R-GGA-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	10	reactome	R-DME-8955847	https://reactome.org/content/detail/R-DME-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	11	reactome	R-CEL-8955847	https://reactome.org/content/detail/R-CEL-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	12	reactome	R-DDI-8955847	https://reactome.org/content/detail/R-DDI-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	13	reactome	R-SPO-8955847	https://reactome.org/content/detail/R-SPO-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000060	14	reactome	R-SCE-8955847	https://reactome.org/content/detail/R-SCE-8955847	BQB_IS_HOMOLOG_TO	RBKS
-S00000061	0	chebi	47013	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:47013	BQB_IS	D-ribose
-S00000061	1	reactome	R-ALL-8955853	https://reactome.org/content/detail/R-ALL-8955853	BQB_IS	D-ribose
-S00000062	0	reactome	R-HSA-464971	https://reactome.org/content/detail/R-HSA-464971	BQB_IS	G6PD dimer and tetramer
-S00000062	1	uniprot	P11413	https://purl.uniprot.org/uniprot/P11413	BQB_HAS_PART	G6PD dimer and tetramer
-S00000062	2	chebi	18009	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18009	BQB_HAS_PART	G6PD dimer and tetramer
-S00000062	3	reactome	R-MMU-464971	https://reactome.org/content/detail/R-MMU-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	4	reactome	R-RNO-464971	https://reactome.org/content/detail/R-RNO-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	5	reactome	R-CFA-464971	https://reactome.org/content/detail/R-CFA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	6	reactome	R-BTA-464971	https://reactome.org/content/detail/R-BTA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	7	reactome	R-SSC-464971	https://reactome.org/content/detail/R-SSC-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	8	reactome	R-DRE-464971	https://reactome.org/content/detail/R-DRE-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	9	reactome	R-XTR-464971	https://reactome.org/content/detail/R-XTR-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	10	reactome	R-DME-464971	https://reactome.org/content/detail/R-DME-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	11	reactome	R-CEL-464971	https://reactome.org/content/detail/R-CEL-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	12	reactome	R-DDI-464971	https://reactome.org/content/detail/R-DDI-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	13	reactome	R-SPO-464971	https://reactome.org/content/detail/R-SPO-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	14	reactome	R-SCE-464971	https://reactome.org/content/detail/R-SCE-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000062	15	reactome	R-PFA-464971	https://reactome.org/content/detail/R-PFA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
-S00000063	0	chebi	58225	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58225	BQB_IS	G6P
-S00000063	1	reactome	R-ALL-30537	https://reactome.org/content/detail/R-ALL-30537	BQB_IS	G6P
-S00000063	2	reactome	R-ALL-113782	https://reactome.org/content/detail/R-ALL-113782	BQB_IS	G6P
-S00000064	0	chebi	16938	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16938	BQB_IS	D-Glucono-1,5-lactone 6-phosphate
-S00000064	1	reactome	R-ALL-31467	https://reactome.org/content/detail/R-ALL-31467	BQB_IS	D-Glucono-1,5-lactone 6-phosphate
-S00000065	0	reactome	R-HSA-453137	https://reactome.org/content/detail/R-HSA-453137	BQB_IS	PGM2:Mg2+
-S00000065	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGM2:Mg2+
-S00000065	2	uniprot	Q96G03	https://purl.uniprot.org/uniprot/Q96G03	BQB_HAS_PART	PGM2:Mg2+
-S00000065	3	reactome	R-MMU-453137	https://reactome.org/content/detail/R-MMU-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	4	reactome	R-RNO-453137	https://reactome.org/content/detail/R-RNO-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	5	reactome	R-CFA-453137	https://reactome.org/content/detail/R-CFA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	6	reactome	R-BTA-453137	https://reactome.org/content/detail/R-BTA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	7	reactome	R-SSC-453137	https://reactome.org/content/detail/R-SSC-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	8	reactome	R-DRE-453137	https://reactome.org/content/detail/R-DRE-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	9	reactome	R-XTR-453137	https://reactome.org/content/detail/R-XTR-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	10	reactome	R-GGA-453137	https://reactome.org/content/detail/R-GGA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	11	reactome	R-DME-453137	https://reactome.org/content/detail/R-DME-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	12	reactome	R-CEL-453137	https://reactome.org/content/detail/R-CEL-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	13	reactome	R-DDI-453137	https://reactome.org/content/detail/R-DDI-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	14	reactome	R-SPO-453137	https://reactome.org/content/detail/R-SPO-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	15	reactome	R-SCE-453137	https://reactome.org/content/detail/R-SCE-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000065	16	reactome	R-PFA-453137	https://reactome.org/content/detail/R-PFA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
-S00000066	0	chebi	35425	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35425	BQB_IS	R1P
-S00000066	1	reactome	R-ALL-112016	https://reactome.org/content/detail/R-ALL-112016	BQB_IS	R1P
-S00000067	0	chebi	11563	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:11563	BQB_IS	dR1P
-S00000067	1	reactome	R-ALL-6787326	https://reactome.org/content/detail/R-ALL-6787326	BQB_IS	dR1P
-S00000068	0	pubmed	3994686	http://www.ncbi.nlm.nih.gov/pubmed/3994686	BQB_IS_DESCRIBED_BY	PGD dimer
-S00000068	1	reactome	R-HSA-467365	https://reactome.org/content/detail/R-HSA-467365	BQB_IS	PGD dimer
-S00000068	2	uniprot	P52209	https://purl.uniprot.org/uniprot/P52209	BQB_HAS_PART	PGD dimer
-S00000068	3	reactome	R-MMU-467365	https://reactome.org/content/detail/R-MMU-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	4	reactome	R-RNO-467365	https://reactome.org/content/detail/R-RNO-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	5	reactome	R-CFA-467365	https://reactome.org/content/detail/R-CFA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	6	reactome	R-BTA-467365	https://reactome.org/content/detail/R-BTA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	7	reactome	R-DRE-467365	https://reactome.org/content/detail/R-DRE-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	8	reactome	R-XTR-467365	https://reactome.org/content/detail/R-XTR-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	9	reactome	R-GGA-467365	https://reactome.org/content/detail/R-GGA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	10	reactome	R-DME-467365	https://reactome.org/content/detail/R-DME-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	11	reactome	R-CEL-467365	https://reactome.org/content/detail/R-CEL-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	12	reactome	R-DDI-467365	https://reactome.org/content/detail/R-DDI-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	13	reactome	R-SPO-467365	https://reactome.org/content/detail/R-SPO-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000068	14	reactome	R-SCE-467365	https://reactome.org/content/detail/R-SCE-467365	BQB_IS_HOMOLOG_TO	PGD dimer
-S00000069	0	chebi	16863	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16863	BQB_IS	PDG
-S00000069	1	reactome	R-ALL-29996	https://reactome.org/content/detail/R-ALL-29996	BQB_IS	PDG
-S00000070	0	uniprot	O95336	https://purl.uniprot.org/uniprot/O95336	BQB_IS	PGLS
-S00000070	1	reactome	R-HSA-71294	https://reactome.org/content/detail/R-HSA-71294	BQB_IS	PGLS
-S00000070	2	reactome	R-MMU-71294	https://reactome.org/content/detail/R-MMU-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	3	reactome	R-RNO-71294	https://reactome.org/content/detail/R-RNO-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	4	reactome	R-CFA-71294	https://reactome.org/content/detail/R-CFA-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	5	reactome	R-SSC-71294	https://reactome.org/content/detail/R-SSC-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	6	reactome	R-DRE-71294	https://reactome.org/content/detail/R-DRE-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	7	reactome	R-GGA-71294	https://reactome.org/content/detail/R-GGA-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	8	reactome	R-DME-71294	https://reactome.org/content/detail/R-DME-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	9	reactome	R-CEL-71294	https://reactome.org/content/detail/R-CEL-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	10	reactome	R-DDI-71294	https://reactome.org/content/detail/R-DDI-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	11	reactome	R-SPO-71294	https://reactome.org/content/detail/R-SPO-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000070	12	reactome	R-SCE-71294	https://reactome.org/content/detail/R-SCE-71294	BQB_IS_HOMOLOG_TO	PGLS
-S00000071	0	pubmed	8117307	http://www.ncbi.nlm.nih.gov/pubmed/8117307	BQB_IS_DESCRIBED_BY	PFK tetramer
-S00000071	1	pubmed	7825568	http://www.ncbi.nlm.nih.gov/pubmed/7825568	BQB_IS_DESCRIBED_BY	PFK tetramer
-S00000071	2	pubmed	6451249	http://www.ncbi.nlm.nih.gov/pubmed/6451249	BQB_IS_DESCRIBED_BY	PFK tetramer
-S00000071	3	pubmed	6444721	http://www.ncbi.nlm.nih.gov/pubmed/6444721	BQB_IS_DESCRIBED_BY	PFK tetramer
-S00000071	4	pubmed	2960695	http://www.ncbi.nlm.nih.gov/pubmed/2960695	BQB_IS_DESCRIBED_BY	PFK tetramer
-S00000071	5	reactome	R-HSA-179517	https://reactome.org/content/detail/R-HSA-179517	BQB_IS	PFK tetramer
-S00000071	6	uniprot	P17858	https://purl.uniprot.org/uniprot/P17858	BQB_HAS_PART	PFK tetramer
-S00000071	7	uniprot	P08237	https://purl.uniprot.org/uniprot/P08237	BQB_HAS_PART	PFK tetramer
-S00000071	8	uniprot	Q01813	https://purl.uniprot.org/uniprot/Q01813	BQB_HAS_PART	PFK tetramer
-S00000071	9	reactome	R-MMU-179517	https://reactome.org/content/detail/R-MMU-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	10	reactome	R-RNO-179517	https://reactome.org/content/detail/R-RNO-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	11	reactome	R-CFA-179517	https://reactome.org/content/detail/R-CFA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	12	reactome	R-BTA-179517	https://reactome.org/content/detail/R-BTA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	13	reactome	R-SSC-179517	https://reactome.org/content/detail/R-SSC-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	14	reactome	R-DRE-179517	https://reactome.org/content/detail/R-DRE-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	15	reactome	R-XTR-179517	https://reactome.org/content/detail/R-XTR-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	16	reactome	R-GGA-179517	https://reactome.org/content/detail/R-GGA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	17	reactome	R-DME-179517	https://reactome.org/content/detail/R-DME-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	18	reactome	R-CEL-179517	https://reactome.org/content/detail/R-CEL-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	19	reactome	R-DDI-179517	https://reactome.org/content/detail/R-DDI-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	20	reactome	R-SPO-179517	https://reactome.org/content/detail/R-SPO-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000071	21	reactome	R-SCE-179517	https://reactome.org/content/detail/R-SCE-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
-S00000072	0	chebi	32966	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:32966	BQB_IS	D-Fructose 1,6-bisphosphate
-S00000072	1	reactome	R-ALL-30014	https://reactome.org/content/detail/R-ALL-30014	BQB_IS	D-Fructose 1,6-bisphosphate
-S00000073	0	chebi	28602	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28602	BQB_IS	D-Fructose 2,6-bisphosphate
-S00000073	1	reactome	R-ALL-30533	https://reactome.org/content/detail/R-ALL-30533	BQB_IS	D-Fructose 2,6-bisphosphate
-S00000074	0	pubmed	23168256	http://www.ncbi.nlm.nih.gov/pubmed/23168256	BQB_IS_DESCRIBED_BY	ADPGK:Mg2+
-S00000074	1	reactome	R-HSA-5696043	https://reactome.org/content/detail/R-HSA-5696043	BQB_IS	ADPGK:Mg2+
-S00000074	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ADPGK:Mg2+
-S00000074	3	uniprot	Q9BRR6	https://purl.uniprot.org/uniprot/Q9BRR6	BQB_HAS_PART	ADPGK:Mg2+
-S00000074	4	reactome	R-MMU-5696043	https://reactome.org/content/detail/R-MMU-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	5	reactome	R-RNO-5696043	https://reactome.org/content/detail/R-RNO-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	6	reactome	R-CFA-5696043	https://reactome.org/content/detail/R-CFA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	7	reactome	R-BTA-5696043	https://reactome.org/content/detail/R-BTA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	8	reactome	R-SSC-5696043	https://reactome.org/content/detail/R-SSC-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	9	reactome	R-DRE-5696043	https://reactome.org/content/detail/R-DRE-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	10	reactome	R-XTR-5696043	https://reactome.org/content/detail/R-XTR-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	11	reactome	R-GGA-5696043	https://reactome.org/content/detail/R-GGA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	12	reactome	R-CEL-5696043	https://reactome.org/content/detail/R-CEL-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000074	13	reactome	R-DDI-5696043	https://reactome.org/content/detail/R-DDI-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
-S00000075	0	chebi	17925	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17925	BQB_IS	Glc
-S00000075	1	reactome	R-ALL-70113	https://reactome.org/content/detail/R-ALL-70113	BQB_IS	Glc
-S00000075	2	reactome	R-ALL-170829	https://reactome.org/content/detail/R-ALL-170829	BQB_IS	Glc
-S00000075	3	reactome	R-ALL-113780	https://reactome.org/content/detail/R-ALL-113780	BQB_IS	Glc
-S00000075	4	reactome	R-ALL-70115	https://reactome.org/content/detail/R-ALL-70115	BQB_IS	Glc
-S00000076	0	reactome	R-HSA-170804	https://reactome.org/content/detail/R-HSA-170804	BQB_IS	GCK1:GKRP complex
-S00000076	1	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	GCK1:GKRP complex
-S00000076	2	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_HAS_PART	GCK1:GKRP complex
-S00000076	3	reactome	R-MMU-170804	https://reactome.org/content/detail/R-MMU-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000076	4	reactome	R-RNO-170804	https://reactome.org/content/detail/R-RNO-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000076	5	reactome	R-BTA-170804	https://reactome.org/content/detail/R-BTA-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000077	0	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_IS	GCK
-S00000077	1	reactome	R-HSA-450102	https://reactome.org/content/detail/R-HSA-450102	BQB_IS	GCK
-S00000077	2	reactome	R-MMU-450102	https://reactome.org/content/detail/R-MMU-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	3	reactome	R-RNO-450102	https://reactome.org/content/detail/R-RNO-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	4	reactome	R-BTA-450102	https://reactome.org/content/detail/R-BTA-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	5	reactome	R-DRE-450102	https://reactome.org/content/detail/R-DRE-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	6	reactome	R-XTR-450102	https://reactome.org/content/detail/R-XTR-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	7	reactome	R-GGA-450102	https://reactome.org/content/detail/R-GGA-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	8	reactome	R-DME-450102	https://reactome.org/content/detail/R-DME-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	9	reactome	R-DME-450102-2	https://reactome.org/content/detail/R-DME-450102-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	10	reactome	R-DME-450102-3	https://reactome.org/content/detail/R-DME-450102-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	11	reactome	R-DME-450102-4	https://reactome.org/content/detail/R-DME-450102-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	12	reactome	R-DME-450102-5	https://reactome.org/content/detail/R-DME-450102-5	BQB_IS_HOMOLOG_TO	GCK
-S00000077	13	reactome	R-CEL-450102	https://reactome.org/content/detail/R-CEL-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	14	reactome	R-CEL-450102-2	https://reactome.org/content/detail/R-CEL-450102-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	15	reactome	R-CEL-450102-3	https://reactome.org/content/detail/R-CEL-450102-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	16	reactome	R-CEL-450102-4	https://reactome.org/content/detail/R-CEL-450102-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	17	reactome	R-SPO-450102	https://reactome.org/content/detail/R-SPO-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	18	reactome	R-SPO-450102-2	https://reactome.org/content/detail/R-SPO-450102-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	19	reactome	R-SPO-450102-3	https://reactome.org/content/detail/R-SPO-450102-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	20	reactome	R-SCE-450102	https://reactome.org/content/detail/R-SCE-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	21	reactome	R-SCE-450102-2	https://reactome.org/content/detail/R-SCE-450102-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	22	reactome	R-SCE-450102-3	https://reactome.org/content/detail/R-SCE-450102-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	23	reactome	R-SCE-450102-4	https://reactome.org/content/detail/R-SCE-450102-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	24	reactome	R-SCE-450102-5	https://reactome.org/content/detail/R-SCE-450102-5	BQB_IS_HOMOLOG_TO	GCK
-S00000077	25	reactome	R-SCE-450102-6	https://reactome.org/content/detail/R-SCE-450102-6	BQB_IS_HOMOLOG_TO	GCK
-S00000077	26	reactome	R-PFA-450102	https://reactome.org/content/detail/R-PFA-450102	BQB_IS_HOMOLOG_TO	GCK
-S00000077	27	reactome	R-HSA-450094	https://reactome.org/content/detail/R-HSA-450094	BQB_IS	GCK
-S00000077	28	reactome	R-MMU-450094	https://reactome.org/content/detail/R-MMU-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	29	reactome	R-RNO-450094	https://reactome.org/content/detail/R-RNO-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	30	reactome	R-BTA-450094	https://reactome.org/content/detail/R-BTA-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	31	reactome	R-DRE-450094	https://reactome.org/content/detail/R-DRE-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	32	reactome	R-XTR-450094	https://reactome.org/content/detail/R-XTR-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	33	reactome	R-GGA-450094	https://reactome.org/content/detail/R-GGA-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	34	reactome	R-DME-450094	https://reactome.org/content/detail/R-DME-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	35	reactome	R-DME-450094-2	https://reactome.org/content/detail/R-DME-450094-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	36	reactome	R-DME-450094-3	https://reactome.org/content/detail/R-DME-450094-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	37	reactome	R-DME-450094-4	https://reactome.org/content/detail/R-DME-450094-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	38	reactome	R-DME-450094-5	https://reactome.org/content/detail/R-DME-450094-5	BQB_IS_HOMOLOG_TO	GCK
-S00000077	39	reactome	R-CEL-450094	https://reactome.org/content/detail/R-CEL-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	40	reactome	R-CEL-450094-2	https://reactome.org/content/detail/R-CEL-450094-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	41	reactome	R-CEL-450094-3	https://reactome.org/content/detail/R-CEL-450094-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	42	reactome	R-CEL-450094-4	https://reactome.org/content/detail/R-CEL-450094-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	43	reactome	R-SPO-450094	https://reactome.org/content/detail/R-SPO-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	44	reactome	R-SPO-450094-2	https://reactome.org/content/detail/R-SPO-450094-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	45	reactome	R-SPO-450094-3	https://reactome.org/content/detail/R-SPO-450094-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	46	reactome	R-SCE-450094	https://reactome.org/content/detail/R-SCE-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000077	47	reactome	R-SCE-450094-2	https://reactome.org/content/detail/R-SCE-450094-2	BQB_IS_HOMOLOG_TO	GCK
-S00000077	48	reactome	R-SCE-450094-3	https://reactome.org/content/detail/R-SCE-450094-3	BQB_IS_HOMOLOG_TO	GCK
-S00000077	49	reactome	R-SCE-450094-4	https://reactome.org/content/detail/R-SCE-450094-4	BQB_IS_HOMOLOG_TO	GCK
-S00000077	50	reactome	R-SCE-450094-5	https://reactome.org/content/detail/R-SCE-450094-5	BQB_IS_HOMOLOG_TO	GCK
-S00000077	51	reactome	R-SCE-450094-6	https://reactome.org/content/detail/R-SCE-450094-6	BQB_IS_HOMOLOG_TO	GCK
-S00000077	52	reactome	R-PFA-450094	https://reactome.org/content/detail/R-PFA-450094	BQB_IS_HOMOLOG_TO	GCK
-S00000078	0	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_IS	GCKR
-S00000078	1	reactome	R-HSA-170805	https://reactome.org/content/detail/R-HSA-170805	BQB_IS	GCKR
-S00000078	2	reactome	R-MMU-170805	https://reactome.org/content/detail/R-MMU-170805	BQB_IS_HOMOLOG_TO	GCKR
-S00000078	3	reactome	R-RNO-170805	https://reactome.org/content/detail/R-RNO-170805	BQB_IS_HOMOLOG_TO	GCKR
-S00000078	4	reactome	R-BTA-170805	https://reactome.org/content/detail/R-BTA-170805	BQB_IS_HOMOLOG_TO	GCKR
-S00000078	5	reactome	R-HSA-170818	https://reactome.org/content/detail/R-HSA-170818	BQB_IS	GCKR
-S00000078	6	reactome	R-MMU-170818	https://reactome.org/content/detail/R-MMU-170818	BQB_IS_HOMOLOG_TO	GCKR
-S00000078	7	reactome	R-RNO-170818	https://reactome.org/content/detail/R-RNO-170818	BQB_IS_HOMOLOG_TO	GCKR
-S00000078	8	reactome	R-BTA-170818	https://reactome.org/content/detail/R-BTA-170818	BQB_IS_HOMOLOG_TO	GCKR
-S00000079	0	reactome	R-HSA-170827	https://reactome.org/content/detail/R-HSA-170827	BQB_IS	GCK1:GKRP complex
-S00000079	1	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_HAS_PART	GCK1:GKRP complex
-S00000079	2	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	GCK1:GKRP complex
-S00000079	3	reactome	R-MMU-170827	https://reactome.org/content/detail/R-MMU-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000079	4	reactome	R-RNO-170827	https://reactome.org/content/detail/R-RNO-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000079	5	reactome	R-BTA-170827	https://reactome.org/content/detail/R-BTA-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
-S00000080	0	chebi	18105	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18105	BQB_IS	Fru 1-P
-S00000080	1	reactome	R-ALL-31221	https://reactome.org/content/detail/R-ALL-31221	BQB_IS	Fru 1-P
-S00000081	0	chebi	17044	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17044	BQB_IS	Sor6P
-S00000081	1	reactome	R-ALL-170724	https://reactome.org/content/detail/R-ALL-170724	BQB_IS	Sor6P
-S00000082	0	pubmed	12791264	http://www.ncbi.nlm.nih.gov/pubmed/12791264	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	1	pubmed	12196509	http://www.ncbi.nlm.nih.gov/pubmed/12196509	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	2	pubmed	15502822	http://www.ncbi.nlm.nih.gov/pubmed/15502822	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	3	pubmed	23511206	http://www.ncbi.nlm.nih.gov/pubmed/23511206	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	4	pubmed	27081075	http://www.ncbi.nlm.nih.gov/pubmed/27081075	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	5	pubmed	27081072	http://www.ncbi.nlm.nih.gov/pubmed/27081072	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	6	pubmed	26046137	http://www.ncbi.nlm.nih.gov/pubmed/26046137	BQB_IS_DESCRIBED_BY	Nuclear Pore Complex (NPC)
-S00000082	7	reactome	R-HSA-157689	https://reactome.org/content/detail/R-HSA-157689	BQB_IS	Nuclear Pore Complex (NPC)
-S00000082	8	uniprot	P52948-5	https://purl.uniprot.org/uniprot/P52948-5	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	9	uniprot	Q96EE3-1	https://purl.uniprot.org/uniprot/Q96EE3-1	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	10	uniprot	P57740	https://purl.uniprot.org/uniprot/P57740	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	11	uniprot	Q8NFH3	https://purl.uniprot.org/uniprot/Q8NFH3	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	12	uniprot	Q12769	https://purl.uniprot.org/uniprot/Q12769	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	13	uniprot	Q8NFH4	https://purl.uniprot.org/uniprot/Q8NFH4	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	14	uniprot	Q9BW27	https://purl.uniprot.org/uniprot/Q9BW27	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	15	uniprot	Q8WUM0	https://purl.uniprot.org/uniprot/Q8WUM0	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	16	uniprot	P55735	https://purl.uniprot.org/uniprot/P55735	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	17	uniprot	P12270	https://purl.uniprot.org/uniprot/P12270	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	18	uniprot	P49790	https://purl.uniprot.org/uniprot/P49790	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	19	uniprot	Q99567	https://purl.uniprot.org/uniprot/Q99567	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	20	uniprot	Q5SRE5	https://purl.uniprot.org/uniprot/Q5SRE5	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	21	uniprot	P35658	https://purl.uniprot.org/uniprot/P35658	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	22	uniprot	Q9BTX1	https://purl.uniprot.org/uniprot/Q9BTX1	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	23	uniprot	Q8TEM1	https://purl.uniprot.org/uniprot/Q8TEM1	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	24	uniprot	Q96HA1	https://purl.uniprot.org/uniprot/Q96HA1	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	25	uniprot	A8CG34	https://purl.uniprot.org/uniprot/A8CG34	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	26	uniprot	Q8NFH5	https://purl.uniprot.org/uniprot/Q8NFH5	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	27	uniprot	Q8N1F7	https://purl.uniprot.org/uniprot/Q8N1F7	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	28	uniprot	O75694	https://purl.uniprot.org/uniprot/O75694	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	29	uniprot	Q92621	https://purl.uniprot.org/uniprot/Q92621	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	30	uniprot	Q96EE3-2	https://purl.uniprot.org/uniprot/Q96EE3-2	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	31	uniprot	P78406	https://purl.uniprot.org/uniprot/P78406	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	32	uniprot	P52948-4	https://purl.uniprot.org/uniprot/P52948-4	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	33	uniprot	P37198	https://purl.uniprot.org/uniprot/P37198	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	34	uniprot	Q9BVL2-1	https://purl.uniprot.org/uniprot/Q9BVL2-1	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	35	uniprot	Q7Z3B4	https://purl.uniprot.org/uniprot/Q7Z3B4	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	36	uniprot	Q9UKX7	https://purl.uniprot.org/uniprot/Q9UKX7	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	37	uniprot	Q9NRG9	https://purl.uniprot.org/uniprot/Q9NRG9	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	38	uniprot	P49792	https://purl.uniprot.org/uniprot/P49792	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	39	uniprot	O15504	https://purl.uniprot.org/uniprot/O15504	BQB_HAS_PART	Nuclear Pore Complex (NPC)
-S00000082	40	reactome	R-MMU-157689	https://reactome.org/content/detail/R-MMU-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	41	reactome	R-RNO-157689	https://reactome.org/content/detail/R-RNO-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	42	reactome	R-CFA-157689	https://reactome.org/content/detail/R-CFA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	43	reactome	R-BTA-157689	https://reactome.org/content/detail/R-BTA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	44	reactome	R-SSC-157689	https://reactome.org/content/detail/R-SSC-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	45	reactome	R-DRE-157689	https://reactome.org/content/detail/R-DRE-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	46	reactome	R-XTR-157689	https://reactome.org/content/detail/R-XTR-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	47	reactome	R-GGA-157689	https://reactome.org/content/detail/R-GGA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	48	reactome	R-DME-157689	https://reactome.org/content/detail/R-DME-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	49	reactome	R-CEL-157689	https://reactome.org/content/detail/R-CEL-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	50	reactome	R-SPO-157689	https://reactome.org/content/detail/R-SPO-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000082	51	reactome	R-SCE-157689	https://reactome.org/content/detail/R-SCE-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
-S00000083	0	reactome	R-HSA-70469	https://reactome.org/content/detail/R-HSA-70469	BQB_IS	GPI dimer
-S00000083	1	uniprot	P06744	https://purl.uniprot.org/uniprot/P06744	BQB_HAS_PART	GPI dimer
-S00000083	2	reactome	R-MMU-70469	https://reactome.org/content/detail/R-MMU-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	3	reactome	R-RNO-70469	https://reactome.org/content/detail/R-RNO-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	4	reactome	R-CFA-70469	https://reactome.org/content/detail/R-CFA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	5	reactome	R-BTA-70469	https://reactome.org/content/detail/R-BTA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	6	reactome	R-SSC-70469	https://reactome.org/content/detail/R-SSC-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	7	reactome	R-DRE-70469	https://reactome.org/content/detail/R-DRE-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	8	reactome	R-XTR-70469	https://reactome.org/content/detail/R-XTR-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	9	reactome	R-GGA-70469	https://reactome.org/content/detail/R-GGA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	10	reactome	R-DME-70469	https://reactome.org/content/detail/R-DME-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	11	reactome	R-CEL-70469	https://reactome.org/content/detail/R-CEL-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	12	reactome	R-DDI-70469	https://reactome.org/content/detail/R-DDI-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	13	reactome	R-SPO-70469	https://reactome.org/content/detail/R-SPO-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	14	reactome	R-SCE-70469	https://reactome.org/content/detail/R-SCE-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000083	15	reactome	R-PFA-70469	https://reactome.org/content/detail/R-PFA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
-S00000084	0	pubmed	4827367	http://www.ncbi.nlm.nih.gov/pubmed/4827367	BQB_IS_DESCRIBED_BY	PGAM dimers
-S00000084	1	reactome	R-HSA-179494	https://reactome.org/content/detail/R-HSA-179494	BQB_IS	PGAM dimers
-S00000084	2	uniprot	P18669	https://purl.uniprot.org/uniprot/P18669	BQB_HAS_PART	PGAM dimers
-S00000084	3	uniprot	P15259	https://purl.uniprot.org/uniprot/P15259	BQB_HAS_PART	PGAM dimers
-S00000084	4	reactome	R-MMU-179494	https://reactome.org/content/detail/R-MMU-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	5	reactome	R-RNO-179494	https://reactome.org/content/detail/R-RNO-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	6	reactome	R-CFA-179494	https://reactome.org/content/detail/R-CFA-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	7	reactome	R-BTA-71443	https://reactome.org/content/detail/R-BTA-71443	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	8	reactome	R-SSC-179494	https://reactome.org/content/detail/R-SSC-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	9	reactome	R-DRE-179494	https://reactome.org/content/detail/R-DRE-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	10	reactome	R-XTR-179494	https://reactome.org/content/detail/R-XTR-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	11	reactome	R-DME-179494	https://reactome.org/content/detail/R-DME-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	12	reactome	R-DDI-179494	https://reactome.org/content/detail/R-DDI-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	13	reactome	R-SPO-179494	https://reactome.org/content/detail/R-SPO-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000084	14	reactome	R-PFA-179494	https://reactome.org/content/detail/R-PFA-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
-S00000085	0	chebi	58272	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58272	BQB_IS	3PG
-S00000085	1	reactome	R-ALL-29728	https://reactome.org/content/detail/R-ALL-29728	BQB_IS	3PG
-S00000086	0	chebi	58289	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58289	BQB_IS	2PG
-S00000086	1	reactome	R-ALL-30485	https://reactome.org/content/detail/R-ALL-30485	BQB_IS	2PG
-S00000087	0	reactome	R-HSA-179508	https://reactome.org/content/detail/R-HSA-179508	BQB_IS	aldolase tetramer
-S00000087	1	uniprot	P04075	https://purl.uniprot.org/uniprot/P04075	BQB_HAS_PART	aldolase tetramer
-S00000087	2	uniprot	P05062	https://purl.uniprot.org/uniprot/P05062	BQB_HAS_PART	aldolase tetramer
-S00000087	3	uniprot	P09972	https://purl.uniprot.org/uniprot/P09972	BQB_HAS_PART	aldolase tetramer
-S00000087	4	reactome	R-MMU-179508	https://reactome.org/content/detail/R-MMU-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	5	reactome	R-RNO-179508	https://reactome.org/content/detail/R-RNO-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	6	reactome	R-CFA-179508	https://reactome.org/content/detail/R-CFA-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	7	reactome	R-BTA-179508	https://reactome.org/content/detail/R-BTA-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	8	reactome	R-SSC-179508	https://reactome.org/content/detail/R-SSC-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	9	reactome	R-DRE-179508	https://reactome.org/content/detail/R-DRE-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	10	reactome	R-XTR-179508	https://reactome.org/content/detail/R-XTR-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	11	reactome	R-GGA-70340	https://reactome.org/content/detail/R-GGA-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	12	reactome	R-DME-179508	https://reactome.org/content/detail/R-DME-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	13	reactome	R-CEL-179508	https://reactome.org/content/detail/R-CEL-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	14	reactome	R-DDI-70340	https://reactome.org/content/detail/R-DDI-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000087	15	reactome	R-PFA-70340	https://reactome.org/content/detail/R-PFA-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
-S00000088	0	chebi	57642	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57642	BQB_IS	DHAP
-S00000088	1	reactome	R-ALL-75970	https://reactome.org/content/detail/R-ALL-75970	BQB_IS	DHAP
-S00000089	0	reactome	R-HSA-6807624	https://reactome.org/content/detail/R-HSA-6807624	BQB_IS	PGK complexes
-S00000089	1	uniprot	P00558	https://purl.uniprot.org/uniprot/P00558	BQB_HAS_PART	PGK complexes
-S00000089	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGK complexes
-S00000089	3	reactome	R-MMU-6807624	https://reactome.org/content/detail/R-MMU-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	4	reactome	R-RNO-6807624	https://reactome.org/content/detail/R-RNO-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	5	reactome	R-CFA-70484	https://reactome.org/content/detail/R-CFA-70484	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	6	reactome	R-BTA-70484	https://reactome.org/content/detail/R-BTA-70484	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	7	reactome	R-DRE-6807624	https://reactome.org/content/detail/R-DRE-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	8	reactome	R-XTR-6807624	https://reactome.org/content/detail/R-XTR-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	9	reactome	R-GGA-6807624	https://reactome.org/content/detail/R-GGA-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	10	reactome	R-DME-6807624	https://reactome.org/content/detail/R-DME-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	11	reactome	R-CEL-6807624	https://reactome.org/content/detail/R-CEL-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	12	reactome	R-DDI-6807624	https://reactome.org/content/detail/R-DDI-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	13	reactome	R-SPO-6807624	https://reactome.org/content/detail/R-SPO-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	14	reactome	R-SCE-6807624	https://reactome.org/content/detail/R-SCE-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000089	15	reactome	R-PFA-6807624	https://reactome.org/content/detail/R-PFA-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
-S00000090	0	chebi	57604	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57604	BQB_IS	1,3BPG
-S00000090	1	reactome	R-ALL-29800	https://reactome.org/content/detail/R-ALL-29800	BQB_IS	1,3BPG
-S00000091	0	reactome	R-HSA-179497	https://reactome.org/content/detail/R-HSA-179497	BQB_IS	enolase dimer
-S00000091	1	uniprot	P09104	https://purl.uniprot.org/uniprot/P09104	BQB_HAS_PART	enolase dimer
-S00000091	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	enolase dimer
-S00000091	3	uniprot	P13929	https://purl.uniprot.org/uniprot/P13929	BQB_HAS_PART	enolase dimer
-S00000091	4	uniprot	P06733	https://purl.uniprot.org/uniprot/P06733	BQB_HAS_PART	enolase dimer
-S00000091	5	reactome	R-MMU-179497	https://reactome.org/content/detail/R-MMU-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	6	reactome	R-RNO-179497	https://reactome.org/content/detail/R-RNO-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	7	reactome	R-CFA-179497	https://reactome.org/content/detail/R-CFA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	8	reactome	R-BTA-179497	https://reactome.org/content/detail/R-BTA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	9	reactome	R-SSC-179497	https://reactome.org/content/detail/R-SSC-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	10	reactome	R-DRE-179497	https://reactome.org/content/detail/R-DRE-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	11	reactome	R-XTR-71438	https://reactome.org/content/detail/R-XTR-71438	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	12	reactome	R-GGA-71430	https://reactome.org/content/detail/R-GGA-71430	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	13	reactome	R-DME-179497	https://reactome.org/content/detail/R-DME-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	14	reactome	R-CEL-179497	https://reactome.org/content/detail/R-CEL-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	15	reactome	R-DDI-179497	https://reactome.org/content/detail/R-DDI-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	16	reactome	R-SPO-179497	https://reactome.org/content/detail/R-SPO-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	17	reactome	R-SCE-179497	https://reactome.org/content/detail/R-SCE-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000091	18	reactome	R-PFA-179497	https://reactome.org/content/detail/R-PFA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
-S00000092	0	chebi	58702	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58702	BQB_IS	PEP
-S00000092	1	reactome	R-ALL-29492	https://reactome.org/content/detail/R-ALL-29492	BQB_IS	PEP
-S00000092	2	reactome	R-ALL-372364	https://reactome.org/content/detail/R-ALL-372364	BQB_IS	PEP
-S00000093	0	pubmed	7144574	http://www.ncbi.nlm.nih.gov/pubmed/7144574	BQB_IS_DESCRIBED_BY	GAPDH tetramers
-S00000093	1	pubmed	3170585	http://www.ncbi.nlm.nih.gov/pubmed/3170585	BQB_IS_DESCRIBED_BY	GAPDH tetramers
-S00000093	2	reactome	R-HSA-372871	https://reactome.org/content/detail/R-HSA-372871	BQB_IS	GAPDH tetramers
-S00000093	3	uniprot	O14556	https://purl.uniprot.org/uniprot/O14556	BQB_HAS_PART	GAPDH tetramers
-S00000093	4	uniprot	P04406	https://purl.uniprot.org/uniprot/P04406	BQB_HAS_PART	GAPDH tetramers
-S00000093	5	reactome	R-MMU-372871	https://reactome.org/content/detail/R-MMU-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	6	reactome	R-RNO-372871	https://reactome.org/content/detail/R-RNO-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	7	reactome	R-CFA-372871	https://reactome.org/content/detail/R-CFA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	8	reactome	R-BTA-372871	https://reactome.org/content/detail/R-BTA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	9	reactome	R-SSC-372871	https://reactome.org/content/detail/R-SSC-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	10	reactome	R-DRE-372871	https://reactome.org/content/detail/R-DRE-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	11	reactome	R-XTR-372871	https://reactome.org/content/detail/R-XTR-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	12	reactome	R-DME-372871	https://reactome.org/content/detail/R-DME-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	13	reactome	R-CEL-372871	https://reactome.org/content/detail/R-CEL-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	14	reactome	R-DDI-372871	https://reactome.org/content/detail/R-DDI-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	15	reactome	R-SPO-372871	https://reactome.org/content/detail/R-SPO-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	16	reactome	R-SCE-372871	https://reactome.org/content/detail/R-SCE-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000093	17	reactome	R-PFA-372871	https://reactome.org/content/detail/R-PFA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
-S00000094	0	reactome	R-HSA-6799602	https://reactome.org/content/detail/R-HSA-6799602	BQB_IS	GNPDA1,2 hexamers
-S00000094	1	uniprot	P46926	https://purl.uniprot.org/uniprot/P46926	BQB_HAS_PART	GNPDA1,2 hexamers
-S00000094	2	uniprot	Q8TDQ7	https://purl.uniprot.org/uniprot/Q8TDQ7	BQB_HAS_PART	GNPDA1,2 hexamers
-S00000094	3	reactome	R-MMU-6799602	https://reactome.org/content/detail/R-MMU-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	4	reactome	R-RNO-6799602	https://reactome.org/content/detail/R-RNO-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	5	reactome	R-CFA-6799602	https://reactome.org/content/detail/R-CFA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	6	reactome	R-BTA-6799602	https://reactome.org/content/detail/R-BTA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	7	reactome	R-SSC-6799602	https://reactome.org/content/detail/R-SSC-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	8	reactome	R-DRE-6799602	https://reactome.org/content/detail/R-DRE-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	9	reactome	R-XTR-6799602	https://reactome.org/content/detail/R-XTR-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	10	reactome	R-GGA-6799602	https://reactome.org/content/detail/R-GGA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	11	reactome	R-DME-6799602	https://reactome.org/content/detail/R-DME-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	12	reactome	R-CEL-6799602	https://reactome.org/content/detail/R-CEL-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000094	13	reactome	R-DDI-6799602	https://reactome.org/content/detail/R-DDI-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
-S00000095	0	chebi	15873	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15873	BQB_IS	GlcN6P
-S00000095	1	reactome	R-ALL-449701	https://reactome.org/content/detail/R-ALL-449701	BQB_IS	GlcN6P
-S00000096	0	chebi	28938	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28938	BQB_IS	NH4+
-S00000096	1	reactome	R-ALL-31633	https://reactome.org/content/detail/R-ALL-31633	BQB_IS	NH4+
-S00000097	0	reactome	R-HSA-450097	https://reactome.org/content/detail/R-HSA-450097	BQB_IS	glucokinase and hexokinases
-S00000097	1	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	glucokinase and hexokinases
-S00000097	2	uniprot	P19367	https://purl.uniprot.org/uniprot/P19367	BQB_HAS_PART	glucokinase and hexokinases
-S00000097	3	uniprot	P52789	https://purl.uniprot.org/uniprot/P52789	BQB_HAS_PART	glucokinase and hexokinases
-S00000097	4	uniprot	P52790	https://purl.uniprot.org/uniprot/P52790	BQB_HAS_PART	glucokinase and hexokinases
-S00000097	5	reactome	R-MMU-450097	https://reactome.org/content/detail/R-MMU-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	6	reactome	R-RNO-450097	https://reactome.org/content/detail/R-RNO-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	7	reactome	R-CFA-450097	https://reactome.org/content/detail/R-CFA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	8	reactome	R-BTA-450097	https://reactome.org/content/detail/R-BTA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	9	reactome	R-SSC-450097	https://reactome.org/content/detail/R-SSC-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	10	reactome	R-DRE-450097	https://reactome.org/content/detail/R-DRE-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	11	reactome	R-XTR-450097	https://reactome.org/content/detail/R-XTR-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	12	reactome	R-GGA-450097	https://reactome.org/content/detail/R-GGA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	13	reactome	R-DME-450097	https://reactome.org/content/detail/R-DME-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	14	reactome	R-CEL-450097	https://reactome.org/content/detail/R-CEL-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	15	reactome	R-SPO-450097	https://reactome.org/content/detail/R-SPO-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	16	reactome	R-SCE-450097	https://reactome.org/content/detail/R-SCE-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000097	17	reactome	R-PFA-450097	https://reactome.org/content/detail/R-PFA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
-S00000098	0	pubmed	16511037	http://www.ncbi.nlm.nih.gov/pubmed/16511037	BQB_IS_DESCRIBED_BY	TPI1 dimer
-S00000098	1	reactome	R-HSA-70452	https://reactome.org/content/detail/R-HSA-70452	BQB_IS	TPI1 dimer
-S00000098	2	uniprot	P60174	https://purl.uniprot.org/uniprot/P60174	BQB_HAS_PART	TPI1 dimer
-S00000098	3	reactome	R-MMU-70452	https://reactome.org/content/detail/R-MMU-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	4	reactome	R-RNO-70452	https://reactome.org/content/detail/R-RNO-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	5	reactome	R-BTA-70452	https://reactome.org/content/detail/R-BTA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	6	reactome	R-DRE-70452	https://reactome.org/content/detail/R-DRE-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	7	reactome	R-XTR-70452	https://reactome.org/content/detail/R-XTR-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	8	reactome	R-GGA-70452	https://reactome.org/content/detail/R-GGA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	9	reactome	R-DME-70452	https://reactome.org/content/detail/R-DME-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	10	reactome	R-CEL-70452	https://reactome.org/content/detail/R-CEL-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	11	reactome	R-DDI-70452	https://reactome.org/content/detail/R-DDI-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	12	reactome	R-SPO-70452	https://reactome.org/content/detail/R-SPO-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	13	reactome	R-SCE-70452	https://reactome.org/content/detail/R-SCE-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000098	14	reactome	R-PFA-70452	https://reactome.org/content/detail/R-PFA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
-S00000099	0	reactome	R-HSA-450668	https://reactome.org/content/detail/R-HSA-450668	BQB_IS	pyruvate kinase tetramer
-S00000099	1	uniprot	P14618-2	https://purl.uniprot.org/uniprot/P14618-2	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	3	chebi	29103	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29103	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	4	uniprot	P30613-1	https://purl.uniprot.org/uniprot/P30613-1	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	5	uniprot	P30613-2	https://purl.uniprot.org/uniprot/P30613-2	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	6	uniprot	P14618-1	https://purl.uniprot.org/uniprot/P14618-1	BQB_HAS_PART	pyruvate kinase tetramer
-S00000099	7	reactome	R-MMU-450668	https://reactome.org/content/detail/R-MMU-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	8	reactome	R-RNO-450668	https://reactome.org/content/detail/R-RNO-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	9	reactome	R-CFA-450663	https://reactome.org/content/detail/R-CFA-450663	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	10	reactome	R-BTA-450668	https://reactome.org/content/detail/R-BTA-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	11	reactome	R-SSC-70098	https://reactome.org/content/detail/R-SSC-70098	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	12	reactome	R-DRE-450668	https://reactome.org/content/detail/R-DRE-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	13	reactome	R-XTR-450668	https://reactome.org/content/detail/R-XTR-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	14	reactome	R-GGA-450663	https://reactome.org/content/detail/R-GGA-450663	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	15	reactome	R-DME-450668	https://reactome.org/content/detail/R-DME-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	16	reactome	R-CEL-450668	https://reactome.org/content/detail/R-CEL-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	17	reactome	R-DDI-450668	https://reactome.org/content/detail/R-DDI-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	18	reactome	R-SPO-450668	https://reactome.org/content/detail/R-SPO-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	19	reactome	R-SCE-450668	https://reactome.org/content/detail/R-SCE-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000099	20	reactome	R-PFA-450668	https://reactome.org/content/detail/R-PFA-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
-S00000100	0	chebi	17489	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17489	BQB_IS	cAMP
-S00000100	1	reactome	R-ALL-30389	https://reactome.org/content/detail/R-ALL-30389	BQB_IS	cAMP
-S00000101	0	reactome	R-HSA-6798333	https://reactome.org/content/detail/R-HSA-6798333	BQB_IS	BPGM dimer
-S00000101	1	uniprot	P07738	https://purl.uniprot.org/uniprot/P07738	BQB_HAS_PART	BPGM dimer
-S00000101	2	reactome	R-MMU-6798333	https://reactome.org/content/detail/R-MMU-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	3	reactome	R-RNO-6798333	https://reactome.org/content/detail/R-RNO-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	4	reactome	R-CFA-6798333	https://reactome.org/content/detail/R-CFA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	5	reactome	R-BTA-6798333	https://reactome.org/content/detail/R-BTA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	6	reactome	R-SSC-6798333	https://reactome.org/content/detail/R-SSC-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	7	reactome	R-DRE-6798333	https://reactome.org/content/detail/R-DRE-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	8	reactome	R-XTR-6798333	https://reactome.org/content/detail/R-XTR-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	9	reactome	R-GGA-6798333	https://reactome.org/content/detail/R-GGA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	10	reactome	R-DME-6798333	https://reactome.org/content/detail/R-DME-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	11	reactome	R-DDI-6798333	https://reactome.org/content/detail/R-DDI-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	12	reactome	R-SPO-6798333	https://reactome.org/content/detail/R-SPO-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000101	13	reactome	R-PFA-6798333	https://reactome.org/content/detail/R-PFA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
-S00000102	0	chebi	19324	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:19324	BQB_IS	2,3BPG
-S00000102	1	reactome	R-ALL-6798337	https://reactome.org/content/detail/R-ALL-6798337	BQB_IS	2,3BPG
-S00000103	0	reactome	R-HSA-8955670	https://reactome.org/content/detail/R-HSA-8955670	BQB_IS	PGM2L1:Mg2+
-S00000103	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGM2L1:Mg2+
-S00000103	2	uniprot	Q6PCE3	https://purl.uniprot.org/uniprot/Q6PCE3	BQB_HAS_PART	PGM2L1:Mg2+
-S00000103	3	reactome	R-MMU-8955670	https://reactome.org/content/detail/R-MMU-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	4	reactome	R-RNO-8955670	https://reactome.org/content/detail/R-RNO-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	5	reactome	R-CFA-8955670	https://reactome.org/content/detail/R-CFA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	6	reactome	R-BTA-8955670	https://reactome.org/content/detail/R-BTA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	7	reactome	R-SSC-8955670	https://reactome.org/content/detail/R-SSC-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	8	reactome	R-DRE-8955670	https://reactome.org/content/detail/R-DRE-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	9	reactome	R-XTR-8955670	https://reactome.org/content/detail/R-XTR-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	10	reactome	R-GGA-8955670	https://reactome.org/content/detail/R-GGA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	11	reactome	R-DME-8955670	https://reactome.org/content/detail/R-DME-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	12	reactome	R-CEL-8955670	https://reactome.org/content/detail/R-CEL-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	13	reactome	R-DDI-8955670	https://reactome.org/content/detail/R-DDI-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	14	reactome	R-SPO-8955670	https://reactome.org/content/detail/R-SPO-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	15	reactome	R-SCE-8955670	https://reactome.org/content/detail/R-SCE-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000103	16	reactome	R-PFA-8955670	https://reactome.org/content/detail/R-PFA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
-S00000104	0	chebi	18148	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18148	BQB_IS	G1,6BP
-S00000104	1	reactome	R-ALL-8955759	https://reactome.org/content/detail/R-ALL-8955759	BQB_IS	G1,6BP
-S00000105	0	reactome	R-HSA-8955798	https://reactome.org/content/detail/R-HSA-8955798	BQB_IS	PGP:Mg2+ dimer
-S00000105	1	uniprot	A6NDG6	https://purl.uniprot.org/uniprot/A6NDG6	BQB_HAS_PART	PGP:Mg2+ dimer
-S00000105	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGP:Mg2+ dimer
-S00000106	0	chebi	17754	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17754	BQB_IS	Glycerol
-S00000106	1	reactome	R-ALL-76116	https://reactome.org/content/detail/R-ALL-76116	BQB_IS	Glycerol
-S00000107	0	reactome	R-HSA-165961	https://reactome.org/content/detail/R-HSA-165961	BQB_IS	PP2A-ABdeltaC complex
-S00000107	1	uniprot	Q14738	https://purl.uniprot.org/uniprot/Q14738	BQB_HAS_PART	PP2A-ABdeltaC complex
-S00000107	2	reactome	R-MMU-165961	https://reactome.org/content/detail/R-MMU-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
-S00000107	3	reactome	R-RNO-165961	https://reactome.org/content/detail/R-RNO-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
-S00000107	4	reactome	R-DRE-165961	https://reactome.org/content/detail/R-DRE-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
-S00000108	0	reactome	R-HSA-163745	https://reactome.org/content/detail/R-HSA-163745	BQB_IS	phosphoPFKFB1 dimer
-S00000108	1	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	phosphoPFKFB1 dimer
-S00000108	2	reactome	R-MMU-163745	https://reactome.org/content/detail/R-MMU-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	3	reactome	R-RNO-163745	https://reactome.org/content/detail/R-RNO-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	4	reactome	R-CFA-163745	https://reactome.org/content/detail/R-CFA-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	5	reactome	R-SSC-163745	https://reactome.org/content/detail/R-SSC-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	6	reactome	R-DRE-163745	https://reactome.org/content/detail/R-DRE-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	7	reactome	R-XTR-163745	https://reactome.org/content/detail/R-XTR-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	8	reactome	R-GGA-163745	https://reactome.org/content/detail/R-GGA-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	9	reactome	R-DME-163745	https://reactome.org/content/detail/R-DME-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	10	reactome	R-CEL-163745	https://reactome.org/content/detail/R-CEL-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	11	reactome	R-DDI-163745	https://reactome.org/content/detail/R-DDI-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	12	reactome	R-SPO-163745	https://reactome.org/content/detail/R-SPO-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000108	13	reactome	R-SCE-163745	https://reactome.org/content/detail/R-SCE-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
-S00000109	0	pubmed	3052289	http://www.ncbi.nlm.nih.gov/pubmed/3052289	BQB_IS_DESCRIBED_BY	PFKFB1 dimer
-S00000109	1	reactome	R-HSA-71786	https://reactome.org/content/detail/R-HSA-71786	BQB_IS	PFKFB1 dimer
-S00000109	2	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	PFKFB1 dimer
-S00000109	3	reactome	R-MMU-71786	https://reactome.org/content/detail/R-MMU-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	4	reactome	R-RNO-71786	https://reactome.org/content/detail/R-RNO-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	5	reactome	R-CFA-71786	https://reactome.org/content/detail/R-CFA-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	6	reactome	R-SSC-71786	https://reactome.org/content/detail/R-SSC-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	7	reactome	R-DRE-71786	https://reactome.org/content/detail/R-DRE-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	8	reactome	R-XTR-71786	https://reactome.org/content/detail/R-XTR-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	9	reactome	R-GGA-71786	https://reactome.org/content/detail/R-GGA-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	10	reactome	R-DME-71786	https://reactome.org/content/detail/R-DME-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	11	reactome	R-CEL-71786	https://reactome.org/content/detail/R-CEL-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	12	reactome	R-DDI-71786	https://reactome.org/content/detail/R-DDI-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	13	reactome	R-SPO-71786	https://reactome.org/content/detail/R-SPO-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000109	14	reactome	R-SCE-71786	https://reactome.org/content/detail/R-SCE-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
-S00000110	0	reactome	R-HSA-372870	https://reactome.org/content/detail/R-HSA-372870	BQB_IS	PFKFB dimers
-S00000110	1	uniprot	Q16875	https://purl.uniprot.org/uniprot/Q16875	BQB_HAS_PART	PFKFB dimers
-S00000110	2	uniprot	Q16877	https://purl.uniprot.org/uniprot/Q16877	BQB_HAS_PART	PFKFB dimers
-S00000110	3	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	PFKFB dimers
-S00000110	4	uniprot	O60825	https://purl.uniprot.org/uniprot/O60825	BQB_HAS_PART	PFKFB dimers
-S00000110	5	reactome	R-MMU-372870	https://reactome.org/content/detail/R-MMU-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	6	reactome	R-RNO-372870	https://reactome.org/content/detail/R-RNO-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	7	reactome	R-CFA-372870	https://reactome.org/content/detail/R-CFA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	8	reactome	R-BTA-372870	https://reactome.org/content/detail/R-BTA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	9	reactome	R-SSC-372870	https://reactome.org/content/detail/R-SSC-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	10	reactome	R-DRE-372870	https://reactome.org/content/detail/R-DRE-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	11	reactome	R-XTR-372870	https://reactome.org/content/detail/R-XTR-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	12	reactome	R-GGA-372870	https://reactome.org/content/detail/R-GGA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	13	reactome	R-DME-372870	https://reactome.org/content/detail/R-DME-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	14	reactome	R-CEL-372870	https://reactome.org/content/detail/R-CEL-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	15	reactome	R-DDI-372870	https://reactome.org/content/detail/R-DDI-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	16	reactome	R-SPO-372870	https://reactome.org/content/detail/R-SPO-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000110	17	reactome	R-SCE-372870	https://reactome.org/content/detail/R-SCE-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
-S00000111	0	reactome	R-HSA-111920	https://reactome.org/content/detail/R-HSA-111920	BQB_IS	PKA catalytic subunit
-S00000111	1	uniprot	P17612	https://purl.uniprot.org/uniprot/P17612	BQB_HAS_PART	PKA catalytic subunit
-S00000111	2	uniprot	P22694	https://purl.uniprot.org/uniprot/P22694	BQB_HAS_PART	PKA catalytic subunit
-S00000111	3	uniprot	P22612	https://purl.uniprot.org/uniprot/P22612	BQB_HAS_PART	PKA catalytic subunit
-S00000111	4	reactome	R-MMU-163507	https://reactome.org/content/detail/R-MMU-163507	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	5	reactome	R-RNO-111920	https://reactome.org/content/detail/R-RNO-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	6	reactome	R-CFA-111920	https://reactome.org/content/detail/R-CFA-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	7	reactome	R-BTA-111920	https://reactome.org/content/detail/R-BTA-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	8	reactome	R-DRE-111920	https://reactome.org/content/detail/R-DRE-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	9	reactome	R-XTR-111920	https://reactome.org/content/detail/R-XTR-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	10	reactome	R-GGA-57846	https://reactome.org/content/detail/R-GGA-57846	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	11	reactome	R-DME-111920	https://reactome.org/content/detail/R-DME-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	12	reactome	R-CEL-57844	https://reactome.org/content/detail/R-CEL-57844	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	13	reactome	R-SPO-57844	https://reactome.org/content/detail/R-SPO-57844	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000111	14	reactome	R-SCE-111920	https://reactome.org/content/detail/R-SCE-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
-S00000112	0	uniprot	Q9NQR9	https://purl.uniprot.org/uniprot/Q9NQR9	BQB_IS	G6PC2
-S00000112	1	reactome	R-HSA-981603	https://reactome.org/content/detail/R-HSA-981603	BQB_IS	G6PC2
-S00000112	2	reactome	R-MMU-981603	https://reactome.org/content/detail/R-MMU-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000112	3	reactome	R-CFA-981603	https://reactome.org/content/detail/R-CFA-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000112	4	reactome	R-BTA-981603	https://reactome.org/content/detail/R-BTA-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000112	5	reactome	R-SSC-981603	https://reactome.org/content/detail/R-SSC-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000112	6	reactome	R-GGA-981603	https://reactome.org/content/detail/R-GGA-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000112	7	reactome	R-DME-981603	https://reactome.org/content/detail/R-DME-981603	BQB_IS_HOMOLOG_TO	G6PC2
-S00000113	0	uniprot	O43826	https://purl.uniprot.org/uniprot/O43826	BQB_IS	SLC37A4
-S00000113	1	reactome	R-HSA-3006348	https://reactome.org/content/detail/R-HSA-3006348	BQB_IS	SLC37A4
-S00000113	2	reactome	R-MMU-3006348	https://reactome.org/content/detail/R-MMU-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	3	reactome	R-RNO-3006348	https://reactome.org/content/detail/R-RNO-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	4	reactome	R-CFA-3006348	https://reactome.org/content/detail/R-CFA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	5	reactome	R-BTA-3006348	https://reactome.org/content/detail/R-BTA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	6	reactome	R-SSC-3006348	https://reactome.org/content/detail/R-SSC-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	7	reactome	R-DRE-3006348	https://reactome.org/content/detail/R-DRE-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	8	reactome	R-GGA-3006348	https://reactome.org/content/detail/R-GGA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000113	9	reactome	R-CEL-3006348	https://reactome.org/content/detail/R-CEL-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
-S00000114	0	reactome	R-HSA-198437	https://reactome.org/content/detail/R-HSA-198437	BQB_IS	malate dehydrogenase 1 dimer
-S00000114	1	uniprot	P40925	https://purl.uniprot.org/uniprot/P40925	BQB_HAS_PART	malate dehydrogenase 1 dimer
-S00000114	2	reactome	R-MMU-198437	https://reactome.org/content/detail/R-MMU-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	3	reactome	R-RNO-198437	https://reactome.org/content/detail/R-RNO-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	4	reactome	R-CFA-198437	https://reactome.org/content/detail/R-CFA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	5	reactome	R-BTA-198437	https://reactome.org/content/detail/R-BTA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	6	reactome	R-SSC-198437	https://reactome.org/content/detail/R-SSC-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	7	reactome	R-DRE-198437	https://reactome.org/content/detail/R-DRE-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	8	reactome	R-XTR-198437	https://reactome.org/content/detail/R-XTR-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	9	reactome	R-GGA-198437	https://reactome.org/content/detail/R-GGA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	10	reactome	R-DME-198437	https://reactome.org/content/detail/R-DME-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	11	reactome	R-CEL-198437	https://reactome.org/content/detail/R-CEL-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000114	12	reactome	R-DDI-198437	https://reactome.org/content/detail/R-DDI-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
-S00000115	0	uniprot	Q9UBX3	https://purl.uniprot.org/uniprot/Q9UBX3	BQB_IS	SLC25A10
-S00000115	1	reactome	R-HSA-372848	https://reactome.org/content/detail/R-HSA-372848	BQB_IS	SLC25A10
-S00000115	2	reactome	R-MMU-372848	https://reactome.org/content/detail/R-MMU-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	3	reactome	R-RNO-372848	https://reactome.org/content/detail/R-RNO-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	4	reactome	R-CFA-372848	https://reactome.org/content/detail/R-CFA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	5	reactome	R-BTA-372848	https://reactome.org/content/detail/R-BTA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	6	reactome	R-SSC-372848	https://reactome.org/content/detail/R-SSC-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	7	reactome	R-DRE-372848	https://reactome.org/content/detail/R-DRE-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	8	reactome	R-XTR-372848	https://reactome.org/content/detail/R-XTR-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	9	reactome	R-GGA-372848	https://reactome.org/content/detail/R-GGA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	10	reactome	R-DME-372848	https://reactome.org/content/detail/R-DME-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	11	reactome	R-CEL-372848	https://reactome.org/content/detail/R-CEL-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	12	reactome	R-DDI-372848	https://reactome.org/content/detail/R-DDI-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000115	13	reactome	R-SCE-372848	https://reactome.org/content/detail/R-SCE-372848	BQB_IS_HOMOLOG_TO	SLC25A10
-S00000116	0	reactome	R-HSA-376856	https://reactome.org/content/detail/R-HSA-376856	BQB_IS	SLC25A11 homodimer
-S00000116	1	uniprot	Q02978	https://purl.uniprot.org/uniprot/Q02978	BQB_HAS_PART	SLC25A11 homodimer
-S00000116	2	reactome	R-MMU-376856	https://reactome.org/content/detail/R-MMU-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	3	reactome	R-RNO-376856	https://reactome.org/content/detail/R-RNO-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	4	reactome	R-CFA-376856	https://reactome.org/content/detail/R-CFA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	5	reactome	R-BTA-376856	https://reactome.org/content/detail/R-BTA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	6	reactome	R-SSC-376856	https://reactome.org/content/detail/R-SSC-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	7	reactome	R-DRE-376856	https://reactome.org/content/detail/R-DRE-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	8	reactome	R-XTR-376856	https://reactome.org/content/detail/R-XTR-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	9	reactome	R-GGA-376856	https://reactome.org/content/detail/R-GGA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	10	reactome	R-DME-376856	https://reactome.org/content/detail/R-DME-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	11	reactome	R-CEL-376856	https://reactome.org/content/detail/R-CEL-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	12	reactome	R-DDI-376856	https://reactome.org/content/detail/R-DDI-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000116	13	reactome	R-SCE-376856	https://reactome.org/content/detail/R-SCE-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
-S00000117	0	reactome	R-HSA-372469	https://reactome.org/content/detail/R-HSA-372469	BQB_IS	SLC25A12,13
-S00000117	1	uniprot	Q9UJS0	https://purl.uniprot.org/uniprot/Q9UJS0	BQB_HAS_PART	SLC25A12,13
-S00000117	2	uniprot	O75746	https://purl.uniprot.org/uniprot/O75746	BQB_HAS_PART	SLC25A12,13
-S00000117	3	reactome	R-MMU-372469	https://reactome.org/content/detail/R-MMU-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	4	reactome	R-RNO-372470	https://reactome.org/content/detail/R-RNO-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	5	reactome	R-CFA-372469	https://reactome.org/content/detail/R-CFA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	6	reactome	R-BTA-372469	https://reactome.org/content/detail/R-BTA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	7	reactome	R-SSC-372469	https://reactome.org/content/detail/R-SSC-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	8	reactome	R-DRE-372469	https://reactome.org/content/detail/R-DRE-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	9	reactome	R-XTR-372469	https://reactome.org/content/detail/R-XTR-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	10	reactome	R-GGA-372469	https://reactome.org/content/detail/R-GGA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	11	reactome	R-DME-372470	https://reactome.org/content/detail/R-DME-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	12	reactome	R-CEL-372469	https://reactome.org/content/detail/R-CEL-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	13	reactome	R-DDI-372470	https://reactome.org/content/detail/R-DDI-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000117	14	reactome	R-SCE-372470	https://reactome.org/content/detail/R-SCE-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
-S00000118	0	chebi	29991	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29991	BQB_IS	L-Asp
-S00000118	1	reactome	R-ALL-113553	https://reactome.org/content/detail/R-ALL-113553	BQB_IS	L-Asp
-S00000118	2	reactome	R-ALL-29448	https://reactome.org/content/detail/R-ALL-29448	BQB_IS	L-Asp
-S00000119	0	chebi	29985	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29985	BQB_IS	L-Glu
-S00000119	1	reactome	R-ALL-29404	https://reactome.org/content/detail/R-ALL-29404	BQB_IS	L-Glu
-S00000119	2	reactome	R-ALL-113552	https://reactome.org/content/detail/R-ALL-113552	BQB_IS	L-Glu
-S00000120	0	uniprot	P53007	https://purl.uniprot.org/uniprot/P53007	BQB_IS	SLC25A1
-S00000120	1	reactome	R-HSA-372445	https://reactome.org/content/detail/R-HSA-372445	BQB_IS	SLC25A1
-S00000120	2	reactome	R-MMU-372445	https://reactome.org/content/detail/R-MMU-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	3	reactome	R-RNO-372445	https://reactome.org/content/detail/R-RNO-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	4	reactome	R-CFA-372445	https://reactome.org/content/detail/R-CFA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	5	reactome	R-BTA-372445	https://reactome.org/content/detail/R-BTA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	6	reactome	R-SSC-372445	https://reactome.org/content/detail/R-SSC-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	7	reactome	R-DRE-372445	https://reactome.org/content/detail/R-DRE-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	8	reactome	R-XTR-372445	https://reactome.org/content/detail/R-XTR-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	9	reactome	R-GGA-372445	https://reactome.org/content/detail/R-GGA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	10	reactome	R-DME-372445	https://reactome.org/content/detail/R-DME-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	11	reactome	R-CEL-372445	https://reactome.org/content/detail/R-CEL-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	12	reactome	R-SPO-372445	https://reactome.org/content/detail/R-SPO-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000120	13	reactome	R-SCE-372445	https://reactome.org/content/detail/R-SCE-372445	BQB_IS_HOMOLOG_TO	SLC25A1
-S00000121	0	reactome	R-HSA-70499	https://reactome.org/content/detail/R-HSA-70499	BQB_IS	pyruvate carboxylase holoenzyme
-S00000121	1	uniprot	P11498	https://purl.uniprot.org/uniprot/P11498	BQB_HAS_PART	pyruvate carboxylase holoenzyme
-S00000121	2	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	pyruvate carboxylase holoenzyme
-S00000121	3	chebi	15956	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15956	BQB_HAS_PART	pyruvate carboxylase holoenzyme
-S00000121	4	reactome	R-MMU-70499	https://reactome.org/content/detail/R-MMU-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	5	reactome	R-RNO-70499	https://reactome.org/content/detail/R-RNO-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	6	reactome	R-CFA-70499	https://reactome.org/content/detail/R-CFA-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	7	reactome	R-BTA-70499	https://reactome.org/content/detail/R-BTA-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	8	reactome	R-SSC-70499	https://reactome.org/content/detail/R-SSC-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	9	reactome	R-DRE-70499	https://reactome.org/content/detail/R-DRE-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	10	reactome	R-XTR-70499	https://reactome.org/content/detail/R-XTR-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	11	reactome	R-DME-70499	https://reactome.org/content/detail/R-DME-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	12	reactome	R-CEL-70499	https://reactome.org/content/detail/R-CEL-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	13	reactome	R-SPO-70499	https://reactome.org/content/detail/R-SPO-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000121	14	reactome	R-SCE-70499	https://reactome.org/content/detail/R-SCE-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
-S00000122	0	uniprot	P35558	https://purl.uniprot.org/uniprot/P35558	BQB_IS	PCK1
-S00000122	1	reactome	R-HSA-70495	https://reactome.org/content/detail/R-HSA-70495	BQB_IS	PCK1
-S00000122	2	reactome	R-MMU-9623317	https://reactome.org/content/detail/R-MMU-9623317	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	3	reactome	R-RNO-70495	https://reactome.org/content/detail/R-RNO-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	4	reactome	R-CFA-70495	https://reactome.org/content/detail/R-CFA-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	5	reactome	R-SSC-70495	https://reactome.org/content/detail/R-SSC-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	6	reactome	R-DRE-70495	https://reactome.org/content/detail/R-DRE-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	7	reactome	R-XTR-70495	https://reactome.org/content/detail/R-XTR-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	8	reactome	R-DME-70495	https://reactome.org/content/detail/R-DME-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	9	reactome	R-DME-70495-2	https://reactome.org/content/detail/R-DME-70495-2	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	10	reactome	R-DME-70495-3	https://reactome.org/content/detail/R-DME-70495-3	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	11	reactome	R-CEL-70495	https://reactome.org/content/detail/R-CEL-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	12	reactome	R-CEL-70495-2	https://reactome.org/content/detail/R-CEL-70495-2	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	13	reactome	R-CEL-70495-3	https://reactome.org/content/detail/R-CEL-70495-3	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	14	reactome	R-CEL-70495-4	https://reactome.org/content/detail/R-CEL-70495-4	BQB_IS_HOMOLOG_TO	PCK1
-S00000122	15	reactome	R-DDI-70495	https://reactome.org/content/detail/R-DDI-70495	BQB_IS_HOMOLOG_TO	PCK1
-S00000123	0	uniprot	Q16822	https://purl.uniprot.org/uniprot/Q16822	BQB_IS	PCK2
-S00000123	1	reactome	R-HSA-372815	https://reactome.org/content/detail/R-HSA-372815	BQB_IS	PCK2
-S00000123	2	reactome	R-MMU-372815	https://reactome.org/content/detail/R-MMU-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	3	reactome	R-RNO-372815	https://reactome.org/content/detail/R-RNO-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	4	reactome	R-CFA-372815	https://reactome.org/content/detail/R-CFA-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	5	reactome	R-BTA-372815	https://reactome.org/content/detail/R-BTA-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	6	reactome	R-SSC-372815	https://reactome.org/content/detail/R-SSC-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	7	reactome	R-DRE-372815	https://reactome.org/content/detail/R-DRE-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	8	reactome	R-XTR-372815	https://reactome.org/content/detail/R-XTR-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	9	reactome	R-GGA-372815	https://reactome.org/content/detail/R-GGA-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	10	reactome	R-DME-372815	https://reactome.org/content/detail/R-DME-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	11	reactome	R-CEL-372815	https://reactome.org/content/detail/R-CEL-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000123	12	reactome	R-DDI-372815	https://reactome.org/content/detail/R-DDI-372815	BQB_IS_HOMOLOG_TO	PCK2
-S00000124	0	reactome	R-HSA-70594	https://reactome.org/content/detail/R-HSA-70594	BQB_IS	GOT2 dimer
-S00000124	1	uniprot	P00505	https://purl.uniprot.org/uniprot/P00505	BQB_HAS_PART	GOT2 dimer
-S00000124	2	reactome	R-MMU-70594	https://reactome.org/content/detail/R-MMU-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	3	reactome	R-RNO-9012715	https://reactome.org/content/detail/R-RNO-9012715	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	4	reactome	R-CFA-70594	https://reactome.org/content/detail/R-CFA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	5	reactome	R-BTA-70594	https://reactome.org/content/detail/R-BTA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	6	reactome	R-DRE-70594	https://reactome.org/content/detail/R-DRE-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	7	reactome	R-XTR-70594	https://reactome.org/content/detail/R-XTR-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	8	reactome	R-DME-70594	https://reactome.org/content/detail/R-DME-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	9	reactome	R-CEL-70594	https://reactome.org/content/detail/R-CEL-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	10	reactome	R-DDI-70594	https://reactome.org/content/detail/R-DDI-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	11	reactome	R-SPO-70594	https://reactome.org/content/detail/R-SPO-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	12	reactome	R-SCE-70594	https://reactome.org/content/detail/R-SCE-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000124	13	reactome	R-PFA-70594	https://reactome.org/content/detail/R-PFA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
-S00000125	0	pubmed	21949678	http://www.ncbi.nlm.nih.gov/pubmed/21949678	BQB_IS_DESCRIBED_BY	SLC37A1,2
-S00000125	1	reactome	R-HSA-3257118	https://reactome.org/content/detail/R-HSA-3257118	BQB_IS	SLC37A1,2
-S00000125	2	uniprot	P57057	https://purl.uniprot.org/uniprot/P57057	BQB_HAS_PART	SLC37A1,2
-S00000125	3	uniprot	Q8TED4-2	https://purl.uniprot.org/uniprot/Q8TED4-2	BQB_HAS_PART	SLC37A1,2
-S00000125	4	reactome	R-MMU-3257118	https://reactome.org/content/detail/R-MMU-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	5	reactome	R-RNO-3257118	https://reactome.org/content/detail/R-RNO-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	6	reactome	R-CFA-3257118	https://reactome.org/content/detail/R-CFA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	7	reactome	R-BTA-3257118	https://reactome.org/content/detail/R-BTA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	8	reactome	R-SSC-3257118	https://reactome.org/content/detail/R-SSC-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	9	reactome	R-DRE-3257118	https://reactome.org/content/detail/R-DRE-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	10	reactome	R-XTR-3257124	https://reactome.org/content/detail/R-XTR-3257124	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	11	reactome	R-GGA-3257118	https://reactome.org/content/detail/R-GGA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000125	12	reactome	R-DME-3257123	https://reactome.org/content/detail/R-DME-3257123	BQB_IS_HOMOLOG_TO	SLC37A1,2
-S00000126	0	uniprot	P35575	https://purl.uniprot.org/uniprot/P35575	BQB_IS	G6PC
-S00000126	1	reactome	R-HSA-71823	https://reactome.org/content/detail/R-HSA-71823	BQB_IS	G6PC
-S00000126	2	reactome	R-MMU-9623271	https://reactome.org/content/detail/R-MMU-9623271	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	3	reactome	R-RNO-71823	https://reactome.org/content/detail/R-RNO-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	4	reactome	R-CFA-71823	https://reactome.org/content/detail/R-CFA-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	5	reactome	R-BTA-71823	https://reactome.org/content/detail/R-BTA-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	6	reactome	R-SSC-71823	https://reactome.org/content/detail/R-SSC-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	7	reactome	R-DRE-71823	https://reactome.org/content/detail/R-DRE-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	8	reactome	R-XTR-71823	https://reactome.org/content/detail/R-XTR-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	9	reactome	R-GGA-71823	https://reactome.org/content/detail/R-GGA-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000126	10	reactome	R-DME-71823	https://reactome.org/content/detail/R-DME-71823	BQB_IS_HOMOLOG_TO	G6PC
-S00000127	0	reactome	R-HSA-372874	https://reactome.org/content/detail/R-HSA-372874	BQB_IS	FBP tetramer
-S00000127	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	FBP tetramer
-S00000127	2	uniprot	O00757	https://purl.uniprot.org/uniprot/O00757	BQB_HAS_PART	FBP tetramer
-S00000127	3	uniprot	P09467	https://purl.uniprot.org/uniprot/P09467	BQB_HAS_PART	FBP tetramer
-S00000127	4	reactome	R-MMU-372874	https://reactome.org/content/detail/R-MMU-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	5	reactome	R-RNO-372874	https://reactome.org/content/detail/R-RNO-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	6	reactome	R-CFA-372874	https://reactome.org/content/detail/R-CFA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	7	reactome	R-BTA-372874	https://reactome.org/content/detail/R-BTA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	8	reactome	R-SSC-2267351	https://reactome.org/content/detail/R-SSC-2267351	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	9	reactome	R-DRE-372874	https://reactome.org/content/detail/R-DRE-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	10	reactome	R-XTR-372874	https://reactome.org/content/detail/R-XTR-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	11	reactome	R-GGA-372874	https://reactome.org/content/detail/R-GGA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	12	reactome	R-DME-372874	https://reactome.org/content/detail/R-DME-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	13	reactome	R-CEL-372874	https://reactome.org/content/detail/R-CEL-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	14	reactome	R-DDI-372874	https://reactome.org/content/detail/R-DDI-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	15	reactome	R-SPO-372874	https://reactome.org/content/detail/R-SPO-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000127	16	reactome	R-SCE-372874	https://reactome.org/content/detail/R-SCE-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
-S00000128	0	uniprot	Q9BUM1	https://purl.uniprot.org/uniprot/Q9BUM1	BQB_IS	G6PC3
-S00000128	1	reactome	R-HSA-981605	https://reactome.org/content/detail/R-HSA-981605	BQB_IS	G6PC3
-S00000128	2	reactome	R-MMU-981605	https://reactome.org/content/detail/R-MMU-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	3	reactome	R-RNO-981605	https://reactome.org/content/detail/R-RNO-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	4	reactome	R-CFA-981605	https://reactome.org/content/detail/R-CFA-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	5	reactome	R-BTA-981605	https://reactome.org/content/detail/R-BTA-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	6	reactome	R-SSC-981605	https://reactome.org/content/detail/R-SSC-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	7	reactome	R-DRE-981605	https://reactome.org/content/detail/R-DRE-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	8	reactome	R-XTR-981605	https://reactome.org/content/detail/R-XTR-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	9	reactome	R-GGA-981605	https://reactome.org/content/detail/R-GGA-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000128	10	reactome	R-DME-981605	https://reactome.org/content/detail/R-DME-981605	BQB_IS_HOMOLOG_TO	G6PC3
-S00000129	0	pubmed	2241899	http://www.ncbi.nlm.nih.gov/pubmed/2241899	BQB_IS_DESCRIBED_BY	PXLP-K259-GOT1 dimer
-S00000129	1	reactome	R-HSA-70579	https://reactome.org/content/detail/R-HSA-70579	BQB_IS	PXLP-K259-GOT1 dimer
-S00000129	2	uniprot	P17174	https://purl.uniprot.org/uniprot/P17174	BQB_HAS_PART	PXLP-K259-GOT1 dimer
-S00000129	3	reactome	R-MMU-70579	https://reactome.org/content/detail/R-MMU-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	4	reactome	R-RNO-70579	https://reactome.org/content/detail/R-RNO-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	5	reactome	R-CFA-70579	https://reactome.org/content/detail/R-CFA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	6	reactome	R-BTA-70579	https://reactome.org/content/detail/R-BTA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	7	reactome	R-SSC-70579	https://reactome.org/content/detail/R-SSC-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	8	reactome	R-DRE-70579	https://reactome.org/content/detail/R-DRE-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	9	reactome	R-XTR-70579	https://reactome.org/content/detail/R-XTR-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	10	reactome	R-GGA-70579	https://reactome.org/content/detail/R-GGA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	11	reactome	R-DME-70579	https://reactome.org/content/detail/R-DME-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	12	reactome	R-CEL-70579	https://reactome.org/content/detail/R-CEL-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	13	reactome	R-SPO-70579	https://reactome.org/content/detail/R-SPO-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
-S00000129	14	reactome	R-SCE-70579	https://reactome.org/content/detail/R-SCE-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000054	0	chebi	16284	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16284	BQB_IS	dATP
+S00000054	1	reactome	R-ALL-110644	https://reactome.org/content/detail/R-ALL-110644	BQB_IS	dATP
+S00000055	0	chebi	17713	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17713	BQB_IS	2'-deoxyadenosine 5'-monophosphate
+S00000055	1	reactome	R-ALL-109386	https://reactome.org/content/detail/R-ALL-109386	BQB_IS	2'-deoxyadenosine 5'-monophosphate
+S00000056	0	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_IS	Mg2+
+S00000056	1	reactome	R-ALL-29926	https://reactome.org/content/detail/R-ALL-29926	BQB_IS	Mg2+
+S00000057	0	uniprot	Q9UHJ6	https://purl.uniprot.org/uniprot/Q9UHJ6	BQB_IS	SHPK
+S00000057	1	reactome	R-HSA-8959710	https://reactome.org/content/detail/R-HSA-8959710	BQB_IS	SHPK
+S00000057	2	reactome	R-MMU-8959710	https://reactome.org/content/detail/R-MMU-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	3	reactome	R-RNO-8959710	https://reactome.org/content/detail/R-RNO-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	4	reactome	R-CFA-8959710	https://reactome.org/content/detail/R-CFA-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	5	reactome	R-BTA-8959710	https://reactome.org/content/detail/R-BTA-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	6	reactome	R-SSC-8959710	https://reactome.org/content/detail/R-SSC-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	7	reactome	R-DRE-8959710	https://reactome.org/content/detail/R-DRE-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	8	reactome	R-XTR-8959710	https://reactome.org/content/detail/R-XTR-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	9	reactome	R-GGA-8959710	https://reactome.org/content/detail/R-GGA-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000057	10	reactome	R-CEL-8959710	https://reactome.org/content/detail/R-CEL-8959710	BQB_IS_HOMOLOG_TO	SHPK
+S00000058	0	chebi	16802	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16802	BQB_IS	Sedo
+S00000058	1	reactome	R-ALL-8959707	https://reactome.org/content/detail/R-ALL-8959707	BQB_IS	Sedo
+S00000059	0	uniprot	Q9H477	https://purl.uniprot.org/uniprot/Q9H477	BQB_IS	RBKS
+S00000059	1	reactome	R-HSA-8955847	https://reactome.org/content/detail/R-HSA-8955847	BQB_IS	RBKS
+S00000059	2	reactome	R-MMU-8955847	https://reactome.org/content/detail/R-MMU-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	3	reactome	R-RNO-8955847	https://reactome.org/content/detail/R-RNO-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	4	reactome	R-CFA-8955847	https://reactome.org/content/detail/R-CFA-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	5	reactome	R-BTA-8955847	https://reactome.org/content/detail/R-BTA-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	6	reactome	R-SSC-8955847	https://reactome.org/content/detail/R-SSC-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	7	reactome	R-DRE-8955847	https://reactome.org/content/detail/R-DRE-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	8	reactome	R-XTR-8955847	https://reactome.org/content/detail/R-XTR-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	9	reactome	R-GGA-8955847	https://reactome.org/content/detail/R-GGA-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	10	reactome	R-DME-8955847	https://reactome.org/content/detail/R-DME-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	11	reactome	R-CEL-8955847	https://reactome.org/content/detail/R-CEL-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	12	reactome	R-DDI-8955847	https://reactome.org/content/detail/R-DDI-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	13	reactome	R-SPO-8955847	https://reactome.org/content/detail/R-SPO-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000059	14	reactome	R-SCE-8955847	https://reactome.org/content/detail/R-SCE-8955847	BQB_IS_HOMOLOG_TO	RBKS
+S00000060	0	chebi	47013	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:47013	BQB_IS	D-ribose
+S00000060	1	reactome	R-ALL-8955853	https://reactome.org/content/detail/R-ALL-8955853	BQB_IS	D-ribose
+S00000061	0	reactome	R-HSA-464971	https://reactome.org/content/detail/R-HSA-464971	BQB_IS	G6PD dimer and tetramer
+S00000061	3	reactome	R-MMU-464971	https://reactome.org/content/detail/R-MMU-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	4	reactome	R-RNO-464971	https://reactome.org/content/detail/R-RNO-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	5	reactome	R-CFA-464971	https://reactome.org/content/detail/R-CFA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	6	reactome	R-BTA-464971	https://reactome.org/content/detail/R-BTA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	7	reactome	R-SSC-464971	https://reactome.org/content/detail/R-SSC-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	8	reactome	R-DRE-464971	https://reactome.org/content/detail/R-DRE-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	9	reactome	R-XTR-464971	https://reactome.org/content/detail/R-XTR-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	10	reactome	R-DME-464971	https://reactome.org/content/detail/R-DME-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	11	reactome	R-CEL-464971	https://reactome.org/content/detail/R-CEL-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	12	reactome	R-DDI-464971	https://reactome.org/content/detail/R-DDI-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	13	reactome	R-SPO-464971	https://reactome.org/content/detail/R-SPO-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	14	reactome	R-SCE-464971	https://reactome.org/content/detail/R-SCE-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000061	15	reactome	R-PFA-464971	https://reactome.org/content/detail/R-PFA-464971	BQB_IS_HOMOLOG_TO	G6PD dimer and tetramer
+S00000062	0	chebi	58225	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58225	BQB_IS	G6P
+S00000062	1	reactome	R-ALL-30537	https://reactome.org/content/detail/R-ALL-30537	BQB_IS	G6P
+S00000062	2	reactome	R-ALL-113782	https://reactome.org/content/detail/R-ALL-113782	BQB_IS	G6P
+S00000063	0	chebi	16938	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16938	BQB_IS	D-Glucono-1,5-lactone 6-phosphate
+S00000063	1	reactome	R-ALL-31467	https://reactome.org/content/detail/R-ALL-31467	BQB_IS	D-Glucono-1,5-lactone 6-phosphate
+S00000064	0	reactome	R-HSA-453137	https://reactome.org/content/detail/R-HSA-453137	BQB_IS	PGM2:Mg2+
+S00000064	3	reactome	R-MMU-453137	https://reactome.org/content/detail/R-MMU-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	4	reactome	R-RNO-453137	https://reactome.org/content/detail/R-RNO-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	5	reactome	R-CFA-453137	https://reactome.org/content/detail/R-CFA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	6	reactome	R-BTA-453137	https://reactome.org/content/detail/R-BTA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	7	reactome	R-SSC-453137	https://reactome.org/content/detail/R-SSC-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	8	reactome	R-DRE-453137	https://reactome.org/content/detail/R-DRE-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	9	reactome	R-XTR-453137	https://reactome.org/content/detail/R-XTR-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	10	reactome	R-GGA-453137	https://reactome.org/content/detail/R-GGA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	11	reactome	R-DME-453137	https://reactome.org/content/detail/R-DME-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	12	reactome	R-CEL-453137	https://reactome.org/content/detail/R-CEL-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	13	reactome	R-DDI-453137	https://reactome.org/content/detail/R-DDI-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	14	reactome	R-SPO-453137	https://reactome.org/content/detail/R-SPO-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	15	reactome	R-SCE-453137	https://reactome.org/content/detail/R-SCE-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000064	16	reactome	R-PFA-453137	https://reactome.org/content/detail/R-PFA-453137	BQB_IS_HOMOLOG_TO	PGM2:Mg2+
+S00000065	0	chebi	35425	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35425	BQB_IS	R1P
+S00000065	1	reactome	R-ALL-112016	https://reactome.org/content/detail/R-ALL-112016	BQB_IS	R1P
+S00000066	0	chebi	11563	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:11563	BQB_IS	dR1P
+S00000066	1	reactome	R-ALL-6787326	https://reactome.org/content/detail/R-ALL-6787326	BQB_IS	dR1P
+S00000067	1	reactome	R-HSA-467365	https://reactome.org/content/detail/R-HSA-467365	BQB_IS	PGD dimer
+S00000067	3	reactome	R-MMU-467365	https://reactome.org/content/detail/R-MMU-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	4	reactome	R-RNO-467365	https://reactome.org/content/detail/R-RNO-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	5	reactome	R-CFA-467365	https://reactome.org/content/detail/R-CFA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	6	reactome	R-BTA-467365	https://reactome.org/content/detail/R-BTA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	7	reactome	R-DRE-467365	https://reactome.org/content/detail/R-DRE-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	8	reactome	R-XTR-467365	https://reactome.org/content/detail/R-XTR-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	9	reactome	R-GGA-467365	https://reactome.org/content/detail/R-GGA-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	10	reactome	R-DME-467365	https://reactome.org/content/detail/R-DME-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	11	reactome	R-CEL-467365	https://reactome.org/content/detail/R-CEL-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	12	reactome	R-DDI-467365	https://reactome.org/content/detail/R-DDI-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	13	reactome	R-SPO-467365	https://reactome.org/content/detail/R-SPO-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000067	14	reactome	R-SCE-467365	https://reactome.org/content/detail/R-SCE-467365	BQB_IS_HOMOLOG_TO	PGD dimer
+S00000068	0	chebi	16863	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16863	BQB_IS	PDG
+S00000068	1	reactome	R-ALL-29996	https://reactome.org/content/detail/R-ALL-29996	BQB_IS	PDG
+S00000069	0	uniprot	O95336	https://purl.uniprot.org/uniprot/O95336	BQB_IS	PGLS
+S00000069	1	reactome	R-HSA-71294	https://reactome.org/content/detail/R-HSA-71294	BQB_IS	PGLS
+S00000069	2	reactome	R-MMU-71294	https://reactome.org/content/detail/R-MMU-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	3	reactome	R-RNO-71294	https://reactome.org/content/detail/R-RNO-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	4	reactome	R-CFA-71294	https://reactome.org/content/detail/R-CFA-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	5	reactome	R-SSC-71294	https://reactome.org/content/detail/R-SSC-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	6	reactome	R-DRE-71294	https://reactome.org/content/detail/R-DRE-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	7	reactome	R-GGA-71294	https://reactome.org/content/detail/R-GGA-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	8	reactome	R-DME-71294	https://reactome.org/content/detail/R-DME-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	9	reactome	R-CEL-71294	https://reactome.org/content/detail/R-CEL-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	10	reactome	R-DDI-71294	https://reactome.org/content/detail/R-DDI-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	11	reactome	R-SPO-71294	https://reactome.org/content/detail/R-SPO-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000069	12	reactome	R-SCE-71294	https://reactome.org/content/detail/R-SCE-71294	BQB_IS_HOMOLOG_TO	PGLS
+S00000070	5	reactome	R-HSA-179517	https://reactome.org/content/detail/R-HSA-179517	BQB_IS	PFK tetramer
+S00000070	9	reactome	R-MMU-179517	https://reactome.org/content/detail/R-MMU-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	10	reactome	R-RNO-179517	https://reactome.org/content/detail/R-RNO-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	11	reactome	R-CFA-179517	https://reactome.org/content/detail/R-CFA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	12	reactome	R-BTA-179517	https://reactome.org/content/detail/R-BTA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	13	reactome	R-SSC-179517	https://reactome.org/content/detail/R-SSC-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	14	reactome	R-DRE-179517	https://reactome.org/content/detail/R-DRE-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	15	reactome	R-XTR-179517	https://reactome.org/content/detail/R-XTR-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	16	reactome	R-GGA-179517	https://reactome.org/content/detail/R-GGA-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	17	reactome	R-DME-179517	https://reactome.org/content/detail/R-DME-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	18	reactome	R-CEL-179517	https://reactome.org/content/detail/R-CEL-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	19	reactome	R-DDI-179517	https://reactome.org/content/detail/R-DDI-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	20	reactome	R-SPO-179517	https://reactome.org/content/detail/R-SPO-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000070	21	reactome	R-SCE-179517	https://reactome.org/content/detail/R-SCE-179517	BQB_IS_HOMOLOG_TO	PFK tetramer
+S00000071	0	chebi	32966	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:32966	BQB_IS	D-Fructose 1,6-bisphosphate
+S00000071	1	reactome	R-ALL-30014	https://reactome.org/content/detail/R-ALL-30014	BQB_IS	D-Fructose 1,6-bisphosphate
+S00000072	0	chebi	28602	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28602	BQB_IS	D-Fructose 2,6-bisphosphate
+S00000072	1	reactome	R-ALL-30533	https://reactome.org/content/detail/R-ALL-30533	BQB_IS	D-Fructose 2,6-bisphosphate
+S00000073	1	reactome	R-HSA-5696043	https://reactome.org/content/detail/R-HSA-5696043	BQB_IS	ADPGK:Mg2+
+S00000073	4	reactome	R-MMU-5696043	https://reactome.org/content/detail/R-MMU-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	5	reactome	R-RNO-5696043	https://reactome.org/content/detail/R-RNO-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	6	reactome	R-CFA-5696043	https://reactome.org/content/detail/R-CFA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	7	reactome	R-BTA-5696043	https://reactome.org/content/detail/R-BTA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	8	reactome	R-SSC-5696043	https://reactome.org/content/detail/R-SSC-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	9	reactome	R-DRE-5696043	https://reactome.org/content/detail/R-DRE-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	10	reactome	R-XTR-5696043	https://reactome.org/content/detail/R-XTR-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	11	reactome	R-GGA-5696043	https://reactome.org/content/detail/R-GGA-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	12	reactome	R-CEL-5696043	https://reactome.org/content/detail/R-CEL-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000073	13	reactome	R-DDI-5696043	https://reactome.org/content/detail/R-DDI-5696043	BQB_IS_HOMOLOG_TO	ADPGK:Mg2+
+S00000074	0	chebi	17925	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17925	BQB_IS	Glc
+S00000074	1	reactome	R-ALL-70113	https://reactome.org/content/detail/R-ALL-70113	BQB_IS	Glc
+S00000074	2	reactome	R-ALL-170829	https://reactome.org/content/detail/R-ALL-170829	BQB_IS	Glc
+S00000074	3	reactome	R-ALL-113780	https://reactome.org/content/detail/R-ALL-113780	BQB_IS	Glc
+S00000074	4	reactome	R-ALL-70115	https://reactome.org/content/detail/R-ALL-70115	BQB_IS	Glc
+S00000075	0	reactome	R-HSA-170804	https://reactome.org/content/detail/R-HSA-170804	BQB_IS	GCK1:GKRP complex
+S00000075	3	reactome	R-MMU-170804	https://reactome.org/content/detail/R-MMU-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000075	4	reactome	R-RNO-170804	https://reactome.org/content/detail/R-RNO-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000075	5	reactome	R-BTA-170804	https://reactome.org/content/detail/R-BTA-170804	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000076	0	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_IS	GCK
+S00000076	1	reactome	R-HSA-450102	https://reactome.org/content/detail/R-HSA-450102	BQB_IS	GCK
+S00000076	2	reactome	R-MMU-450102	https://reactome.org/content/detail/R-MMU-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	3	reactome	R-RNO-450102	https://reactome.org/content/detail/R-RNO-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	4	reactome	R-BTA-450102	https://reactome.org/content/detail/R-BTA-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	5	reactome	R-DRE-450102	https://reactome.org/content/detail/R-DRE-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	6	reactome	R-XTR-450102	https://reactome.org/content/detail/R-XTR-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	7	reactome	R-GGA-450102	https://reactome.org/content/detail/R-GGA-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	8	reactome	R-DME-450102	https://reactome.org/content/detail/R-DME-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	9	reactome	R-DME-450102-2	https://reactome.org/content/detail/R-DME-450102-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	10	reactome	R-DME-450102-3	https://reactome.org/content/detail/R-DME-450102-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	11	reactome	R-DME-450102-4	https://reactome.org/content/detail/R-DME-450102-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	12	reactome	R-DME-450102-5	https://reactome.org/content/detail/R-DME-450102-5	BQB_IS_HOMOLOG_TO	GCK
+S00000076	13	reactome	R-CEL-450102	https://reactome.org/content/detail/R-CEL-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	14	reactome	R-CEL-450102-2	https://reactome.org/content/detail/R-CEL-450102-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	15	reactome	R-CEL-450102-3	https://reactome.org/content/detail/R-CEL-450102-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	16	reactome	R-CEL-450102-4	https://reactome.org/content/detail/R-CEL-450102-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	17	reactome	R-SPO-450102	https://reactome.org/content/detail/R-SPO-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	18	reactome	R-SPO-450102-2	https://reactome.org/content/detail/R-SPO-450102-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	19	reactome	R-SPO-450102-3	https://reactome.org/content/detail/R-SPO-450102-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	20	reactome	R-SCE-450102	https://reactome.org/content/detail/R-SCE-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	21	reactome	R-SCE-450102-2	https://reactome.org/content/detail/R-SCE-450102-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	22	reactome	R-SCE-450102-3	https://reactome.org/content/detail/R-SCE-450102-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	23	reactome	R-SCE-450102-4	https://reactome.org/content/detail/R-SCE-450102-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	24	reactome	R-SCE-450102-5	https://reactome.org/content/detail/R-SCE-450102-5	BQB_IS_HOMOLOG_TO	GCK
+S00000076	25	reactome	R-SCE-450102-6	https://reactome.org/content/detail/R-SCE-450102-6	BQB_IS_HOMOLOG_TO	GCK
+S00000076	26	reactome	R-PFA-450102	https://reactome.org/content/detail/R-PFA-450102	BQB_IS_HOMOLOG_TO	GCK
+S00000076	27	reactome	R-HSA-450094	https://reactome.org/content/detail/R-HSA-450094	BQB_IS	GCK
+S00000076	28	reactome	R-MMU-450094	https://reactome.org/content/detail/R-MMU-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	29	reactome	R-RNO-450094	https://reactome.org/content/detail/R-RNO-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	30	reactome	R-BTA-450094	https://reactome.org/content/detail/R-BTA-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	31	reactome	R-DRE-450094	https://reactome.org/content/detail/R-DRE-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	32	reactome	R-XTR-450094	https://reactome.org/content/detail/R-XTR-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	33	reactome	R-GGA-450094	https://reactome.org/content/detail/R-GGA-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	34	reactome	R-DME-450094	https://reactome.org/content/detail/R-DME-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	35	reactome	R-DME-450094-2	https://reactome.org/content/detail/R-DME-450094-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	36	reactome	R-DME-450094-3	https://reactome.org/content/detail/R-DME-450094-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	37	reactome	R-DME-450094-4	https://reactome.org/content/detail/R-DME-450094-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	38	reactome	R-DME-450094-5	https://reactome.org/content/detail/R-DME-450094-5	BQB_IS_HOMOLOG_TO	GCK
+S00000076	39	reactome	R-CEL-450094	https://reactome.org/content/detail/R-CEL-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	40	reactome	R-CEL-450094-2	https://reactome.org/content/detail/R-CEL-450094-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	41	reactome	R-CEL-450094-3	https://reactome.org/content/detail/R-CEL-450094-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	42	reactome	R-CEL-450094-4	https://reactome.org/content/detail/R-CEL-450094-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	43	reactome	R-SPO-450094	https://reactome.org/content/detail/R-SPO-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	44	reactome	R-SPO-450094-2	https://reactome.org/content/detail/R-SPO-450094-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	45	reactome	R-SPO-450094-3	https://reactome.org/content/detail/R-SPO-450094-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	46	reactome	R-SCE-450094	https://reactome.org/content/detail/R-SCE-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000076	47	reactome	R-SCE-450094-2	https://reactome.org/content/detail/R-SCE-450094-2	BQB_IS_HOMOLOG_TO	GCK
+S00000076	48	reactome	R-SCE-450094-3	https://reactome.org/content/detail/R-SCE-450094-3	BQB_IS_HOMOLOG_TO	GCK
+S00000076	49	reactome	R-SCE-450094-4	https://reactome.org/content/detail/R-SCE-450094-4	BQB_IS_HOMOLOG_TO	GCK
+S00000076	50	reactome	R-SCE-450094-5	https://reactome.org/content/detail/R-SCE-450094-5	BQB_IS_HOMOLOG_TO	GCK
+S00000076	51	reactome	R-SCE-450094-6	https://reactome.org/content/detail/R-SCE-450094-6	BQB_IS_HOMOLOG_TO	GCK
+S00000076	52	reactome	R-PFA-450094	https://reactome.org/content/detail/R-PFA-450094	BQB_IS_HOMOLOG_TO	GCK
+S00000077	0	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_IS	GCKR
+S00000077	1	reactome	R-HSA-170805	https://reactome.org/content/detail/R-HSA-170805	BQB_IS	GCKR
+S00000077	2	reactome	R-MMU-170805	https://reactome.org/content/detail/R-MMU-170805	BQB_IS_HOMOLOG_TO	GCKR
+S00000077	3	reactome	R-RNO-170805	https://reactome.org/content/detail/R-RNO-170805	BQB_IS_HOMOLOG_TO	GCKR
+S00000077	4	reactome	R-BTA-170805	https://reactome.org/content/detail/R-BTA-170805	BQB_IS_HOMOLOG_TO	GCKR
+S00000077	5	reactome	R-HSA-170818	https://reactome.org/content/detail/R-HSA-170818	BQB_IS	GCKR
+S00000077	6	reactome	R-MMU-170818	https://reactome.org/content/detail/R-MMU-170818	BQB_IS_HOMOLOG_TO	GCKR
+S00000077	7	reactome	R-RNO-170818	https://reactome.org/content/detail/R-RNO-170818	BQB_IS_HOMOLOG_TO	GCKR
+S00000077	8	reactome	R-BTA-170818	https://reactome.org/content/detail/R-BTA-170818	BQB_IS_HOMOLOG_TO	GCKR
+S00000078	0	reactome	R-HSA-170827	https://reactome.org/content/detail/R-HSA-170827	BQB_IS	GCK1:GKRP complex
+S00000078	3	reactome	R-MMU-170827	https://reactome.org/content/detail/R-MMU-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000078	4	reactome	R-RNO-170827	https://reactome.org/content/detail/R-RNO-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000078	5	reactome	R-BTA-170827	https://reactome.org/content/detail/R-BTA-170827	BQB_IS_HOMOLOG_TO	GCK1:GKRP complex
+S00000079	0	chebi	18105	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18105	BQB_IS	Fru 1-P
+S00000079	1	reactome	R-ALL-31221	https://reactome.org/content/detail/R-ALL-31221	BQB_IS	Fru 1-P
+S00000080	0	chebi	17044	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17044	BQB_IS	Sor6P
+S00000080	1	reactome	R-ALL-170724	https://reactome.org/content/detail/R-ALL-170724	BQB_IS	Sor6P
+S00000081	7	reactome	R-HSA-157689	https://reactome.org/content/detail/R-HSA-157689	BQB_IS	Nuclear Pore Complex (NPC)
+S00000081	40	reactome	R-MMU-157689	https://reactome.org/content/detail/R-MMU-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	41	reactome	R-RNO-157689	https://reactome.org/content/detail/R-RNO-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	42	reactome	R-CFA-157689	https://reactome.org/content/detail/R-CFA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	43	reactome	R-BTA-157689	https://reactome.org/content/detail/R-BTA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	44	reactome	R-SSC-157689	https://reactome.org/content/detail/R-SSC-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	45	reactome	R-DRE-157689	https://reactome.org/content/detail/R-DRE-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	46	reactome	R-XTR-157689	https://reactome.org/content/detail/R-XTR-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	47	reactome	R-GGA-157689	https://reactome.org/content/detail/R-GGA-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	48	reactome	R-DME-157689	https://reactome.org/content/detail/R-DME-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	49	reactome	R-CEL-157689	https://reactome.org/content/detail/R-CEL-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	50	reactome	R-SPO-157689	https://reactome.org/content/detail/R-SPO-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000081	51	reactome	R-SCE-157689	https://reactome.org/content/detail/R-SCE-157689	BQB_IS_HOMOLOG_TO	Nuclear Pore Complex (NPC)
+S00000082	0	reactome	R-HSA-70469	https://reactome.org/content/detail/R-HSA-70469	BQB_IS	GPI dimer
+S00000082	2	reactome	R-MMU-70469	https://reactome.org/content/detail/R-MMU-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	3	reactome	R-RNO-70469	https://reactome.org/content/detail/R-RNO-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	4	reactome	R-CFA-70469	https://reactome.org/content/detail/R-CFA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	5	reactome	R-BTA-70469	https://reactome.org/content/detail/R-BTA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	6	reactome	R-SSC-70469	https://reactome.org/content/detail/R-SSC-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	7	reactome	R-DRE-70469	https://reactome.org/content/detail/R-DRE-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	8	reactome	R-XTR-70469	https://reactome.org/content/detail/R-XTR-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	9	reactome	R-GGA-70469	https://reactome.org/content/detail/R-GGA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	10	reactome	R-DME-70469	https://reactome.org/content/detail/R-DME-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	11	reactome	R-CEL-70469	https://reactome.org/content/detail/R-CEL-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	12	reactome	R-DDI-70469	https://reactome.org/content/detail/R-DDI-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	13	reactome	R-SPO-70469	https://reactome.org/content/detail/R-SPO-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	14	reactome	R-SCE-70469	https://reactome.org/content/detail/R-SCE-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000082	15	reactome	R-PFA-70469	https://reactome.org/content/detail/R-PFA-70469	BQB_IS_HOMOLOG_TO	GPI dimer
+S00000083	1	reactome	R-HSA-179494	https://reactome.org/content/detail/R-HSA-179494	BQB_IS	PGAM dimers
+S00000083	4	reactome	R-MMU-179494	https://reactome.org/content/detail/R-MMU-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	5	reactome	R-RNO-179494	https://reactome.org/content/detail/R-RNO-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	6	reactome	R-CFA-179494	https://reactome.org/content/detail/R-CFA-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	7	reactome	R-BTA-71443	https://reactome.org/content/detail/R-BTA-71443	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	8	reactome	R-SSC-179494	https://reactome.org/content/detail/R-SSC-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	9	reactome	R-DRE-179494	https://reactome.org/content/detail/R-DRE-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	10	reactome	R-XTR-179494	https://reactome.org/content/detail/R-XTR-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	11	reactome	R-DME-179494	https://reactome.org/content/detail/R-DME-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	12	reactome	R-DDI-179494	https://reactome.org/content/detail/R-DDI-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	13	reactome	R-SPO-179494	https://reactome.org/content/detail/R-SPO-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000083	14	reactome	R-PFA-179494	https://reactome.org/content/detail/R-PFA-179494	BQB_IS_HOMOLOG_TO	PGAM dimers
+S00000084	0	chebi	58272	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58272	BQB_IS	3PG
+S00000084	1	reactome	R-ALL-29728	https://reactome.org/content/detail/R-ALL-29728	BQB_IS	3PG
+S00000085	0	chebi	58289	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58289	BQB_IS	2PG
+S00000085	1	reactome	R-ALL-30485	https://reactome.org/content/detail/R-ALL-30485	BQB_IS	2PG
+S00000086	0	reactome	R-HSA-179508	https://reactome.org/content/detail/R-HSA-179508	BQB_IS	aldolase tetramer
+S00000086	4	reactome	R-MMU-179508	https://reactome.org/content/detail/R-MMU-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	5	reactome	R-RNO-179508	https://reactome.org/content/detail/R-RNO-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	6	reactome	R-CFA-179508	https://reactome.org/content/detail/R-CFA-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	7	reactome	R-BTA-179508	https://reactome.org/content/detail/R-BTA-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	8	reactome	R-SSC-179508	https://reactome.org/content/detail/R-SSC-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	9	reactome	R-DRE-179508	https://reactome.org/content/detail/R-DRE-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	10	reactome	R-XTR-179508	https://reactome.org/content/detail/R-XTR-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	11	reactome	R-GGA-70340	https://reactome.org/content/detail/R-GGA-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	12	reactome	R-DME-179508	https://reactome.org/content/detail/R-DME-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	13	reactome	R-CEL-179508	https://reactome.org/content/detail/R-CEL-179508	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	14	reactome	R-DDI-70340	https://reactome.org/content/detail/R-DDI-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000086	15	reactome	R-PFA-70340	https://reactome.org/content/detail/R-PFA-70340	BQB_IS_HOMOLOG_TO	aldolase tetramer
+S00000087	0	chebi	57642	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57642	BQB_IS	DHAP
+S00000087	1	reactome	R-ALL-75970	https://reactome.org/content/detail/R-ALL-75970	BQB_IS	DHAP
+S00000088	0	reactome	R-HSA-6807624	https://reactome.org/content/detail/R-HSA-6807624	BQB_IS	PGK complexes
+S00000088	3	reactome	R-MMU-6807624	https://reactome.org/content/detail/R-MMU-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	4	reactome	R-RNO-6807624	https://reactome.org/content/detail/R-RNO-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	5	reactome	R-CFA-70484	https://reactome.org/content/detail/R-CFA-70484	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	6	reactome	R-BTA-70484	https://reactome.org/content/detail/R-BTA-70484	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	7	reactome	R-DRE-6807624	https://reactome.org/content/detail/R-DRE-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	8	reactome	R-XTR-6807624	https://reactome.org/content/detail/R-XTR-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	9	reactome	R-GGA-6807624	https://reactome.org/content/detail/R-GGA-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	10	reactome	R-DME-6807624	https://reactome.org/content/detail/R-DME-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	11	reactome	R-CEL-6807624	https://reactome.org/content/detail/R-CEL-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	12	reactome	R-DDI-6807624	https://reactome.org/content/detail/R-DDI-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	13	reactome	R-SPO-6807624	https://reactome.org/content/detail/R-SPO-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	14	reactome	R-SCE-6807624	https://reactome.org/content/detail/R-SCE-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000088	15	reactome	R-PFA-6807624	https://reactome.org/content/detail/R-PFA-6807624	BQB_IS_HOMOLOG_TO	PGK complexes
+S00000089	0	chebi	57604	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57604	BQB_IS	1,3BPG
+S00000089	1	reactome	R-ALL-29800	https://reactome.org/content/detail/R-ALL-29800	BQB_IS	1,3BPG
+S00000090	0	reactome	R-HSA-179497	https://reactome.org/content/detail/R-HSA-179497	BQB_IS	enolase dimer
+S00000090	5	reactome	R-MMU-179497	https://reactome.org/content/detail/R-MMU-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	6	reactome	R-RNO-179497	https://reactome.org/content/detail/R-RNO-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	7	reactome	R-CFA-179497	https://reactome.org/content/detail/R-CFA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	8	reactome	R-BTA-179497	https://reactome.org/content/detail/R-BTA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	9	reactome	R-SSC-179497	https://reactome.org/content/detail/R-SSC-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	10	reactome	R-DRE-179497	https://reactome.org/content/detail/R-DRE-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	11	reactome	R-XTR-71438	https://reactome.org/content/detail/R-XTR-71438	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	12	reactome	R-GGA-71430	https://reactome.org/content/detail/R-GGA-71430	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	13	reactome	R-DME-179497	https://reactome.org/content/detail/R-DME-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	14	reactome	R-CEL-179497	https://reactome.org/content/detail/R-CEL-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	15	reactome	R-DDI-179497	https://reactome.org/content/detail/R-DDI-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	16	reactome	R-SPO-179497	https://reactome.org/content/detail/R-SPO-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	17	reactome	R-SCE-179497	https://reactome.org/content/detail/R-SCE-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000090	18	reactome	R-PFA-179497	https://reactome.org/content/detail/R-PFA-179497	BQB_IS_HOMOLOG_TO	enolase dimer
+S00000091	0	chebi	58702	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58702	BQB_IS	PEP
+S00000091	1	reactome	R-ALL-29492	https://reactome.org/content/detail/R-ALL-29492	BQB_IS	PEP
+S00000091	2	reactome	R-ALL-372364	https://reactome.org/content/detail/R-ALL-372364	BQB_IS	PEP
+S00000092	2	reactome	R-HSA-372871	https://reactome.org/content/detail/R-HSA-372871	BQB_IS	GAPDH tetramers
+S00000092	5	reactome	R-MMU-372871	https://reactome.org/content/detail/R-MMU-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	6	reactome	R-RNO-372871	https://reactome.org/content/detail/R-RNO-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	7	reactome	R-CFA-372871	https://reactome.org/content/detail/R-CFA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	8	reactome	R-BTA-372871	https://reactome.org/content/detail/R-BTA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	9	reactome	R-SSC-372871	https://reactome.org/content/detail/R-SSC-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	10	reactome	R-DRE-372871	https://reactome.org/content/detail/R-DRE-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	11	reactome	R-XTR-372871	https://reactome.org/content/detail/R-XTR-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	12	reactome	R-DME-372871	https://reactome.org/content/detail/R-DME-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	13	reactome	R-CEL-372871	https://reactome.org/content/detail/R-CEL-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	14	reactome	R-DDI-372871	https://reactome.org/content/detail/R-DDI-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	15	reactome	R-SPO-372871	https://reactome.org/content/detail/R-SPO-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	16	reactome	R-SCE-372871	https://reactome.org/content/detail/R-SCE-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000092	17	reactome	R-PFA-372871	https://reactome.org/content/detail/R-PFA-372871	BQB_IS_HOMOLOG_TO	GAPDH tetramers
+S00000093	0	reactome	R-HSA-6799602	https://reactome.org/content/detail/R-HSA-6799602	BQB_IS	GNPDA1,2 hexamers
+S00000093	3	reactome	R-MMU-6799602	https://reactome.org/content/detail/R-MMU-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	4	reactome	R-RNO-6799602	https://reactome.org/content/detail/R-RNO-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	5	reactome	R-CFA-6799602	https://reactome.org/content/detail/R-CFA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	6	reactome	R-BTA-6799602	https://reactome.org/content/detail/R-BTA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	7	reactome	R-SSC-6799602	https://reactome.org/content/detail/R-SSC-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	8	reactome	R-DRE-6799602	https://reactome.org/content/detail/R-DRE-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	9	reactome	R-XTR-6799602	https://reactome.org/content/detail/R-XTR-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	10	reactome	R-GGA-6799602	https://reactome.org/content/detail/R-GGA-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	11	reactome	R-DME-6799602	https://reactome.org/content/detail/R-DME-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	12	reactome	R-CEL-6799602	https://reactome.org/content/detail/R-CEL-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000093	13	reactome	R-DDI-6799602	https://reactome.org/content/detail/R-DDI-6799602	BQB_IS_HOMOLOG_TO	GNPDA1,2 hexamers
+S00000094	0	chebi	15873	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15873	BQB_IS	GlcN6P
+S00000094	1	reactome	R-ALL-449701	https://reactome.org/content/detail/R-ALL-449701	BQB_IS	GlcN6P
+S00000095	0	chebi	28938	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28938	BQB_IS	NH4+
+S00000095	1	reactome	R-ALL-31633	https://reactome.org/content/detail/R-ALL-31633	BQB_IS	NH4+
+S00000096	0	reactome	R-HSA-450097	https://reactome.org/content/detail/R-HSA-450097	BQB_IS	glucokinase and hexokinases
+S00000096	5	reactome	R-MMU-450097	https://reactome.org/content/detail/R-MMU-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	6	reactome	R-RNO-450097	https://reactome.org/content/detail/R-RNO-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	7	reactome	R-CFA-450097	https://reactome.org/content/detail/R-CFA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	8	reactome	R-BTA-450097	https://reactome.org/content/detail/R-BTA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	9	reactome	R-SSC-450097	https://reactome.org/content/detail/R-SSC-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	10	reactome	R-DRE-450097	https://reactome.org/content/detail/R-DRE-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	11	reactome	R-XTR-450097	https://reactome.org/content/detail/R-XTR-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	12	reactome	R-GGA-450097	https://reactome.org/content/detail/R-GGA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	13	reactome	R-DME-450097	https://reactome.org/content/detail/R-DME-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	14	reactome	R-CEL-450097	https://reactome.org/content/detail/R-CEL-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	15	reactome	R-SPO-450097	https://reactome.org/content/detail/R-SPO-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	16	reactome	R-SCE-450097	https://reactome.org/content/detail/R-SCE-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000096	17	reactome	R-PFA-450097	https://reactome.org/content/detail/R-PFA-450097	BQB_IS_HOMOLOG_TO	glucokinase and hexokinases
+S00000097	1	reactome	R-HSA-70452	https://reactome.org/content/detail/R-HSA-70452	BQB_IS	TPI1 dimer
+S00000097	3	reactome	R-MMU-70452	https://reactome.org/content/detail/R-MMU-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	4	reactome	R-RNO-70452	https://reactome.org/content/detail/R-RNO-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	5	reactome	R-BTA-70452	https://reactome.org/content/detail/R-BTA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	6	reactome	R-DRE-70452	https://reactome.org/content/detail/R-DRE-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	7	reactome	R-XTR-70452	https://reactome.org/content/detail/R-XTR-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	8	reactome	R-GGA-70452	https://reactome.org/content/detail/R-GGA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	9	reactome	R-DME-70452	https://reactome.org/content/detail/R-DME-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	10	reactome	R-CEL-70452	https://reactome.org/content/detail/R-CEL-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	11	reactome	R-DDI-70452	https://reactome.org/content/detail/R-DDI-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	12	reactome	R-SPO-70452	https://reactome.org/content/detail/R-SPO-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	13	reactome	R-SCE-70452	https://reactome.org/content/detail/R-SCE-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000097	14	reactome	R-PFA-70452	https://reactome.org/content/detail/R-PFA-70452	BQB_IS_HOMOLOG_TO	TPI1 dimer
+S00000098	0	reactome	R-HSA-450668	https://reactome.org/content/detail/R-HSA-450668	BQB_IS	pyruvate kinase tetramer
+S00000098	7	reactome	R-MMU-450668	https://reactome.org/content/detail/R-MMU-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	8	reactome	R-RNO-450668	https://reactome.org/content/detail/R-RNO-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	9	reactome	R-CFA-450663	https://reactome.org/content/detail/R-CFA-450663	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	10	reactome	R-BTA-450668	https://reactome.org/content/detail/R-BTA-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	11	reactome	R-SSC-70098	https://reactome.org/content/detail/R-SSC-70098	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	12	reactome	R-DRE-450668	https://reactome.org/content/detail/R-DRE-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	13	reactome	R-XTR-450668	https://reactome.org/content/detail/R-XTR-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	14	reactome	R-GGA-450663	https://reactome.org/content/detail/R-GGA-450663	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	15	reactome	R-DME-450668	https://reactome.org/content/detail/R-DME-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	16	reactome	R-CEL-450668	https://reactome.org/content/detail/R-CEL-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	17	reactome	R-DDI-450668	https://reactome.org/content/detail/R-DDI-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	18	reactome	R-SPO-450668	https://reactome.org/content/detail/R-SPO-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	19	reactome	R-SCE-450668	https://reactome.org/content/detail/R-SCE-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000098	20	reactome	R-PFA-450668	https://reactome.org/content/detail/R-PFA-450668	BQB_IS_HOMOLOG_TO	pyruvate kinase tetramer
+S00000099	0	chebi	17489	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17489	BQB_IS	cAMP
+S00000099	1	reactome	R-ALL-30389	https://reactome.org/content/detail/R-ALL-30389	BQB_IS	cAMP
+S00000100	0	reactome	R-HSA-6798333	https://reactome.org/content/detail/R-HSA-6798333	BQB_IS	BPGM dimer
+S00000100	2	reactome	R-MMU-6798333	https://reactome.org/content/detail/R-MMU-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	3	reactome	R-RNO-6798333	https://reactome.org/content/detail/R-RNO-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	4	reactome	R-CFA-6798333	https://reactome.org/content/detail/R-CFA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	5	reactome	R-BTA-6798333	https://reactome.org/content/detail/R-BTA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	6	reactome	R-SSC-6798333	https://reactome.org/content/detail/R-SSC-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	7	reactome	R-DRE-6798333	https://reactome.org/content/detail/R-DRE-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	8	reactome	R-XTR-6798333	https://reactome.org/content/detail/R-XTR-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	9	reactome	R-GGA-6798333	https://reactome.org/content/detail/R-GGA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	10	reactome	R-DME-6798333	https://reactome.org/content/detail/R-DME-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	11	reactome	R-DDI-6798333	https://reactome.org/content/detail/R-DDI-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	12	reactome	R-SPO-6798333	https://reactome.org/content/detail/R-SPO-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000100	13	reactome	R-PFA-6798333	https://reactome.org/content/detail/R-PFA-6798333	BQB_IS_HOMOLOG_TO	BPGM dimer
+S00000101	0	chebi	19324	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:19324	BQB_IS	2,3BPG
+S00000101	1	reactome	R-ALL-6798337	https://reactome.org/content/detail/R-ALL-6798337	BQB_IS	2,3BPG
+S00000102	0	reactome	R-HSA-8955670	https://reactome.org/content/detail/R-HSA-8955670	BQB_IS	PGM2L1:Mg2+
+S00000102	3	reactome	R-MMU-8955670	https://reactome.org/content/detail/R-MMU-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	4	reactome	R-RNO-8955670	https://reactome.org/content/detail/R-RNO-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	5	reactome	R-CFA-8955670	https://reactome.org/content/detail/R-CFA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	6	reactome	R-BTA-8955670	https://reactome.org/content/detail/R-BTA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	7	reactome	R-SSC-8955670	https://reactome.org/content/detail/R-SSC-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	8	reactome	R-DRE-8955670	https://reactome.org/content/detail/R-DRE-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	9	reactome	R-XTR-8955670	https://reactome.org/content/detail/R-XTR-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	10	reactome	R-GGA-8955670	https://reactome.org/content/detail/R-GGA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	11	reactome	R-DME-8955670	https://reactome.org/content/detail/R-DME-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	12	reactome	R-CEL-8955670	https://reactome.org/content/detail/R-CEL-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	13	reactome	R-DDI-8955670	https://reactome.org/content/detail/R-DDI-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	14	reactome	R-SPO-8955670	https://reactome.org/content/detail/R-SPO-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	15	reactome	R-SCE-8955670	https://reactome.org/content/detail/R-SCE-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000102	16	reactome	R-PFA-8955670	https://reactome.org/content/detail/R-PFA-8955670	BQB_IS_HOMOLOG_TO	PGM2L1:Mg2+
+S00000103	0	chebi	18148	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18148	BQB_IS	G1,6BP
+S00000103	1	reactome	R-ALL-8955759	https://reactome.org/content/detail/R-ALL-8955759	BQB_IS	G1,6BP
+S00000104	0	reactome	R-HSA-8955798	https://reactome.org/content/detail/R-HSA-8955798	BQB_IS	PGP:Mg2+ dimer
+S00000105	0	chebi	17754	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17754	BQB_IS	Glycerol
+S00000105	1	reactome	R-ALL-76116	https://reactome.org/content/detail/R-ALL-76116	BQB_IS	Glycerol
+S00000106	0	reactome	R-HSA-165961	https://reactome.org/content/detail/R-HSA-165961	BQB_IS	PP2A-ABdeltaC complex
+S00000106	2	reactome	R-MMU-165961	https://reactome.org/content/detail/R-MMU-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
+S00000106	3	reactome	R-RNO-165961	https://reactome.org/content/detail/R-RNO-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
+S00000106	4	reactome	R-DRE-165961	https://reactome.org/content/detail/R-DRE-165961	BQB_IS_HOMOLOG_TO	PP2A-ABdeltaC complex
+S00000107	0	reactome	R-HSA-163745	https://reactome.org/content/detail/R-HSA-163745	BQB_IS	phosphoPFKFB1 dimer
+S00000107	2	reactome	R-MMU-163745	https://reactome.org/content/detail/R-MMU-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	3	reactome	R-RNO-163745	https://reactome.org/content/detail/R-RNO-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	4	reactome	R-CFA-163745	https://reactome.org/content/detail/R-CFA-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	5	reactome	R-SSC-163745	https://reactome.org/content/detail/R-SSC-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	6	reactome	R-DRE-163745	https://reactome.org/content/detail/R-DRE-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	7	reactome	R-XTR-163745	https://reactome.org/content/detail/R-XTR-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	8	reactome	R-GGA-163745	https://reactome.org/content/detail/R-GGA-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	9	reactome	R-DME-163745	https://reactome.org/content/detail/R-DME-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	10	reactome	R-CEL-163745	https://reactome.org/content/detail/R-CEL-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	11	reactome	R-DDI-163745	https://reactome.org/content/detail/R-DDI-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	12	reactome	R-SPO-163745	https://reactome.org/content/detail/R-SPO-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000107	13	reactome	R-SCE-163745	https://reactome.org/content/detail/R-SCE-163745	BQB_IS_HOMOLOG_TO	phosphoPFKFB1 dimer
+S00000108	1	reactome	R-HSA-71786	https://reactome.org/content/detail/R-HSA-71786	BQB_IS	PFKFB1 dimer
+S00000108	3	reactome	R-MMU-71786	https://reactome.org/content/detail/R-MMU-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	4	reactome	R-RNO-71786	https://reactome.org/content/detail/R-RNO-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	5	reactome	R-CFA-71786	https://reactome.org/content/detail/R-CFA-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	6	reactome	R-SSC-71786	https://reactome.org/content/detail/R-SSC-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	7	reactome	R-DRE-71786	https://reactome.org/content/detail/R-DRE-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	8	reactome	R-XTR-71786	https://reactome.org/content/detail/R-XTR-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	9	reactome	R-GGA-71786	https://reactome.org/content/detail/R-GGA-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	10	reactome	R-DME-71786	https://reactome.org/content/detail/R-DME-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	11	reactome	R-CEL-71786	https://reactome.org/content/detail/R-CEL-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	12	reactome	R-DDI-71786	https://reactome.org/content/detail/R-DDI-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	13	reactome	R-SPO-71786	https://reactome.org/content/detail/R-SPO-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000108	14	reactome	R-SCE-71786	https://reactome.org/content/detail/R-SCE-71786	BQB_IS_HOMOLOG_TO	PFKFB1 dimer
+S00000109	0	reactome	R-HSA-372870	https://reactome.org/content/detail/R-HSA-372870	BQB_IS	PFKFB dimers
+S00000109	5	reactome	R-MMU-372870	https://reactome.org/content/detail/R-MMU-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	6	reactome	R-RNO-372870	https://reactome.org/content/detail/R-RNO-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	7	reactome	R-CFA-372870	https://reactome.org/content/detail/R-CFA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	8	reactome	R-BTA-372870	https://reactome.org/content/detail/R-BTA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	9	reactome	R-SSC-372870	https://reactome.org/content/detail/R-SSC-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	10	reactome	R-DRE-372870	https://reactome.org/content/detail/R-DRE-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	11	reactome	R-XTR-372870	https://reactome.org/content/detail/R-XTR-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	12	reactome	R-GGA-372870	https://reactome.org/content/detail/R-GGA-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	13	reactome	R-DME-372870	https://reactome.org/content/detail/R-DME-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	14	reactome	R-CEL-372870	https://reactome.org/content/detail/R-CEL-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	15	reactome	R-DDI-372870	https://reactome.org/content/detail/R-DDI-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	16	reactome	R-SPO-372870	https://reactome.org/content/detail/R-SPO-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000109	17	reactome	R-SCE-372870	https://reactome.org/content/detail/R-SCE-372870	BQB_IS_HOMOLOG_TO	PFKFB dimers
+S00000110	0	reactome	R-HSA-111920	https://reactome.org/content/detail/R-HSA-111920	BQB_IS	PKA catalytic subunit
+S00000110	4	reactome	R-MMU-163507	https://reactome.org/content/detail/R-MMU-163507	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	5	reactome	R-RNO-111920	https://reactome.org/content/detail/R-RNO-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	6	reactome	R-CFA-111920	https://reactome.org/content/detail/R-CFA-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	7	reactome	R-BTA-111920	https://reactome.org/content/detail/R-BTA-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	8	reactome	R-DRE-111920	https://reactome.org/content/detail/R-DRE-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	9	reactome	R-XTR-111920	https://reactome.org/content/detail/R-XTR-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	10	reactome	R-GGA-57846	https://reactome.org/content/detail/R-GGA-57846	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	11	reactome	R-DME-111920	https://reactome.org/content/detail/R-DME-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	12	reactome	R-CEL-57844	https://reactome.org/content/detail/R-CEL-57844	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	13	reactome	R-SPO-57844	https://reactome.org/content/detail/R-SPO-57844	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000110	14	reactome	R-SCE-111920	https://reactome.org/content/detail/R-SCE-111920	BQB_IS_HOMOLOG_TO	PKA catalytic subunit
+S00000111	0	uniprot	Q9NQR9	https://purl.uniprot.org/uniprot/Q9NQR9	BQB_IS	G6PC2
+S00000111	1	reactome	R-HSA-981603	https://reactome.org/content/detail/R-HSA-981603	BQB_IS	G6PC2
+S00000111	2	reactome	R-MMU-981603	https://reactome.org/content/detail/R-MMU-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000111	3	reactome	R-CFA-981603	https://reactome.org/content/detail/R-CFA-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000111	4	reactome	R-BTA-981603	https://reactome.org/content/detail/R-BTA-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000111	5	reactome	R-SSC-981603	https://reactome.org/content/detail/R-SSC-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000111	6	reactome	R-GGA-981603	https://reactome.org/content/detail/R-GGA-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000111	7	reactome	R-DME-981603	https://reactome.org/content/detail/R-DME-981603	BQB_IS_HOMOLOG_TO	G6PC2
+S00000112	0	uniprot	O43826	https://purl.uniprot.org/uniprot/O43826	BQB_IS	SLC37A4
+S00000112	1	reactome	R-HSA-3006348	https://reactome.org/content/detail/R-HSA-3006348	BQB_IS	SLC37A4
+S00000112	2	reactome	R-MMU-3006348	https://reactome.org/content/detail/R-MMU-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	3	reactome	R-RNO-3006348	https://reactome.org/content/detail/R-RNO-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	4	reactome	R-CFA-3006348	https://reactome.org/content/detail/R-CFA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	5	reactome	R-BTA-3006348	https://reactome.org/content/detail/R-BTA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	6	reactome	R-SSC-3006348	https://reactome.org/content/detail/R-SSC-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	7	reactome	R-DRE-3006348	https://reactome.org/content/detail/R-DRE-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	8	reactome	R-GGA-3006348	https://reactome.org/content/detail/R-GGA-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000112	9	reactome	R-CEL-3006348	https://reactome.org/content/detail/R-CEL-3006348	BQB_IS_HOMOLOG_TO	SLC37A4
+S00000113	0	reactome	R-HSA-198437	https://reactome.org/content/detail/R-HSA-198437	BQB_IS	malate dehydrogenase 1 dimer
+S00000113	2	reactome	R-MMU-198437	https://reactome.org/content/detail/R-MMU-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	3	reactome	R-RNO-198437	https://reactome.org/content/detail/R-RNO-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	4	reactome	R-CFA-198437	https://reactome.org/content/detail/R-CFA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	5	reactome	R-BTA-198437	https://reactome.org/content/detail/R-BTA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	6	reactome	R-SSC-198437	https://reactome.org/content/detail/R-SSC-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	7	reactome	R-DRE-198437	https://reactome.org/content/detail/R-DRE-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	8	reactome	R-XTR-198437	https://reactome.org/content/detail/R-XTR-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	9	reactome	R-GGA-198437	https://reactome.org/content/detail/R-GGA-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	10	reactome	R-DME-198437	https://reactome.org/content/detail/R-DME-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	11	reactome	R-CEL-198437	https://reactome.org/content/detail/R-CEL-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000113	12	reactome	R-DDI-198437	https://reactome.org/content/detail/R-DDI-198437	BQB_IS_HOMOLOG_TO	malate dehydrogenase 1 dimer
+S00000114	0	uniprot	Q9UBX3	https://purl.uniprot.org/uniprot/Q9UBX3	BQB_IS	SLC25A10
+S00000114	1	reactome	R-HSA-372848	https://reactome.org/content/detail/R-HSA-372848	BQB_IS	SLC25A10
+S00000114	2	reactome	R-MMU-372848	https://reactome.org/content/detail/R-MMU-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	3	reactome	R-RNO-372848	https://reactome.org/content/detail/R-RNO-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	4	reactome	R-CFA-372848	https://reactome.org/content/detail/R-CFA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	5	reactome	R-BTA-372848	https://reactome.org/content/detail/R-BTA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	6	reactome	R-SSC-372848	https://reactome.org/content/detail/R-SSC-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	7	reactome	R-DRE-372848	https://reactome.org/content/detail/R-DRE-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	8	reactome	R-XTR-372848	https://reactome.org/content/detail/R-XTR-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	9	reactome	R-GGA-372848	https://reactome.org/content/detail/R-GGA-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	10	reactome	R-DME-372848	https://reactome.org/content/detail/R-DME-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	11	reactome	R-CEL-372848	https://reactome.org/content/detail/R-CEL-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	12	reactome	R-DDI-372848	https://reactome.org/content/detail/R-DDI-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000114	13	reactome	R-SCE-372848	https://reactome.org/content/detail/R-SCE-372848	BQB_IS_HOMOLOG_TO	SLC25A10
+S00000115	0	reactome	R-HSA-376856	https://reactome.org/content/detail/R-HSA-376856	BQB_IS	SLC25A11 homodimer
+S00000115	2	reactome	R-MMU-376856	https://reactome.org/content/detail/R-MMU-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	3	reactome	R-RNO-376856	https://reactome.org/content/detail/R-RNO-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	4	reactome	R-CFA-376856	https://reactome.org/content/detail/R-CFA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	5	reactome	R-BTA-376856	https://reactome.org/content/detail/R-BTA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	6	reactome	R-SSC-376856	https://reactome.org/content/detail/R-SSC-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	7	reactome	R-DRE-376856	https://reactome.org/content/detail/R-DRE-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	8	reactome	R-XTR-376856	https://reactome.org/content/detail/R-XTR-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	9	reactome	R-GGA-376856	https://reactome.org/content/detail/R-GGA-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	10	reactome	R-DME-376856	https://reactome.org/content/detail/R-DME-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	11	reactome	R-CEL-376856	https://reactome.org/content/detail/R-CEL-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	12	reactome	R-DDI-376856	https://reactome.org/content/detail/R-DDI-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000115	13	reactome	R-SCE-376856	https://reactome.org/content/detail/R-SCE-376856	BQB_IS_HOMOLOG_TO	SLC25A11 homodimer
+S00000116	0	reactome	R-HSA-372469	https://reactome.org/content/detail/R-HSA-372469	BQB_IS	SLC25A12,13
+S00000116	3	reactome	R-MMU-372469	https://reactome.org/content/detail/R-MMU-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	4	reactome	R-RNO-372470	https://reactome.org/content/detail/R-RNO-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	5	reactome	R-CFA-372469	https://reactome.org/content/detail/R-CFA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	6	reactome	R-BTA-372469	https://reactome.org/content/detail/R-BTA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	7	reactome	R-SSC-372469	https://reactome.org/content/detail/R-SSC-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	8	reactome	R-DRE-372469	https://reactome.org/content/detail/R-DRE-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	9	reactome	R-XTR-372469	https://reactome.org/content/detail/R-XTR-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	10	reactome	R-GGA-372469	https://reactome.org/content/detail/R-GGA-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	11	reactome	R-DME-372470	https://reactome.org/content/detail/R-DME-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	12	reactome	R-CEL-372469	https://reactome.org/content/detail/R-CEL-372469	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	13	reactome	R-DDI-372470	https://reactome.org/content/detail/R-DDI-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000116	14	reactome	R-SCE-372470	https://reactome.org/content/detail/R-SCE-372470	BQB_IS_HOMOLOG_TO	SLC25A12,13
+S00000117	0	chebi	29991	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29991	BQB_IS	L-Asp
+S00000117	1	reactome	R-ALL-113553	https://reactome.org/content/detail/R-ALL-113553	BQB_IS	L-Asp
+S00000117	2	reactome	R-ALL-29448	https://reactome.org/content/detail/R-ALL-29448	BQB_IS	L-Asp
+S00000118	0	chebi	29985	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29985	BQB_IS	L-Glu
+S00000118	1	reactome	R-ALL-29404	https://reactome.org/content/detail/R-ALL-29404	BQB_IS	L-Glu
+S00000118	2	reactome	R-ALL-113552	https://reactome.org/content/detail/R-ALL-113552	BQB_IS	L-Glu
+S00000119	0	uniprot	P53007	https://purl.uniprot.org/uniprot/P53007	BQB_IS	SLC25A1
+S00000119	1	reactome	R-HSA-372445	https://reactome.org/content/detail/R-HSA-372445	BQB_IS	SLC25A1
+S00000119	2	reactome	R-MMU-372445	https://reactome.org/content/detail/R-MMU-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	3	reactome	R-RNO-372445	https://reactome.org/content/detail/R-RNO-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	4	reactome	R-CFA-372445	https://reactome.org/content/detail/R-CFA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	5	reactome	R-BTA-372445	https://reactome.org/content/detail/R-BTA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	6	reactome	R-SSC-372445	https://reactome.org/content/detail/R-SSC-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	7	reactome	R-DRE-372445	https://reactome.org/content/detail/R-DRE-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	8	reactome	R-XTR-372445	https://reactome.org/content/detail/R-XTR-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	9	reactome	R-GGA-372445	https://reactome.org/content/detail/R-GGA-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	10	reactome	R-DME-372445	https://reactome.org/content/detail/R-DME-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	11	reactome	R-CEL-372445	https://reactome.org/content/detail/R-CEL-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	12	reactome	R-SPO-372445	https://reactome.org/content/detail/R-SPO-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000119	13	reactome	R-SCE-372445	https://reactome.org/content/detail/R-SCE-372445	BQB_IS_HOMOLOG_TO	SLC25A1
+S00000120	0	reactome	R-HSA-70499	https://reactome.org/content/detail/R-HSA-70499	BQB_IS	pyruvate carboxylase holoenzyme
+S00000120	4	reactome	R-MMU-70499	https://reactome.org/content/detail/R-MMU-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	5	reactome	R-RNO-70499	https://reactome.org/content/detail/R-RNO-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	6	reactome	R-CFA-70499	https://reactome.org/content/detail/R-CFA-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	7	reactome	R-BTA-70499	https://reactome.org/content/detail/R-BTA-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	8	reactome	R-SSC-70499	https://reactome.org/content/detail/R-SSC-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	9	reactome	R-DRE-70499	https://reactome.org/content/detail/R-DRE-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	10	reactome	R-XTR-70499	https://reactome.org/content/detail/R-XTR-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	11	reactome	R-DME-70499	https://reactome.org/content/detail/R-DME-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	12	reactome	R-CEL-70499	https://reactome.org/content/detail/R-CEL-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	13	reactome	R-SPO-70499	https://reactome.org/content/detail/R-SPO-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000120	14	reactome	R-SCE-70499	https://reactome.org/content/detail/R-SCE-70499	BQB_IS_HOMOLOG_TO	pyruvate carboxylase holoenzyme
+S00000121	0	uniprot	P35558	https://purl.uniprot.org/uniprot/P35558	BQB_IS	PCK1
+S00000121	1	reactome	R-HSA-70495	https://reactome.org/content/detail/R-HSA-70495	BQB_IS	PCK1
+S00000121	2	reactome	R-MMU-9623317	https://reactome.org/content/detail/R-MMU-9623317	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	3	reactome	R-RNO-70495	https://reactome.org/content/detail/R-RNO-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	4	reactome	R-CFA-70495	https://reactome.org/content/detail/R-CFA-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	5	reactome	R-SSC-70495	https://reactome.org/content/detail/R-SSC-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	6	reactome	R-DRE-70495	https://reactome.org/content/detail/R-DRE-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	7	reactome	R-XTR-70495	https://reactome.org/content/detail/R-XTR-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	8	reactome	R-DME-70495	https://reactome.org/content/detail/R-DME-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	9	reactome	R-DME-70495-2	https://reactome.org/content/detail/R-DME-70495-2	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	10	reactome	R-DME-70495-3	https://reactome.org/content/detail/R-DME-70495-3	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	11	reactome	R-CEL-70495	https://reactome.org/content/detail/R-CEL-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	12	reactome	R-CEL-70495-2	https://reactome.org/content/detail/R-CEL-70495-2	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	13	reactome	R-CEL-70495-3	https://reactome.org/content/detail/R-CEL-70495-3	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	14	reactome	R-CEL-70495-4	https://reactome.org/content/detail/R-CEL-70495-4	BQB_IS_HOMOLOG_TO	PCK1
+S00000121	15	reactome	R-DDI-70495	https://reactome.org/content/detail/R-DDI-70495	BQB_IS_HOMOLOG_TO	PCK1
+S00000122	0	uniprot	Q16822	https://purl.uniprot.org/uniprot/Q16822	BQB_IS	PCK2
+S00000122	1	reactome	R-HSA-372815	https://reactome.org/content/detail/R-HSA-372815	BQB_IS	PCK2
+S00000122	2	reactome	R-MMU-372815	https://reactome.org/content/detail/R-MMU-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	3	reactome	R-RNO-372815	https://reactome.org/content/detail/R-RNO-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	4	reactome	R-CFA-372815	https://reactome.org/content/detail/R-CFA-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	5	reactome	R-BTA-372815	https://reactome.org/content/detail/R-BTA-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	6	reactome	R-SSC-372815	https://reactome.org/content/detail/R-SSC-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	7	reactome	R-DRE-372815	https://reactome.org/content/detail/R-DRE-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	8	reactome	R-XTR-372815	https://reactome.org/content/detail/R-XTR-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	9	reactome	R-GGA-372815	https://reactome.org/content/detail/R-GGA-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	10	reactome	R-DME-372815	https://reactome.org/content/detail/R-DME-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	11	reactome	R-CEL-372815	https://reactome.org/content/detail/R-CEL-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000122	12	reactome	R-DDI-372815	https://reactome.org/content/detail/R-DDI-372815	BQB_IS_HOMOLOG_TO	PCK2
+S00000123	0	reactome	R-HSA-70594	https://reactome.org/content/detail/R-HSA-70594	BQB_IS	GOT2 dimer
+S00000123	2	reactome	R-MMU-70594	https://reactome.org/content/detail/R-MMU-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	3	reactome	R-RNO-9012715	https://reactome.org/content/detail/R-RNO-9012715	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	4	reactome	R-CFA-70594	https://reactome.org/content/detail/R-CFA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	5	reactome	R-BTA-70594	https://reactome.org/content/detail/R-BTA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	6	reactome	R-DRE-70594	https://reactome.org/content/detail/R-DRE-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	7	reactome	R-XTR-70594	https://reactome.org/content/detail/R-XTR-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	8	reactome	R-DME-70594	https://reactome.org/content/detail/R-DME-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	9	reactome	R-CEL-70594	https://reactome.org/content/detail/R-CEL-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	10	reactome	R-DDI-70594	https://reactome.org/content/detail/R-DDI-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	11	reactome	R-SPO-70594	https://reactome.org/content/detail/R-SPO-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	12	reactome	R-SCE-70594	https://reactome.org/content/detail/R-SCE-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000123	13	reactome	R-PFA-70594	https://reactome.org/content/detail/R-PFA-70594	BQB_IS_HOMOLOG_TO	GOT2 dimer
+S00000124	1	reactome	R-HSA-3257118	https://reactome.org/content/detail/R-HSA-3257118	BQB_IS	SLC37A1,2
+S00000124	4	reactome	R-MMU-3257118	https://reactome.org/content/detail/R-MMU-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	5	reactome	R-RNO-3257118	https://reactome.org/content/detail/R-RNO-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	6	reactome	R-CFA-3257118	https://reactome.org/content/detail/R-CFA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	7	reactome	R-BTA-3257118	https://reactome.org/content/detail/R-BTA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	8	reactome	R-SSC-3257118	https://reactome.org/content/detail/R-SSC-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	9	reactome	R-DRE-3257118	https://reactome.org/content/detail/R-DRE-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	10	reactome	R-XTR-3257124	https://reactome.org/content/detail/R-XTR-3257124	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	11	reactome	R-GGA-3257118	https://reactome.org/content/detail/R-GGA-3257118	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000124	12	reactome	R-DME-3257123	https://reactome.org/content/detail/R-DME-3257123	BQB_IS_HOMOLOG_TO	SLC37A1,2
+S00000125	0	uniprot	P35575	https://purl.uniprot.org/uniprot/P35575	BQB_IS	G6PC
+S00000125	1	reactome	R-HSA-71823	https://reactome.org/content/detail/R-HSA-71823	BQB_IS	G6PC
+S00000125	2	reactome	R-MMU-9623271	https://reactome.org/content/detail/R-MMU-9623271	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	3	reactome	R-RNO-71823	https://reactome.org/content/detail/R-RNO-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	4	reactome	R-CFA-71823	https://reactome.org/content/detail/R-CFA-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	5	reactome	R-BTA-71823	https://reactome.org/content/detail/R-BTA-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	6	reactome	R-SSC-71823	https://reactome.org/content/detail/R-SSC-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	7	reactome	R-DRE-71823	https://reactome.org/content/detail/R-DRE-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	8	reactome	R-XTR-71823	https://reactome.org/content/detail/R-XTR-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	9	reactome	R-GGA-71823	https://reactome.org/content/detail/R-GGA-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000125	10	reactome	R-DME-71823	https://reactome.org/content/detail/R-DME-71823	BQB_IS_HOMOLOG_TO	G6PC
+S00000126	0	reactome	R-HSA-372874	https://reactome.org/content/detail/R-HSA-372874	BQB_IS	FBP tetramer
+S00000126	4	reactome	R-MMU-372874	https://reactome.org/content/detail/R-MMU-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	5	reactome	R-RNO-372874	https://reactome.org/content/detail/R-RNO-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	6	reactome	R-CFA-372874	https://reactome.org/content/detail/R-CFA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	7	reactome	R-BTA-372874	https://reactome.org/content/detail/R-BTA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	8	reactome	R-SSC-2267351	https://reactome.org/content/detail/R-SSC-2267351	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	9	reactome	R-DRE-372874	https://reactome.org/content/detail/R-DRE-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	10	reactome	R-XTR-372874	https://reactome.org/content/detail/R-XTR-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	11	reactome	R-GGA-372874	https://reactome.org/content/detail/R-GGA-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	12	reactome	R-DME-372874	https://reactome.org/content/detail/R-DME-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	13	reactome	R-CEL-372874	https://reactome.org/content/detail/R-CEL-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	14	reactome	R-DDI-372874	https://reactome.org/content/detail/R-DDI-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	15	reactome	R-SPO-372874	https://reactome.org/content/detail/R-SPO-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000126	16	reactome	R-SCE-372874	https://reactome.org/content/detail/R-SCE-372874	BQB_IS_HOMOLOG_TO	FBP tetramer
+S00000127	0	uniprot	Q9BUM1	https://purl.uniprot.org/uniprot/Q9BUM1	BQB_IS	G6PC3
+S00000127	1	reactome	R-HSA-981605	https://reactome.org/content/detail/R-HSA-981605	BQB_IS	G6PC3
+S00000127	2	reactome	R-MMU-981605	https://reactome.org/content/detail/R-MMU-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	3	reactome	R-RNO-981605	https://reactome.org/content/detail/R-RNO-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	4	reactome	R-CFA-981605	https://reactome.org/content/detail/R-CFA-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	5	reactome	R-BTA-981605	https://reactome.org/content/detail/R-BTA-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	6	reactome	R-SSC-981605	https://reactome.org/content/detail/R-SSC-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	7	reactome	R-DRE-981605	https://reactome.org/content/detail/R-DRE-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	8	reactome	R-XTR-981605	https://reactome.org/content/detail/R-XTR-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	9	reactome	R-GGA-981605	https://reactome.org/content/detail/R-GGA-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000127	10	reactome	R-DME-981605	https://reactome.org/content/detail/R-DME-981605	BQB_IS_HOMOLOG_TO	G6PC3
+S00000128	1	reactome	R-HSA-70579	https://reactome.org/content/detail/R-HSA-70579	BQB_IS	PXLP-K259-GOT1 dimer
+S00000128	3	reactome	R-MMU-70579	https://reactome.org/content/detail/R-MMU-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	4	reactome	R-RNO-70579	https://reactome.org/content/detail/R-RNO-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	5	reactome	R-CFA-70579	https://reactome.org/content/detail/R-CFA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	6	reactome	R-BTA-70579	https://reactome.org/content/detail/R-BTA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	7	reactome	R-SSC-70579	https://reactome.org/content/detail/R-SSC-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	8	reactome	R-DRE-70579	https://reactome.org/content/detail/R-DRE-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	9	reactome	R-XTR-70579	https://reactome.org/content/detail/R-XTR-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	10	reactome	R-GGA-70579	https://reactome.org/content/detail/R-GGA-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	11	reactome	R-DME-70579	https://reactome.org/content/detail/R-DME-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	12	reactome	R-CEL-70579	https://reactome.org/content/detail/R-CEL-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	13	reactome	R-SPO-70579	https://reactome.org/content/detail/R-SPO-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000128	14	reactome	R-SCE-70579	https://reactome.org/content/detail/R-SCE-70579	BQB_IS_HOMOLOG_TO	PXLP-K259-GOT1 dimer
+S00000000	1	uniprot	P40926	https://purl.uniprot.org/uniprot/P40926	BQB_HAS_PART	MDH2 dimer
+S00000006	1	uniprot	P23368	https://purl.uniprot.org/uniprot/P23368	BQB_HAS_PART	ME2:Mg2+ tetramer
+S00000006	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ME2:Mg2+ tetramer
+S00000011	1	uniprot	P07954	https://purl.uniprot.org/uniprot/P07954	BQB_HAS_PART	FH tetramer
+S00000013	3	chebi	58937	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58937	BQB_HAS_PART	lipo-aKGDH
+S00000013	4	uniprot	Q02218	https://purl.uniprot.org/uniprot/Q02218	BQB_HAS_PART	lipo-aKGDH
+S00000013	5	chebi	17460	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17460	BQB_HAS_PART	lipo-aKGDH
+S00000013	6	uniprot	P36957	https://purl.uniprot.org/uniprot/P36957	BQB_HAS_PART	lipo-aKGDH
+S00000013	7	uniprot	P09622	https://purl.uniprot.org/uniprot/P09622	BQB_HAS_PART	lipo-aKGDH
+S00000013	8	chebi	16238	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16238	BQB_HAS_PART	lipo-aKGDH
+S00000017	1	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	IDH2 dimer
+S00000017	2	uniprot	P48735	https://purl.uniprot.org/uniprot/P48735	BQB_HAS_PART	IDH2 dimer
+S00000021	1	uniprot	P31040	https://purl.uniprot.org/uniprot/P31040	BQB_HAS_PART	SDH complex (ox.)
+S00000021	2	chebi	16238	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16238	BQB_HAS_PART	SDH complex (ox.)
+S00000021	3	uniprot	P21912	https://purl.uniprot.org/uniprot/P21912	BQB_HAS_PART	SDH complex (ox.)
+S00000021	4	uniprot	O14521	https://purl.uniprot.org/uniprot/O14521	BQB_HAS_PART	SDH complex (ox.)
+S00000021	5	uniprot	Q99643	https://purl.uniprot.org/uniprot/Q99643	BQB_HAS_PART	SDH complex (ox.)
+S00000023	1	uniprot	Q9P2R7	https://purl.uniprot.org/uniprot/Q9P2R7	BQB_HAS_PART	SUCLA2:SUCLG1
+S00000023	2	uniprot	P53597	https://purl.uniprot.org/uniprot/P53597	BQB_HAS_PART	SUCLA2:SUCLG1
+S00000026	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ME3:Mg2+ tetramer
+S00000026	2	uniprot	Q16798	https://purl.uniprot.org/uniprot/Q16798	BQB_HAS_PART	ME3:Mg2+ tetramer
+S00000027	2	uniprot	O43837	https://purl.uniprot.org/uniprot/O43837	BQB_HAS_PART	IDH3 complex
+S00000027	3	uniprot	P50213	https://purl.uniprot.org/uniprot/P50213	BQB_HAS_PART	IDH3 complex
+S00000027	4	uniprot	P51553	https://purl.uniprot.org/uniprot/P51553	BQB_HAS_PART	IDH3 complex
+S00000027	5	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	IDH3 complex
+S00000030	1	uniprot	Q6P587	https://purl.uniprot.org/uniprot/Q6P587	BQB_HAS_PART	FAHD1:Mg2+ dimer
+S00000030	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	FAHD1:Mg2+ dimer
+S00000031	1	uniprot	Q13423	https://purl.uniprot.org/uniprot/Q13423	BQB_HAS_PART	NNT dimer
+S00000032	1	uniprot	O75390	https://purl.uniprot.org/uniprot/O75390	BQB_HAS_PART	CS dimer
+S00000034	1	uniprot	Q96I99	https://purl.uniprot.org/uniprot/Q96I99	BQB_HAS_PART	SUCLG1:SUCLG2
+S00000034	2	uniprot	P53597	https://purl.uniprot.org/uniprot/P53597	BQB_HAS_PART	SUCLG1:SUCLG2
+S00000037	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	TKT dimer
+S00000037	3	uniprot	P29401	https://purl.uniprot.org/uniprot/P29401	BQB_HAS_PART	TKT dimer
+S00000037	4	chebi	58937	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58937	BQB_HAS_PART	TKT dimer
+S00000047	1	uniprot	Q2QD12	https://purl.uniprot.org/uniprot/Q2QD12	BQB_HAS_PART	RPE:Fe2+ dimers
+S00000047	2	chebi	29033	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29033	BQB_HAS_PART	RPE:Fe2+ dimers
+S00000047	3	uniprot	Q96AT9	https://purl.uniprot.org/uniprot/Q96AT9	BQB_HAS_PART	RPE:Fe2+ dimers
+S00000048	2	uniprot	P37837	https://purl.uniprot.org/uniprot/P37837	BQB_HAS_PART	TALDO1 dimer
+S00000051	2	uniprot	P60891	https://purl.uniprot.org/uniprot/P60891	BQB_HAS_PART	PRPS2 dimer, PRPS1L dimer
+S00000061	1	uniprot	P11413	https://purl.uniprot.org/uniprot/P11413	BQB_HAS_PART	G6PD dimer and tetramer
+S00000061	2	chebi	18009	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18009	BQB_HAS_PART	G6PD dimer and tetramer
+S00000064	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGM2:Mg2+
+S00000064	2	uniprot	Q96G03	https://purl.uniprot.org/uniprot/Q96G03	BQB_HAS_PART	PGM2:Mg2+
+S00000067	2	uniprot	P52209	https://purl.uniprot.org/uniprot/P52209	BQB_HAS_PART	PGD dimer
+S00000070	6	uniprot	P17858	https://purl.uniprot.org/uniprot/P17858	BQB_HAS_PART	PFK tetramer
+S00000070	7	uniprot	P08237	https://purl.uniprot.org/uniprot/P08237	BQB_HAS_PART	PFK tetramer
+S00000070	8	uniprot	Q01813	https://purl.uniprot.org/uniprot/Q01813	BQB_HAS_PART	PFK tetramer
+S00000073	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	ADPGK:Mg2+
+S00000073	3	uniprot	Q9BRR6	https://purl.uniprot.org/uniprot/Q9BRR6	BQB_HAS_PART	ADPGK:Mg2+
+S00000075	1	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	GCK1:GKRP complex
+S00000075	2	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_HAS_PART	GCK1:GKRP complex
+S00000078	1	uniprot	Q14397	https://purl.uniprot.org/uniprot/Q14397	BQB_HAS_PART	GCK1:GKRP complex
+S00000078	2	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	GCK1:GKRP complex
+S00000082	1	uniprot	P06744	https://purl.uniprot.org/uniprot/P06744	BQB_HAS_PART	GPI dimer
+S00000083	2	uniprot	P18669	https://purl.uniprot.org/uniprot/P18669	BQB_HAS_PART	PGAM dimers
+S00000083	3	uniprot	P15259	https://purl.uniprot.org/uniprot/P15259	BQB_HAS_PART	PGAM dimers
+S00000086	1	uniprot	P04075	https://purl.uniprot.org/uniprot/P04075	BQB_HAS_PART	aldolase tetramer
+S00000086	2	uniprot	P05062	https://purl.uniprot.org/uniprot/P05062	BQB_HAS_PART	aldolase tetramer
+S00000086	3	uniprot	P09972	https://purl.uniprot.org/uniprot/P09972	BQB_HAS_PART	aldolase tetramer
+S00000088	1	uniprot	P00558	https://purl.uniprot.org/uniprot/P00558	BQB_HAS_PART	PGK complexes
+S00000088	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGK complexes
+S00000090	1	uniprot	P09104	https://purl.uniprot.org/uniprot/P09104	BQB_HAS_PART	enolase dimer
+S00000090	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	enolase dimer
+S00000090	3	uniprot	P13929	https://purl.uniprot.org/uniprot/P13929	BQB_HAS_PART	enolase dimer
+S00000090	4	uniprot	P06733	https://purl.uniprot.org/uniprot/P06733	BQB_HAS_PART	enolase dimer
+S00000092	3	uniprot	O14556	https://purl.uniprot.org/uniprot/O14556	BQB_HAS_PART	GAPDH tetramers
+S00000092	4	uniprot	P04406	https://purl.uniprot.org/uniprot/P04406	BQB_HAS_PART	GAPDH tetramers
+S00000093	1	uniprot	P46926	https://purl.uniprot.org/uniprot/P46926	BQB_HAS_PART	GNPDA1,2 hexamers
+S00000093	2	uniprot	Q8TDQ7	https://purl.uniprot.org/uniprot/Q8TDQ7	BQB_HAS_PART	GNPDA1,2 hexamers
+S00000096	1	uniprot	P35557	https://purl.uniprot.org/uniprot/P35557	BQB_HAS_PART	glucokinase and hexokinases
+S00000096	2	uniprot	P19367	https://purl.uniprot.org/uniprot/P19367	BQB_HAS_PART	glucokinase and hexokinases
+S00000096	3	uniprot	P52789	https://purl.uniprot.org/uniprot/P52789	BQB_HAS_PART	glucokinase and hexokinases
+S00000096	4	uniprot	P52790	https://purl.uniprot.org/uniprot/P52790	BQB_HAS_PART	glucokinase and hexokinases
+S00000097	2	uniprot	P60174	https://purl.uniprot.org/uniprot/P60174	BQB_HAS_PART	TPI1 dimer
+S00000098	1	uniprot	P14618-2	https://purl.uniprot.org/uniprot/P14618-2	BQB_HAS_PART	pyruvate kinase tetramer
+S00000098	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	pyruvate kinase tetramer
+S00000098	3	chebi	29103	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29103	BQB_HAS_PART	pyruvate kinase tetramer
+S00000098	4	uniprot	P30613-1	https://purl.uniprot.org/uniprot/P30613-1	BQB_HAS_PART	pyruvate kinase tetramer
+S00000098	5	uniprot	P30613-2	https://purl.uniprot.org/uniprot/P30613-2	BQB_HAS_PART	pyruvate kinase tetramer
+S00000098	6	uniprot	P14618-1	https://purl.uniprot.org/uniprot/P14618-1	BQB_HAS_PART	pyruvate kinase tetramer
+S00000100	1	uniprot	P07738	https://purl.uniprot.org/uniprot/P07738	BQB_HAS_PART	BPGM dimer
+S00000102	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGM2L1:Mg2+
+S00000102	2	uniprot	Q6PCE3	https://purl.uniprot.org/uniprot/Q6PCE3	BQB_HAS_PART	PGM2L1:Mg2+
+S00000104	1	uniprot	A6NDG6	https://purl.uniprot.org/uniprot/A6NDG6	BQB_HAS_PART	PGP:Mg2+ dimer
+S00000104	2	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	PGP:Mg2+ dimer
+S00000106	1	uniprot	Q14738	https://purl.uniprot.org/uniprot/Q14738	BQB_HAS_PART	PP2A-ABdeltaC complex
+S00000107	1	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	phosphoPFKFB1 dimer
+S00000108	2	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	PFKFB1 dimer
+S00000109	1	uniprot	Q16875	https://purl.uniprot.org/uniprot/Q16875	BQB_HAS_PART	PFKFB dimers
+S00000109	2	uniprot	Q16877	https://purl.uniprot.org/uniprot/Q16877	BQB_HAS_PART	PFKFB dimers
+S00000109	3	uniprot	P16118	https://purl.uniprot.org/uniprot/P16118	BQB_HAS_PART	PFKFB dimers
+S00000109	4	uniprot	O60825	https://purl.uniprot.org/uniprot/O60825	BQB_HAS_PART	PFKFB dimers
+S00000110	1	uniprot	P17612	https://purl.uniprot.org/uniprot/P17612	BQB_HAS_PART	PKA catalytic subunit
+S00000110	2	uniprot	P22694	https://purl.uniprot.org/uniprot/P22694	BQB_HAS_PART	PKA catalytic subunit
+S00000110	3	uniprot	P22612	https://purl.uniprot.org/uniprot/P22612	BQB_HAS_PART	PKA catalytic subunit
+S00000113	1	uniprot	P40925	https://purl.uniprot.org/uniprot/P40925	BQB_HAS_PART	malate dehydrogenase 1 dimer
+S00000115	1	uniprot	Q02978	https://purl.uniprot.org/uniprot/Q02978	BQB_HAS_PART	SLC25A11 homodimer
+S00000116	1	uniprot	Q9UJS0	https://purl.uniprot.org/uniprot/Q9UJS0	BQB_HAS_PART	SLC25A12,13
+S00000116	2	uniprot	O75746	https://purl.uniprot.org/uniprot/O75746	BQB_HAS_PART	SLC25A12,13
+S00000120	1	uniprot	P11498	https://purl.uniprot.org/uniprot/P11498	BQB_HAS_PART	pyruvate carboxylase holoenzyme
+S00000120	2	chebi	29035	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29035	BQB_HAS_PART	pyruvate carboxylase holoenzyme
+S00000120	3	chebi	15956	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15956	BQB_HAS_PART	pyruvate carboxylase holoenzyme
+S00000123	1	uniprot	P00505	https://purl.uniprot.org/uniprot/P00505	BQB_HAS_PART	GOT2 dimer
+S00000124	2	uniprot	P57057	https://purl.uniprot.org/uniprot/P57057	BQB_HAS_PART	SLC37A1,2
+S00000124	3	uniprot	Q8TED4-2	https://purl.uniprot.org/uniprot/Q8TED4-2	BQB_HAS_PART	SLC37A1,2
+S00000126	1	chebi	18420	http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18420	BQB_HAS_PART	FBP tetramer
+S00000126	2	uniprot	O00757	https://purl.uniprot.org/uniprot/O00757	BQB_HAS_PART	FBP tetramer
+S00000126	3	uniprot	P09467	https://purl.uniprot.org/uniprot/P09467	BQB_HAS_PART	FBP tetramer
+S00000128	2	uniprot	P17174	https://purl.uniprot.org/uniprot/P17174	BQB_HAS_PART	PXLP-K259-GOT1 dimer
