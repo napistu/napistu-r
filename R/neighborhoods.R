@@ -241,11 +241,12 @@ create_neighborhood_table <- function(
 #' @param sc_id compartmentalized species identifier of focal node
 #' @param sc_name name of focal node
 #' @inheritParams create_neighborhood_table
-#' @param score_overlay optional, scores of neighbors for an indication from \link{summarize_indication}.
-#' @param score_label optional, name of disease being overlaid.
-#' @param score_palette optional, color palette for scores.
+#' @inheritParams prepare_score_overlays
+#' @param score_label optional, name of disease being overlaid
+#' @param score_palette optional, color palette for scores
+#' @param join_scores_on attribute to use when merging score_overlays and vertices
 #' @param max_labeled_species maximum number of species to label (to avoid overplotting)
-#' @param network_layout method to used for creating a network layout (e.g., fr, kk, drl)
+#' @inheritParams prepare_rendering
 #' @param edge_width width of edges on graph
 #'
 #' @returns a ggplot2 grob
@@ -313,6 +314,7 @@ plot_one_neighborhood <- function(
     score_overlay = NULL,
     score_label = NULL,
     score_palette = NULL,
+    join_scores_on = "s_id",
     max_labeled_species = 30L,
     network_layout = "fr",
     edge_width = 0.1
@@ -334,33 +336,19 @@ plot_one_neighborhood <- function(
     cli::cli_alert_info("Starting plot_one_neighborhood")
     
     if (nrow(edges) == 0) {
-        invalid_plot <- ggplot(
-            data.frame(x = 0, y = 0), aes(x = x, y = y)
-        ) +
-            geom_text(label = glue::glue("{sc_name} has zero neighbors"), size = 10) +
-            theme(text = element_blank(), line = element_blank())
-        return(invalid_plot)
+        return(stub_grob(glue::glue("{sc_name} has zero neighbors")))
     }
     
     # add labels
-    vertices <- plot_one_neighborhood_label_vertices(
+    vertices <- label_vertices(
         vertices %>% dplyr::arrange(path_weight),
         max_labeled_species
     )
     
     # add scores if they are present
     if (!is.null(score_overlay)) {
-        checkmate::assertDataFrame(score_overlay)
-        stopifnot(c("s_id", "score") %in% colnames(score_overlay))
-        
-        vertices <- vertices %>%
-            dplyr::left_join(
-                score_overlay %>%
-                    dplyr::select(s_id, score),
-                by = "s_id"
-            )
+        vertices <- prepare_score_overlays(vertices, score_overlay, join_on = join_scores_on)
     } else {
-        # ignore label even if one was passed
         score_label <- NULL
     }
     
@@ -388,7 +376,7 @@ plot_one_neighborhood <- function(
         vertices = vertices
     )
     
-    plot_one_neighborhood_v2(
+    plot_one_neighborhood_render(
         neighborhood_network = neighborhood_network,
         edge_sources = edge_sources,
         score_label = score_label,
@@ -398,7 +386,7 @@ plot_one_neighborhood <- function(
     )
 }
 
-plot_one_neighborhood_v2 <- function(
+plot_one_neighborhood_render <- function(
     neighborhood_network,
     edge_sources,
     score_label = NULL,
@@ -407,19 +395,10 @@ plot_one_neighborhood_v2 <- function(
     edge_width = 0.1
 ) {
     
-    gg_network_layout <- layout_with_reaction_sources(neighborhood_network, network_layout)
-    neighborhood_grob <- ggraph::ggraph(graph = gg_network_layout)
-    
-    # find obscured labels due to overplotting
-    obscured_labels <- find_obscured_labels(gg_network_layout)
-    
-    graph_height <- diff(range(gg_network_layout$y))
-    vertices_df <- tibble::as_tibble(gg_network_layout) %>%
-        dplyr::mutate(
-            ggtext_label = ifelse(ggtext_label %in% obscured_labels, NA, ggtext_label),
-            n_lines = stringr::str_count(ggtext_label, "<br>"),
-            label_y = y + ((n_lines + 3) * graph_height / 120)
-        )
+    rendering_prep_list <- prepare_rendering(neighborhood_network, edge_sources, network_layout)
+    neighborhood_grob <- rendering_prep_list$network_grob
+    vertices_df <- rendering_prep_list$vertices_df
+    pathway_coords <- rendering_prep_list$pathway_coords
     
     focal_species <- vertices_df %>%
         dplyr::filter(node_orientation == "focal")
@@ -441,57 +420,23 @@ plot_one_neighborhood_v2 <- function(
         plot_title <- plot_title + glue::glue("<br>overlaying **{score_label}**")
     }
     
-    if (!("NULL" %in% class(edge_sources))) {
-        # add reaction sources if available
-        pathway_coords <- layout_pathway_sources(gg_network_layout, edge_sources)
-        
-        neighborhood_grob <- neighborhood_grob +
-            geom_rect(
-                data = pathway_coords,
-                aes(
-                    xmin = x_min - 0.05,
-                    xmax = x_max + 0.05,
-                    ymin = y_min - 0.05,
-                    ymax = y_max + 0.05,
-                    fill = label_wrap
-                ),
-                alpha = 0.2
-            ) +
-            scale_fill_viridis_d("Pathway")
+    if (!is.null(edge_sources)) {
+        neighborhood_grob <- add_pathway_outlines(neighborhood_grob, pathway_coords)
     }
     
-    if ("score" %in% colnames(vertices_df)) {
-        color_by <- rlang::sym("score")
-        
-        # add the score palette
-        score_palette_obj <- select_score_overlay_palette(score_palette)
-        neighborhood_grob <- neighborhood_grob + score_palette_obj
-    } else {
-        color_by <- rlang::quo(factor(node_orientation))
-        
-        neighborhood_grob <- neighborhood_grob +
-            scale_color_manual(values = c(
-                "upstream" = "gray25",
-                "downstream" = "gray25",
-                "focal" = "white"
-            )) +
-            guides(color = "none")
-    }
+    color_scheme <- add_node_color_palette(
+        neighborhood_grob,
+        vertices_df,
+        score_palette
+    )
+    color_by <- color_scheme$color_by
+    neighborhood_grob <- color_scheme$grob
+    
+    neighborhood_grob <- add_edges_by_reversibility(neighborhood_grob, edge_width)
+    
+    # neighborhood-specific plotting
     
     neighborhood_grob <- neighborhood_grob +
-        # add edges - irreversible
-        ggraph::geom_edge_link(
-            data = ggraph_get_edges_by_reversibility(FALSE),
-            color = "gray25",
-            arrow = grid::arrow(type = "closed", length = unit(0.15, "inches")),
-            edge_width = edge_width
-        ) +
-        # add edges - reversible
-        ggraph::geom_edge_link(
-            data = ggraph_get_edges_by_reversibility(TRUE),
-            color = "gray25",
-            edge_width = edge_width
-        ) +
         # add focal node border
         ggraph::geom_node_point(
             data = focal_species,
@@ -519,281 +464,17 @@ plot_one_neighborhood_v2 <- function(
                 label = path_length
             ),
             color = "gray70"
-        ) +
-        # add node labels
-        ggtext::geom_richtext(
-            data = vertices_df %>%
-                dplyr::filter(!is.na(ggtext_label)),
-            aes(x = x, y = label_y, label = ggtext_label),
-            size = 3
-        ) +
-        scale_shape_manual("Type", values = c("reaction" = 15, "species" = 19)) +
-        scale_size_identity() +
-        guides(
-            size = "none",
-            shape = guide_legend(override.aes = list(size = 10), byrow = TRUE)
-        ) +
-        theme_void() +
-        theme(
-            plot.background = element_rect(fill = "white"),
-            legend.text = element_text(color = "black"),
-            legend.title = element_text(color = "black"),
-            legend.position = "bottom",
-            plot.title.position = "plot",
-            plot.title = ggtext::element_markdown(size = 11, lineheight = 1.2)
-        ) +
-        labs(title = plot_title)
+        )
+    
+    neighborhood_grob <- add_node_names_and_themes(
+        neighborhood_grob,
+        vertices_df,
+        plot_title
+        )
     
     return(neighborhood_grob)
 }
 
-ggraph_get_edges_by_reversibility <- function (
-    is_reversible,
-    format = "short",
-    collapse = "none",
-    ...
-) {
-    
-    # modification of ggraph::get_edges to include filtering to subsets of edges
-    
-    checkmate::assertLogical(is_reversible, len = 1)
-    checkmate::assertString(format)
-    checkmate::assertString(collapse)
-    
-    collapse_all_edges <- get("collapse_all_edges", envir = asNamespace("ggraph"))
-    collapse_dir_edges <- get("collapse_dir_edges", envir = asNamespace("ggraph"))
-    format_short_edges <- get("format_short_edges", envir = asNamespace("ggraph"))
-    format_long_edges <- get("format_long_edges", envir = asNamespace("ggraph"))
-    data_frame0 <- get("data_frame0", envir = asNamespace("ggraph"))
-    
-    if (!collapse %in% c("none", "all", "direction")) {
-        cli::cli_abort("{.arg collapse} must be either {.val none}, {.val all} or {.val direction}")
-    }
-    dots <- rlang::enquos(...)
-    
-    function(layout) {
-        
-        edges <- ggraph::collect_edges(layout)
-        
-        # filter by reversibility
-        if (!("r_isreversible" %in% colnames(edges))) {
-            cli::cli_abort("Edges must have a column named 'r_isreversible'")
-        }
-        
-        edges <- edges %>%
-            dplyr::filter(r_isreversible == is_reversible)
-        
-        edges <- switch(
-            collapse,
-            none = edges,
-            all = collapse_all_edges(edges),
-            direction = collapse_dir_edges(edges)
-        )
-        edges <- switch(
-            format,
-            short = format_short_edges(edges, layout),
-            long = format_long_edges(edges, layout),
-            cli::cli_abort("Unknown {.arg format}. Use either {.val short} or {.val long}")
-        )
-        
-        extra_data <- lapply(dots, function(x) {
-            val <- rlang::eval_tidy(x, edges)
-            rep(val, length.out = nrow(edges))
-        })
-        if (length(extra_data) > 0) {
-            edges <- cbind(edges, data_frame0(!!!extra_data))
-        }
-        attr(edges, "type_ggraph") <- "edge_ggraph"
-        edges
-    }
-}
-
-plot_one_neighborhood_label_vertices <- function(
-    vertices,
-    max_labeled_species
-) {
-    
-    nodes_to_label <- vertices %>%
-        dplyr::filter(node_type == "species") %>%
-        dplyr::arrange(path_weight) %>%
-        dplyr::slice(1:max_labeled_species) %>%
-        {
-            .$name
-        }
-    
-    vertices <- vertices %>%
-        dplyr::mutate(
-            selected_node_name = ifelse(name %in% nodes_to_label, node_name, NA_character_)
-        ) %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(
-            # extract name and compartment from species name
-            compartment = stringr::str_match(selected_node_name, "\\[([A-Za-z0-9 -]+)\\]$")[2],
-            species_name = stringr::str_split(selected_node_name, " \\[([A-Za-z0-9 -]+)\\]$")[[1]][1]
-        ) %>%
-        dplyr::ungroup()
-    
-    focal_compartment <- vertices$compartment[vertices$node_orientation == "focal"]
-    
-    vertices <- vertices %>%
-        dplyr::mutate(
-            # ignore compartment if its the same as the focal species compartment
-            compartment = ifelse(compartment == focal_compartment & node_orientation != "focal", NA, compartment),
-            compartment = stringr::str_c("\n", stringr::str_trunc(compartment, 20)),
-            # replace with string so glue works
-            compartment = ifelse(is.na(compartment), "", compartment),
-            species_name = stringr::str_wrap(stringr::str_trunc(species_name, 40), 25),
-            label = ifelse(!is.na(species_name), glue::glue("{species_name}{compartment}"), NA),
-            ggtext_label = ifelse(
-                !is.na(species_name),
-                glue::glue("**{species_name}**{compartment}") %>%
-                    stringr::str_replace_all(" ?\\n ?", "<br>"),
-                NA
-            )
-        )
-    
-    return(vertices)
-}
-
-find_obscured_labels <- function(gg_network_layout) {
-    plot_char_width <- 100
-    plot_char_height <- 50
-    graph_width <- diff(range(gg_network_layout$x))
-    graph_height <- diff(range(gg_network_layout$y))
-    
-    # format labels ordered by plotting priority
-    labels <- gg_network_layout %>%
-        as.data.frame() %>%
-        dplyr::select(x, y, ggtext_label) %>%
-        dplyr::filter(!is.na(ggtext_label)) %>%
-        dplyr::mutate(n_lines = stringr::str_count(ggtext_label, "<br>") + 1) %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(
-            max_width = max(purrr::map_int(
-                stringr::str_split(stringr::str_replace_all(ggtext_label, "\\*\\*", ""), "<br>")[[1]],
-                stringr::str_length
-            ))
-        ) %>%
-        dplyr::ungroup() %>%
-        dplyr::mutate(
-            row_id = 1:dplyr::n(),
-            # adding characters to width and height to represent box
-            w = graph_width * ((max_width + 2) / plot_char_width),
-            h = graph_height * ((n_lines + 1) / plot_char_height),
-            x_min = x - w / 2,
-            x_max = x + w / 2,
-            y_min = y - h / 2,
-            y_max = y + h / 2
-        )
-    
-    # define all x all combinations
-    overlapping_labels <- tidyr::expand_grid(
-        row_1 = labels$row_id,
-        row_2 = labels$row_id
-    ) %>%
-        dplyr::left_join(
-            labels %>%
-                dplyr::select(
-                    row_1 = row_id,
-                    x_min_1 = x_min,
-                    x_max_1 = x_max,
-                    y_min_1 = y_min,
-                    y_max_1 = y_max
-                ),
-            by = "row_1"
-        ) %>%
-        dplyr::left_join(
-            labels %>%
-                dplyr::select(
-                    row_2 = row_id,
-                    x_min_2 = x_min,
-                    x_max_2 = x_max,
-                    y_min_2 = y_min,
-                    y_max_2 = y_max
-                ),
-            by = "row_2"
-        ) %>%
-        # filter to lower-diagonal comparison
-        dplyr::filter(row_1 < row_2) %>%
-        # find overlaps
-        dplyr::mutate(
-            # calculate overlaps in x, and y separately
-            # two ranges overlap if the end point of one end of a range is between
-            # the min and max of the other
-            x_overlap = dplyr::case_when(
-                x_min_1 < x_max_2 & x_min_1 > x_min_2 ~ TRUE,
-                x_max_1 < x_max_2 & x_max_1 > x_min_2 ~ TRUE,
-                x_min_2 < x_max_1 & x_min_2 > x_min_1 ~ TRUE,
-                x_max_2 < x_max_1 & x_max_2 > x_min_1 ~ TRUE,
-                TRUE ~ FALSE
-            ),
-            y_overlap = dplyr::case_when(
-                y_min_1 < y_max_2 & y_min_1 > y_min_2 ~ TRUE,
-                y_max_1 < y_max_2 & y_max_1 > y_min_2 ~ TRUE,
-                y_min_2 < y_max_1 & y_min_2 > y_min_1 ~ TRUE,
-                y_max_2 < y_max_1 & y_max_2 > y_min_1 ~ TRUE,
-                TRUE ~ FALSE
-            ),
-            collision = x_overlap & y_overlap
-        ) %>%
-        dplyr::filter(collision)
-    
-    if (nrow(overlapping_labels) == 0) {
-        return(NULL)
-    }
-    
-    invalid_labels <- NULL
-    while (nrow(overlapping_labels) != 0) {
-        # remove the lower priority label of the first row since this will involve
-        # the highest plotting priority label.
-        # discard all overlaps involving the pruned label
-        removed_label <- overlapping_labels$row_2[1]
-        invalid_labels <- c(invalid_labels, removed_label)
-        
-        overlapping_labels <- overlapping_labels %>%
-            dplyr::filter(
-                row_1 != removed_label,
-                row_2 != removed_label
-            )
-    }
-    
-    # obscured labels
-    return(labels$ggtext_label[labels$row_id %in% invalid_labels])
-}
-
-select_score_overlay_palette <- function(score_palette, ...) {
-    
-    SCORE_PALETTE_NAMES <- c("indication scores", "log2 fold-change")
-    if (is.null(score_palette)) {
-        cli::cli_abort("Please provide a value for {.arg score_palette}. Valid palettes are {.field {SCORE_PALETTE_NAMES}}")
-    }
-    
-    if (!(score_palette %in% SCORE_PALETTE_NAMES)) {
-        cli::cli_abort("{.field {score_palette}} is not a valid value for {.arg score_palette}. Valid palettes are {.field {SCORE_PALETTE_NAMES}}")
-    }
-    
-    if (score_palette == "indication scores") {
-        score_palette_obj <- scale_color_gradientn(
-            "Open Target's Indication Score",
-            colors = c("gray90", "yellow", "orange", "orangered", "red"),
-            limits = c(0, 1),
-            breaks = c(0, 0.1, 0.4, 1),
-            trans = "sqrt"
-        )
-        
-    } else if (score_palette == "log2 fold-change") {
-        score_palette_obj <- scale_color_gradient2(
-            expression(log[2] ~ "fold-change"),
-            low = "steelblue1",
-            mid = "black",
-            high = "yellow",
-            midpoint = 0,
-            ...
-        )
-    }
-    
-    return(score_palette_obj)
-}
 
 #' Create Neighborhood Summary Table
 #' 
