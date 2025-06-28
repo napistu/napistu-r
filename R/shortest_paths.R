@@ -6,6 +6,7 @@
 #'
 #' @examples
 #' setup_napistu_list(create_napistu_config())
+#' # NOTE - you may have to run this a few times to find a valid path between 2 random nodes
 #' source_species_id <- random_species(napistu_list)
 #' dest_species_id <- random_species(napistu_list)
 #'
@@ -68,8 +69,8 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
     return(list(
         shortest_paths_plot = shortest_paths_grob,
         shortest_paths_table = shortest_paths_list[[1]] %>%
-            dplyr::select(source, dest, path, step, node, node_type, label, weights, url) %>%
-            dplyr::arrange(source, dest, path, step)
+            dplyr::select(origin, dest, path, step, node, node_type, label, weights, url) %>%
+            dplyr::arrange(origin, dest, path, step)
     ))
 }
 
@@ -117,8 +118,8 @@ plot_shortest_path_network <- function(
     
     validate_napistu_list(napistu_list)
     napistu_graph <- napistu_list$napistu_graph
-    checkmate::assertList(shortest_paths_list, len = 4)
-    checkmate::assertCount(max_labeled_species)
+    checkmate::assert_list(shortest_paths_list, len = 4)
+    checkmate::assert_count(max_labeled_species)
     
     # suppress some nodes labels to avoid overplotting
     nodes_to_label <-

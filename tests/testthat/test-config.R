@@ -23,7 +23,7 @@ test_that("load_napistu_config loads simple YAML correctly", {
         "python_config:",
         "  conda: test-env",
         "assets_config:",
-        "  asset_dir: /path/to/assets"
+        "  assets_dir: /path/to/assets"
     )
     
     temp_file <- tempfile(fileext = ".yml")
@@ -33,7 +33,7 @@ test_that("load_napistu_config loads simple YAML correctly", {
     
     expect_s3_class(napistu_config, "napistu_config")
     expect_equal(napistu_config$python_config$conda, "test-env")
-    expect_equal(napistu_config$assets_config$asset_dir, "/path/to/assets")
+    expect_equal(napistu_config$assets_config$assets_dir, "/path/to/assets")
     
     unlink(temp_file)
 })

@@ -8,7 +8,7 @@ test_that("resolve_directory_assets handles default filenames", {
         file.create(file.path(temp_dir, file))
     }
     
-    assets_config <- list(asset_dir = temp_dir)
+    assets_config <- list(assets_dir = temp_dir)
     resolved <- resolve_directory_assets(assets_config, verbose = FALSE)
     
     expect_equal(resolved$sbml_dfs, file.path(temp_dir, "sbml_dfs.pkl"))
@@ -27,7 +27,7 @@ test_that("resolve_directory_assets handles custom relative paths", {
     file.create(file.path(temp_dir, "napistu_graph.pkl"))  # Standard name for others
     
     assets_config <- list(
-        asset_dir = temp_dir,
+        assets_dir = temp_dir,
         sbml_dfs = "custom_sbml.pkl"  # Custom relative path
     )
     
@@ -40,7 +40,7 @@ test_that("resolve_directory_assets handles custom relative paths", {
 })
 
 test_that("resolve_directory_assets fails on missing directory", {
-    assets_config <- list(asset_dir = "/nonexistent/directory")
+    assets_config <- list(assets_dir = "/nonexistent/directory")
     
     expect_error(
         resolve_directory_assets(assets_config),

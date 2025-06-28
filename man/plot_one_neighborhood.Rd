@@ -8,12 +8,13 @@ plot_one_neighborhood(
   napistu_list,
   vertices,
   edges,
-  edge_sources,
+  reaction_sources,
   sc_id,
   sc_name,
   score_overlay = NULL,
   score_label = NULL,
   score_palette = NULL,
+  join_scores_on = "s_id",
   max_labeled_species = 30L,
   network_layout = "fr",
   edge_width = 0.1
@@ -52,21 +53,24 @@ plot_one_neighborhood(
 
 \item{edges}{table of connections between species and reactions, produced by \link{create_neighborhood_table}}
 
-\item{edge_sources}{table describing the model(s) each reaction comes from, produced by \link{create_neighborhood_table}}
+\item{reaction_sources}{table describing the model(s) each reaction comes from, produced by \link{create_neighborhood_table}}
 
 \item{sc_id}{compartmentalized species identifier of focal node}
 
 \item{sc_name}{name of focal node}
 
-\item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
+\item{score_overlay}{optional, vertex-level scores containing `score`
+and the merging attribute specified in `join_on`}
 
-\item{score_label}{optional, name of disease being overlaid.}
+\item{score_label}{optional, name of disease being overlaid}
 
-\item{score_palette}{optional, color palette for scores.}
+\item{score_palette}{optional, color palette for scores}
+
+\item{join_scores_on}{attribute to use when merging score_overlays and vertices}
 
 \item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
 
-\item{network_layout}{method to used for creating a network layout (e.g., fr, kk, drl)}
+\item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
 
 \item{edge_width}{width of edges on graph}
 }
@@ -92,7 +96,7 @@ neighborhood_table <- create_neighborhood_table(
 entry <- 1
 vertices <- neighborhood_table$vertices[[entry]]
 edges <- neighborhood_table$edges[[entry]]
-edge_sources <- neighborhood_table$edge_sources[[entry]]
+reaction_sources <- neighborhood_table$reaction_sources[[entry]]
 sc_id <- neighborhood_table$sc_id[entry]
 sc_name <- neighborhood_table$sc_name[entry]
 
@@ -112,7 +116,7 @@ plot_one_neighborhood(
     napistu_list,
     vertices,
     edges,
-    edge_sources,
+    reaction_sources,
     sc_id,
     sc_name,
     score_overlay = NULL
@@ -122,7 +126,7 @@ plot_one_neighborhood(
     napistu_list,
     vertices,
     edges,
-    edge_sources,
+    reaction_sources,
     sc_id,
     sc_name,
     score_overlay = score_overlay,
