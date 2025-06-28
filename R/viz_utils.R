@@ -6,6 +6,7 @@
 #' @param score_overlay optional, vertex-level scores containing `score`
 #'   and the merging attribute specified in `join_on`
 #' @param join_scores_on variable to use when merging vertices and score
+#' @keywords internal
 prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_on = "s_id") {
     
     checkmate::assert_data_frame(vertices)
@@ -51,6 +52,7 @@ prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_
 #' @param always_label always include these vertices regardless of their priority. Provide vertex names (generally starting with SC or R).
 #'
 #' @returns vertices with a `ggtext_label` variable added
+#' @keywords internal
 label_vertices <- function(
     vertices,
     max_labeled_species,
@@ -136,6 +138,7 @@ label_vertices <- function(
 #' @param stub_str the text to show in the stub
 #' 
 #' @returns the stubbed grob
+#' @keywords internal
 stub_grob <- function (stub_str) {
     grob <- invalid_plot <- ggplot(
         data.frame(x = 0, y = 0), aes(x = x, y = y)
@@ -162,6 +165,7 @@ stub_grob <- function (stub_str) {
 #'     \item{vertices_df}{A table of vertices with upstream metadata plus coordinates and updated labels}
 #'     \item{pathway_coords}{The bounding box of reaction's assigned to each pathway}
 #' }
+#' @keywords internal
 prepare_rendering <- function (network, reaction_sources, network_layout) {
     
     gg_network_layout <- layout_with_reaction_sources(network, network_layout)
@@ -368,6 +372,7 @@ find_obscured_labels <- function(gg_network_layout) {
 #'     \item{log2 fold-change}{A symmetric blue-black-yellow palette centered on zero}
 #' }
 #' @param ... extra arguments to pass into the color palette
+#' @keywords internal
 select_score_overlay_palette <- function(score_palette, ...) {
     
     SCORE_PALETTE_NAMES <- c("indication scores", "log2 fold-change")
@@ -454,6 +459,8 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
 #' 
 #' @param grob a ggplot2 grob
 #' @param edge_width width of edges on graph
+#' 
+#' @keywords internal
 add_edges_by_reversibility <- function (grob, edge_width) {
     out <- grob +
         # add edges - irreversible

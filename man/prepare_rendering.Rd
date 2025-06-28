@@ -25,3 +25,4 @@ a list containing
 Prepare for the network plot by laying out the pathway in a way that loosly
 groups related vertices and by suppressed overplotted labels
 }
+\keyword{internal}

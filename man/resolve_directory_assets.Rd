@@ -19,3 +19,4 @@ Resolved assets configuration with individual file paths
 \description{
 Resolve Directory-Based Asset Configuration
 }
+\keyword{internal}

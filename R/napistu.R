@@ -10,6 +10,7 @@
 #' @import ggplot2
 #' @import shiny
 #' @importFrom rlang .data
+#' @keywords internal
 "_PACKAGE"
  
 utils::globalVariables(c(

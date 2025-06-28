@@ -489,6 +489,7 @@ plot_one_neighborhood_render <- function(
 #' 
 #' @returns an unnested table of vertices across all neighborhoods
 #' @export
+#' @keywords internal
 create_neighborhood_summary_table <- function(neighborhood_table) {
     validate_neighborhood_table(neighborhood_table)
     

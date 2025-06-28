@@ -26,3 +26,4 @@ an unnested table of vertices across all neighborhoods
 \description{
 Unnest the neighborhoods' vertices
 }
+\keyword{internal}

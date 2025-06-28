@@ -12,3 +12,4 @@ Path to conda executable
 \description{
 Get Conda Installation
 }
+\keyword{internal}

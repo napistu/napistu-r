@@ -17,5 +17,6 @@ create_conda_environment(env_name, python_version, conda_exe)
 NULL (side effect: creates environment)
 }
 \description{
-Create Conda Environment
+Create a conda environment with Napistu installed.
 }
+\keyword{internal}

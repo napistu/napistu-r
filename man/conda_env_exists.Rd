@@ -17,3 +17,4 @@ Logical indicating if environment exists
 \description{
 Check if Conda Environment Exists
 }
+\keyword{internal}

@@ -46,3 +46,4 @@ Selects a random gene/molecule for demos
 setup_napistu_list(create_napistu_config(), overwrite = TRUE)
 random_species(napistu_list)
 }
+\keyword{internal}

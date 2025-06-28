@@ -18,3 +18,4 @@ List with environment path and metadata
 \description{
 Configure Existing Python Environment
 }
+\keyword{internal}

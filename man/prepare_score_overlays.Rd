@@ -17,3 +17,4 @@ and the merging attribute specified in `join_on`}
 \description{
 Merge a table of vertex-level data with a network representation.
 }
+\keyword{internal}

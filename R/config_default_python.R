@@ -1,13 +1,86 @@
+#' Clean Up Napistu Environment
+#'
+#' Removes conda environment and miniconda if they were created by napistu
+#'
+#' @param napistu_list Napistu environment object
+#' @param force Logical, whether to force removal without confirmation
+#' 
+#' @export
+cleanup_napistu <- function(napistu_list, force = FALSE) {
+    
+    checkmate::assert_class(napistu_list, NAPISTU_CONSTANTS$NAPISTU_LIST_CLASS)
+    checkmate::assert_logical(force, len = 1)
+    
+    python_env <- napistu_list$python_environment
+    
+    if (!python_env$created_by_napistu) {
+        cli::cli_inform("Python environment was not created by napistu - no cleanup needed")
+        return(invisible(NULL))
+    }
+    
+    if (!force && interactive()) {
+        cleanup_items <- character()
+        if (python_env$type == "conda") {
+            cleanup_items <- c(cleanup_items, glue::glue("conda environment '{python_env$path}'"))
+        }
+        if (python_env$miniconda_installed) {
+            cleanup_items <- c(cleanup_items, "miniconda installation")
+        }
+        
+        if (length(cleanup_items) > 0) {
+            items_text <- paste(cleanup_items, collapse = " and ")
+            response <- readline(glue::glue("Remove {items_text}? (y/N): "))
+            if (!tolower(response) %in% c("y", "yes")) {
+                cli::cli_inform("Cleanup cancelled")
+                return(invisible(NULL))
+            }
+        }
+    }
+    
+    # Remove miniconda if we installed it
+    if (python_env$miniconda_installed) {
+        cli::cli_inform("Removing miniconda installation")
+        tryCatch({
+            reticulate::miniconda_uninstall()
+            cli::cli_alert_success("Miniconda removed")
+        }, error = function(e) {
+            cli::cli_warn("Failed to remove miniconda: {e$message}")
+        })
+        
+        return (invisible(NULL))
+    }
+    
+    # Remove conda environment - skip if we removed conda already
+    if (python_env$type == "conda") {
+        cli::cli_inform("Removing conda environment: {.val {python_env$path}}")
+        tryCatch({
+            reticulate::conda_remove(envname = python_env$path)
+            cli::cli_alert_success("Conda environment removed")
+        }, error = function(e) {
+            cli::cli_warn("Failed to remove conda environment: {e$message}")
+        })
+    }
+    
+    return (invisible(NULL))
+}
+
+
 #' Create Default Conda Environment
+#'
+#' Setup an conda environment with Napistu installed. This will install miniconda
+#' if needed (with user permission) and create an environment if-needed in
+#' an existing conda/miniconda installation or the on-the-fly installation. This
+#' process can be undone using \link{cleanup_napistu}.
 #'
 #' @param env_name The name of the to-be-created conda environment
 #' @inheritParams setup_napistu_list
 #'
 #' @return List with environment info and metadata
+#' @keywords internal
 create_default_conda_env <- function(
     env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME,
     verbose = TRUE
-    ) {
+) {
     
     checkmate::assertString(env_name)
     checkmate::assertLogical(verbose, len = 1)
@@ -79,6 +152,7 @@ create_default_conda_env <- function(
 #' Get Conda Installation
 #'
 #' @return Path to conda executable
+#' @keywords internal
 get_conda_installation <- function() {
     # First try conda in PATH
     conda_path <- Sys.which("conda")
@@ -124,6 +198,7 @@ get_conda_installation <- function() {
 #'
 #' @param conda_exe Path to conda executable
 #' @return Logical indicating if conda works
+#' @keywords internal
 validate_conda_executable <- function(conda_exe) {
     tryCatch({
         result <- system2(conda_exe, "--version", stdout = TRUE, stderr = TRUE)
@@ -150,6 +225,7 @@ validate_conda_executable <- function(conda_exe) {
 #' @param env_name Name of conda environment
 #' @param conda_exe Path to conda executable
 #' @return Logical indicating if environment exists
+#' @keywords internal
 conda_env_exists <- function(env_name, conda_exe) {
     tryCatch({
         envs <- reticulate::conda_list(conda = conda_exe)
@@ -162,10 +238,13 @@ conda_env_exists <- function(env_name, conda_exe) {
 
 #' Create Conda Environment
 #'
+#' Create a conda environment with Napistu installed.
+#'
 #' @param env_name Name of environment to create
 #' @param python_version Python version to install
 #' @param conda_exe Path to conda executable
 #' @return NULL (side effect: creates environment)
+#' @keywords internal
 create_conda_environment <- function(env_name, python_version, conda_exe) {
     cli::cli_inform("Creating conda environment {.val {env_name}} with Python {python_version}")
     
@@ -220,76 +299,11 @@ confirm_install_miniconda <- function () {
 }
 
 
-#' Clean Up Napistu Environment
-#'
-#' Removes conda environment and miniconda if they were created by napistu
-#'
-#' @param napistu_list Napistu environment object
-#' @param force Logical, whether to force removal without confirmation
-#' 
-#' @export
-cleanup_napistu <- function(napistu_list, force = FALSE) {
-    
-    checkmate::assert_class(napistu_list, NAPISTU_CONSTANTS$NAPISTU_LIST_CLASS)
-    checkmate::assert_logical(force, len = 1)
-    
-    python_env <- napistu_list$python_environment
-    
-    if (!python_env$created_by_napistu) {
-        cli::cli_inform("Python environment was not created by napistu - no cleanup needed")
-        return(invisible(NULL))
-    }
-    
-    if (!force && interactive()) {
-        cleanup_items <- character()
-        if (python_env$type == "conda") {
-            cleanup_items <- c(cleanup_items, glue::glue("conda environment '{python_env$path}'"))
-        }
-        if (python_env$miniconda_installed) {
-            cleanup_items <- c(cleanup_items, "miniconda installation")
-        }
-        
-        if (length(cleanup_items) > 0) {
-            items_text <- paste(cleanup_items, collapse = " and ")
-            response <- readline(glue::glue("Remove {items_text}? (y/N): "))
-            if (!tolower(response) %in% c("y", "yes")) {
-                cli::cli_inform("Cleanup cancelled")
-                return(invisible(NULL))
-            }
-        }
-    }
-    
-    # Remove miniconda if we installed it
-    if (python_env$miniconda_installed) {
-        cli::cli_inform("Removing miniconda installation")
-        tryCatch({
-            reticulate::miniconda_uninstall()
-            cli::cli_alert_success("Miniconda removed")
-        }, error = function(e) {
-            cli::cli_warn("Failed to remove miniconda: {e$message}")
-        })
-        
-        return (invisible(NULL))
-    }
-    
-    # Remove conda environment - skip if we removed conda already
-    if (python_env$type == "conda") {
-        cli::cli_inform("Removing conda environment: {.val {python_env$path}}")
-        tryCatch({
-            reticulate::conda_remove(envname = python_env$path)
-            cli::cli_alert_success("Conda environment removed")
-        }, error = function(e) {
-            cli::cli_warn("Failed to remove conda environment: {e$message}")
-        })
-    }
-    
-    return (invisible(NULL))
-}
-
 #' Process Required Modules Specification
 #'
 #' @param required_modules Named character vector of modules with optional version constraints
 #' @return Character vector of package specifications for conda/pip
+#' @keywords internal
 process_required_modules_spec <- function(required_modules) {
     checkmate::assertNamed(required_modules)
     

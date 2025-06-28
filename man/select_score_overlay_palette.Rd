@@ -18,3 +18,4 @@ select_score_overlay_palette(score_palette, ...)
 \description{
 Create a palette for coloring nodes based on vertex-level scores.
 }
+\keyword{internal}

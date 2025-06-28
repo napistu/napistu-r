@@ -115,6 +115,7 @@ load_single_asset <- function(file_path, python_list, asset_name) {
 #' Get Bundled Asset Sources
 #'
 #' @return Named list of asset file paths for bundled assets
+#' @keywords internal
 get_bundled_asset_paths <- function() {
     
     bundled_test_pathway_path <- system.file("extdata/test_pathway", package = "napistu.r")
@@ -143,6 +144,7 @@ get_bundled_asset_paths <- function() {
 #' @inheritParams validate_verbose
 #'
 #' @return Named list of asset file paths for configured assets
+#' @keywords internal
 get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
     
     validate_assets_config(assets_config)
@@ -191,6 +193,7 @@ get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
 #' @inheritParams validate_verbose
 #' 
 #' @return List of loaded assets
+#' @keywords internal
 load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
     
     validate_asset_paths(asset_paths)
@@ -242,6 +245,7 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
 #' @inheritParams validate_verbose
 #' 
 #' @return Resolved assets configuration with individual file paths
+#' @keywords internal
 resolve_directory_assets <- function(assets_config, verbose = TRUE) {
     
     validate_assets_config(assets_config)

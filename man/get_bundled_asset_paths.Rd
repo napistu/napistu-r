@@ -12,3 +12,4 @@ Named list of asset file paths for bundled assets
 \description{
 Get Bundled Asset Sources
 }
+\keyword{internal}
