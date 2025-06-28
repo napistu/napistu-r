@@ -68,6 +68,50 @@ create_derived_assets <- function (assets) {
 }
 
 
+#' Load Single Asset File
+#'
+#' @param file_path Path to asset file
+#' @inheritParams validate_python_list 
+#' @param asset_name Name of asset for context
+#' 
+#' @return Loaded asset object
+#' 
+#' @export
+load_single_asset <- function(file_path, python_list, asset_name) {
+    
+    checkmate::assert_file_exists(file_path)
+    validate_python_list(python_list)
+    napistu <- python_list$python_modules$napistu
+    checkmate::assertString(asset_name)
+    
+    file_ext <- tools::file_ext(file_path)
+    
+    # Validate supported file extension
+    if (!file_ext %in% NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS) {
+        cli::cli_abort(c(
+            "Unsupported file type for {.field {asset_name}}: {.val {file_ext}}",
+            "i" = "File: {.file {file_path}}",
+            "i" = "Supported extensions: {.val {NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS}}"
+        ))
+    }
+    
+    obj <- tryCatch({
+        switch(file_ext,
+               "pkl" = reticulate::py_load_object(file_path),
+               "tsv" = readr::read_tsv(file_path, show_col_types = FALSE),
+               "json" = jsonlite::fromJSON(file_path),
+               "parquet" = napistu$utils$load_parquet(file_path)
+        )
+    }, error = function(e) {
+        cli::cli_abort(
+            "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
+        )
+    })
+    
+    return(obj)
+} 
+
+
 #' Get Bundled Asset Sources
 #'
 #' @return Named list of asset file paths for bundled assets
@@ -236,46 +280,3 @@ resolve_directory_assets <- function(assets_config, verbose = TRUE) {
     
     resolved_config
 }
-
-#' Load Single Asset File
-#'
-#' @param file_path Path to asset file
-#' @inheritParams validate_python_list 
-#' @param asset_name Name of asset for context
-#' 
-#' @return Loaded asset object
-#' 
-#' @export
-load_single_asset <- function(file_path, python_list, asset_name) {
-    
-    checkmate::assert_file_exists(file_path)
-    validate_python_list(python_list)
-    napistu <- python_list$python_modules$napistu
-    checkmate::assertString(asset_name)
-    
-    file_ext <- tools::file_ext(file_path)
-    
-    # Validate supported file extension
-    if (!file_ext %in% NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS) {
-        cli::cli_abort(c(
-            "Unsupported file type for {.field {asset_name}}: {.val {file_ext}}",
-            "i" = "File: {.file {file_path}}",
-            "i" = "Supported extensions: {.val {NAPISTU_CONSTANTS$SUPPORTED_EXTENSIONS}}"
-        ))
-    }
-    
-    obj <- tryCatch({
-        switch(file_ext,
-               "pkl" = reticulate::py_load_object(file_path),
-               "tsv" = readr::read_tsv(file_path, show_col_types = FALSE),
-               "json" = jsonlite::fromJSON(file_path),
-               "parquet" = napistu$utils$load_parquet(file_path)
-        )
-    }, error = function(e) {
-        cli::cli_abort(
-            "Failed to load {.field {asset_name}} from {.file {file_path}}: {e$message}"
-        )
-    })
-    
-    return(obj)
-} 

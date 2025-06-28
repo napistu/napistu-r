@@ -43,41 +43,6 @@ define_subgraphs <- function (napistu_list, subgraph_vertices, max_components = 
     return(subgraph_list)
 }
 
-#' Extend Components List
-#' 
-#' Add additional information needed for plotting to a weakly connected component
-#' graph.
-#' 
-#' @inheritParams validate_napistu_list
-#' @param component_graph a weakly connected Python igraph
-#'
-#' @returns a list with:
-#' \describe{
-#'     \item{component_graph}{The component subgraph}
-#'     \item{reaction_sources}{A table mapping reactions to pathway sources}
-#' }
-extend_components_list <- function (napistu_list, component_graph) {
-    
-    validate_napistu_list(napistu_list)
-    sbml_dfs <- napistu_list$sbml_dfs
-    napistu <- napistu_list$python_modules$napistu
-    checkmate::assert_class(component_graph, "napistu.network.ng_core.NapistuGraph")
-    
-    vertices_and_edges <- napistu$network$ig_utils$graph_to_pandas_dfs(component_graph)
-    vertices <- vertices_and_edges[[1]] %>%
-        tibble::as_tibble() %>%
-        dplyr::rename(node = name)
-    
-    reaction_sources <- napistu$network$ng_utils$get_minimal_sources_edges(vertices, sbml_dfs)
-    
-    component_list <- list(
-        component_graph = component_graph,
-        reaction_sources = reaction_sources
-    )
-    
-    return(component_list)
-}
-
 
 #' Plot Subgraphs
 #' 
@@ -102,7 +67,7 @@ plot_subgraph <- function (
     join_scores_on = "name",
     max_labeled_species = 20,
     ...
-    ) {
+) {
 
     component_grobs <- purrr::map(
         subgraph_list,
@@ -225,6 +190,43 @@ plot_one_component <- function (
     
     return(grob)
 }
+
+
+#' Extend Components List
+#' 
+#' Add additional information needed for plotting to a weakly connected component
+#' graph.
+#' 
+#' @inheritParams validate_napistu_list
+#' @param component_graph a weakly connected Python igraph
+#'
+#' @returns a list with:
+#' \describe{
+#'     \item{component_graph}{The component subgraph}
+#'     \item{reaction_sources}{A table mapping reactions to pathway sources}
+#' }
+extend_components_list <- function (napistu_list, component_graph) {
+    
+    validate_napistu_list(napistu_list)
+    sbml_dfs <- napistu_list$sbml_dfs
+    napistu <- napistu_list$python_modules$napistu
+    checkmate::assert_class(component_graph, "napistu.network.ng_core.NapistuGraph")
+    
+    vertices_and_edges <- napistu$network$ig_utils$graph_to_pandas_dfs(component_graph)
+    vertices <- vertices_and_edges[[1]] %>%
+        tibble::as_tibble() %>%
+        dplyr::rename(node = name)
+    
+    reaction_sources <- napistu$network$ng_utils$get_minimal_sources_edges(vertices, sbml_dfs)
+    
+    component_list <- list(
+        component_graph = component_graph,
+        reaction_sources = reaction_sources
+    )
+    
+    return(component_list)
+}
+
 
 plot_one_component_render <- function (
     component_network,
