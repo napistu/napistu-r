@@ -3,7 +3,8 @@
 #' Filter to an induced subgraph containing a set of vertices and their connections
 #' 
 #' @inheritParams validate_napistu_list
-#' @param max_components the number of components to retrun
+#' @param subgraph_vertices the vertices to retain in the subgraph
+#' @param max_components the number of components to return
 #' 
 #' @returns a list of the `max_components` largest weakly-connected components
 #' 
@@ -81,21 +82,51 @@ extend_components_list <- function (napistu_list, component_graph) {
 #' Plot Subgraphs
 #' 
 #' @inheritParams validate_napistu_list
+#' @param subgraph_list a list-of-lists produced by \link{define_subgraphs}
+#'     containing graphs and pathway-associations for the largest weakly
+#'     connected components
+#' @inheritParams prepare_score_overlays
+#' @inheritParams label_vertices
+#' @param ... additional arguments to pass to \link{plot_one_component}
 #'
 #' @examples
 #' setup_napistu_list(create_napistu_config())
 #' subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
 #' subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
-plot_subgraph <- function (napistu_list, subgraph_list) {
+#' plot_subgraph(napistu_list, subgraph_list)
+#' @export
+plot_subgraph <- function (
+    napistu_list,
+    subgraph_list,
+    score_overlay = NULL,
+    join_scores_on = "name",
+    max_labeled_species = 20,
+    ...
+    ) {
+
+    component_grobs <- purrr::map(
+        subgraph_list,
+        plot_one_component,
+        napistu_list = napistu_list,
+        score_overlay = score_overlay,
+        join_scores_on = join_scores_on,
+        max_labeled_species = max_labeled_species,
+        ...
+    )
     
-        
+    do.call(gridExtra::grid.arrange, component_grobs)
 }
 
 #' Plot One Component
 #' 
 #' @inheritParams validate_napistu_list
+#' @param component_list a list produced by \link{define_subgraphs} containing
+#'     the `component_graph` and `reaction_sources`
 #' @inheritParams prepare_score_overlays
 #' @inheritParams label_vertices
+#' @inheritParams prepare_rendering
+#' @inheritParams plot_one_neighborhood
+#' @inheritParams add_edges_by_reversibility
 #' 
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -104,12 +135,25 @@ plot_subgraph <- function (napistu_list, subgraph_list) {
 #' subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
 #' component_list <- subgraph_list[[1]]
 #' score_overlay <- tibble::tibble(name = sample(subgraph_vertices, 20)) %>%
-#'     dplyr::mutate(score = abs(rnorm(dplyr::n())))
+#'     dplyr::mutate(score = abs(stats::rnorm(dplyr::n())))
 #' plot_one_component(
 #'     napistu_list,
-#'     component_list
+#'     component_list,
+#'     score_overlay = score_overlay,
+#'     score_palette = "log2 fold-change"
 #' )
-plot_one_component <- function (napistu_list, component_list, join_scores_on = "name", max_labeled_species = 20) {
+#' @export
+plot_one_component <- function (
+    napistu_list,
+    component_list,
+    score_overlay = NULL,
+    score_label = NULL,
+    score_palette = NULL,
+    join_scores_on = "name",
+    max_labeled_species = 20,
+    network_layout = "fr",
+    edge_width = 0.1
+) {
     
     validate_napistu_list(napistu_list)
     napistu <- napistu_list$python_modules$napistu
@@ -131,7 +175,11 @@ plot_one_component <- function (napistu_list, component_list, join_scores_on = "
 
     # add scores if they are present
     if (!is.null(score_overlay)) {
-        vertices <- prepare_score_overlays(vertices, score_overlay, join_on = join_scores_on)
+        vertices <- prepare_score_overlays(
+            vertices,
+            score_overlay,
+            join_scores_on = join_scores_on
+            )
     } else {
         score_label <- NULL
     }
@@ -139,13 +187,13 @@ plot_one_component <- function (napistu_list, component_list, join_scores_on = "
     # order vertices
     if (!is.null(score_overlay)) {
         vertices <- label_vertices(
-            vertices %>% dplyr::arrange(desc(score)),
+            vertices %>% dplyr::arrange(dplyr::desc(score)),
             max_labeled_species
         )
     } else {
         vertices <- vertices %>%
             # shuffle
-            sample_n(dplyr::n())
+            dplyr::sample_n(dplyr::n())
     }
     
     # add pathway sources to help organize layout
@@ -166,13 +214,9 @@ plot_one_component <- function (napistu_list, component_list, join_scores_on = "
         vertices = vertices
     )
     
-    network_layout = "kk"
-    score_label = NULL
-    score_palette = "log2 fold-change"
-    
     grob <- plot_one_component_render(
         component_network = component_network,
-        edge_sources = edge_sources,
+        reaction_sources = reaction_sources,
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
@@ -184,21 +228,21 @@ plot_one_component <- function (napistu_list, component_list, join_scores_on = "
 
 plot_one_component_render <- function (
     component_network,
-    edge_sources,
+    reaction_sources,
     score_label,
     score_palette,
     network_layout,
     edge_width = 0.1
 ) {
     
-    rendering_prep_list <- prepare_rendering(component_network, edge_sources, network_layout)
+    rendering_prep_list <- prepare_rendering(component_network, reaction_sources, network_layout)
     component_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords
     
     # title setup
     nodes_summary <- vertices_df %>%
-        count(node_type) %>%
+        dplyr::count(node_type) %>%
         dplyr::mutate(label = glue::glue("{n} {node_type}")) %>%
         purrr::pluck("label") %>%
         glue::glue_collapse(sep = " & ")
@@ -211,7 +255,7 @@ plot_one_component_render <- function (
         plot_title <- plot_title + glue::glue("<br>overlaying **{score_label}**")
     }
     
-    if (!is.null(edge_sources)) {
+    if (!is.null(reaction_sources)) {
         component_grob <- add_pathway_outlines(component_grob, pathway_coords)
     }
     
@@ -241,63 +285,4 @@ plot_one_component_render <- function (
     )
     
     return(component_grob)
-}
-
-prepare_score_overlays <- function (vertices, score_overlay = NULL, score_label = NULL, join_on = "s_id") {
-    
-    checkmate::assert_data_frame(vertices)
-    checkmate::assert_choice(join_on, colnames(vertices))
-    
-    if (!is.null(score_overlay)) {
-        checkmate::assertDataFrame(score_overlay)
-        if (!(join_on %in% colnames(score_overlay))) {
-            cli::cli_abort(
-                "{.field {join_on}} is not present in {.arg score_overlay} but
-                you are trying to join on {join_on}"
-            )
-        }
-        
-        if (!("score" %in% colnames(score_overlay))) {
-            cli::cli_abort(
-                "{.field score} is missing from {.arg score_overlay}.
-                It must be included if score_overlay is provided"
-            )
-        }
-        stopifnot(c("s_id", "score") %in% colnames(score_overlay))
-        
-        vertices <- vertices %>%
-            dplyr::left_join(
-                score_overlay %>%
-                    dplyr::select(!!rlang::sym(join_on), score),
-                by = join_on
-            )
-    } else {
-        # ignore label even if one was passed
-        score_label <- NULL
-    }
-    
-    out <- list(
-        vertices = vertices,
-        score_label = score_label
-    )
-    return(out)
-}
-
-add_pathway_sources <- function (vertices, edges, edge_sources) {
-    # add pathway sources to help organize layout
-    if (!("NULL" %in% class(edge_sources))) {
-        edges <- edges %>%
-            dplyr::bind_rows(
-                edge_sources %>%
-                    dplyr::select(from = "r_id", to = "pathway_id")
-            )
-        
-        vertices <- vertices %>%
-            dplyr::bind_rows(edge_sources %>% dplyr::distinct(name = pathway_id))
-    }
-    
-    out <- list(
-        vertices = vertices,
-        edges = edges
-    )
 }

@@ -118,8 +118,8 @@ plot_shortest_path_network <- function(
     
     validate_napistu_list(napistu_list)
     napistu_graph <- napistu_list$napistu_graph
-    checkmate::assertList(shortest_paths_list, len = 4)
-    checkmate::assertCount(max_labeled_species)
+    checkmate::assert_list(shortest_paths_list, len = 4)
+    checkmate::assert_count(max_labeled_species)
     
     # suppress some nodes labels to avoid overplotting
     nodes_to_label <-

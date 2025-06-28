@@ -294,7 +294,7 @@ validate_neighborhood_table <- function (neighborhood_table) {
     )
     
     purrr::walk(
-        neighborhood_table$edge_sources, 
+        neighborhood_table$reaction_sources, 
         checkmate::assert_data_frame,
         null.ok = TRUE
     )

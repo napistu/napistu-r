@@ -60,7 +60,7 @@ plot_neighborhoods <- function(
         # plot each neighborhood
         dplyr::mutate(neighborhood_grob = purrr::pmap(
             list(
-                vertices, edges, edge_sources, sc_id, sc_name),
+                vertices, edges, reaction_sources, sc_id, sc_name),
                 plot_one_neighborhood,
                 napistu_list = napistu_list,
                 score_overlay = score_overlay,
@@ -217,10 +217,10 @@ create_neighborhood_table <- function(
                 "edges",
                 is_null_valid = FALSE
             ),
-            edge_sources = purrr::map(
+            reaction_sources = purrr::map(
                 neighborhoods,
                 extract_neighborhood_df,
-                "edge_sources"
+                "reaction_sources"
             )
         ) %>%
         dplyr::select(-neighborhoods) %>%
@@ -237,7 +237,7 @@ create_neighborhood_table <- function(
 #' @inheritParams validate_napistu_list
 #' @param vertices table of species and reactions, produced by \link{create_neighborhood_table}
 #' @param edges table of connections between species and reactions, produced by \link{create_neighborhood_table}
-#' @param edge_sources table describing the model(s) each reaction comes from, produced by \link{create_neighborhood_table}
+#' @param reaction_sources table describing the model(s) each reaction comes from, produced by \link{create_neighborhood_table}
 #' @param sc_id compartmentalized species identifier of focal node
 #' @param sc_name name of focal node
 #' @inheritParams create_neighborhood_table
@@ -247,7 +247,7 @@ create_neighborhood_table <- function(
 #' @param join_scores_on attribute to use when merging score_overlays and vertices
 #' @param max_labeled_species maximum number of species to label (to avoid overplotting)
 #' @inheritParams prepare_rendering
-#' @param edge_width width of edges on graph
+#' @inheritParams add_edges_by_reversibility
 #'
 #' @returns a ggplot2 grob
 #'
@@ -267,7 +267,7 @@ create_neighborhood_table <- function(
 #' entry <- 1
 #' vertices <- neighborhood_table$vertices[[entry]]
 #' edges <- neighborhood_table$edges[[entry]]
-#' edge_sources <- neighborhood_table$edge_sources[[entry]]
+#' reaction_sources <- neighborhood_table$reaction_sources[[entry]]
 #' sc_id <- neighborhood_table$sc_id[entry]
 #' sc_name <- neighborhood_table$sc_name[entry]
 #'
@@ -287,7 +287,7 @@ create_neighborhood_table <- function(
 #'     napistu_list,
 #'     vertices,
 #'     edges,
-#'     edge_sources,
+#'     reaction_sources,
 #'     sc_id,
 #'     sc_name,
 #'     score_overlay = NULL
@@ -297,7 +297,7 @@ create_neighborhood_table <- function(
 #'     napistu_list,
 #'     vertices,
 #'     edges,
-#'     edge_sources,
+#'     reaction_sources,
 #'     sc_id,
 #'     sc_name,
 #'     score_overlay = score_overlay,
@@ -308,7 +308,7 @@ plot_one_neighborhood <- function(
     napistu_list,
     vertices,
     edges,
-    edge_sources,
+    reaction_sources,
     sc_id,
     sc_name,
     score_overlay = NULL,
@@ -322,16 +322,17 @@ plot_one_neighborhood <- function(
     
     validate_napistu_list(napistu_list)
     napistu_graph <- napistu_list$napistu_graph
-    checkmate::assertDataFrame(vertices)
-    checkmate::assertDataFrame(edges)
+    checkmate::assert_data_frame(vertices)
+    checkmate::assert_data_frame(edges)
     stopifnot(class(sc_id) %in% c("factor", "character"), length(sc_id) == 1)
     stopifnot(class(sc_name) %in% c("factor", "character"), length(sc_name) == 1)
-    checkmate::assertDataFrame(score_overlay, null.ok = TRUE)
-    checkmate::assertString(score_label, null.ok = TRUE)
-    checkmate::assertString(score_palette, null.ok = TRUE)
-    checkmate::assertInteger(max_labeled_species, len = 1, min = 1)
-    checkmate::assertString(network_layout)
-    checkmate::assertNumeric(edge_width, len = 1)
+    checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
+    checkmate::assert_string(score_label, null.ok = TRUE)
+    checkmate::assert_string(score_palette, null.ok = TRUE)
+    checkmate::assert_character(join_scores_on, min.len = 1)
+    checkmate::assert_integerish(max_labeled_species, len = 1, min = 1)
+    checkmate::assert_string(network_layout)
+    checkmate::assert_numeric(edge_width, len = 1)
     
     cli::cli_alert_info("Starting plot_one_neighborhood")
     
@@ -347,21 +348,25 @@ plot_one_neighborhood <- function(
     
     # add scores if they are present
     if (!is.null(score_overlay)) {
-        vertices <- prepare_score_overlays(vertices, score_overlay, join_on = join_scores_on)
+        vertices <- prepare_score_overlays(
+            vertices,
+            score_overlay,
+            join_scores_on = join_scores_on
+            )
     } else {
         score_label <- NULL
     }
     
     # add pathway sources to help organize layout
-    if (!("NULL" %in% class(edge_sources))) {
+    if (!("NULL" %in% class(reaction_sources))) {
         edges <- edges %>%
             dplyr::bind_rows(
-                edge_sources %>%
+                reaction_sources %>%
                     dplyr::select(from = "r_id", to = "pathway_id")
             )
         
         vertices <- vertices %>%
-            dplyr::bind_rows(edge_sources %>% dplyr::distinct(name = pathway_id))
+            dplyr::bind_rows(reaction_sources %>% dplyr::distinct(name = pathway_id))
     }
     
     steps_colors <- vertices %>%
@@ -378,7 +383,7 @@ plot_one_neighborhood <- function(
     
     plot_one_neighborhood_render(
         neighborhood_network = neighborhood_network,
-        edge_sources = edge_sources,
+        reaction_sources = reaction_sources,
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
@@ -388,14 +393,14 @@ plot_one_neighborhood <- function(
 
 plot_one_neighborhood_render <- function(
     neighborhood_network,
-    edge_sources,
+    reaction_sources,
     score_label = NULL,
     score_palette = NULL,
     network_layout = "fr",
     edge_width = 0.1
 ) {
     
-    rendering_prep_list <- prepare_rendering(neighborhood_network, edge_sources, network_layout)
+    rendering_prep_list <- prepare_rendering(neighborhood_network, reaction_sources, network_layout)
     neighborhood_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords
@@ -420,7 +425,7 @@ plot_one_neighborhood_render <- function(
         plot_title <- plot_title + glue::glue("<br>overlaying **{score_label}**")
     }
     
-    if (!is.null(edge_sources)) {
+    if (!is.null(reaction_sources)) {
         neighborhood_grob <- add_pathway_outlines(neighborhood_grob, pathway_coords)
     }
     

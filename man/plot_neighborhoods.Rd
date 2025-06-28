@@ -44,9 +44,10 @@ plot_neighborhoods(
 \item{neighborhood_table}{Neighborhood table created by
 \code{create_neighborhood_table}}
 
-\item{score_overlay}{optional, scores of neighbors for an indication from \link{summarize_indication}.}
+\item{score_overlay}{optional, vertex-level scores containing `score`
+and the merging attribute specified in `join_on`}
 
-\item{score_label}{optional, name of disease being overlaid.}
+\item{score_label}{optional, name of disease being overlaid}
 
 \item{...}{extra arguments passed to \code{\link{plot_one_neighborhood}}}
 }

@@ -35,17 +35,19 @@ define_subgraphs(napistu_list, subgraph_vertices, max_components = 4L)
     \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
   }}
 
-\item{max_components}{the number of components to retrun}
+\item{subgraph_vertices}{the vertices to retain in the subgraph}
+
+\item{max_components}{the number of components to return}
 }
 \value{
 a list of the `max_components` largest weakly-connected components
 }
 \description{
-Filter to subgraphs containing a set of vertices and their connection
+Filter to an induced subgraph containing a set of vertices and their connections
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
 setup_napistu_list(create_napistu_config())
-subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 150)
-subgraphs <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
+subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
+define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
 }

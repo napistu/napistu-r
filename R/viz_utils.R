@@ -5,19 +5,19 @@
 #' @param vertices a table of vertices containing the variable specified in `join_on`
 #' @param score_overlay optional, vertex-level scores containing `score`
 #'   and the merging attribute specified in `join_on`
-#' @param join_on variable to use when merging vertices and score
-prepare_score_overlays <- function (vertices, score_overlay = NULL, join_on = "s_id") {
+#' @param join_scores_on variable to use when merging vertices and score
+prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_on = "s_id") {
     
     checkmate::assert_data_frame(vertices)
     checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
-    checkmate::assert_choice(join_on, colnames(vertices))
+    checkmate::assert_choice(join_scores_on, colnames(vertices))
     
     if (!is.null(score_overlay)) {
         checkmate::assertDataFrame(score_overlay)
-        if (!(join_on %in% colnames(score_overlay))) {
+        if (!(join_scores_on %in% colnames(score_overlay))) {
             cli::cli_abort(
-                "{.field {join_on}} is not present in {.arg score_overlay} but
-                you are trying to join on {join_on}"
+                "{.field {join_scores_on}} is not present in {.arg score_overlay} but
+                you are trying to join on {join_scores_on}"
             )
         }
         
@@ -31,8 +31,8 @@ prepare_score_overlays <- function (vertices, score_overlay = NULL, join_on = "s
         vertices <- vertices %>%
             dplyr::left_join(
                 score_overlay %>%
-                    dplyr::select(!!rlang::sym(join_on), score),
-                by = join_on
+                    dplyr::select(!!rlang::sym(join_scores_on), score),
+                by = join_scores_on
             )
     } 
     
@@ -45,7 +45,7 @@ prepare_score_overlays <- function (vertices, score_overlay = NULL, join_on = "s
 #' visually appealing ggtext labels.
 #' 
 #' @param vertices a table of the vertices to plot
-#' @param max_labeled_vertices the number of vertices to try to label. Some
+#' @param max_labeled_species the number of vertices to try to label. Some
 #'   labels may be dropped to improve clarity.
 #' @param node_types_to_label what `node_type`s in `vertices` to consider for labeling
 #' @param always_label always include these vertices regardless of their priority. Provide vertex names (generally starting with SC or R).
@@ -78,7 +78,7 @@ label_vertices <- function(
         total_label <- length(always_label)
         non_matches <- always_label[!(always_label %in% vertices$name)]
         
-        if (matches < total_label) {
+        if (non_matches > 0) {
             cli::cli_alert_info(
                 "Can't label {length(non_matches)} of the {total_label} labels in {.arg always_label} because they are not present in the vertice's names: {non_matches}"
             )
@@ -136,9 +136,7 @@ label_vertices <- function(
 #' @param stub_str the text to show in the stub
 #' 
 #' @returns the stubbed grob
-#' @examples
-#' stub_grob("test")
-stub_grob <- function (stub_str, ...) {
+stub_grob <- function (stub_str) {
     grob <- invalid_plot <- ggplot(
         data.frame(x = 0, y = 0), aes(x = x, y = y)
     ) +
@@ -155,7 +153,7 @@ stub_grob <- function (stub_str, ...) {
 #' groups related vertices and by suppressed overplotted labels
 #' 
 #' @param network a graphical network
-#' @param edge_sources an optional mapping from `r_id` to `pathway_id` and `name`. 
+#' @param reaction_sources an optional mapping from `r_id` to `pathway_id` and `name`. 
 #' @param network_layout method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)
 #' 
 #' @returns a list containing
@@ -164,7 +162,7 @@ stub_grob <- function (stub_str, ...) {
 #'     \item{vertices_df}{A table of vertices with upstream metadata plus coordinates and updated labels}
 #'     \item{pathway_coords}{The bounding box of reaction's assigned to each pathway}
 #' }
-prepare_rendering <- function (network, edge_sources, network_layout) {
+prepare_rendering <- function (network, reaction_sources, network_layout) {
     
     gg_network_layout <- layout_with_reaction_sources(network, network_layout)
     network_grob <- ggraph::ggraph(graph = gg_network_layout)
@@ -179,8 +177,8 @@ prepare_rendering <- function (network, edge_sources, network_layout) {
             label_y = y + ((n_lines + 3) * graph_height / 120)
         )
     
-    if (!is.null(edge_sources)) {
-        pathway_coords <- layout_pathway_sources(gg_network_layout, edge_sources)
+    if (!is.null(reaction_sources)) {
+        pathway_coords <- layout_pathway_sources(gg_network_layout, reaction_sources)
     } else {
         pathway_coords <- NULL
     }
@@ -219,12 +217,22 @@ layout_with_reaction_sources <- function(network_graph, network_layout = "fr") {
 }
 
 layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_pathways = 8L) {
-    pathway_coords <- gg_network_layout %>%
+    pathway_reaction_coords <- gg_network_layout %>%
         dplyr::select(name, x, y) %>%
         dplyr::inner_join(reaction_sources %>%
                               dplyr::select(r_id, label = name),
                           by = c("name" = "r_id")
-        ) %>%
+        )
+    
+    if (nrow(pathway_reaction_coords) == 0) {
+        cli::cli_alert_warning(
+            "zero pathways were represented in the network despite passing
+            a non-null value for `reaction_sources`. Returning NULL"
+        )
+        return(NULL)
+    }
+    
+    pathway_coords <- pathway_reaction_coords %>%
         dplyr::group_by(label) %>%
         dplyr::summarize(
             n_species = dplyr::n(),
@@ -240,6 +248,7 @@ layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_path
         dplyr::filter(n_species > 1) %>%
         dplyr::slice(1:max_pathways) %>%
         dplyr::mutate(label_wrap = factor(label_wrap, levels = label_wrap))
+    
     pathway_coords
 }
 
@@ -355,9 +364,10 @@ find_obscured_labels <- function(gg_network_layout) {
 #' 
 #' @param score_palette the name of the palette to use
 #' \describe{
-#'     \item {indication_scores}{A palette going from [0,1]}
-#'     \item {log2 fold-change}{A symmetric blue-black-yellow palette centered on zero}
+#'     \item{indication_scores}{A palette going from [0,1]}
+#'     \item{log2 fold-change}{A symmetric blue-black-yellow palette centered on zero}
 #' }
+#' @param ... extra arguments to pass into the color palette
 select_score_overlay_palette <- function(score_palette, ...) {
     
     SCORE_PALETTE_NAMES <- c("indication scores", "log2 fold-change")
@@ -375,7 +385,8 @@ select_score_overlay_palette <- function(score_palette, ...) {
             colors = c("gray90", "yellow", "orange", "orangered", "red"),
             limits = c(0, 1),
             breaks = c(0, 0.1, 0.4, 1),
-            trans = "sqrt"
+            trans = "sqrt",
+            ...
         )
         
     } else if (score_palette == "log2 fold-change") {
@@ -423,7 +434,7 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
         
         out_grob <- grob +
             scale_color_manual(values = c(
-                "general" = "gray25",
+                "default" = "gray25",
                 "upstream" = "gray25",
                 "downstream" = "gray25",
                 "focal" = "white"
@@ -439,7 +450,10 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
     return(out)
 }
 
-
+#' Add Edges By Reversibility
+#' 
+#' @param grob a ggplot2 grob
+#' @param edge_width width of edges on graph
 add_edges_by_reversibility <- function (grob, edge_width) {
     out <- grob +
         # add edges - irreversible

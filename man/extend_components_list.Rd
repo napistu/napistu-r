@@ -4,11 +4,9 @@
 \alias{extend_components_list}
 \title{Extend Components List}
 \usage{
-extend_components_list(component_graph, napistu_list)
+extend_components_list(napistu_list, component_graph)
 }
 \arguments{
-\item{component_graph}{a weakly connected Python igraph}
-
 \item{napistu_list}{A list containing loaded assets and bindings to
   Python modules.
 
@@ -36,6 +34,8 @@ extend_components_list(component_graph, napistu_list)
     }
     \item{loaded_at}{A date-time object indicating when `napistu_list` was initialized}
   }}
+
+\item{component_graph}{a weakly connected Python igraph}
 }
 \value{
 a list with:
@@ -45,5 +45,6 @@ a list with:
 }
 }
 \description{
-Extend Components List
+Add additional information needed for plotting to a weakly connected component
+graph.
 }
