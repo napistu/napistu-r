@@ -4,6 +4,7 @@
 #' @param verbose provide extra logging
 #' 
 #' @return A `python_list` containing Python modules and environment info
+#' @keywords internal
 setup_python_env <- function(napistu_config, verbose = TRUE) {
     
     checkmate::assert_class(napistu_config, "napistu_config")
@@ -37,6 +38,7 @@ setup_python_env <- function(napistu_config, verbose = TRUE) {
 #' @inheritParams setup_napistu_list
 #' 
 #' @return List with environment path and metadata
+#' @keywords internal
 configure_existing_python <- function(python_config, verbose = TRUE) {
     
     checkmate::assertList(python_config)
@@ -98,6 +100,7 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
 #' @inheritParams setup_napistu_list
 #'
 #' @return List of imported Python modules
+#' @keywords internal
 validate_and_import_modules <- function(verbose = TRUE) {
     
     required_modules <- NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES

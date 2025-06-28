@@ -28,3 +28,4 @@ vertices with a `ggtext_label` variable added
 Takes a pre-sorted table of vertices and annotates the top entries with
 visually appealing ggtext labels.
 }
+\keyword{internal}

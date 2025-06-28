@@ -48,3 +48,4 @@ a list with:
 Add additional information needed for plotting to a weakly connected component
 graph.
 }
+\keyword{internal}

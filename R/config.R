@@ -11,8 +11,6 @@
 #' 
 #' @return None; output is assigned to `napistu_list_object`
 #' 
-#' @export
-#'
 #' @examples
 #' \dontrun{
 #' napistu_config <- create_napistu_config()
@@ -21,6 +19,7 @@
 #' # Using config file
 #' setup_napistu_list("my_config.yml")
 #' }
+#' @export
 setup_napistu_list <- function(
     napistu_config,
     napistu_list_object = NAPISTU_CONSTANTS$NAPISTU_LIST_OBJECT,
@@ -84,8 +83,6 @@ setup_napistu_list <- function(
 #' 
 #' @return Configuration object
 #' 
-#' @export
-#'
 #' @examples
 #' \dontrun{
 #' # Direct configuration
@@ -101,6 +98,7 @@ setup_napistu_list <- function(
 #' # Minimal configuration (uses defaults)
 #' napistu_config <- create_napistu_config()
 #' }
+#' @export
 create_napistu_config <- function(python_config = list(), assets_config = list()) {
     
     validate_python_config(python_config)

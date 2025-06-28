@@ -11,6 +11,7 @@
 #' setup_napistu_list(create_napistu_config(), overwrite = TRUE)
 #' random_species(napistu_list)
 #' @export
+#' @keywords internal
 random_species <- function (napistu_list) {
     validate_napistu_list(napistu_list)
     return(sample(rownames(napistu_list$sbml_dfs$species), 1))

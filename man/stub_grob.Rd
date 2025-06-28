@@ -16,3 +16,4 @@ the stubbed grob
 Create a blank ggplot which can be interested in Shiny apps if a valid plot
 can't be created
 }
+\keyword{internal}

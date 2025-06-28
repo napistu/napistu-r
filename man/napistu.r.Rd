@@ -8,6 +8,14 @@
 \description{
 R functions for the Napistu project supporting the creation, transformation, and network-based interrogation of biological pathways.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://napistu.github.io/napistu-r/}
+  \item \url{https://github.com/napistu/napistu-r}
+}
+
+}
 \author{
 \strong{Maintainer}: Sean Hackett \email{seanmchackett@gmail.com} (\href{https://orcid.org/0000-0002-9553-4341}{ORCID})
 
@@ -17,3 +25,4 @@ Other contributors:
 }
 
 }
+\keyword{internal}

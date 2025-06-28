@@ -15,3 +15,4 @@ Logical indicating if conda works
 \description{
 Validate Conda Executable
 }
+\keyword{internal}

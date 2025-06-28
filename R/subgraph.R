@@ -205,6 +205,7 @@ plot_one_component <- function (
 #'     \item{component_graph}{The component subgraph}
 #'     \item{reaction_sources}{A table mapping reactions to pathway sources}
 #' }
+#' @keywords internal
 extend_components_list <- function (napistu_list, component_graph) {
     
     validate_napistu_list(napistu_list)

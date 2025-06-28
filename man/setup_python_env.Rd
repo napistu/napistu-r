@@ -17,3 +17,4 @@ A `python_list` containing Python modules and environment info
 \description{
 Setup Python Environment
 }
+\keyword{internal}

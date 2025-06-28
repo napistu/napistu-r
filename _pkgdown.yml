@@ -26,23 +26,8 @@ reference:
     loading the core Napistu objects - an `sbml_dfs`, `napistu_graph`,
     `species_identifiers` and optionally, `precomputed_distances`
   contents:
-  - get_bundled_asset_paths
-  - get_configured_asset_paths
   - load_assets
-  - load_assets_from_paths
   - load_single_asset 
-  - resolve_directory_assets
-- subtitle: "Python Environment"
-  desc: >
-    Setup and/or verify a Python environment containing the Napistu Python
-    library.
-  contents:
-  - cleanup_napistu
-  - configure_existing_python
-  - process_required_modules_spec
-  - setup_python_env
-  - validate_and_import_modules
-
 - subtitle: "Default Python Environment"
   desc: >
     Setting up and tearing down a conda environment with Napistu installed
@@ -51,9 +36,6 @@ reference:
   - cleanup_napistu
   - create_conda_environment
   - create_default_conda_env
-  - conda_env_exists
-  - get_conda_installation
-  - validate_conda_executable
 - title: "Network Visualization"
   desc: "Approaches for querying and visualizing Napistu graphs."
 - subtitle: "Subgraphs"
@@ -62,7 +44,6 @@ reference:
     visualizing the resulting weaklyconnected components
   contents:
   - define_subgraphs
-  - extend_components_list
   - plot_subgraph
   - plot_one_component
 - subtitle: "Neighborhoods"
@@ -78,15 +59,7 @@ reference:
   - find_all_shortest_paths
   - plot_shortest_path_network
   - summarize_shortest_paths
-- subitle: "Network Visualization Utilities"
-  desc: "Functions which are reused across multiple graph visualization approaches"
-  contents:
-  - add_edges_by_reversibility
-  - label_vertices
-  - prepare_rendering
-  - prepare_score_overlays
-  - select_score_overlay_palette
-  
+
 - title: "Shiny Modules"
   desc: "Interactive Shiny modules for exploring Napistu networks" 
 - subtitle: "Shiny Module - Basic Info"
@@ -141,11 +114,3 @@ reference:
   desc: "Data which is bundled with `napistu-r`"
   contents:
   - efo_diseases
-
-- title: "Internal Utilities"
-  desc: "Functions that are unlikely to be of interest or use for most users"
-  contents:
-  - napistu.r
-  - random_species
-  - stub_grob
-  

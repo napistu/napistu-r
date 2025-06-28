@@ -19,5 +19,9 @@ about the current operation progress. If FALSE, runs silently.}
 List with environment info and metadata
 }
 \description{
-Create Default Conda Environment
+Setup an conda environment with Napistu installed. This will install miniconda
+if needed (with user permission) and create an environment if-needed in
+an existing conda/miniconda installation or the on-the-fly installation. This
+process can be undone using \link{cleanup_napistu}.
 }
+\keyword{internal}

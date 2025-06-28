@@ -14,3 +14,4 @@ add_edges_by_reversibility(grob, edge_width)
 \description{
 Add Edges By Reversibility
 }
+\keyword{internal}

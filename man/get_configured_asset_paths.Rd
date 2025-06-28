@@ -19,3 +19,4 @@ Named list of asset file paths for configured assets
 \description{
 Get Configured Asset Sources
 }
+\keyword{internal}
