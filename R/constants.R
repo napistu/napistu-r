@@ -1,4 +1,6 @@
 NAPISTU_CONSTANTS <- list(
+    NAPISTU_CONFIGS = c("python_config", "assets_config"),
+    
     # Standard asset filenames (same for bundled and directory-based)
     ASSET_FILENAMES = list(
         sbml_dfs = "sbml_dfs.pkl",

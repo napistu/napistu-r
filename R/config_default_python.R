@@ -78,7 +78,7 @@ cleanup_napistu <- function(napistu_list, force = FALSE) {
 #' @return List with environment info and metadata
 #' @keywords internal
 create_default_conda_env <- function(
-    env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME,
+    env_name = "napistu-config",
     verbose = TRUE
 ) {
     
@@ -138,7 +138,7 @@ create_default_conda_env <- function(
     }
     
     # Create new environment
-    create_conda_environment(env_name, min_python, conda_exe)
+    create_conda_environment(env_name, conda_exe, min_python)
     reticulate::use_condaenv(env_name, conda = conda_exe, required = TRUE)
     
     list(
@@ -241,11 +241,12 @@ conda_env_exists <- function(env_name, conda_exe) {
 #' Create a conda environment with Napistu installed.
 #'
 #' @param env_name Name of environment to create
-#' @param python_version Python version to install
 #' @param conda_exe Path to conda executable
+#' @param python_version Python version to install
+#' 
 #' @return NULL (side effect: creates environment)
-#' @keywords internal
-create_conda_environment <- function(env_name, python_version, conda_exe) {
+#' @export
+create_conda_environment <- function(env_name, conda_exe, python_version = "3.11") {
     cli::cli_inform("Creating conda environment {.val {env_name}} with Python {python_version}")
     
     tryCatch({

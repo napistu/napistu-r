@@ -41,20 +41,11 @@ setup_python_env <- function(napistu_config, verbose = TRUE) {
 #' @keywords internal
 configure_existing_python <- function(python_config, verbose = TRUE) {
     
-    checkmate::assertList(python_config)
+    validate_python_config(python_config)
     checkmate::assertLogical(verbose, len = 1)
     
-    # Validate only one environment type is specified
     env_types <- NAPISTU_CONSTANTS$PYTHON_ENV_TYPES
     specified_types <- intersect(names(python_config), env_types)
-    
-    if (length(specified_types) == 0) {
-        cli::cli_abort("No valid Python environment specified. Use one of: {.val {env_types}}")
-    }
-    
-    if (length(specified_types) > 1) {
-        cli::cli_abort("Multiple Python environment types specified: {.val {specified_types}}")
-    }
     
     env_type <- specified_types[1]
     env_path <- python_config[[env_type]]
@@ -65,6 +56,10 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
         cli::cli_inform("Configuring Python environment: {.val {env_type}} = {.path {env_path}}")
     }
     
+    if (env_type == "conda") {
+        conda_env_name <- python_config$conda_env_name
+    }
+    
     tryCatch({
         switch(env_type,
                "virtualenv" = {
@@ -72,7 +67,7 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
                    reticulate::use_virtualenv(env_path, required = TRUE)
                },
                "conda" = {
-                   reticulate::use_condaenv(env_path, required = TRUE)
+                   reticulate::use_condaenv(conda_env_name, env_path, required = TRUE)
                },
                "python" = {
                    checkmate::assert_file_exists(env_path)

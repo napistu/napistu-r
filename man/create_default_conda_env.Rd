@@ -4,10 +4,7 @@
 \alias{create_default_conda_env}
 \title{Create Default Conda Environment}
 \usage{
-create_default_conda_env(
-  env_name = NAPISTU_CONSTANTS$DEFAULT_CONDA_ENV_NAME,
-  verbose = TRUE
-)
+create_default_conda_env(env_name = "napistu-config", verbose = TRUE)
 }
 \arguments{
 \item{env_name}{The name of the to-be-created conda environment}

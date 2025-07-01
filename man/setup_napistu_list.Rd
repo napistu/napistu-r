@@ -6,15 +6,29 @@
 \usage{
 setup_napistu_list(
   napistu_config,
-  napistu_list_object = NAPISTU_CONSTANTS$NAPISTU_LIST_OBJECT,
+  napistu_list_object = "napistu_list",
   overwrite = FALSE,
   verbose = TRUE
 )
 }
 \arguments{
-\item{napistu_config}{A napistu configuration object of class 'napistu_config'
+\item{napistu_config}{A napistu configuration object of class `napistu_config`
 containing all necessary configuration settings for the loading required
-assets and configuring and/or using an exiting appropriate Python environment}
+assets and configuring and/or using an exiting appropriate Python environment.
+This config can be read from a yaml file using \link{load_napistu_config} or
+directly specified in R using \link{create_napistu_config}. Contains:
+  
+\describe{
+    \item{python_config}{
+        A shallow list defining the Python environment.
+        See \link{validate_python_config}
+    }
+    \item{assets_config}{
+        A shallow list defining the Napistu assets to use.
+        See \link{validate_assets_config}
+    }
+    \item{created_at}{Time stamp}
+}}
 
 \item{napistu_list_object}{The name that setup_napistu_env() will be assigned to.
 If this object already exists then setup will be skipped unless `overwrite` is TRUE}
