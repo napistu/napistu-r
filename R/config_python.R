@@ -48,7 +48,7 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
     specified_types <- intersect(names(python_config), env_types)
     
     env_type <- specified_types[1]
-    env_path <- python_config[[env_type]]
+    env_path <- ensure_absolute_path(python_config[[env_type]])
     
     checkmate::assert_string(env_path, min.chars = 1)
     
@@ -102,9 +102,12 @@ validate_and_import_modules <- function(verbose = TRUE) {
     installed_modules <- reticulate::py_list_packages()
     
     # Check for presence of all required modules
-    missing_modules <- setdiff(names(required_modules), installed_modules$package)
+    missing_modules <- setdiff(names(required_modules), stringr::str_trim(installed_modules$package))
     if (length(missing_modules) > 0) {
-        cli::cli_abort("The following required Python module{?s} {?is/are} not installed: {.field {missing_modules}}")
+        cli::cli_abort(
+            "{length(missing_modules)} required Python module{?s} {?is/are} not installed: {.field {missing_modules}}
+            in your Python environment: {reticulate::py_exe()}"
+        )
     }
     
     # Check for minimum versions
@@ -114,6 +117,13 @@ validate_and_import_modules <- function(verbose = TRUE) {
             installed_version <- installed_modules[
                 installed_modules$package == module_name, "version"
             ]
+            if (length(installed_version) == 0) {
+                cli::cli_warn(
+                    "Python module {module_name} requires at least version {min_version} but its version could not be determined"
+                )
+                next
+            }
+            
             if (utils::compareVersion(installed_version, min_version) < 0) {
                 cli::cli_abort(
                     "Python module {module_name} requires version {min_version}
