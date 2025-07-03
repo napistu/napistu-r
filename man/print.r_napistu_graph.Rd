@@ -14,3 +14,4 @@
 \description{
 Print method for r_napistu_graph objects
 }
+\keyword{internal}

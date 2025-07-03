@@ -39,6 +39,8 @@ load_optional_list_value <- function (l, value) {
 #' @param unresolved_path Character string representing a file or directory path
 #'
 #' @return Character string with the absolute path
+#' 
+#' @keywords internal
 ensure_absolute_path <- function(unresolved_path) {
     # Check if path is NULL or empty
     checkmate::assert_string(unresolved_path)

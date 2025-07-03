@@ -71,6 +71,7 @@ convert_napistu_graph <- function (napistu_graph, napistu_list) {
 #' @param x An r_sbml_dfs object
 #' @param ... Additional arguments (not used)
 #' @export
+#' @keywords internal
 print.r_sbml_dfs <- function(x, ...) {
     cli::cli_h1("SBML Data Frames Collection")
     
@@ -103,6 +104,7 @@ print.r_sbml_dfs <- function(x, ...) {
 #' @param x An r_napistu_graph object
 #' @param ... Additional arguments (not used)
 #' @export
+#' @keywords internal
 print.r_napistu_graph <- function(x, ...) {
     cli::cli_h1("Napistu Graph")
     

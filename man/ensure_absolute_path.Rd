@@ -16,3 +16,4 @@ Character string with the absolute path
 If the path is already absolute (begins with "/"), it is returned as-is.
 If the path is relative, it is converted to an absolute path using normalizePath().
 }
+\keyword{internal}
