@@ -12,6 +12,8 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/cleanup_napistu.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/conda_env_exists.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/configure_existing_python.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/convert_napistu_graph.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/convert_sbml_dfs.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/create_conda_environment.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/create_default_conda_env.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/create_napistu_config.html</loc></url>
@@ -19,6 +21,7 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/create_neighborhood_table.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/define_subgraphs.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/efo_diseases.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/ensure_absolute_path.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/extend_components_list.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/find_all_shortest_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/get_bundled_asset_paths.html</loc></url>
@@ -40,6 +43,8 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/plot_subgraph.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/prepare_rendering.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/prepare_score_overlays.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/print.r_napistu_graph.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/print.r_sbml_dfs.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/process_required_modules_spec.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/query_open_targets_indications.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/query_open_targets_targets.html</loc></url>

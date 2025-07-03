@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">napistu.r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,9 +46,24 @@
 
 
 <dl><dt id="arg-napistu-config">napistu_config<a class="anchor" aria-label="anchor" href="#arg-napistu-config"></a></dt>
-<dd><p>A napistu configuration object of class 'napistu_config'
+<dd><p>A napistu configuration object of class `napistu_config`
 containing all necessary configuration settings for the loading required
-assets and configuring and/or using an exiting appropriate Python environment</p></dd>
+assets and configuring and/or using an exiting appropriate Python environment.
+This config can be read from a yaml file using <a href="load_napistu_config.html">load_napistu_config</a> or
+directly specified in R using <a href="create_napistu_config.html">create_napistu_config</a>. Contains:</p>
+<dl><dt>python_config</dt>
+<dd><p>A shallow list defining the Python environment.
+        See <a href="validate_python_config.html">validate_python_config</a></p></dd>
+
+    <dt>assets_config</dt>
+<dd><p>A shallow list defining the Napistu assets to use.
+        See <a href="validate_assets_config.html">validate_assets_config</a></p></dd>
+
+    <dt>created_at</dt>
+<dd><p>Time stamp</p></dd>
+
+
+</dl></dd>
 
 
 <dt id="arg-python-list">python_list<a class="anchor" aria-label="anchor" href="#arg-python-list"></a></dt>
@@ -69,23 +84,24 @@ about the current operation progress. If FALSE, runs silently.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list containing loaded assets including:</p><dl><dt>sbml_dfs</dt>
+    <p>A list containing loaded assets including:</p>
+<dl><dt>sbml_dfs</dt>
 <dd><p>SBML_dfs - the core pathway representation of the Napistu Python library</p></dd>
 
-    <dt>napistu_graph</dt>
+     <dt>napistu_graph</dt>
 <dd><p>Network graph - a Python igraph subclass with Napistu-specific
         attributes and methods</p></dd>
 
-    <dt>species_identifiers</dt>
+     <dt>species_identifiers</dt>
 <dd><p>Species identifier mappings</p></dd>
 
-    <dt>precomputed_distances</dt>
+     <dt>precomputed_distances</dt>
 <dd><p>optional, distances between species nodes</p></dd>
 
-    <dt>species_names</dt>
+      <dt>species_names</dt>
 <dd><p>A tibble containing the names of all genes, proteins, molecules, etc</p></dd>
 
-    <dt>identifiers_nest</dt>
+     <dt>identifiers_nest</dt>
 <dd><p>A tibble with one row per ontology and a nested tibble containing
          all the identifiers and their corresponding molecular species</p></dd>
 
