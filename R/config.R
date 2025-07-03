@@ -22,7 +22,7 @@
 #' @export
 setup_napistu_list <- function(
     napistu_config,
-    napistu_list_object = NAPISTU_CONSTANTS$NAPISTU_LIST_OBJECT,
+    napistu_list_object = "napistu_list",
     overwrite = FALSE,
     verbose = TRUE
 ) {
@@ -116,6 +116,8 @@ create_napistu_config <- function(python_config = list(), assets_config = list()
 }
 
 #' Load Napistu Configuration from YAML
+#' 
+#' Reads a config containing a `python_config` and/or `assets_config`.
 #'
 #' @param file_path Path to YAML configuration file
 #' @inheritParams validate_verbose
@@ -142,6 +144,11 @@ load_napistu_config <- function(file_path, verbose = TRUE) {
             cli::cli_abort("Failed to parse YAML config: {e$message}")
         }
     )
+    
+    unrecognized_yaml_specs <- setdiff(names(config_data), NAPISTU_CONSTANTS$NAPISTU_CONFIGS)
+    if (length(unrecognized_yaml_specs) > 0) {
+        cli::cli_abort("{unrecognized_yaml_specs} {?is/are} not a recognized component of the {.arg napistu_config}")
+    }
     
     # Apply defaults for missing sections
     python_config <- config_data$python_config %||% list()

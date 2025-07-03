@@ -26,6 +26,8 @@ reference:
     loading the core Napistu objects - an `sbml_dfs`, `napistu_graph`,
     `species_identifiers` and optionally, `precomputed_distances`
   contents:
+  - convert_napistu_graph
+  - convert_sbml_dfs
   - load_assets
   - load_single_asset 
 - subtitle: "Default Python Environment"

@@ -1,7 +1,7 @@
 Package: napistu.r
 Type: Package
 Title: Napistu R
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person(
       given = "Sean",
@@ -51,6 +51,7 @@ Suggests:
     rvest,
     testthat (>= 3.0.0),
     usethis,
+    withr,
     vroom
 License: MIT + file LICENSE
 Encoding: UTF-8

@@ -4,14 +4,14 @@
 \alias{create_conda_environment}
 \title{Create Conda Environment}
 \usage{
-create_conda_environment(env_name, python_version, conda_exe)
+create_conda_environment(env_name, conda_exe, python_version = "3.11")
 }
 \arguments{
 \item{env_name}{Name of environment to create}
 
-\item{python_version}{Python version to install}
-
 \item{conda_exe}{Path to conda executable}
+
+\item{python_version}{Python version to install}
 }
 \value{
 NULL (side effect: creates environment)
@@ -19,4 +19,3 @@ NULL (side effect: creates environment)
 \description{
 Create a conda environment with Napistu installed.
 }
-\keyword{internal}

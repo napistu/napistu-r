@@ -13,3 +13,12 @@ test_that("load_optional_list_value returns value if present, NULL if missing", 
     # Edge case: empty list
     expect_null(load_optional_list_value(list(), "anything"))
 })
+
+test_that("ensure_absolute_path correctly handles paths", {
+    skip_on_os("windows")
+    
+    # Absolute path should remain unchanged
+    expect_equal(ensure_absolute_path("/usr/local/bin"), "/usr/local/bin")
+    
+    expect_equal(substr(ensure_absolute_path("my_file"), 1, 1), "/")
+})

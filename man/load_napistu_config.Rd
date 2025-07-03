@@ -16,5 +16,5 @@ about the current operation progress. If FALSE, runs silently.}
 Configuration object
 }
 \description{
-Load Napistu Configuration from YAML
+Reads a config containing a `python_config` and/or `assets_config`.
 }

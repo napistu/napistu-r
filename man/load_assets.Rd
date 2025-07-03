@@ -7,9 +7,23 @@
 load_assets(napistu_config, python_list, verbose = TRUE)
 }
 \arguments{
-\item{napistu_config}{A napistu configuration object of class 'napistu_config'
+\item{napistu_config}{A napistu configuration object of class `napistu_config`
 containing all necessary configuration settings for the loading required
-assets and configuring and/or using an exiting appropriate Python environment}
+assets and configuring and/or using an exiting appropriate Python environment.
+This config can be read from a yaml file using \link{load_napistu_config} or
+directly specified in R using \link{create_napistu_config}. Contains:
+  
+\describe{
+    \item{python_config}{
+        A shallow list defining the Python environment.
+        See \link{validate_python_config}
+    }
+    \item{assets_config}{
+        A shallow list defining the Napistu assets to use.
+        See \link{validate_assets_config}
+    }
+    \item{created_at}{Time stamp}
+}}
 
 \item{python_list}{A list containing reticulate bindings to Python packages and summaries of the Python environment.
 \describe{
@@ -22,24 +36,25 @@ about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 A list containing loaded assets including:
-  \describe{
+
+\describe{
     \item{sbml_dfs}{
         SBML_dfs - the core pathway representation of the Napistu Python library
-        }
-    \item{napistu_graph}{
+     }
+     \item{napistu_graph}{
         Network graph - a Python igraph subclass with Napistu-specific
         attributes and methods
-        }
-    \item{species_identifiers}{Species identifier mappings}
-    \item{precomputed_distances}{optional, distances between species nodes}
-    \item{species_names}{
+     }
+     \item{species_identifiers}{Species identifier mappings}
+     \item{precomputed_distances}{optional, distances between species nodes}
+      \item{species_names}{
          A tibble containing the names of all genes, proteins, molecules, etc
-         }
-    \item{identifiers_nest}{
+     }
+     \item{identifiers_nest}{
          A tibble with one row per ontology and a nested tibble containing
          all the identifiers and their corresponding molecular species
-         }
-  }
+     }
+}
 }
 \description{
 Load a set of Napistu files

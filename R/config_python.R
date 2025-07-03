@@ -41,28 +41,23 @@ setup_python_env <- function(napistu_config, verbose = TRUE) {
 #' @keywords internal
 configure_existing_python <- function(python_config, verbose = TRUE) {
     
-    checkmate::assertList(python_config)
+    validate_python_config(python_config)
     checkmate::assertLogical(verbose, len = 1)
     
-    # Validate only one environment type is specified
     env_types <- NAPISTU_CONSTANTS$PYTHON_ENV_TYPES
     specified_types <- intersect(names(python_config), env_types)
     
-    if (length(specified_types) == 0) {
-        cli::cli_abort("No valid Python environment specified. Use one of: {.val {env_types}}")
-    }
-    
-    if (length(specified_types) > 1) {
-        cli::cli_abort("Multiple Python environment types specified: {.val {specified_types}}")
-    }
-    
     env_type <- specified_types[1]
-    env_path <- python_config[[env_type]]
+    env_path <- ensure_absolute_path(python_config[[env_type]])
     
     checkmate::assert_string(env_path, min.chars = 1)
     
     if (verbose) {
         cli::cli_inform("Configuring Python environment: {.val {env_type}} = {.path {env_path}}")
+    }
+    
+    if (env_type == "conda") {
+        conda_env_name <- python_config$conda_env_name
     }
     
     tryCatch({
@@ -72,7 +67,7 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
                    reticulate::use_virtualenv(env_path, required = TRUE)
                },
                "conda" = {
-                   reticulate::use_condaenv(env_path, required = TRUE)
+                   reticulate::use_condaenv(conda_env_name, env_path, required = TRUE)
                },
                "python" = {
                    checkmate::assert_file_exists(env_path)
@@ -107,9 +102,12 @@ validate_and_import_modules <- function(verbose = TRUE) {
     installed_modules <- reticulate::py_list_packages()
     
     # Check for presence of all required modules
-    missing_modules <- setdiff(names(required_modules), installed_modules$package)
+    missing_modules <- setdiff(names(required_modules), stringr::str_trim(installed_modules$package))
     if (length(missing_modules) > 0) {
-        cli::cli_abort("The following required Python module{?s} {?is/are} not installed: {.field {missing_modules}}")
+        cli::cli_abort(
+            "{length(missing_modules)} required Python module{?s} {?is/are} not installed: {.field {missing_modules}}
+            in your Python environment: {reticulate::py_exe()}"
+        )
     }
     
     # Check for minimum versions
@@ -119,6 +117,13 @@ validate_and_import_modules <- function(verbose = TRUE) {
             installed_version <- installed_modules[
                 installed_modules$package == module_name, "version"
             ]
+            if (length(installed_version) == 0) {
+                cli::cli_warn(
+                    "Python module {module_name} requires at least version {min_version} but its version could not be determined"
+                )
+                next
+            }
+            
             if (utils::compareVersion(installed_version, min_version) < 0) {
                 cli::cli_abort(
                     "Python module {module_name} requires version {min_version}

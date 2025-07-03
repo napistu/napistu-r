@@ -7,24 +7,25 @@
 #' @inheritParams validate_verbose
 #' 
 #' @return A list containing loaded assets including:
-#'   \describe{
+#' 
+#' \describe{
 #'     \item{sbml_dfs}{
 #'         SBML_dfs - the core pathway representation of the Napistu Python library
-#'         }
-#'     \item{napistu_graph}{
+#'      }
+#'      \item{napistu_graph}{
 #'         Network graph - a Python igraph subclass with Napistu-specific
 #'         attributes and methods
-#'         }
-#'     \item{species_identifiers}{Species identifier mappings}
-#'     \item{precomputed_distances}{optional, distances between species nodes}
-#'     \item{species_names}{
+#'      }
+#'      \item{species_identifiers}{Species identifier mappings}
+#'      \item{precomputed_distances}{optional, distances between species nodes}
+#'       \item{species_names}{
 #'          A tibble containing the names of all genes, proteins, molecules, etc
-#'          }
-#'     \item{identifiers_nest}{
+#'      }
+#'      \item{identifiers_nest}{
 #'          A tibble with one row per ontology and a nested tibble containing
 #'          all the identifiers and their corresponding molecular species
-#'          }
-#'   }
+#'      }
+#' }
 #' 
 #' @export
 load_assets <- function(napistu_config, python_list, verbose = TRUE) {
@@ -34,6 +35,7 @@ load_assets <- function(napistu_config, python_list, verbose = TRUE) {
     validate_verbose(verbose)
     
     assets_config <- napistu_config$assets_config
+    validate_assets_config(assets_config)
     
     if (length(assets_config) == 0) {
         if (verbose) {
@@ -147,7 +149,7 @@ get_bundled_asset_paths <- function() {
 #' @keywords internal
 get_configured_asset_paths <- function(assets_config, verbose = TRUE) {
     
-    validate_assets_config(assets_config)
+    validate_assets_config(assets_config, minimal_validation = TRUE)
     validate_verbose(verbose)
     
     # Handle directory-based configuration first
@@ -248,7 +250,7 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
 #' @keywords internal
 resolve_directory_assets <- function(assets_config, verbose = TRUE) {
     
-    validate_assets_config(assets_config)
+    validate_assets_config(assets_config, minimal_validation = TRUE)
     validate_verbose(verbose)
     
     assets_dir <- assets_config$assets_dir

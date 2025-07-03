@@ -30,3 +30,26 @@ load_optional_list_value <- function (l, value) {
 }
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
+
+#' Convert a path to an absolute path
+#'
+#' If the path is already absolute (begins with "/"), it is returned as-is.
+#' If the path is relative, it is converted to an absolute path using normalizePath().
+#'
+#' @param unresolved_path Character string representing a file or directory path
+#'
+#' @return Character string with the absolute path
+#' 
+#' @keywords internal
+ensure_absolute_path <- function(unresolved_path) {
+    # Check if path is NULL or empty
+    checkmate::assert_string(unresolved_path)
+    
+    # Check if the path already starts with "/"
+    if (substr(unresolved_path, 1, 1) == "/") {
+        return(unresolved_path)  # Already absolute, return as-is
+    } else {
+        # Convert relative path to absolute
+        return(file.path(getwd(), unresolved_path))
+    }
+}

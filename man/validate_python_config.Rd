@@ -7,10 +7,26 @@
 validate_python_config(python_config)
 }
 \arguments{
-\item{python_config}{List describing whether to use the system python,
-virtual environment or conda and what environment to use if using an
-environment manager. Typically extracted from the main napistu_config
-object.}
+\item{python_config}{List describing the Python environment to use as part of
+  the `napistu_config`. This can be the system python, a virtual environment
+  or conda. If `python_config` is an empty list, a miniconda environment and
+  installation can be established on-the-fly.
+
+  \describe{
+       \item{virtual_env}{Optional, path to a virtual environment}
+       \item{conda}{
+           Optional, path to a conda executable. This can be found with
+           `reticulate::conda_exe()`. If defined, the `conda_env_name` should
+           also be defined.
+       }
+       \item{conda_env_name}{
+           Optional, name of the conda environment to use. A suitable environment
+           can be created using \link{create_conda_environment}.
+       }
+       \item{python}{
+           Optional, path to a Python distribution.
+       }
+  }}
 }
 \value{
 Invisible TRUE if valid, throws error if invalid
