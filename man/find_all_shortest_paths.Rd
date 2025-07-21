@@ -8,7 +8,7 @@ find_all_shortest_paths(
   napistu_list,
   source_species_id,
   dest_species_id,
-  weights_var = "weights"
+  weight_var = "weights"
 )
 }
 \arguments{
@@ -44,7 +44,7 @@ find_all_shortest_paths(
 
 \item{dest_species_id}{species ID of the downstream/destination vertex}
 
-\item{weights_var}{variable in edges to use for edge weights}
+\item{weight_var}{variable in edges to use for edge weights}
 }
 \value{
 All the shortest paths between `source_species_id` and `dest_species_id`

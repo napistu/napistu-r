@@ -131,7 +131,7 @@ utils::globalVariables(c(
     "var",
     "vertices",
     "w",
-    "weights",
+    "weight",
     "x",
     "x_max",
     "x_min",

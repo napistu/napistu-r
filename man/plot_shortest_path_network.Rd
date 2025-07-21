@@ -65,7 +65,7 @@ shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_path
     napistu_graph,
     sbml_dfs,
     target_species_paths,
-    weight_var = "weights"
+    weight_var = "weight"
 ),silent = TRUE)
 
 if (!("try-error" \%in\% class(shortest_paths_list))) {
