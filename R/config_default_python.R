@@ -78,7 +78,7 @@ cleanup_napistu <- function(napistu_list, force = FALSE) {
 #' @return List with environment info and metadata
 #' @keywords internal
 create_default_conda_env <- function(
-    env_name = "napistu-config",
+    env_name = "napistu-env",
     verbose = TRUE
 ) {
     

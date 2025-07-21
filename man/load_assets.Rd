@@ -54,6 +54,10 @@ A list containing loaded assets including:
          A tibble with one row per ontology and a nested tibble containing
          all the identifiers and their corresponding molecular species
      }
+     \item{reactions_source_total_counts}{
+         A pd.Series containing the number of reactions each pathway is
+         associated with
+     }
 }
 }
 \description{

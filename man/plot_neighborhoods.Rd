@@ -2,7 +2,7 @@
 % Please edit documentation in R/neighborhoods.R
 \name{plot_neighborhoods}
 \alias{plot_neighborhoods}
-\title{Summarize Neighborhoods}
+\title{Plot Neighborhoods}
 \usage{
 plot_neighborhoods(
   napistu_list,
@@ -52,7 +52,7 @@ and the merging attribute specified in `join_on`}
 \item{...}{extra arguments passed to \code{\link{plot_one_neighborhood}}}
 }
 \description{
-Summarize Neighborhoods
+Plot Neighborhoods
 }
 \examples{
 suppressPackageStartupMessages(library(dplyr))
@@ -62,8 +62,8 @@ species_id <- random_species(napistu_list)
 neighborhood_table <- create_neighborhood_table(
     napistu_list,
     species_id = species_id,
-    max_steps = 3L,
-    max_neighbors = 40L,
+    max_steps = 5L,
+    max_neighbors = 20L,
 )
 
 # score_overlay <- summarize_indication(
@@ -80,7 +80,7 @@ score_overlay <- neighborhood_table \%>\%
     dplyr::sample_frac(0.5) \%>\%
     dplyr::mutate(score = stats::rnorm(dplyr::n()))
 
-neighborhood_summaries <- plot_neighborhoods(
+plot_neighborhoods(
     napistu_list,
     neighborhood_table,
     score_overlay,

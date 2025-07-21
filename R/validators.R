@@ -264,7 +264,6 @@ validate_asset_list <- function (asset_list) {
     checkmate::assert_data_frame(asset_list$species_identifiers)
     
     # optional attributes
-    # TO DO - this needs to be deserialized correctly
     if (!is.null(asset_list$precomputed_distances)) {
         checkmate::assert_data_frame(asset_list$precomputed_distances)
     }
@@ -352,7 +351,7 @@ validate_python_environment <- function (python_environment) {
 #'     \item{sc_Source}{The Source object for the focal vertex}
 #'     \item{vertices}{The vertices in the focal vertex's neighborhood}
 #'     \item{edges}{The edges in the focal vertex's neighborhood}
-#'     \item{edge_source}{The source pathways of the reaction vertices}
+#'     \item{reaction_sources}{The source pathways of the reaction vertices}
 #' }
 #' 
 #' @return Invisible TRUE if valid, throws error if invalid

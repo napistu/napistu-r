@@ -58,7 +58,7 @@ define_subgraphs <- function (napistu_list, subgraph_vertices, max_components = 
 #' setup_napistu_list(create_napistu_config())
 #' subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
 #' subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
-#' plot_subgraph(napistu_list, subgraph_list)
+#' plot_subgraph(napistu_list, subgraph_list, vertex_size = 6)
 #' @export
 plot_subgraph <- function (
     napistu_list,
@@ -92,6 +92,7 @@ plot_subgraph <- function (
 #' @inheritParams prepare_rendering
 #' @inheritParams plot_one_neighborhood
 #' @inheritParams add_edges_by_reversibility
+#' @param vertex_size vertices' size
 #' 
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -117,8 +118,14 @@ plot_one_component <- function (
     join_scores_on = "name",
     max_labeled_species = 20,
     network_layout = "fr",
-    edge_width = 0.1
+    edge_width = 0.1,
+    vertex_size = 6
 ) {
+    
+    checkmate::assert_integerish(max_labeled_species, len = 1)
+    checkmate::assert_string(network_layout)
+    checkmate::assert_number(edge_width)
+    checkmate::assert_number(vertex_size)
     
     validate_napistu_list(napistu_list)
     napistu <- napistu_list$python_modules$napistu
@@ -162,7 +169,7 @@ plot_one_component <- function (
     }
     
     # add pathway sources to help organize layout
-    if (!is.null(reaction_sources)) {
+    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
         edges <- edges %>%
             dplyr::bind_rows(
                 reaction_sources %>%
@@ -185,7 +192,8 @@ plot_one_component <- function (
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
-        edge_width = edge_width
+        edge_width = edge_width,
+        vertex_size = vertex_size
     )
     
     return(grob)
@@ -199,6 +207,7 @@ plot_one_component <- function (
 #' 
 #' @inheritParams validate_napistu_list
 #' @param component_graph a weakly connected Python igraph
+#' @param min_pw_size the minimum size of a pathway to be considered
 #'
 #' @returns a list with:
 #' \describe{
@@ -206,10 +215,11 @@ plot_one_component <- function (
 #'     \item{reaction_sources}{A table mapping reactions to pathway sources}
 #' }
 #' @keywords internal
-extend_components_list <- function (napistu_list, component_graph) {
+extend_components_list <- function (napistu_list, component_graph, min_pw_size = 3) {
     
     validate_napistu_list(napistu_list)
     sbml_dfs <- napistu_list$sbml_dfs
+    reactions_source_total_counts <- napistu_list$reactions_source_total_counts
     napistu <- napistu_list$python_modules$napistu
     checkmate::assert_class(component_graph, "napistu.network.ng_core.NapistuGraph")
     
@@ -218,7 +228,12 @@ extend_components_list <- function (napistu_list, component_graph) {
         tibble::as_tibble() %>%
         dplyr::rename(node = name)
     
-    reaction_sources <- napistu$network$ng_utils$get_minimal_sources_edges(vertices, sbml_dfs)
+    reaction_sources <- napistu$network$ng_utils$get_minimal_sources_edges(
+        vertices,
+        sbml_dfs,
+        min_pw_size = 3,
+        source_total_counts = reactions_source_total_counts
+    )
     
     component_list <- list(
         component_graph = component_graph,
@@ -235,8 +250,13 @@ plot_one_component_render <- function (
     score_label,
     score_palette,
     network_layout,
-    edge_width = 0.1
+    edge_width = 0.1,
+    vertex_size = 6
 ) {
+    
+    checkmate::assert_string(network_layout)
+    checkmate::assert_number(edge_width)
+    checkmate::assert_number(vertex_size)
     
     rendering_prep_list <- prepare_rendering(component_network, reaction_sources, network_layout)
     component_grob <- rendering_prep_list$network_grob
@@ -258,7 +278,7 @@ plot_one_component_render <- function (
         plot_title <- plot_title + glue::glue("<br>overlaying **{score_label}**")
     }
     
-    if (!is.null(reaction_sources)) {
+    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
         component_grob <- add_pathway_outlines(component_grob, pathway_coords)
     }
     
@@ -278,7 +298,7 @@ plot_one_component_render <- function (
         ggraph::geom_node_point(aes(
             shape = factor(node_type),
             color = !!color_by,
-            size = 6
+            size = vertex_size
         )) 
     
     component_grob <- add_node_names_and_themes(

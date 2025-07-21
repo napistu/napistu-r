@@ -17,7 +17,7 @@ containing one row per neighborhood with nested lists as attributes:
     \item{sc_Source}{The Source object for the focal vertex}
     \item{vertices}{The vertices in the focal vertex's neighborhood}
     \item{edges}{The edges in the focal vertex's neighborhood}
-    \item{edge_source}{The source pathways of the reaction vertices}
+    \item{reaction_sources}{The source pathways of the reaction vertices}
 }}
 }
 \value{

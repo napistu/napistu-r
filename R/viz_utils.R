@@ -181,7 +181,7 @@ prepare_rendering <- function (network, reaction_sources, network_layout) {
             label_y = y + ((n_lines + 3) * graph_height / 120)
         )
     
-    if (!is.null(reaction_sources)) {
+    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
         pathway_coords <- layout_pathway_sources(gg_network_layout, reaction_sources)
     } else {
         pathway_coords <- NULL

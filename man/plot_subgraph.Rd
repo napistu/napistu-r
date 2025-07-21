@@ -63,5 +63,5 @@ Plot Subgraphs
 setup_napistu_list(create_napistu_config())
 subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
 subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
-plot_subgraph(napistu_list, subgraph_list)
+plot_subgraph(napistu_list, subgraph_list, vertex_size = 6)
 }

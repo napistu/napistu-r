@@ -25,6 +25,10 @@
 #'          A tibble with one row per ontology and a nested tibble containing
 #'          all the identifiers and their corresponding molecular species
 #'      }
+#'      \item{reactions_source_total_counts}{
+#'          A pd.Series containing the number of reactions each pathway is
+#'          associated with
+#'      }
 #' }
 #' 
 #' @export
@@ -50,12 +54,12 @@ load_assets <- function(napistu_config, python_list, verbose = TRUE) {
     }
     
     assets <- load_assets_from_paths(asset_paths, python_list, verbose) %>%
-        create_derived_assets()
+        create_derived_assets(python_list)
     
     return(assets)
 }
 
-create_derived_assets <- function (assets) {
+create_derived_assets <- function (assets, python_list) {
     
     assets$species_names <- assets$sbml_dfs$species %>%
         dplyr::select(-s_Identifiers, -s_Source)
@@ -66,6 +70,18 @@ create_derived_assets <- function (assets) {
         dplyr::arrange(dplyr::desc(n)) %>%
         dplyr::mutate(ontology = factor(ontology, levels = ontology))
 
+    napistu_source_module <- python_list$python_modules$napistu$source
+    r_source_total_counts <- napistu_source_module$get_source_total_counts(
+        assets$sbml_dfs,
+        "reactions"
+    )
+    
+    assets$reactions_source_total_counts <- create_pandas_series(
+        data = r_source_total_counts,
+        index = names(r_source_total_counts),
+        name = "total_counts"
+    )
+    
     return(assets)
 }
 
