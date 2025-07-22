@@ -6,7 +6,8 @@ NAPISTU_CONSTANTS <- list(
         sbml_dfs = "sbml_dfs.pkl",
         napistu_graph = "napistu_graph.pkl",
         species_identifiers = "species_identifiers.tsv",
-        precomputed_distances = "precomputed_distances.parquet"
+        precomputed_distances = "precomputed_distances.parquet",
+        reactions_source_total_counts = "reactions_source_total_counts.tsv"
     ),
     
     NAPISTU_LIST_OBJECT = "napistu_list",
@@ -16,8 +17,8 @@ NAPISTU_CONSTANTS <- list(
     
     # Asset requirements
     REQUIRED_ASSETS = c("sbml_dfs", "napistu_graph", "species_identifiers"),
-    OPTIONAL_ASSETS = c("precomputed_distances"),
-    REQUIRED_DERIVED_ASSETS = c("identifiers_nest", "species_names", "reactions_source_total_counts"),
+    OPTIONAL_ASSETS = c("precomputed_distances", "reactions_source_total_counts"),
+    REQUIRED_DERIVED_ASSETS = c("identifiers_nest", "species_names"),
     
     # Python configuration
     PYTHON_CONFIG_VARS = c("python_environment", "python_modules"),

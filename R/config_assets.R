@@ -54,15 +54,24 @@ load_assets <- function(napistu_config, python_list, verbose = TRUE) {
     }
     
     assets <- load_assets_from_paths(asset_paths, python_list, verbose) %>%
-        create_derived_assets(python_list)
+        create_derived_assets(python_list, verbose)
     
     return(assets)
 }
 
-create_derived_assets <- function (assets, python_list) {
+create_derived_assets <- function (assets, python_list, verbose = TRUE) {
+    
+    if (verbose) {
+        cli::cli_alert_info("Creating derived assets")
+        cli::cli_alert_info("Creating a table of species names to support lookups by name")
+    }
     
     assets$species_names <- assets$sbml_dfs$species %>%
         dplyr::select(-s_Identifiers, -s_Source)
+    
+    if (verbose) {
+        cli::cli_alert_info("Creating a df with nested tables for each ontology to support lookups by identifiers")
+    }
     
     assets$identifiers_nest <- assets$species_identifiers %>%
         tidyr::nest(ontology_ids = -ontology) %>%
@@ -70,18 +79,6 @@ create_derived_assets <- function (assets, python_list) {
         dplyr::arrange(dplyr::desc(n)) %>%
         dplyr::mutate(ontology = factor(ontology, levels = ontology))
 
-    napistu_source_module <- python_list$python_modules$napistu$source
-    r_source_total_counts <- napistu_source_module$get_source_total_counts(
-        assets$sbml_dfs,
-        "reactions"
-    )
-    
-    assets$reactions_source_total_counts <- create_pandas_series(
-        data = r_source_total_counts,
-        index = names(r_source_total_counts),
-        name = "total_counts"
-    )
-    
     return(assets)
 }
 
@@ -144,12 +141,23 @@ get_bundled_asset_paths <- function() {
     asset_paths <- list()
     
     for (asset_name in all_assets) {
+        
+        if (!(asset_name %in% names(asset_filenames))) {
+            cli::cli_abort("{asset_name} is not associated with a file in {.field NAPISTU_CONSTANTS$ASSET_FILENAMES}. Contact the package developer.")
+        }
+        
         file_name <- asset_filenames[[asset_name]]
         asset_path <- file.path(bundled_test_pathway_path, file_name)
         
         # Only include if file actually exists
         if (file.exists(asset_path)) {
             asset_paths[[asset_name]] <- asset_path
+        } else {
+            if (asset_name %in% NAPISTU_CONSTANTS$REQUIRED_ASSETS) {
+                cli::cli_abort("A required asset {.field {asset_name}} was missing from the bundled assets. Please try to reinstall the package and if the problem persists contact the package developer.")
+            } else {
+                cli::cli_alert_warning("An optional asset {.field {asset_name}} was missing from the bundled assets. This is unexpected behavior but downstream functionality should still function.")
+            }
         }
     }
     

@@ -5,6 +5,10 @@ napistu <- reticulate::import("napistu")
 ASSET_NAME <- "test_pathway"
 OUT_PATH <- "inst/extdata"
 
+if (file.exists(OUT_PATH)) {
+    unlink(OUT_PATH, recursive = TRUE)
+}
+
 x <- napistu$gcs$downloads$load_public_napistu_asset(
     ASSET_NAME,
     OUT_PATH,
