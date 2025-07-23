@@ -13,6 +13,7 @@ plot_one_component(
   join_scores_on = "name",
   max_labeled_species = 20,
   network_layout = "fr",
+  edge_weights = NULL,
   edge_width = 0.1,
   vertex_size = 6
 )
@@ -62,6 +63,9 @@ and the merging attribute specified in `join_on`}
 labels may be dropped to improve clarity.}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
+
+\item{edge_weights}{Numeric vector of edge weights, character string naming an edge attribute,
+NULL to use graph's "weight" attribute, or NA to explicitly use no weights}
 
 \item{edge_width}{width of edges on graph}
 

@@ -252,6 +252,7 @@ plot_neighborhoods <- function(
 #' @param max_labeled_species maximum number of species to label (to avoid overplotting)
 #' @inheritParams prepare_rendering
 #' @inheritParams add_edges_by_reversibility
+#' @inheritParams process_weights_for_layout
 #'
 #' @returns a ggplot2 grob
 #'
@@ -321,6 +322,7 @@ plot_one_neighborhood <- function(
     join_scores_on = "s_id",
     max_labeled_species = 30L,
     network_layout = "fr",
+    edge_weights = NULL,
     edge_width = 0.1
 ) {
     
@@ -356,21 +358,9 @@ plot_one_neighborhood <- function(
             vertices,
             score_overlay,
             join_scores_on = join_scores_on
-            )
+        )
     } else {
         score_label <- NULL
-    }
-    
-    # add pathway sources to help organize layout
-    if (!("NULL" %in% class(reaction_sources))) {
-        edges <- edges %>%
-            dplyr::bind_rows(
-                reaction_sources %>%
-                    dplyr::select(from = "r_id", to = "pathway_id")
-            )
-        
-        vertices <- vertices %>%
-            dplyr::bind_rows(reaction_sources %>% dplyr::distinct(name = pathway_id))
     }
     
     steps_colors <- vertices %>%
@@ -379,10 +369,13 @@ plot_one_neighborhood <- function(
         dplyr::arrange(path_length) %>%
         dplyr::mutate(path_color = grDevices::colorRampPalette(c("white", "dodgerblue"))(dplyr::n()))
     
+    # add pathway sources to help organize layout
+    graph_tbls_w_sources = add_sources_to_graph(vertices, edges, reaction_sources)
+    
     neighborhood_network <- igraph::graph_from_data_frame(
-        edges,
+        graph_tbls_w_sources$edges,
         directed = napistu_graph$is_directed(),
-        vertices = vertices
+        vertices = graph_tbls_w_sources$vertices
     )
     
     plot_one_neighborhood_render(
@@ -391,6 +384,7 @@ plot_one_neighborhood <- function(
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
+        edge_weights = edge_weights,
         edge_width = edge_width
     )
 }
@@ -401,10 +395,16 @@ plot_one_neighborhood_render <- function(
     score_label = NULL,
     score_palette = NULL,
     network_layout = "fr",
+    edge_weights = NULL,
     edge_width = 0.1
 ) {
     
-    rendering_prep_list <- prepare_rendering(neighborhood_network, reaction_sources, network_layout)
+    rendering_prep_list <- prepare_rendering(
+        neighborhood_network,
+        reaction_sources = reaction_sources,
+        network_layout = network_layout,
+        edge_weights = edge_weights
+    )
     neighborhood_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords

@@ -4,10 +4,10 @@
 \alias{prepare_rendering}
 \title{Prepare Rendering}
 \usage{
-prepare_rendering(network, reaction_sources, network_layout)
+prepare_rendering(r_graph, reaction_sources, network_layout, edge_weights)
 }
 \arguments{
-\item{network}{a graphical network}
+\item{r_graph}{an R igraph network}
 
 \item{reaction_sources}{an optional mapping from `r_id` to `pathway_id` and `name`.}
 

@@ -118,6 +118,7 @@ plot_one_component <- function (
     join_scores_on = "name",
     max_labeled_species = 20,
     network_layout = "fr",
+    edge_weights = NULL,
     edge_width = 0.1,
     vertex_size = 6
 ) {
@@ -151,7 +152,7 @@ plot_one_component <- function (
             vertices,
             score_overlay,
             join_scores_on = join_scores_on
-            )
+        )
     } else {
         score_label <- NULL
     }
@@ -169,21 +170,12 @@ plot_one_component <- function (
     }
     
     # add pathway sources to help organize layout
-    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
-        edges <- edges %>%
-            dplyr::bind_rows(
-                reaction_sources %>%
-                    dplyr::select(from = "r_id", to = "pathway_id")
-            )
-        
-        vertices <- vertices %>%
-            dplyr::bind_rows(reaction_sources %>% dplyr::distinct(name = pathway_id))
-    }
+    graph_tbls_w_sources = add_sources_to_graph(vertices, edges, reaction_sources)
     
     component_network <- igraph::graph_from_data_frame(
-        edges,
+        graph_tbls_w_sources$edges,
         directed = component_graph$is_directed(),
-        vertices = vertices
+        vertices = graph_tbls_w_sources$vertices
     )
     
     grob <- plot_one_component_render(
@@ -192,6 +184,7 @@ plot_one_component <- function (
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
+        edge_weights = edge_weights,
         edge_width = edge_width,
         vertex_size = vertex_size
     )
@@ -231,7 +224,7 @@ extend_components_list <- function (napistu_list, component_graph, min_pw_size =
     reaction_sources <- napistu$network$ng_utils$get_minimal_sources_edges(
         vertices,
         sbml_dfs,
-        min_pw_size = 3,
+        min_pw_size = 1,
         source_total_counts = reactions_source_total_counts
     )
     
@@ -249,7 +242,8 @@ plot_one_component_render <- function (
     reaction_sources,
     score_label,
     score_palette,
-    network_layout,
+    network_layout = "fr",
+    edge_weights = NULL,
     edge_width = 0.1,
     vertex_size = 6
 ) {
@@ -258,7 +252,12 @@ plot_one_component_render <- function (
     checkmate::assert_number(edge_width)
     checkmate::assert_number(vertex_size)
     
-    rendering_prep_list <- prepare_rendering(component_network, reaction_sources, network_layout)
+    rendering_prep_list <- prepare_rendering(
+        component_network,
+        reaction_sources = reaction_sources,
+        network_layout = network_layout,
+        edge_weights = edge_weights
+    )
     component_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords

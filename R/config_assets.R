@@ -237,7 +237,7 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
         }
         
         if (verbose) {
-            cli::cli_inform("Loading {.field {asset_name}} from {.file {basename(asset_path)}}")
+            cli::cli_alert_info("Loading {.field {asset_name}} from {.file {basename(asset_path)}}")
         }
         assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
     }
@@ -248,12 +248,12 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
         
         if (!is.null(asset_path)) {
             if (verbose) {
-                cli::cli_inform("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
+                cli::cli_alert_info("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
             }
             assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
         } else {
             if (verbose) {
-                cli::cli_inform("Optional asset {.field {asset_name}} not available")   
+                cli::cli_alert_warning("Optional asset {.field {asset_name}} not available")   
             }
         }
     }

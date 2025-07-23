@@ -7,7 +7,9 @@
 plot_shortest_path_network(
   napistu_list,
   shortest_paths_list,
-  max_labeled_species = 10L
+  max_labeled_species = 10L,
+  network_layout = "fr",
+  edge_weights = NULL
 )
 }
 \arguments{
@@ -42,6 +44,11 @@ plot_shortest_path_network(
 \item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
 
 \item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
+
+\item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
+
+\item{edge_weights}{Numeric vector of edge weights, character string naming an edge attribute,
+NULL to use graph's "weight" attribute, or NA to explicitly use no weights}
 }
 \description{
 Plot Shortest Path Network
@@ -66,7 +73,7 @@ shortest_paths_list <- try(napistu$network$paths$find_all_shortest_reaction_path
     sbml_dfs,
     target_species_paths,
     weight_var = "weight"
-),silent = TRUE)
+), silent = TRUE)
 
 if (!("try-error" \%in\% class(shortest_paths_list))) {
     plot_shortest_path_network(

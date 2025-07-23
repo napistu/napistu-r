@@ -155,9 +155,9 @@ stub_grob <- function (stub_str) {
 #' Prepare for the network plot by laying out the pathway in a way that loosly
 #' groups related vertices and by suppressed overplotted labels
 #' 
-#' @param network a graphical network
+#' @param r_graph an R igraph network
 #' @param reaction_sources an optional mapping from `r_id` to `pathway_id` and `name`. 
-#' @param network_layout method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)
+#' @inheritParams get_layout_properties
 #' 
 #' @returns a list containing
 #' \describe{
@@ -166,9 +166,15 @@ stub_grob <- function (stub_str) {
 #'     \item{pathway_coords}{The bounding box of reaction's assigned to each pathway}
 #' }
 #' @keywords internal
-prepare_rendering <- function (network, reaction_sources, network_layout) {
+prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_weights) {
     
-    gg_network_layout <- layout_with_reaction_sources(network, network_layout)
+    checkmate::assert_class(r_graph, "igraph")
+    
+    gg_network_layout <- layout_with_reaction_sources(
+        r_graph,
+        network_layout,
+        edge_weights
+    )
     network_grob <- ggraph::ggraph(graph = gg_network_layout)
     
     # find obscured labels due to overplotting
@@ -196,36 +202,216 @@ prepare_rendering <- function (network, reaction_sources, network_layout) {
     return(out)
 }
 
-layout_with_reaction_sources <- function(network_graph, network_layout = "fr") {
-    checkmate::assertClass(network_graph, "igraph")
+#' Get Layout Properties
+#'
+#' @param network_layout method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)
+#' 
+#' @returns a list containing:
+#' \describe{
+#'     \item{layout_fxn}{The igraph function used for laying out the graph}
+#'     \item{weights_attract}{TRUE if large weights pull vertices together; FALSE if large weights push them apart}
+#' }
+#'
+#' @keywords internal
+get_layout_properties <- function (network_layout = "fr") {
+    
+    VALID_LAYOUTS <- c("fr", "kk", "drl")
+    checkmate::assert_choice(network_layout, VALID_LAYOUTS)
+
+    out <- if (network_layout == "fr") {
+        list(
+            layout_fxn = igraph::layout_with_fr,
+            weights_attract = TRUE
+        )
+    } else if (network_layout == "kk") {
+        list(
+            layout_fxn = igraph::layout_with_kk,
+            weights_attract = FALSE
+        )
+    } else if (network_layout == "drl") {
+        list(
+            layout_fxn = igraph::layout_with_drl,
+            weights_attract = FALSE
+        )
+    }
+    
+    return(out)
+}
+
+#' Process Weights for Graph Layout
+#'
+#' @param r_graph An R igraph object
+#' @param edge_weights Numeric vector of edge weights, character string naming an edge attribute,
+#'   NULL to use graph's "weight" attribute, or NA to explicitly use no weights
+#' @param network_layout Layout method being used (affects weight interpretation)
+#'
+#' @returns Numeric vector of processed weights, or NA if no weights available/requested
+#'
+#' @examples
+#' \dontrun{
+#' # Create a sample graph
+#' g <- igraph::make_ring(4)
+#' igraph::E(g)$weight <- c(0.1, 0.5, 0.2, 0.8)
+#' 
+#' # Use default "weight" attribute with FR layout (weights inverted for attraction)
+#' process_weights_for_layout(g, network_layout = "fr", edge_weights = NULL)
+#' 
+#' # Use custom attribute with KK layout (weights used as-is for repulsion)
+#' igraph::E(g)$confidence <- c(0.9, 0.3, 0.7, 0.1)
+#' process_weights_for_layout(g, network_layout = "kk", edge_weights = "confidence")
+#' 
+#' # Explicitly provide weights
+#' process_weights_for_layout(g, network_layout = "drl", edge_weights = c(0.2, 0.4, 0.6, 0.8))
+#' 
+#' # Explicitly use no weights
+#' process_weights_for_layout(g, network_layout = "fr", edge_weights = NA)
+#' }
+#' @keywords internal
+process_weights_for_layout <- function (r_graph, network_layout, edge_weights = NULL) {
+    
+    checkmate::assert_class(r_graph, "igraph")
+    checkmate::assert_string(network_layout)
+    
+    # Step 1: Handle explicit NA (user wants no weights)
+    if (length(edge_weights) == 1 && is.na(edge_weights)) {
+        return(NA)
+    }
+    
+    # Step 2: Extract weights based on input type
+    if (is.null(edge_weights)) {
+        # Check if there is a weight attribute in the graph
+        if ("weight" %in% igraph::edge_attr_names(r_graph)) {
+            edge_weights <- igraph::edge_attr(r_graph, "weight")
+        } else {
+            # No weights provided or found
+            cli::cli_alert_warning("No edge weights provided and no 'weight' attribute found in graph. Weights will not be used.")
+            return(NA)
+        }
+    } else if (is.character(edge_weights) && length(edge_weights) == 1) {
+        # edge_weights is an attribute name
+        if (!edge_weights %in% igraph::edge_attr_names(r_graph)) {
+            cli::cli_alert_warning("Edge attribute '{edge_weights}' not found in graph. Weights will not be used.")
+            return(NA)
+        }
+        edge_weights <- igraph::edge_attr(r_graph, edge_weights)
+    }
+    
+    # Step 3: Validate weights
+    if (!is.numeric(edge_weights)) {
+        cli::cli_alert_warning("Edge weights must be numeric. Weights will not be used.")
+        return(NA)
+    }
+    
+    if (any(edge_weights <= 0, na.rm = TRUE)) {
+        cli::cli_alert_warning("Edge weights must be positive. Found non-positive values. Weights will not be used.")
+        return(NA)
+    }
+    
+    if (length(edge_weights) != igraph::ecount(r_graph)) {
+        cli::cli_alert_warning("Length of edge weights ({length(edge_weights)}) does not match number of edges in graph ({igraph::ecount(r_graph)}). Weights will not be used.")
+        return(NA)
+    }
+    
+    # node_type == "pathway" vertices and edges from members to pathway are
+    # to assist with network layout (and these vertices are later removed)
+    # currently, the edges linking members to pathways don't receive a weight
+    # so we add one here
+    node_types <- igraph::vertex_attr(r_graph, "node_type")
+    if (any(is.na(node_types))) {
+        cli::cli_abort("Some vertices were missing node types. Please contact a dev.")
+    }
+    
+    pathway_nodes <- igraph::vertex_attr(r_graph, "name")[igraph::vertex_attr(r_graph, "node_type") == NAPISTU_CONSTANTS$NODE_TYPES[["PATHWAY"]]]
+    if (length(pathway_nodes) > 0) {
+        edgelist <- igraph::as_edgelist(r_graph)
+        valid_missing_weight_mask <- edgelist[,1] %in% pathway_nodes | edgelist[,2] %in% pathway_nodes
+        
+        edge_weights[valid_missing_weight_mask] <- min(edge_weights, na.rm = TRUE)
+    }
+    
+    # flag legitimate missing edge weights
+    
+    if (any(is.na(edge_weights))) {
+        cli::cli_alert_warning("Weights attribute includes NAs. Weights will not be used.")
+        return(NA)
+    }
+    
+    # Step 4: Determine if weights need inversion based on layout type
+    weights_attract <- get_layout_properties(network_layout)$weights_attract
+    
+    # Step 5: Process weights based on layout requirements
+    # In Napistu, small weights = high confidence interactions
+    # For attraction layouts (FR): invert so high confidence becomes strong attraction
+    # For repulsion layouts (KK, DRL): use as-is since small values = weak connections
+    
+    processed_weights <- if (weights_attract) {
+        # Invert weights using reciprocal transformation
+        # High confidence (small values) -> strong attraction (large values)
+        epsilon <- min(edge_weights[edge_weights > 0], na.rm = TRUE) * 0.01
+        1 / (edge_weights + epsilon)
+    } else {
+        # Use weights as-is for repulsion-based layouts
+        edge_weights
+    }
+    
+    # Ensure all weights are positive (required by igraph)
+    processed_weights <- pmax(processed_weights, .Machine$double.eps)
+    
+    return(processed_weights)
+}
+
+#' Layout With Reaction Sources
+#' 
+#' Create a `ggraph` layout trying to cluster vertices which are in the same pathway
+#' and with appropriate handling of edge weights.
+#' 
+#' @inheritParams process_weights_for_layout 
+#' 
+#' @returns a `ggraph` `gg_network_layout` object
+#' 
+#' @keywords internal
+layout_with_reaction_sources <- function(r_graph, network_layout = "fr", edge_weights = NULL) {
+    
+    checkmate::assertClass(r_graph, "igraph")
     # create a layout
     set.seed(1234)
-    LAYOUT_OPTIONS <- c("fr", "kk", "drl")
-    checkmate::assertChoice(network_layout, LAYOUT_OPTIONS)
-    layout_fxn <- switch(
-        network_layout,
-        "fr" = igraph::layout_with_fr,
-        "kk" = igraph::layout_with_kk,
-        "drl" = igraph::layout_with_drl
+    
+    layout_fxn <- get_layout_properties(network_layout)$layout_fxn
+    processed_edge_weights <- process_weights_for_layout(
+        r_graph,
+        network_layout = network_layout,
+        edge_weights = edge_weights
     )
-    network_layout_coords <- do.call(layout_fxn, list(graph = network_graph, dim = 2))
+    
+    # perform network layout
+    network_layout_coords <- do.call(
+        layout_fxn,
+        list(graph = r_graph, weights = edge_weights, dim = 2)
+    )
+    
+    # pull out vertex coordinates to provide more flexibility
     network_layout_coords <- as.data.frame(network_layout_coords)
     colnames(network_layout_coords) <- c("x", "y")
+    
     # remove pathways as layout nodes
-    is_pathway_node <- is.na(igraph::vertex_attr(network_graph, "node_type"))
+    is_pathway_node <- igraph::vertex_attr(r_graph, "node_type") == NAPISTU_CONSTANTS$NODE_TYPES[["PATHWAY"]]
     network_layout_coords <- network_layout_coords[!is_pathway_node, ]
-    network_graph <- igraph::delete_vertices(network_graph, igraph::vertex_attr(network_graph, "name")[is_pathway_node])
+    r_graph <- igraph::delete_vertices(r_graph, igraph::vertex_attr(r_graph, "name")[is_pathway_node])
+    
     # generate a ggraph object with node coordinates (for ggplot2-based plotting)
-    gg_network_layout <- ggraph::create_layout(network_graph, layout = "manual", x = network_layout_coords$x, y = network_layout_coords$y)
+    gg_network_layout <- ggraph::create_layout(r_graph, layout = "manual", x = network_layout_coords$x, y = network_layout_coords$y)
+    
     return(gg_network_layout)
 }
+
 
 layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_pathways = 8L) {
     pathway_reaction_coords <- gg_network_layout %>%
         dplyr::select(name, x, y) %>%
-        dplyr::inner_join(reaction_sources %>%
-                              dplyr::select(r_id, label = name),
-                          by = c("name" = "r_id")
+        dplyr::inner_join(
+            reaction_sources %>%
+                dplyr::select(r_id, label = name),
+            by = c("name" = "r_id")
         )
     
     if (nrow(pathway_reaction_coords) == 0) {
@@ -570,4 +756,27 @@ ggraph_get_edges_by_reversibility <- function (
         attr(edges, "type_ggraph") <- "edge_ggraph"
         edges
     }
+}
+
+add_sources_to_graph <- function (vertices, edges, reaction_sources) {
+    
+    checkmate::assert_data_frame(vertices)
+    checkmate::assert_data_frame(edges)
+    
+    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
+        edges <- edges %>%
+            dplyr::bind_rows(
+                reaction_sources %>%
+                    dplyr::select(from = "r_id", to = "pathway_id")
+            )
+        
+        vertices <- vertices %>%
+            dplyr::bind_rows(
+                reaction_sources %>%
+                    dplyr::distinct(name = pathway_id) %>%
+                    dplyr::mutate(node_type = NAPISTU_CONSTANTS$NODE_TYPES[["PATHWAY"]])
+            )
+    }
+    
+    return(list(edges = edges, vertices = vertices))
 }
