@@ -18,7 +18,7 @@ plot_one_neighborhood(
   max_labeled_species = 30L,
   network_layout = "fr",
   edge_weights = NULL,
-  edge_width = 0.1
+  edge_width = 0.5
 )
 }
 \arguments{

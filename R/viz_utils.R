@@ -641,22 +641,49 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
     return(out)
 }
 
-#' Add Edges By Reversibility
+#' Add Edges By Reversibility with Scalable Arrows
 #' 
 #' @param grob a ggplot2 grob
 #' @param edge_width width of edges on graph
+#' @param vertex_size vertex size in ggplot2 units (should match the size used in geom_node_point)
+#' @param arrow_scale_factor multiplier for arrow size relative to edge width (default: 2.5)
+#' @param vertex_cap_scale multiplier for vertex cap relative to vertex size (default: 0.02)
+#' @param min_arrow_size minimum arrow size in inches (default: 0.05)
+#' @param max_arrow_size maximum arrow size in inches (default: 0.3)
 #' 
 #' @keywords internal
-add_edges_by_reversibility <- function (grob, edge_width) {
+add_edges_by_reversibility <- function(
+    grob,
+    edge_width,
+    vertex_size = 6, 
+    arrow_scale_factor = 0.1,
+    vertex_cap_scale = 0.02,
+    min_arrow_size = 0.02, 
+    max_arrow_size = 1
+) {
+    
+    # Arrow size scales with edge width
+    base_arrow_size <- edge_width * arrow_scale_factor
+    arrow_size <- pmax(min_arrow_size, pmin(max_arrow_size, base_arrow_size))
+    
+    # Vertex cap scales with vertex size
+    vertex_cap_radius <- vertex_size * vertex_cap_scale
+    vertex_cap <- ggraph::circle(vertex_cap_radius, "inches")
+    
     out <- grob +
-        # add edges - irreversible
+        # add edges - irreversible with scalable arrows positioned at vertex edge
         ggraph::geom_edge_link(
             data = ggraph_get_edges_by_reversibility(FALSE),
             color = "gray25",
-            arrow = grid::arrow(type = "closed", length = unit(0.15, "inches")),
-            edge_width = edge_width
+            arrow = grid::arrow(
+                type = "closed", 
+                length = unit(arrow_size, "inches")
+            ),
+            edge_width = edge_width,
+            end_cap = vertex_cap,      # Positions arrow at vertex boundary
+            start_cap = vertex_cap     # Also respect start vertex boundary
         ) +
-        # add edges - reversible
+        # add edges - reversible (no arrows)
         ggraph::geom_edge_link(
             data = ggraph_get_edges_by_reversibility(TRUE),
             color = "gray25",

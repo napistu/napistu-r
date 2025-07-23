@@ -58,7 +58,7 @@ define_subgraphs <- function (napistu_list, subgraph_vertices, max_components = 
 #' setup_napistu_list(create_napistu_config())
 #' subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
 #' subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)
-#' plot_subgraph(napistu_list, subgraph_list, vertex_size = 6)
+#' plot_subgraph(napistu_list, subgraph_list, vertex_size = 3, edge_width = 0.5)
 #' @export
 plot_subgraph <- function (
     napistu_list,
@@ -106,7 +106,8 @@ plot_subgraph <- function (
 #'     napistu_list,
 #'     component_list,
 #'     score_overlay = score_overlay,
-#'     score_palette = "log2 fold-change"
+#'     score_palette = "log2 fold-change",
+#'     edge_width = 0.5
 #' )
 #' @export
 plot_one_component <- function (
@@ -119,7 +120,7 @@ plot_one_component <- function (
     max_labeled_species = 20,
     network_layout = "fr",
     edge_weights = NULL,
-    edge_width = 0.1,
+    edge_width = 0.5,
     vertex_size = 6
 ) {
     
@@ -244,7 +245,7 @@ plot_one_component_render <- function (
     score_palette,
     network_layout = "fr",
     edge_weights = NULL,
-    edge_width = 0.1,
+    edge_width = 0.5,
     vertex_size = 6
 ) {
     
@@ -289,7 +290,7 @@ plot_one_component_render <- function (
     color_by <- color_scheme$color_by
     component_grob <- color_scheme$grob
     
-    component_grob <- add_edges_by_reversibility(component_grob, edge_width)
+    component_grob <- add_edges_by_reversibility(component_grob, edge_width, vertex_size)
     
     # neighborhood-specific plotting
     

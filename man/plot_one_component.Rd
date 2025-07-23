@@ -14,7 +14,7 @@ plot_one_component(
   max_labeled_species = 20,
   network_layout = "fr",
   edge_weights = NULL,
-  edge_width = 0.1,
+  edge_width = 0.5,
   vertex_size = 6
 )
 }
@@ -86,6 +86,7 @@ plot_one_component(
     napistu_list,
     component_list,
     score_overlay = score_overlay,
-    score_palette = "log2 fold-change"
+    score_palette = "log2 fold-change",
+    edge_width = 0.5
 )
 }
