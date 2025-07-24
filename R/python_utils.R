@@ -179,3 +179,21 @@ load_vertex_seq <- function (vertices) {
         cli::cli_abort("vertices was not a character vector or igraph VertexSeq")
     }
 }
+
+create_pandas_series <- function(data, index = NULL, name = NULL) {
+    # Import pandas without automatic conversion
+    pd <- reticulate::import("pandas", convert = FALSE)
+    
+    if (!is.null(index)) {
+        series <- pd$Series(data = data, index = index)
+    } else {
+        series <- pd$Series(data = data)
+    }
+    
+    # Set the name if provided
+    if (!is.null(name)) {
+        series$name <- name
+    }
+    
+    return(series)
+}

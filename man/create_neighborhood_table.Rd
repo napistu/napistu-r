@@ -7,7 +7,7 @@
 create_neighborhood_table(
   napistu_list,
   species_id,
-  network_type = "downstream",
+  network_type = "hourglass",
   max_steps = 3L,
   max_neighbors = 10L
 )
@@ -66,19 +66,20 @@ a tibble containing one row per neighborhood with nested lists as attributes:
     \item{sc_Source}{The Source object for the focal vertex}
     \item{vertices}{The vertices in the focal vertex's neighborhood}
     \item{edges}{The edges in the focal vertex's neighborhood}
-    \item{edge_source}{The source pathways of the reaction vertices}
+    \item{reaction_sources}{The source pathways of the reaction vertices}
 }
 }
 \description{
 Create Neighborhood Table
 }
 \examples{
-setup_napistu_list(create_napistu_config(), overwrite = TRUE)
-species_id <- "S00000061"
+setup_napistu_list(create_napistu_config())
+species_id <- random_species(napistu_list)
 
 create_neighborhood_table(
     species_id,
     napistu_list = napistu_list,
-    network_type = "hourglass"
+    network_type = "hourglass",
+    max_steps = 5L
 )
 }

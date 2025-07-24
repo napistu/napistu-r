@@ -8,7 +8,8 @@ setup_napistu_list(
   napistu_config,
   napistu_list_object = "napistu_list",
   overwrite = FALSE,
-  verbose = TRUE
+  verbose = TRUE,
+  skip_validation = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,11 @@ If this object already exists then setup will be skipped unless `overwrite` is T
 
 \item{verbose}{Logical scalar; if TRUE (default), prints informative messages
 about the current operation progress. If FALSE, runs silently.}
+
+\item{skip_validation}{if FALSE, use `validate_asset_list_thorough` to 
+comprehensively validate assets. If TRUE, asset validation is skipped. This
+can be helpful when working with assets which have already been validated
+because asset validation can be slow.}
 }
 \value{
 None; output is assigned to `napistu_list_object`

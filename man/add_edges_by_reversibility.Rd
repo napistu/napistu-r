@@ -2,16 +2,34 @@
 % Please edit documentation in R/viz_utils.R
 \name{add_edges_by_reversibility}
 \alias{add_edges_by_reversibility}
-\title{Add Edges By Reversibility}
+\title{Add Edges By Reversibility with Scalable Arrows}
 \usage{
-add_edges_by_reversibility(grob, edge_width)
+add_edges_by_reversibility(
+  grob,
+  edge_width,
+  vertex_size = 6,
+  arrow_scale_factor = 0.1,
+  vertex_cap_scale = 0.02,
+  min_arrow_size = 0.02,
+  max_arrow_size = 1
+)
 }
 \arguments{
 \item{grob}{a ggplot2 grob}
 
 \item{edge_width}{width of edges on graph}
+
+\item{vertex_size}{vertex size in ggplot2 units (should match the size used in geom_node_point)}
+
+\item{arrow_scale_factor}{multiplier for arrow size relative to edge width (default: 2.5)}
+
+\item{vertex_cap_scale}{multiplier for vertex cap relative to vertex size (default: 0.02)}
+
+\item{min_arrow_size}{minimum arrow size in inches (default: 0.05)}
+
+\item{max_arrow_size}{maximum arrow size in inches (default: 0.3)}
 }
 \description{
-Add Edges By Reversibility
+Add Edges By Reversibility with Scalable Arrows
 }
 \keyword{internal}

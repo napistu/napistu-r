@@ -4,7 +4,7 @@
 \alias{extend_components_list}
 \title{Extend Components List}
 \usage{
-extend_components_list(napistu_list, component_graph)
+extend_components_list(napistu_list, component_graph, min_pw_size = 3)
 }
 \arguments{
 \item{napistu_list}{A list containing loaded assets and bindings to
@@ -36,6 +36,8 @@ extend_components_list(napistu_list, component_graph)
   }}
 
 \item{component_graph}{a weakly connected Python igraph}
+
+\item{min_pw_size}{the minimum size of a pathway to be considered}
 }
 \value{
 a list with:

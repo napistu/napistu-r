@@ -25,6 +25,10 @@
 #'          A tibble with one row per ontology and a nested tibble containing
 #'          all the identifiers and their corresponding molecular species
 #'      }
+#'      \item{reactions_source_total_counts}{
+#'          A pd.Series containing the number of reactions each pathway is
+#'          associated with
+#'      }
 #' }
 #' 
 #' @export
@@ -50,15 +54,24 @@ load_assets <- function(napistu_config, python_list, verbose = TRUE) {
     }
     
     assets <- load_assets_from_paths(asset_paths, python_list, verbose) %>%
-        create_derived_assets()
+        create_derived_assets(python_list, verbose)
     
     return(assets)
 }
 
-create_derived_assets <- function (assets) {
+create_derived_assets <- function (assets, python_list, verbose = TRUE) {
+    
+    if (verbose) {
+        cli::cli_alert_info("Creating derived assets")
+        cli::cli_alert_info("Creating a table of species names to support lookups by name")
+    }
     
     assets$species_names <- assets$sbml_dfs$species %>%
         dplyr::select(-s_Identifiers, -s_Source)
+    
+    if (verbose) {
+        cli::cli_alert_info("Creating a df with nested tables for each ontology to support lookups by identifiers")
+    }
     
     assets$identifiers_nest <- assets$species_identifiers %>%
         tidyr::nest(ontology_ids = -ontology) %>%
@@ -128,12 +141,23 @@ get_bundled_asset_paths <- function() {
     asset_paths <- list()
     
     for (asset_name in all_assets) {
+        
+        if (!(asset_name %in% names(asset_filenames))) {
+            cli::cli_abort("{asset_name} is not associated with a file in {.field NAPISTU_CONSTANTS$ASSET_FILENAMES}. Contact the package developer.")
+        }
+        
         file_name <- asset_filenames[[asset_name]]
         asset_path <- file.path(bundled_test_pathway_path, file_name)
         
         # Only include if file actually exists
         if (file.exists(asset_path)) {
             asset_paths[[asset_name]] <- asset_path
+        } else {
+            if (asset_name %in% NAPISTU_CONSTANTS$REQUIRED_ASSETS) {
+                cli::cli_abort("A required asset {.field {asset_name}} was missing from the bundled assets. Please try to reinstall the package and if the problem persists contact the package developer.")
+            } else {
+                cli::cli_alert_warning("An optional asset {.field {asset_name}} was missing from the bundled assets. This is unexpected behavior but downstream functionality should still function.")
+            }
         }
     }
     
@@ -213,7 +237,7 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
         }
         
         if (verbose) {
-            cli::cli_inform("Loading {.field {asset_name}} from {.file {basename(asset_path)}}")
+            cli::cli_alert_info("Loading {.field {asset_name}} from {.file {basename(asset_path)}}")
         }
         assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
     }
@@ -224,12 +248,12 @@ load_assets_from_paths <- function(asset_paths, python_list, verbose = TRUE) {
         
         if (!is.null(asset_path)) {
             if (verbose) {
-                cli::cli_inform("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
+                cli::cli_alert_info("Loading optional {.field {asset_name}} from {.file {basename(asset_path)}}")
             }
             assets[[asset_name]] <- load_single_asset(asset_path, python_list, asset_name)
         } else {
             if (verbose) {
-                cli::cli_inform("Optional asset {.field {asset_name}} not available")   
+                cli::cli_alert_warning("Optional asset {.field {asset_name}} not available")   
             }
         }
     }

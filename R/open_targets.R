@@ -85,7 +85,7 @@ format_neighborhood_ensembl_ids <- function(
         dplyr::filter(node_type == "species")
     
     # filter ensembl IDs to entries in neighborhoods and
-    # add path length / path weights
+    # add path length / path weight
     neighborhood_ensembl_ids <- ensembl_ids %>%
         dplyr::inner_join(
             included_sids %>%

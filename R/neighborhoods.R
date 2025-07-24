@@ -1,4 +1,136 @@
-#' Summarize Neighborhoods
+#' Create Neighborhood Table
+#'
+#' @inheritParams validate_napistu_list
+#' @param species_id species identifier for focal node
+#' @param network_type what type of neighborhood should be formed (ignored
+#'   if \code{napistu_graph} is undirected).
+#'   \describe{
+#'     \item{downstream}{descendants of the focal node}
+#'     \item{upstream}{ancestors of the focal node}
+#'     \item{hourglass}{descendants and ancestors of focal node}
+#'   }
+#' @param max_steps number of steps away from focal node allowed
+#' @param max_neighbors prune to this number of upstream regulators and
+#'   downstream targets
+#'
+#' @returns a tibble containing one row per neighborhood with nested lists as attributes:
+#' \describe{
+#'     \item{sc_name}{A human readible name for the focal vertex}
+#'     \item{s_id}{The internal unique species id of the focal vertex}
+#'     \item{c_id}{The internal unique compartment id of the focal vertex}
+#'     \item{sc_id}{The internal unique compartmentalized species id of the focal vertex}
+#'     \item{sc_Source}{The Source object for the focal vertex}
+#'     \item{vertices}{The vertices in the focal vertex's neighborhood}
+#'     \item{edges}{The edges in the focal vertex's neighborhood}
+#'     \item{reaction_sources}{The source pathways of the reaction vertices}
+#' }
+#'
+#' @examples
+#' setup_napistu_list(create_napistu_config())
+#' species_id <- random_species(napistu_list)
+#' 
+#' create_neighborhood_table(
+#'     species_id,
+#'     napistu_list = napistu_list,
+#'     network_type = "hourglass",
+#'     max_steps = 5L
+#' )
+#' @export
+create_neighborhood_table <- function(
+    napistu_list,
+    species_id,
+    network_type = "hourglass",
+    max_steps = 3L,
+    max_neighbors = 10L
+) {
+    
+    validate_napistu_list(napistu_list)
+    napistu_graph <- napistu_list$napistu_graph
+    sbml_dfs <- napistu_list$sbml_dfs
+    reactions_source_total_counts <- napistu_list$reactions_source_total_counts
+    napistu <- napistu_list$python_modules$napistu
+    precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
+    
+    checkmate::assertCharacter(species_id, len = 1)
+    checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
+    checkmate::assertInteger(max_steps, len = 1, lower = 1)
+    checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
+    
+    cli::cli_alert_info("Starting create_neighborhood_table")
+    
+    compartmentalized_species <- napistu$network$ng_utils$compartmentalize_species(sbml_dfs, species_id)
+    compartmentalized_species_ids <- compartmentalized_species[["sc_id"]]
+    
+    compartmentalized_species_attrs <- sbml_dfs$compartmentalized_species %>%
+        dplyr::filter(rownames(.) %in% compartmentalized_species_ids) %>%
+        dplyr::mutate(
+            sc_id = rownames(.),
+            sc_id = factor(sc_id, levels = compartmentalized_species_ids)
+        ) %>%
+        dplyr::as_tibble() %>%
+        dplyr::arrange(sc_id)
+    
+    if (
+        nrow(compartmentalized_species_attrs) !=
+        length(compartmentalized_species_ids)
+    ) {
+        cli::cli_abort(
+            "compartmentalized species attributes were not aligned to IDs,
+      this is unexpected behavior"
+        )
+    }
+    
+    cli::cli_alert_info(
+        "Species -> compartmentalized species finished
+    Neighborhoods will be created for {.field {length(compartmentalized_species_ids)}} compartment{?s}:
+    {compartmentalized_species_ids}"
+    )
+    
+    neighborhoods <- napistu$network$neighborhoods$find_and_prune_neighborhoods(
+        sbml_dfs,
+        napistu_graph,
+        compartmentalized_species = compartmentalized_species_ids,
+        precomputed_distances = precomputed_distances,
+        source_total_counts = reactions_source_total_counts,
+        order = max_steps,
+        network_type = network_type,
+        top_n = max_neighbors,
+        min_pw_size = 1L
+    )
+    
+    cli::cli_alert_info("Extracting neighborhood attributes")
+    
+    neighborhood_table <- compartmentalized_species_attrs %>%
+        dplyr::mutate(
+            neighborhoods = neighborhoods,
+            vertices = purrr::map(
+                neighborhoods,
+                extract_neighborhood_df,
+                "vertices",
+                is_null_valid = FALSE
+            ),
+            edges = purrr::map(
+                neighborhoods,
+                extract_neighborhood_df,
+                "edges",
+                is_null_valid = FALSE
+            ),
+            reaction_sources = purrr::map(
+                neighborhoods,
+                extract_neighborhood_df,
+                "reaction_sources"
+            )
+        ) %>%
+        dplyr::select(-neighborhoods) %>%
+        # sort by neighborhood size
+        dplyr::arrange(dplyr::desc(purrr::map_int(vertices, nrow)))
+    
+    cli::cli_alert_info("Completed create_neighborhood_table")
+    
+    return(neighborhood_table)
+}
+
+#' Plot Neighborhoods
 #'
 #' @inheritParams validate_napistu_list
 #' @param neighborhood_table Neighborhood table created by
@@ -15,8 +147,8 @@
 #' neighborhood_table <- create_neighborhood_table(
 #'     napistu_list,
 #'     species_id = species_id,
-#'     max_steps = 3L,
-#'     max_neighbors = 40L,
+#'     max_steps = 5L,
+#'     max_neighbors = 20L,
 #' )
 #'
 #' # score_overlay <- summarize_indication(
@@ -33,7 +165,7 @@
 #'     dplyr::sample_frac(0.5) %>%
 #'     dplyr::mutate(score = stats::rnorm(dplyr::n()))
 #'
-#' neighborhood_summaries <- plot_neighborhoods(
+#' plot_neighborhoods(
 #'     napistu_list,
 #'     neighborhood_table,
 #'     score_overlay,
@@ -81,14 +213,10 @@ plot_neighborhoods <- function(
         n_plots <- nrow(neighborhood_table)
     }
     
-    grid_params <- list(ncol = 1)
-    arranged_neighborhood_plots <- try(
-        do.call(
-            gridExtra::grid.arrange,
-            append(neighborhood_table$neighborhood_grob[1:n_plots], grid_params)
-        ),
-        silent = TRUE
-    )
+    arranged_neighborhood_plots <- try({
+        plots_to_combine <- neighborhood_table$neighborhood_grob[1:n_plots]
+        patchwork::wrap_plots(plots_to_combine, ncol = 1)
+    }, silent = TRUE)
     
     if ("try-error" %in% class(arranged_neighborhood_plots)) {
         arranged_neighborhood_plots <- ggplot(
@@ -102,134 +230,6 @@ plot_neighborhoods <- function(
     }
     
     return(arranged_neighborhood_plots)
-}
-
-#' Create Neighborhood Table
-#'
-#' @inheritParams validate_napistu_list
-#' @param species_id species identifier for focal node
-#' @param network_type what type of neighborhood should be formed (ignored
-#'   if \code{napistu_graph} is undirected).
-#'   \describe{
-#'     \item{downstream}{descendants of the focal node}
-#'     \item{upstream}{ancestors of the focal node}
-#'     \item{hourglass}{descendants and ancestors of focal node}
-#'   }
-#' @param max_steps number of steps away from focal node allowed
-#' @param max_neighbors prune to this number of upstream regulators and
-#'   downstream targets
-#'
-#' @returns a tibble containing one row per neighborhood with nested lists as attributes:
-#' \describe{
-#'     \item{sc_name}{A human readible name for the focal vertex}
-#'     \item{s_id}{The internal unique species id of the focal vertex}
-#'     \item{c_id}{The internal unique compartment id of the focal vertex}
-#'     \item{sc_id}{The internal unique compartmentalized species id of the focal vertex}
-#'     \item{sc_Source}{The Source object for the focal vertex}
-#'     \item{vertices}{The vertices in the focal vertex's neighborhood}
-#'     \item{edges}{The edges in the focal vertex's neighborhood}
-#'     \item{edge_source}{The source pathways of the reaction vertices}
-#' }
-#'
-#' @examples
-#' setup_napistu_list(create_napistu_config(), overwrite = TRUE)
-#' species_id <- "S00000061"
-#'
-#' create_neighborhood_table(
-#'     species_id,
-#'     napistu_list = napistu_list,
-#'     network_type = "hourglass"
-#' )
-#' @export
-create_neighborhood_table <- function(
-    napistu_list,
-    species_id,
-    network_type = "downstream",
-    max_steps = 3L,
-    max_neighbors = 10L
-) {
-   
-    validate_napistu_list(napistu_list)
-    napistu_graph <- napistu_list$napistu_graph
-    sbml_dfs <- napistu_list$sbml_dfs
-    napistu <- napistu_list$python_modules$napistu
-    precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
-     
-    checkmate::assertCharacter(species_id, len = 1)
-    checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
-    checkmate::assertInteger(max_steps, len = 1, lower = 1)
-    checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
-    
-    cli::cli_alert_info("Starting create_neighborhood_table")
-    
-    compartmentalized_species <- napistu$network$ng_utils$compartmentalize_species(sbml_dfs, species_id)
-    compartmentalized_species_ids <- compartmentalized_species[["sc_id"]]
-    
-    compartmentalized_species_attrs <- sbml_dfs$compartmentalized_species %>%
-        dplyr::filter(rownames(.) %in% compartmentalized_species_ids) %>%
-        dplyr::mutate(
-            sc_id = rownames(.),
-            sc_id = factor(sc_id, levels = compartmentalized_species_ids)
-        ) %>%
-        dplyr::as_tibble() %>%
-        dplyr::arrange(sc_id)
-    
-    if (
-        nrow(compartmentalized_species_attrs) !=
-        length(compartmentalized_species_ids)
-    ) {
-        cli::cli_abort(
-            "compartmentalized species attributes were not aligned to IDs,
-      this is unexpected behavior"
-        )
-    }
-    
-    cli::cli_alert_info(
-        "Species -> compartmentalized species finished
-    Neighborhoods will be created for {.field {length(compartmentalized_species_ids)}} compartment{?s}:
-    {compartmentalized_species_ids}"
-    )
-    
-    neighborhoods <- napistu$network$neighborhoods$find_and_prune_neighborhoods(
-        sbml_dfs,
-        napistu_graph,
-        compartmentalized_species = compartmentalized_species_ids,
-        precomputed_distances = precomputed_distances,
-        order = max_steps,
-        network_type = network_type,
-        top_n = max_neighbors
-    )
-    
-    cli::cli_alert_info("Extracting neighborhood attributes")
-    
-    neighborhood_table <- compartmentalized_species_attrs %>%
-        dplyr::mutate(
-            neighborhoods = neighborhoods,
-            vertices = purrr::map(
-                neighborhoods,
-                extract_neighborhood_df,
-                "vertices",
-                is_null_valid = FALSE
-            ),
-            edges = purrr::map(
-                neighborhoods,
-                extract_neighborhood_df,
-                "edges",
-                is_null_valid = FALSE
-            ),
-            reaction_sources = purrr::map(
-                neighborhoods,
-                extract_neighborhood_df,
-                "reaction_sources"
-            )
-        ) %>%
-        dplyr::select(-neighborhoods) %>%
-        # sort by neighborhood size
-        dplyr::arrange(dplyr::desc(purrr::map_int(vertices, nrow)))
-    
-    cli::cli_alert_info("Completed create_neighborhood_table")
-    
-    return(neighborhood_table)
 }
 
 #' Plot One Neighborhood
@@ -248,6 +248,7 @@ create_neighborhood_table <- function(
 #' @param max_labeled_species maximum number of species to label (to avoid overplotting)
 #' @inheritParams prepare_rendering
 #' @inheritParams add_edges_by_reversibility
+#' @inheritParams process_weights_for_layout
 #'
 #' @returns a ggplot2 grob
 #'
@@ -317,7 +318,8 @@ plot_one_neighborhood <- function(
     join_scores_on = "s_id",
     max_labeled_species = 30L,
     network_layout = "fr",
-    edge_width = 0.1
+    edge_weights = NULL,
+    edge_width = 0.5
 ) {
     
     validate_napistu_list(napistu_list)
@@ -352,21 +354,9 @@ plot_one_neighborhood <- function(
             vertices,
             score_overlay,
             join_scores_on = join_scores_on
-            )
+        )
     } else {
         score_label <- NULL
-    }
-    
-    # add pathway sources to help organize layout
-    if (!("NULL" %in% class(reaction_sources))) {
-        edges <- edges %>%
-            dplyr::bind_rows(
-                reaction_sources %>%
-                    dplyr::select(from = "r_id", to = "pathway_id")
-            )
-        
-        vertices <- vertices %>%
-            dplyr::bind_rows(reaction_sources %>% dplyr::distinct(name = pathway_id))
     }
     
     steps_colors <- vertices %>%
@@ -375,10 +365,13 @@ plot_one_neighborhood <- function(
         dplyr::arrange(path_length) %>%
         dplyr::mutate(path_color = grDevices::colorRampPalette(c("white", "dodgerblue"))(dplyr::n()))
     
+    # add pathway sources to help organize layout
+    graph_tbls_w_sources = add_sources_to_graph(vertices, edges, reaction_sources)
+    
     neighborhood_network <- igraph::graph_from_data_frame(
-        edges,
+        graph_tbls_w_sources$edges,
         directed = napistu_graph$is_directed(),
-        vertices = vertices
+        vertices = graph_tbls_w_sources$vertices
     )
     
     plot_one_neighborhood_render(
@@ -387,6 +380,7 @@ plot_one_neighborhood <- function(
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
+        edge_weights = edge_weights,
         edge_width = edge_width
     )
 }
@@ -397,10 +391,16 @@ plot_one_neighborhood_render <- function(
     score_label = NULL,
     score_palette = NULL,
     network_layout = "fr",
-    edge_width = 0.1
+    edge_weights = NULL,
+    edge_width = 0.5
 ) {
     
-    rendering_prep_list <- prepare_rendering(neighborhood_network, reaction_sources, network_layout)
+    rendering_prep_list <- prepare_rendering(
+        neighborhood_network,
+        reaction_sources = reaction_sources,
+        network_layout = network_layout,
+        edge_weights = edge_weights
+    )
     neighborhood_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords
@@ -425,7 +425,7 @@ plot_one_neighborhood_render <- function(
         plot_title <- plot_title + glue::glue("<br>overlaying **{score_label}**")
     }
     
-    if (!is.null(reaction_sources)) {
+    if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
         neighborhood_grob <- add_pathway_outlines(neighborhood_grob, pathway_coords)
     }
     

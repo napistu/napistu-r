@@ -5,9 +5,13 @@
 #'
 #' @inheritParams validate_napistu_config
 #' @param napistu_list_object The name that setup_napistu_env() will be assigned to.
-#'   If this object already exists then setup will be skipped unless `overwrite` is TRUE
+#' If this object already exists then setup will be skipped unless `overwrite` is TRUE
 #' @inheritParams validate_overwrite
 #' @inheritParams validate_verbose
+#' @param skip_validation if FALSE, use `validate_asset_list_thorough` to 
+#' comprehensively validate assets. If TRUE, asset validation is skipped. This
+#' can be helpful when working with assets which have already been validated
+#' because asset validation can be slow.
 #' 
 #' @return None; output is assigned to `napistu_list_object`
 #' 
@@ -24,12 +28,14 @@ setup_napistu_list <- function(
     napistu_config,
     napistu_list_object = "napistu_list",
     overwrite = FALSE,
-    verbose = TRUE
+    verbose = TRUE,
+    skip_validation = FALSE
 ) {
     
-    checkmate::assertString(napistu_list_object)
-    checkmate::assertLogical(overwrite, len = 1)
-    checkmate::assertLogical(verbose, len = 1)
+    checkmate::assert_string(napistu_list_object)
+    checkmate::assert_logical(overwrite, len = 1)
+    checkmate::assert_logical(verbose, len = 1)
+    checkmate::assert_logical(skip_validation, len = 1)
     
     if (napistu_list_object %in% ls(envir = parent.frame()) && !overwrite) {
         # the environment is already configured; nothing to do
@@ -65,7 +71,16 @@ setup_napistu_list <- function(
         class = NAPISTU_CONSTANTS$NAPISTU_LIST_CLASS
     )
     
-    validate_asset_list_thorough(napistu_list)
+    if (!skip_validation) {
+        if (verbose) {
+            cli::cli_alert_info("Comprehensively validating assets")
+        }
+        validate_asset_list_thorough(napistu_list)
+    } else {
+        if (verbose) {
+            cli::cli_alert_info("Skipping asset validation")
+        }
+    }
     
     if (verbose) {
         cli::cli_alert_success("Napistu environment setup complete - creating {.field {napistu_list_object}} object in the parent environment")

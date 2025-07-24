@@ -43,7 +43,7 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
             napistu_graph,
             sbml_dfs,
             target_species_paths,
-            weight_var = "weights",
+            weight_var = "weight",
             precomputed_distances = precomputed_distances
         ),
         silent = TRUE
@@ -69,7 +69,7 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
     return(list(
         shortest_paths_plot = shortest_paths_grob,
         shortest_paths_table = shortest_paths_list[[1]] %>%
-            dplyr::select(origin, dest, path, step, node, node_type, label, weights, url) %>%
+            dplyr::select(origin, dest, path, step, node, node_type, label, weight, url) %>%
             dplyr::arrange(origin, dest, path, step)
     ))
 }
@@ -79,6 +79,7 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
 #' @inheritParams validate_napistu_list
 #' @param shortest_paths_list results from napistu$network$find_all_shortest_reaction_paths
 #' @inheritParams plot_one_neighborhood
+#' @inheritParams process_weights_for_layout
 #'
 #' @examples
 #' # NOTE - you may have to run this a few times to find a valid path between 2 random nodes
@@ -99,8 +100,8 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
 #'     napistu_graph,
 #'     sbml_dfs,
 #'     target_species_paths,
-#'     weight_var = "weights"
-#' ),silent = TRUE)
+#'     weight_var = "weight"
+#' ), silent = TRUE)
 #'
 #' if (!("try-error" %in% class(shortest_paths_list))) {
 #'     plot_shortest_path_network(
@@ -113,7 +114,9 @@ summarize_shortest_paths <- function(napistu_list, source_species_id, dest_speci
 plot_shortest_path_network <- function(
     napistu_list,
     shortest_paths_list,
-    max_labeled_species = 10L
+    max_labeled_species = 10L,
+    network_layout = "fr",
+    edge_weights = NULL
 ) {
     
     validate_napistu_list(napistu_list)
@@ -121,57 +124,67 @@ plot_shortest_path_network <- function(
     checkmate::assert_list(shortest_paths_list, len = 4)
     checkmate::assert_count(max_labeled_species)
     
+    vertices = shortest_paths_list[[1]]
+    edges = shortest_paths_list[[2]] %>%
+        dplyr::relocate(from, to)
+    reaction_sources = shortest_paths_list[[3]]
+    # the fourth attribute (a Python ig.Graph object is ignored)
+    
+    if ("node" %in% colnames(vertices))
+        # TO DO - remove once https://github.com/napistu/napistu-py/issues/160
+        # is addressed
+        vertices <- vertices %>%
+            dplyr::rename(name = node)
+        
     # suppress some nodes labels to avoid overplotting
     nodes_to_label <-
         # preserve source and destination
         c(
-            shortest_paths_list[[1]] %>%
+            vertices %>%
                 {
-                    .$node[.$node == .$origin | .$node == .$dest]
+                    .$name[.$name == .$origin | .$name == .$dest]
                 } %>%
                 unique(),
-            shortest_paths_list[[1]] %>%
+            vertices %>%
                 dplyr::filter(
-                    !(node == origin | node == dest),
+                    !(name == origin | name == dest),
                     node_type == "species"
                 ) %>%
-                dplyr::distinct(node, weights) %>%
-                dplyr::arrange(weights) %>%
+                dplyr::distinct(name, weight) %>%
+                dplyr::arrange(weight) %>%
                 dplyr::slice(1:max_labeled_species) %>%
                 {
-                    .$node
+                    .$name
                 }
         )
     
-    all_shortest_reaction_paths_df <- shortest_paths_list[[1]] %>%
-        dplyr::relocate(node) %>%
-        dplyr::group_by(node) %>%
+    formatted_vertices <- vertices %>%
+        dplyr::relocate(name) %>%
+        dplyr::group_by(name) %>%
         dplyr::slice(1) %>%
         dplyr::ungroup() %>%
         dplyr::mutate(
             special_node = factor(
                 dplyr::case_when(
-                    node == origin ~ "origin",
-                    node == dest ~ "destination",
+                    name == origin ~ "origin",
+                    name == dest ~ "destination",
                     TRUE ~ "mediator"
                 ),
                 levels = c("origin", "destination", "mediator")
             ),
             node_name = label,
             label = dplyr::case_when(
-                node %in% nodes_to_label ~ stringr::str_wrap(node_name, 40),
+                name %in% nodes_to_label ~ stringr::str_wrap(node_name, 40),
                 TRUE ~ NA_character_
             )
         )
-    all_shortest_reaction_path_edges_df <- shortest_paths_list[[2]] %>%
-        dplyr::relocate(from, to)
     
     # summarize path
-    path_labels <- all_shortest_reaction_path_edges_df %>%
+    path_labels <- edges %>%
         dplyr::group_by(origin, dest, path) %>%
         dplyr::summarize(
             steps = dplyr::n(),
-            score = sum(weights),
+            score = sum(weight),
             .groups = "drop"
         ) %>%
         dplyr::arrange(score) %>%
@@ -195,28 +208,22 @@ plot_shortest_path_network <- function(
         )
     
     # use source info when available
-    reaction_sources <- shortest_paths_list[[3]]
-    if (!("NULL" %in% class(reaction_sources))) {
-        all_shortest_reaction_path_edges_df <- all_shortest_reaction_path_edges_df %>%
-            dplyr::bind_rows(
-                reaction_sources %>%
-                    dplyr::select(from = "r_id", to = "pathway_id")
-            )
-        
-        all_shortest_reaction_paths_df <- all_shortest_reaction_paths_df %>%
-            dplyr::bind_rows(reaction_sources %>% dplyr::distinct(node = pathway_id))
-    }
+    graph_tbls_w_sources = add_sources_to_graph(
+        formatted_vertices,
+        edges,
+        reaction_sources
+    )
     
     shortest_paths_network <- igraph::graph_from_data_frame(
-        all_shortest_reaction_path_edges_df,
+        graph_tbls_w_sources$edges,
         directed = napistu_graph$is_directed(),
-        vertices = all_shortest_reaction_paths_df
+        vertices = graph_tbls_w_sources$vertices
     )
     
     cli::cli_alert_info("R igraph network created")
     
     # format title
-    terminal_species <- all_shortest_reaction_paths_df %>%
+    terminal_species <- formatted_vertices %>%
         dplyr::filter(special_node != "mediator") %>%
         dplyr::group_by(special_node) %>%
         dplyr::slice(1) %>%
@@ -231,7 +238,11 @@ plot_shortest_path_network <- function(
      "
     )
     
-    gg_network_layout <- layout_with_reaction_sources(shortest_paths_network)
+    gg_network_layout <- layout_with_reaction_sources(
+        shortest_paths_network,
+        network_layout = network_layout,
+        edge_weights = edge_weights
+    )
     
     shortest_paths_grob <- ggraph::ggraph(graph = gg_network_layout)
     
@@ -239,7 +250,7 @@ plot_shortest_path_network <- function(
         dplyr::select(name, x, y) %>%
         dplyr::inner_join(path_labels, by = c("name" = "dest"))
     
-    if (!("NULL" %in% class(reaction_sources))) {
+    if (!("NULL" %in% class(reaction_sources)) && nrow(reaction_sources) > 0) {
         # add reaction sources if available
         pathway_coords <- layout_pathway_sources(gg_network_layout, reaction_sources)
         
@@ -292,7 +303,7 @@ plot_shortest_path_network <- function(
 #' @inheritParams validate_napistu_list
 #' @param source_species_id species ID of the upstream/source vertex
 #' @param dest_species_id species ID of the downstream/destination vertex
-#' @param weights_var variable in edges to use for edge weights
+#' @param weight_var variable in edges to use for edge weights
 #'
 #' @returns All the shortest paths between `source_species_id` and `dest_species_id`
 #'
@@ -306,7 +317,7 @@ find_all_shortest_paths <- function(
     napistu_list,
     source_species_id,
     dest_species_id,
-    weights_var = "weights"
+    weight_var = "weights"
 ) {
     
     validate_napistu_list(napistu_list)
@@ -326,7 +337,7 @@ find_all_shortest_paths <- function(
             napistu_graph,
             sbml_dfs,
             target_species_paths,
-            weight_var = "weights",
+            weight_var = weight_var,
             precomputed_distances = precomputed_distances
         ),
         silent = TRUE
