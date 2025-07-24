@@ -126,8 +126,8 @@ plot_one_component <- function (
     
     checkmate::assert_integerish(max_labeled_species, len = 1)
     checkmate::assert_string(network_layout)
-    checkmate::assert_number(edge_width)
-    checkmate::assert_number(vertex_size)
+    checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
+    checkmate::assert_number(vertex_size, lower = 0)
     
     validate_napistu_list(napistu_list)
     napistu <- napistu_list$python_modules$napistu
@@ -250,8 +250,8 @@ plot_one_component_render <- function (
 ) {
     
     checkmate::assert_string(network_layout)
-    checkmate::assert_number(edge_width)
-    checkmate::assert_number(vertex_size)
+    checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
+    checkmate::assert_number(vertex_size, lower = 0)
     
     rendering_prep_list <- prepare_rendering(
         component_network,
@@ -290,7 +290,9 @@ plot_one_component_render <- function (
     color_by <- color_scheme$color_by
     component_grob <- color_scheme$grob
     
-    component_grob <- add_edges_by_reversibility(component_grob, edge_width, vertex_size)
+    if (!is.na(edge_width) && edge_width > 0) {
+        component_grob <- add_edges_by_reversibility(component_grob, edge_width, vertex_size)
+    }
     
     # neighborhood-specific plotting
     
