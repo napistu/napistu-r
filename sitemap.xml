@@ -27,8 +27,10 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/get_bundled_asset_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/get_conda_installation.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/get_configured_asset_paths.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/get_layout_properties.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/index.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/label_vertices.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/layout_with_reaction_sources.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/load_assets.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/load_assets_from_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/load_napistu_config.html</loc></url>
@@ -46,6 +48,7 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/print.r_napistu_graph.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/print.r_sbml_dfs.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/process_required_modules_spec.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/process_weights_for_layout.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/query_open_targets_indications.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/query_open_targets_targets.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/random_species.html</loc></url>

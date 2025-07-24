@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">napistu.r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,8 @@
 <span>  <span class="va">napistu_config</span>,</span>
 <span>  napistu_list_object <span class="op">=</span> <span class="st">"napistu_list"</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  skip_validation <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -86,6 +87,13 @@ If this object already exists then setup will be skipped unless `overwrite` is T
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
 <dd><p>Logical scalar; if TRUE (default), prints informative messages
 about the current operation progress. If FALSE, runs silently.</p></dd>
+
+
+<dt id="arg-skip-validation">skip_validation<a class="anchor" aria-label="anchor" href="#arg-skip-validation"></a></dt>
+<dd><p>if FALSE, use `validate_asset_list_thorough` to
+comprehensively validate assets. If TRUE, asset validation is skipped. This
+can be helpful when working with assets which have already been validated
+because asset validation can be slow.</p></dd>
 
 </dl></div>
     <div class="section level2">
