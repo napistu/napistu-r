@@ -213,14 +213,10 @@ plot_neighborhoods <- function(
         n_plots <- nrow(neighborhood_table)
     }
     
-    grid_params <- list(ncol = 1)
-    arranged_neighborhood_plots <- try(
-        do.call(
-            gridExtra::grid.arrange,
-            append(neighborhood_table$neighborhood_grob[1:n_plots], grid_params)
-        ),
-        silent = TRUE
-    )
+    arranged_neighborhood_plots <- try({
+        plots_to_combine <- neighborhood_table$neighborhood_grob[1:n_plots]
+        patchwork::wrap_plots(plots_to_combine, ncol = 1)
+    }, silent = TRUE)
     
     if ("try-error" %in% class(arranged_neighborhood_plots)) {
         arranged_neighborhood_plots <- ggplot(

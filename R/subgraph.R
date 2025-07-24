@@ -79,7 +79,7 @@ plot_subgraph <- function (
         ...
     )
     
-    do.call(gridExtra::grid.arrange, component_grobs)
+    patchwork::wrap_plots(component_grobs, ncol = 1)
 }
 
 #' Plot One Component
