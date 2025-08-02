@@ -12,6 +12,7 @@
 #' @param max_steps number of steps away from focal node allowed
 #' @param max_neighbors prune to this number of upstream regulators and
 #'   downstream targets
+#' @inheritParams validate_verbose
 #'
 #' @returns a tibble containing one row per neighborhood with nested lists as attributes:
 #' \describe{
@@ -41,7 +42,8 @@ create_neighborhood_table <- function(
     species_id,
     network_type = "hourglass",
     max_steps = 3L,
-    max_neighbors = 10L
+    max_neighbors = 10L,
+    verbose = FALSE
 ) {
     
     validate_napistu_list(napistu_list)
@@ -55,6 +57,7 @@ create_neighborhood_table <- function(
     checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
     checkmate::assertInteger(max_steps, len = 1, lower = 1)
     checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
+    validate_verbose(verbose)
     
     cli::cli_alert_info("Starting create_neighborhood_table")
     
@@ -95,7 +98,8 @@ create_neighborhood_table <- function(
         order = max_steps,
         network_type = network_type,
         top_n = max_neighbors,
-        min_pw_size = 1L
+        min_pw_size = 1L,
+        verbose = verbose
     )
     
     cli::cli_alert_info("Extracting neighborhood attributes")

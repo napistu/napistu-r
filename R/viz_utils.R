@@ -790,7 +790,21 @@ add_sources_to_graph <- function (vertices, edges, reaction_sources) {
     checkmate::assert_data_frame(vertices)
     checkmate::assert_data_frame(edges)
     
+    
+    edgelist_veritices <- unique(c(edges$from, edges$to))
+    extra_edgelist_veritices <- setdiff(edgelist_veritices, vertices$name)
+    if (length(extra_edgelist_veritices) > 0) {
+        cli::cli_abort("{length(extra_edgelist_veritices) vertices were present in edges but not vertices")
+    }
+    
     if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
+        
+        extra_source_vertices <- setdiff(reaction_sources$r_id, vertices$name)
+        if (length(extra_source_vertices) > 0) {
+            cli::cli_abort("{length(extra_source_vertices)} vertices were present in reaction_sources but not vertices")
+        }
+        
+        
         edges <- edges %>%
             dplyr::bind_rows(
                 reaction_sources %>%
