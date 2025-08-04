@@ -7,6 +7,7 @@
 add_edges_by_reversibility(
   grob,
   edge_width,
+  show_edges_if = NULL,
   vertex_size = 6,
   arrow_scale_factor = 0.1,
   vertex_cap_scale = 0.02,
@@ -18,6 +19,18 @@ add_edges_by_reversibility(
 \item{grob}{a ggplot2 grob}
 
 \item{edge_width}{width of edges on graph}
+
+\item{show_edges_if}{A named list containing filters to apply based on edge 
+attributes. Each element should be a named list with:
+\itemize{
+  \item \code{cutoff}: Numeric value specifying the threshold
+  \item \code{retain}: Character string, either "above" or "below"
+}
+Example format:
+\code{list(
+  weight = list(cutoff = 0.5, retain = "above"),
+  correlation = list(cutoff = 0.9, retain = "below")
+)}}
 
 \item{vertex_size}{vertex size in ggplot2 units (should match the size used in geom_node_point)}
 

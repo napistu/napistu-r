@@ -84,6 +84,6 @@ create_neighborhood_table(
     species_id,
     napistu_list = napistu_list,
     network_type = "hourglass",
-    max_steps = 5L
+    max_steps = 5L,
 )
 }

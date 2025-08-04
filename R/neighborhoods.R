@@ -2,13 +2,7 @@
 #'
 #' @inheritParams validate_napistu_list
 #' @param species_id species identifier for focal node
-#' @param network_type what type of neighborhood should be formed (ignored
-#'   if \code{napistu_graph} is undirected).
-#'   \describe{
-#'     \item{downstream}{descendants of the focal node}
-#'     \item{upstream}{ancestors of the focal node}
-#'     \item{hourglass}{descendants and ancestors of focal node}
-#'   }
+#' @inheritParams validate_neighborhoods_network_type
 #' @param max_steps number of steps away from focal node allowed
 #' @param max_neighbors prune to this number of upstream regulators and
 #'   downstream targets
@@ -34,7 +28,7 @@
 #'     species_id,
 #'     napistu_list = napistu_list,
 #'     network_type = "hourglass",
-#'     max_steps = 5L
+#'     max_steps = 5L,
 #' )
 #' @export
 create_neighborhood_table <- function(
@@ -54,7 +48,7 @@ create_neighborhood_table <- function(
     precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
     
     checkmate::assertCharacter(species_id, len = 1)
-    checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
+    validate_neighborhoods_network_type(network_type)
     checkmate::assertInteger(max_steps, len = 1, lower = 1)
     checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
     validate_verbose(verbose)
@@ -245,12 +239,11 @@ plot_neighborhoods <- function(
 #' @param sc_id compartmentalized species identifier of focal node
 #' @param sc_name name of focal node
 #' @inheritParams create_neighborhood_table
-#' @inheritParams prepare_score_overlays
+#' @inheritParams validate_score_overlay_and_join_scores_on
 #' @param score_label optional, name of disease being overlaid
-#' @param score_palette optional, color palette for scores
-#' @param join_scores_on attribute to use when merging score_overlays and vertices
+#' @inheritParams validate_score_palette
 #' @param max_labeled_species maximum number of species to label (to avoid overplotting)
-#' @inheritParams prepare_rendering
+#' @inheritParams validate_network_layout
 #' @inheritParams add_edges_by_reversibility
 #' @inheritParams process_weights_for_layout
 #'
@@ -306,7 +299,22 @@ plot_neighborhoods <- function(
 #'     sc_id,
 #'     sc_name,
 #'     score_overlay = score_overlay,
-#'     score_palette = "log2 fold-change"
+#'     score_palette = "log2 fold-change",
+#'     edge_width = 0.5
+#' )
+#' 
+#' # advanced features
+#' plot_one_neighborhood(
+#'     napistu_list,
+#'     vertices,
+#'     edges,
+#'     reaction_sources,
+#'     sc_id,
+#'     sc_name,
+#'     score_overlay = score_overlay,
+#'     score_palette = viridis::scale_color_viridis(),
+#'     edge_width = 0.5,
+#'     show_edges_if = list(weight = list(cutoff = 0.6, retain = "below"))
 #' )
 #' @export
 plot_one_neighborhood <- function(
@@ -323,7 +331,8 @@ plot_one_neighborhood <- function(
     max_labeled_species = 30L,
     network_layout = "fr",
     edge_weights = NULL,
-    edge_width = 0.5
+    edge_width = 0.5,
+    show_edges_if = NULL
 ) {
     
     validate_napistu_list(napistu_list)
@@ -332,13 +341,13 @@ plot_one_neighborhood <- function(
     checkmate::assert_data_frame(edges)
     stopifnot(class(sc_id) %in% c("factor", "character"), length(sc_id) == 1)
     stopifnot(class(sc_name) %in% c("factor", "character"), length(sc_name) == 1)
-    checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
+    validate_score_overlay_and_join_scores_on(score_overlay, join_scores_on)
     checkmate::assert_string(score_label, null.ok = TRUE)
-    checkmate::assert_string(score_palette, null.ok = TRUE)
-    checkmate::assert_character(join_scores_on, min.len = 1)
+    validate_score_palette(score_palette, score_overlay)
     checkmate::assert_integerish(max_labeled_species, len = 1, min = 1)
     checkmate::assert_string(network_layout)
-    checkmate::assert_numeric(edge_width, len = 1)
+    checkmate::assert_numeric(edge_width, len = 1, min = 0)
+    validate_show_edges_if(show_edges_if)
     
     cli::cli_alert_info("Starting plot_one_neighborhood")
     
@@ -385,7 +394,8 @@ plot_one_neighborhood <- function(
         score_palette = score_palette,
         network_layout = network_layout,
         edge_weights = edge_weights,
-        edge_width = edge_width
+        edge_width = edge_width,
+        show_edges_if = show_edges_if
     )
 }
 
@@ -396,7 +406,8 @@ plot_one_neighborhood_render <- function(
     score_palette = NULL,
     network_layout = "fr",
     edge_weights = NULL,
-    edge_width = 0.5
+    edge_width = 0.5,
+    show_edges_if = NULL
 ) {
     
     rendering_prep_list <- prepare_rendering(
@@ -405,6 +416,7 @@ plot_one_neighborhood_render <- function(
         network_layout = network_layout,
         edge_weights = edge_weights
     )
+    
     neighborhood_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords
@@ -441,7 +453,13 @@ plot_one_neighborhood_render <- function(
     color_by <- color_scheme$color_by
     neighborhood_grob <- color_scheme$grob
     
-    neighborhood_grob <- add_edges_by_reversibility(neighborhood_grob, edge_width)
+    if (!is.na(edge_width) && edge_width > 0) {
+        neighborhood_grob <- add_edges_by_reversibility(
+            neighborhood_grob,
+            edge_width,
+            show_edges_if
+        )
+    }
     
     # neighborhood-specific plotting
     

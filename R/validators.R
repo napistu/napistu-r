@@ -392,6 +392,181 @@ validate_neighborhood_table <- function (neighborhood_table) {
     return(invisible(TRUE))
 }
 
+#' Validate Neighborhood Network Type
+#' 
+#' @param network_type what type of neighborhood should be formed (ignored
+#'   if \code{napistu_graph} is undirected).
+#'   \describe{
+#'     \item{downstream}{descendants of the focal node}
+#'     \item{upstream}{ancestors of the focal node}
+#'     \item{hourglass}{descendants and ancestors of focal node}
+#'   }
+#' 
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_neighborhoods_network_type <- function (network_type) {
+    VALID_NETWORK_TYPES = c("downstream", "upstream", "hourglass")
+    checkmate::assert_choice(network_type, VALID_NETWORK_TYPES)
+    
+    return(invisible(TRUE))
+}
+
+#' Validate Network Layout
+#'
+#' @param network_layout method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)
+#' 
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_network_layout <- function (network_layout = "fr") {
+    
+    VALID_LAYOUTS <- c("fr", "kk", "drl")
+    checkmate::assert_choice(network_layout, VALID_LAYOUTS)
+    
+    return(invisible(TRUE))
+}
+
+#' Validate Score Palette
+#' 
+#' @param score_palette optional, color palette for scores. If provided this can be a string defining built-in palettes or a custom palette
+#' \describe{
+#'     \item{log2 fold-change}{A blue -> black -> yellow color palette which is symmetric around zero}
+#'     \item{indication scores}{A gray -> yellow -> orange -> red palette ranging from 0-1}
+#'     \item{otherwise}{A `Scale` object defining a custom palette}
+#' }
+#' @inheritParams validate_score_overlay_and_join_scores_on
+#' 
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_score_palette <- function (score_palette, score_overlay) {
+    
+    if (is.null(score_overlay)) {
+        if (!is.null(score_palette) && inherits(score_palette, "Scale")) {
+            cli::cli_alert_warning("A custom score_palette was provided but there is no score_overlay so this palette will not be used")    
+        }
+        return(invisible(TRUE))   
+    }
+    
+    if (inherits(score_palette, "character")) {
+        
+        SCORE_PALETTE_NAMES <- c("indication scores", "log2 fold-change")
+        if (!(score_palette %in% SCORE_PALETTE_NAMES)) {
+            cli::cli_abort("{.field {score_palette}} is not a valid value for {.arg score_palette}. Valid palettes are {.field {SCORE_PALETTE_NAMES}}")
+        }
+        
+    } else if (inherits(score_palette, "Scale")) {
+        # nothing to do
+    } else {
+        cli::cli_abort("{.field score_palette} is neither a keyword (inherits from character) nor a color palette (inherits from Scale)")
+    }
+    
+    return(invisible(TRUE))
+}
+
+#' Validate Score Overlay and Join Scores On 
+#' 
+#' @param score_overlay optional, vertex-level scores containing `score`
+#'   and the merging attribute specified in `join_on`
+#' @param join_scores_on variable to use when merging vertices and score
+#' 
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_score_overlay_and_join_scores_on <- function (score_overlay, join_scores_on) {
+    checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
+    checkmate::assert_character(join_scores_on, min.len = 1)
+    
+    if (!is.null(score_overlay)) {
+        checkmate::assertDataFrame(score_overlay)
+        if (!(join_scores_on %in% colnames(score_overlay))) {
+            cli::cli_abort(
+                "{.field {join_scores_on}} is not present in {.arg score_overlay} but
+                you are trying to join on {join_scores_on}"
+            )
+        }
+        
+        if (!("score" %in% colnames(score_overlay))) {
+            cli::cli_abort(
+                "{.field score} is missing from {.arg score_overlay}.
+                It must be included if score_overlay is provided"
+            )
+        }
+    }
+}
+
+#' Validate Show Edges If Specification
+#' 
+#' Validates the structure and content of a show_edges_if specification used
+#' for filtering edges based on their attributes for visualization purposes.
+#' 
+#' @param show_edges_if A named list containing filters to apply based on edge 
+#'   attributes. Each element should be a named list with:
+#'   \itemize{
+#'     \item \code{cutoff}: Numeric value specifying the threshold
+#'     \item \code{retain}: Character string, either "above" or "below"
+#'   }
+#'   Example format:
+#'   \code{list(
+#'     weight = list(cutoff = 0.5, retain = "above"),
+#'     correlation = list(cutoff = 0.9, retain = "below")
+#'   )}
+#' 
+#' @return Invisible TRUE if validation passes, otherwise throws an error
+#' 
+#' @keywords internal
+validate_show_edges_if <- function(show_edges_if = NULL) {
+    
+    if (is.null(show_edges_if)) {
+        return (invisible(TRUE))
+    }
+    
+    # Check if input is a list
+    checkmate::assert_list(show_edges_if, 
+                           min.len = 1,
+                           .var.name = "show_edges_if")
+    
+    # Check if list is named
+    checkmate::assert_names(names(show_edges_if),
+                            type = "unique",
+                            .var.name = "names(show_edges_if)")
+    
+    # Validate each filter specification
+    for (attr_name in names(show_edges_if)) {
+        filter_spec <- show_edges_if[[attr_name]]
+        
+        # Check if each element is a list
+        checkmate::assert_list(filter_spec,
+                               .var.name = sprintf("show_edges_if$%s", attr_name))
+        
+        # Check required elements
+        required_elements <- c("cutoff", "retain")
+        missing_elements <- setdiff(required_elements, names(filter_spec))
+        if (length(missing_elements) > 0) {
+            cli::cli_abort("Filter specification for {.field {attr_name}} is missing required elements: {.field {missing_elements}}")
+        }
+        
+        # Validate cutoff
+        checkmate::assert_number(filter_spec$cutoff,
+                                 finite = TRUE,
+                                 .var.name = sprintf("show_edges_if$%s$cutoff", attr_name))
+        
+        # Validate retain
+        checkmate::assert_choice(filter_spec$retain,
+                                 choices = c("above", "below"),
+                                 .var.name = sprintf("show_edges_if$%s$retain", attr_name))
+        
+        # Check for unexpected elements
+        unexpected_elements <- setdiff(names(filter_spec), required_elements)
+        if (length(unexpected_elements) > 0) {
+            cli::cli_warn("Filter specification for {.field {attr_name}} contains unexpected elements: {.field {unexpected_elements}}")
+        }
+    }
+    
+    invisible(TRUE)
+}
+
 ensure_required_keys <- function (keys, required_keys, object_name) {
     
     checkmate::assert_character(keys)

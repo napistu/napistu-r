@@ -102,12 +102,24 @@ plot_subgraph <- function (
 #' component_list <- subgraph_list[[1]]
 #' score_overlay <- tibble::tibble(name = sample(subgraph_vertices, 20)) %>%
 #'     dplyr::mutate(score = abs(stats::rnorm(dplyr::n())))
+#' 
 #' plot_one_component(
 #'     napistu_list,
 #'     component_list,
 #'     score_overlay = score_overlay,
 #'     score_palette = "log2 fold-change",
 #'     edge_width = 0.5
+#' )
+#' 
+#' # advanced features
+#' plot_one_component(
+#'     napistu_list,
+#'     component_list,
+#'     score_overlay = score_overlay,
+#'     score_palette = viridis::scale_color_viridis(),
+#'     vertex_size = 2,
+#'     edge_width = 0.5,
+#'     show_edges_if = list(weight = list(cutoff = 0.6, retain = "below"))
 #' )
 #' @export
 plot_one_component <- function (
@@ -121,12 +133,15 @@ plot_one_component <- function (
     network_layout = "fr",
     edge_weights = NULL,
     edge_width = 0.5,
+    show_edges_if = NULL,
     vertex_size = 6
 ) {
     
     checkmate::assert_integerish(max_labeled_species, len = 1)
-    checkmate::assert_string(network_layout)
+    validate_network_layout(network_layout)
+    validate_score_palette(score_palette, score_overlay)
     checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
+    validate_show_edges_if(show_edges_if)
     checkmate::assert_number(vertex_size, lower = 0)
     
     validate_napistu_list(napistu_list)
@@ -187,6 +202,7 @@ plot_one_component <- function (
         network_layout = network_layout,
         edge_weights = edge_weights,
         edge_width = edge_width,
+        show_edges_if = show_edges_if,
         vertex_size = vertex_size
     )
     
@@ -246,11 +262,13 @@ plot_one_component_render <- function (
     network_layout = "fr",
     edge_weights = NULL,
     edge_width = 0.5,
+    show_edges_if = NULL,
     vertex_size = 6
 ) {
     
-    checkmate::assert_string(network_layout)
+    validate_network_layout(network_layout)
     checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
+    validate_show_edges_if(show_edges_if)
     checkmate::assert_number(vertex_size, lower = 0)
     
     rendering_prep_list <- prepare_rendering(
@@ -291,7 +309,7 @@ plot_one_component_render <- function (
     component_grob <- color_scheme$grob
     
     if (!is.na(edge_width) && edge_width > 0) {
-        component_grob <- add_edges_by_reversibility(component_grob, edge_width, vertex_size)
+        component_grob <- add_edges_by_reversibility(component_grob, edge_width, show_edges_if, vertex_size)
     }
     
     # neighborhood-specific plotting

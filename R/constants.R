@@ -24,7 +24,7 @@ NAPISTU_CONSTANTS <- list(
     PYTHON_CONFIG_VARS = c("python_environment", "python_modules"),
     PYTHON_ENV_VARS = c("path", "type", "created_by_napistu", "miniconda_installed"),
     PYTHON_ENV_TYPES = c("virtualenv", "conda", "python"),
-    REQUIRED_PYTHON_MODULES = c("napistu" = "0.5.1"),
+    REQUIRED_PYTHON_MODULES = c("napistu" = "0.5.3"),
     MINIMUM_PYTHON_VERSION = "3.11",
     DEFAULT_CONDA_ENV_NAME = "napistu-env",
     

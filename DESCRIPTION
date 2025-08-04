@@ -3,18 +3,18 @@ Type: Package
 Title: Napistu R
 Version: 0.1.3
 Authors@R: c(
-    person(
-        given = "Sean",
-        family = "Hackett",
-        email = "seanmchackett@gmail.com",
-        role = c("aut", "cre"),
-        comment = c(ORCID = "0000-0002-9553-4341")
-    ),
-    person(
-        given = "Calico Life Sciences LLC",
-        role = c("cph", "fnd")
+        person(
+            given = "Sean",
+            family = "Hackett",
+            email = "seanmchackett@gmail.com",
+            role = c("aut", "cre"),
+            comment = c(ORCID = "0000-0002-9553-4341")
+        ),
+        person(
+            given = "Calico Life Sciences LLC",
+            role = c("cph", "fnd")
+        )
     )
-)
 Maintainer: Sean Hackett <sean@calicolabs.com>
 Description: R accessory components for the Napitsu project supporting genic ontologies, and using napistu-py via reticulate to query and visualize networks.
 Depends: R (>= 3.2.3)
@@ -52,6 +52,7 @@ Suggests:
     testthat (>= 3.0.0),
     usethis,
     withr,
+    viridis,
     vroom
 License: MIT + file LICENSE
 Encoding: UTF-8
