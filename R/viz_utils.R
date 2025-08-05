@@ -31,8 +31,7 @@ prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_
 #' visually appealing ggtext labels.
 #' 
 #' @param vertices a table of the vertices to plot
-#' @param max_labeled_species the number of vertices to try to label. Some
-#'   labels may be dropped to improve clarity.
+#' @inheritParams validate_max_labeled_species
 #' @param node_types_to_label what `node_type`s in `vertices` to consider for labeling
 #' @param always_label always include these vertices regardless of their priority. Provide vertex names (generally starting with SC or R).
 #'
@@ -46,7 +45,7 @@ label_vertices <- function(
 ) {
     
     checkmate::assert_data_frame(vertices)
-    checkmate::assert_integerish(max_labeled_species)
+    validate_max_labeled_species(max_labeled_species)
     checkmate::assert_character(node_types_to_label)
     checkmate::assert_character(always_label, null.ok = TRUE)
                                  
@@ -143,6 +142,7 @@ stub_grob <- function (stub_str) {
 #' @param r_graph an R igraph network
 #' @param reaction_sources an optional mapping from `r_id` to `pathway_id` and `name`. 
 #' @inheritParams get_layout_properties
+#' @inheritParams validate_target_plot_width
 #' 
 #' @returns a list containing
 #' \describe{
@@ -151,9 +151,10 @@ stub_grob <- function (stub_str) {
 #'     \item{pathway_coords}{The bounding box of reaction's assigned to each pathway}
 #' }
 #' @keywords internal
-prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_weights) {
+prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_weights, target_plot_width = 6) {
     
     checkmate::assert_class(r_graph, "igraph")
+    validate_target_plot_width(target_plot_width)
     
     gg_network_layout <- layout_with_reaction_sources(
         r_graph,
@@ -163,7 +164,7 @@ prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_w
     network_grob <- ggraph::ggraph(graph = gg_network_layout)
     
     # find obscured labels due to overplotting
-    obscured_labels <- find_obscured_labels(gg_network_layout)
+    obscured_labels <- find_obscured_labels(gg_network_layout, target_plot_width)
     graph_height <- diff(range(gg_network_layout$y))
     vertices_df <- tibble::as_tibble(gg_network_layout) %>%
         dplyr::mutate(
@@ -427,7 +428,12 @@ layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_path
     pathway_coords
 }
 
-find_obscured_labels <- function(gg_network_layout) {
+find_obscured_labels <- function(gg_network_layout, target_plot_width) {
+    
+    checkmate::assert_class(gg_network_layout, "layout_tbl_graph")
+    validate_target_plot_width(target_plot_width)
+    
+    character_scale <- 6 / target_plot_width
     plot_char_width <- 100
     plot_char_height <- 50
     graph_width <- diff(range(gg_network_layout$x))
@@ -450,8 +456,8 @@ find_obscured_labels <- function(gg_network_layout) {
         dplyr::mutate(
             row_id = 1:dplyr::n(),
             # adding characters to width and height to represent box
-            w = graph_width * ((max_width + 2) / plot_char_width),
-            h = graph_height * ((n_lines + 1) / plot_char_height),
+            w = graph_width * ((max_width + 2) / plot_char_width) * character_scale,
+            h = graph_height * ((n_lines + 1) / plot_char_height) * character_scale,
             x_min = x - w / 2,
             x_max = x + w / 2,
             y_min = y - h / 2,

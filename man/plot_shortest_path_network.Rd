@@ -43,7 +43,9 @@ plot_shortest_path_network(
 
 \item{shortest_paths_list}{results from napistu$network$find_all_shortest_reaction_paths}
 
-\item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
 

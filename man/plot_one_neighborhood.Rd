@@ -15,11 +15,13 @@ plot_one_neighborhood(
   score_label = NULL,
   score_palette = NULL,
   join_scores_on = "s_id",
-  max_labeled_species = 30L,
+  vertex_size = 6,
   network_layout = "fr",
   edge_weights = NULL,
   edge_width = 0.5,
-  show_edges_if = NULL
+  show_edges_if = NULL,
+  max_labeled_species = 30L,
+  target_plot_width = 6
 )
 }
 \arguments{
@@ -75,7 +77,7 @@ and the merging attribute specified in `join_on`}
 
 \item{join_scores_on}{variable to use when merging vertices and score}
 
-\item{max_labeled_species}{maximum number of species to label (to avoid overplotting)}
+\item{vertex_size}{vertices' size}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
 
@@ -95,6 +97,14 @@ Example format:
   weight = list(cutoff = 0.5, retain = "above"),
   correlation = list(cutoff = 0.9, retain = "below")
 )}}
+
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
+
+\item{target_plot_width}{optional, specification for how large the planned plot is.
+knowing this helps to allow for more labels in a large plot where obscured
+labels will be filtered.}
 }
 \value{
 a ggplot2 grob

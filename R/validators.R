@@ -163,7 +163,7 @@ validate_verbose <- function(verbose) {
     return(invisible(TRUE))
 }
 
-#' Validate Verbose Parameter
+#' Validate Overwrite Parameter
 #'
 #' @param overwrite Overwrite existing caches 
 #'
@@ -565,6 +565,45 @@ validate_show_edges_if <- function(show_edges_if = NULL) {
     }
     
     invisible(TRUE)
+}
+
+#' Validate Target Plot Width
+#' 
+#' @param target_plot_width optional, specification for how large the planned plot is.
+#' knowing this helps to allow for more labels in a large plot where obscured
+#' labels will be filtered.
+#' 
+#' @return Invisible TRUE if validation passes, otherwise throws an error
+#' 
+#' @keywords internal
+validate_target_plot_width <- function (target_plot_width) {
+    checkmate::assert_number(target_plot_width, lower = 0)
+}
+
+#' Validate Max Labeled Species
+#'
+#' @param max_labeled_species maximum number of species to label (to avoid
+#' overplotting). Labels which are likely to overlap are removed based on the
+#' graph's layout and the value of `target_plot_width`.
+#'
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_max_labeled_species <- function(max_labeled_species) {
+    checkmate::assert_integerish(max_labeled_species, lower = 0)
+    return(invisible(TRUE))
+}
+
+#' Validate Vertex Size
+#'
+#' @param vertex_size vertices' size
+#'
+#' @return Invisible TRUE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_vertex_size <- function(vertex_size) {
+    checkmate::assert_number(vertex_size, lower = 0)
+    return(invisible(TRUE))
 }
 
 ensure_required_keys <- function (keys, required_keys, object_name) {

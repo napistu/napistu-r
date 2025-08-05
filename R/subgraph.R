@@ -92,7 +92,9 @@ plot_subgraph <- function (
 #' @inheritParams prepare_rendering
 #' @inheritParams plot_one_neighborhood
 #' @inheritParams add_edges_by_reversibility
-#' @param vertex_size vertices' size
+#' @inheritParams validate_vertex_size
+#' @inheritParams validate_max_labeled_species
+#' @inheritParams validate_target_plot_width
 #' 
 #' @examples
 #' suppressPackageStartupMessages(library(dplyr))
@@ -108,7 +110,8 @@ plot_subgraph <- function (
 #'     component_list,
 #'     score_overlay = score_overlay,
 #'     score_palette = "log2 fold-change",
-#'     edge_width = 0.5
+#'     edge_width = 0.5,
+#'     target_plot_width = 6
 #' )
 #' 
 #' # advanced features
@@ -129,20 +132,22 @@ plot_one_component <- function (
     score_label = NULL,
     score_palette = NULL,
     join_scores_on = "name",
-    max_labeled_species = 20,
+    vertex_size = 6,
     network_layout = "fr",
     edge_weights = NULL,
     edge_width = 0.5,
     show_edges_if = NULL,
-    vertex_size = 6
+    max_labeled_species = 20,
+    target_plot_width = 6
 ) {
     
-    checkmate::assert_integerish(max_labeled_species, len = 1)
     validate_network_layout(network_layout)
     validate_score_palette(score_palette, score_overlay)
     checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
     validate_show_edges_if(show_edges_if)
-    checkmate::assert_number(vertex_size, lower = 0)
+    validate_vertex_size(vertex_size)
+    validate_max_labeled_species(max_labeled_species)
+    validate_target_plot_width(target_plot_width)
     
     validate_napistu_list(napistu_list)
     napistu <- napistu_list$python_modules$napistu
@@ -176,7 +181,7 @@ plot_one_component <- function (
     # order vertices
     if (!is.null(score_overlay)) {
         vertices <- label_vertices(
-            vertices %>% dplyr::arrange(dplyr::desc(score)),
+            vertices %>% dplyr::arrange(dplyr::desc(abs(score))),
             max_labeled_species
         )
     } else {
@@ -203,7 +208,8 @@ plot_one_component <- function (
         edge_weights = edge_weights,
         edge_width = edge_width,
         show_edges_if = show_edges_if,
-        vertex_size = vertex_size
+        vertex_size = vertex_size,
+        target_plot_width = target_plot_width
     )
     
     return(grob)
@@ -263,19 +269,22 @@ plot_one_component_render <- function (
     edge_weights = NULL,
     edge_width = 0.5,
     show_edges_if = NULL,
-    vertex_size = 6
+    vertex_size = 6,
+    target_plot_width = 6
 ) {
     
     validate_network_layout(network_layout)
     checkmate::assert_number(edge_width, na.ok = TRUE, lower = 0)
     validate_show_edges_if(show_edges_if)
     checkmate::assert_number(vertex_size, lower = 0)
+    validate_target_plot_width(target_plot_width)
     
     rendering_prep_list <- prepare_rendering(
         component_network,
         reaction_sources = reaction_sources,
         network_layout = network_layout,
-        edge_weights = edge_weights
+        edge_weights = edge_weights,
+        target_plot_width = target_plot_width
     )
     component_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df

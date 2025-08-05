@@ -242,10 +242,12 @@ plot_neighborhoods <- function(
 #' @inheritParams validate_score_overlay_and_join_scores_on
 #' @param score_label optional, name of disease being overlaid
 #' @inheritParams validate_score_palette
-#' @param max_labeled_species maximum number of species to label (to avoid overplotting)
+#' @inheritParams validate_vertex_size
 #' @inheritParams validate_network_layout
 #' @inheritParams add_edges_by_reversibility
 #' @inheritParams process_weights_for_layout
+#' @inheritParams validate_max_labeled_species
+#' @inheritParams validate_target_plot_width
 #'
 #' @returns a ggplot2 grob
 #'
@@ -328,11 +330,13 @@ plot_one_neighborhood <- function(
     score_label = NULL,
     score_palette = NULL,
     join_scores_on = "s_id",
-    max_labeled_species = 30L,
+    vertex_size = 6,
     network_layout = "fr",
     edge_weights = NULL,
     edge_width = 0.5,
-    show_edges_if = NULL
+    show_edges_if = NULL,
+    max_labeled_species = 30L,
+    target_plot_width = 6
 ) {
     
     validate_napistu_list(napistu_list)
@@ -344,10 +348,13 @@ plot_one_neighborhood <- function(
     validate_score_overlay_and_join_scores_on(score_overlay, join_scores_on)
     checkmate::assert_string(score_label, null.ok = TRUE)
     validate_score_palette(score_palette, score_overlay)
+    validate_vertex_size(vertex_size)
     checkmate::assert_integerish(max_labeled_species, len = 1, min = 1)
     checkmate::assert_string(network_layout)
     checkmate::assert_numeric(edge_width, len = 1, min = 0)
     validate_show_edges_if(show_edges_if)
+    validate_max_labeled_species(max_labeled_species)
+    validate_target_plot_width(target_plot_width)
     
     cli::cli_alert_info("Starting plot_one_neighborhood")
     
@@ -393,9 +400,11 @@ plot_one_neighborhood <- function(
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
+        vertex_size = vertex_size,
         edge_weights = edge_weights,
         edge_width = edge_width,
-        show_edges_if = show_edges_if
+        show_edges_if = show_edges_if,
+        target_plot_width = target_plot_width
     )
 }
 
@@ -405,16 +414,19 @@ plot_one_neighborhood_render <- function(
     score_label = NULL,
     score_palette = NULL,
     network_layout = "fr",
+    vertex_size = 6,
     edge_weights = NULL,
     edge_width = 0.5,
-    show_edges_if = NULL
+    show_edges_if = NULL,
+    target_plot_width = 6
 ) {
     
     rendering_prep_list <- prepare_rendering(
         neighborhood_network,
         reaction_sources = reaction_sources,
         network_layout = network_layout,
-        edge_weights = edge_weights
+        edge_weights = edge_weights,
+        target_plot_width = target_plot_width
     )
     
     neighborhood_grob <- rendering_prep_list$network_grob
@@ -457,7 +469,8 @@ plot_one_neighborhood_render <- function(
         neighborhood_grob <- add_edges_by_reversibility(
             neighborhood_grob,
             edge_width,
-            show_edges_if
+            show_edges_if,
+            vertex_size = vertex_size
         )
     }
     
@@ -468,37 +481,35 @@ plot_one_neighborhood_render <- function(
         ggraph::geom_node_point(
             data = focal_species,
             aes(x = x, y = y),
-            size = 6.5,
+            size = vertex_size * 1.1,
             color = "black"
         ) +
         # add focal nodes
-        ggraph::geom_node_point(aes(
-            shape = factor(node_type),
-            color = !!color_by,
-            size = 6
-        )) +
+        ggraph::geom_node_point(
+            aes(shape = factor(node_type), color = !!color_by),
+            size = vertex_size
+        )+
         # add number of steps
         geom_text(
             data = focal_species,
             aes(x = x, y = y, label = path_length),
-            color = "gray10"
+            color = "gray10",
+            size = vertex_size
         ) +
         geom_text(
             data = neighbors %>% dplyr::filter(path_length <= 9),
-            aes(
-                x = x,
-                y = y,
-                label = path_length
-            ),
-            color = "gray70"
+            aes(x = x, y = y, label = path_length),
+            color = "gray70",
+            size = vertex_size * 0.95
         )
     
     neighborhood_grob <- add_node_names_and_themes(
         neighborhood_grob,
         vertices_df,
         plot_title
-        )
+    )
     
+    neighborhood_grob
     return(neighborhood_grob)
 }
 

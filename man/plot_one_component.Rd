@@ -11,12 +11,13 @@ plot_one_component(
   score_label = NULL,
   score_palette = NULL,
   join_scores_on = "name",
-  max_labeled_species = 20,
+  vertex_size = 6,
   network_layout = "fr",
   edge_weights = NULL,
   edge_width = 0.5,
   show_edges_if = NULL,
-  vertex_size = 6
+  max_labeled_species = 20,
+  target_plot_width = 6
 )
 }
 \arguments{
@@ -65,8 +66,7 @@ and the merging attribute specified in `join_on`}
 
 \item{join_scores_on}{variable to use when merging vertices and score}
 
-\item{max_labeled_species}{the number of vertices to try to label. Some
-labels may be dropped to improve clarity.}
+\item{vertex_size}{vertices' size}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
 
@@ -87,7 +87,13 @@ Example format:
   correlation = list(cutoff = 0.9, retain = "below")
 )}}
 
-\item{vertex_size}{vertices' size}
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
+
+\item{target_plot_width}{optional, specification for how large the planned plot is.
+knowing this helps to allow for more labels in a large plot where obscured
+labels will be filtered.}
 }
 \description{
 Plot One Component
@@ -106,7 +112,8 @@ plot_one_component(
     component_list,
     score_overlay = score_overlay,
     score_palette = "log2 fold-change",
-    edge_width = 0.5
+    edge_width = 0.5,
+    target_plot_width = 6
 )
 
 # advanced features

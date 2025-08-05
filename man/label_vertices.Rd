@@ -14,8 +14,9 @@ label_vertices(
 \arguments{
 \item{vertices}{a table of the vertices to plot}
 
-\item{max_labeled_species}{the number of vertices to try to label. Some
-labels may be dropped to improve clarity.}
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
 
 \item{node_types_to_label}{what `node_type`s in `vertices` to consider for labeling}
 
