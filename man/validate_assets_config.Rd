@@ -33,6 +33,10 @@ with `napistu-r` will be used.
         between molecular species. Defining this can speed up the calculation
         of shortest paths and neighborhoods.
     }
+    \item{reactions_source_total_counts}{
+        Optional, path to a .tsv file containing the total counts of reactions
+        by source pathway.
+    }
 }}
 
 \item{minimal_validation}{If TRUE then only the structure of `assets_config` will

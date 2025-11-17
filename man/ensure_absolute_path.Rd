@@ -13,7 +13,11 @@ ensure_absolute_path(unresolved_path)
 Character string with the absolute path
 }
 \description{
-If the path is already absolute (begins with "/"), it is returned as-is.
-If the path is relative, it is converted to an absolute path using normalizePath().
+\itemize{
+  \item If the path is already absolute (begins with "/"), it is returned as-is.
+  \item If the path is relative to a home directory (begins with "~"), expand using
+the home directory path
+  \item If the path is relative, it is converted to an absolute path using normalizePath().
+}
 }
 \keyword{internal}

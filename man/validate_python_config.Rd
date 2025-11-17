@@ -13,7 +13,7 @@ validate_python_config(python_config)
   installation can be established on-the-fly.
 
   \describe{
-       \item{virtual_env}{Optional, path to a virtual environment}
+       \item{virtualenv}{Optional, path to a virtual environment}
        \item{conda}{
            Optional, path to a conda executable. This can be found with
            `reticulate::conda_exe()`. If defined, the `conda_env_name` should
