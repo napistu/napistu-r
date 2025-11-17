@@ -4,6 +4,7 @@
 <url><loc>https://napistu.github.io/napistu-r/authors.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/index.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/add_edges_by_reversibility.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/apply_edge_filters.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/basicInfoInput.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/basicInfoServer.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/bioconductor_org_function.html</loc></url>
@@ -75,13 +76,21 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_asset_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_assets_config.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_conda_executable.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_max_labeled_species.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_napistu_config.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_napistu_list.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_neighborhood_table.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_neighborhoods_network_type.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_network_layout.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_overwrite.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_python_config.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_python_environment.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_python_list.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_score_overlay_and_join_scores_on.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_score_palette.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_show_edges_if.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_target_plot_width.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_verbose.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_vertex_size.html</loc></url>
 </urlset>
 

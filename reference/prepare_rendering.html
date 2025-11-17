@@ -9,7 +9,7 @@ groups related vertices and by suppressed overplotted labels"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">napistu.r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,13 @@ groups related vertices and by suppressed overplotted labels</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prepare_rendering</span><span class="op">(</span><span class="va">r_graph</span>, <span class="va">reaction_sources</span>, <span class="va">network_layout</span>, <span class="va">edge_weights</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prepare_rendering</span><span class="op">(</span></span>
+<span>  <span class="va">r_graph</span>,</span>
+<span>  <span class="va">reaction_sources</span>,</span>
+<span>  <span class="va">network_layout</span>,</span>
+<span>  <span class="va">edge_weights</span>,</span>
+<span>  target_plot_width <span class="op">=</span> <span class="fl">6</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,6 +64,12 @@ groups related vertices and by suppressed overplotted labels</p>
 
 <dt id="arg-network-layout">network_layout<a class="anchor" aria-label="anchor" href="#arg-network-layout"></a></dt>
 <dd><p>method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)</p></dd>
+
+
+<dt id="arg-target-plot-width">target_plot_width<a class="anchor" aria-label="anchor" href="#arg-target-plot-width"></a></dt>
+<dd><p>optional, specification for how large the planned plot is.
+knowing this helps to allow for more labels in a large plot where obscured
+labels will be filtered.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -83,7 +95,7 @@ groups related vertices and by suppressed overplotted labels</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

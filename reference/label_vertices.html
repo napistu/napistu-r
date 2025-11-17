@@ -9,7 +9,7 @@ visually appealing ggtext labels."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">napistu.r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,9 @@ visually appealing ggtext labels.</p>
 
 
 <dt id="arg-max-labeled-species">max_labeled_species<a class="anchor" aria-label="anchor" href="#arg-max-labeled-species"></a></dt>
-<dd><p>the number of vertices to try to label. Some
-labels may be dropped to improve clarity.</p></dd>
+<dd><p>maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.</p></dd>
 
 
 <dt id="arg-node-types-to-label">node_types_to_label<a class="anchor" aria-label="anchor" href="#arg-node-types-to-label"></a></dt>
@@ -84,7 +85,7 @@ labels may be dropped to improve clarity.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

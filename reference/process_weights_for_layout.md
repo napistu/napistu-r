@@ -1,0 +1,53 @@
+# Process Weights for Graph Layout
+
+Process Weights for Graph Layout
+
+## Usage
+
+``` r
+process_weights_for_layout(r_graph, network_layout, edge_weights = NULL)
+```
+
+## Arguments
+
+- r_graph:
+
+  An R igraph object
+
+- network_layout:
+
+  Layout method being used (affects weight interpretation)
+
+- edge_weights:
+
+  Numeric vector of edge weights, character string naming an edge
+  attribute, NULL to use graph's "weight" attribute, or NA to explicitly
+  use no weights
+
+## Value
+
+Numeric vector of processed weights, or NA if no weights
+available/requested
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Create a sample graph
+g <- igraph::make_ring(4)
+igraph::E(g)$weight <- c(0.1, 0.5, 0.2, 0.8)
+
+# Use default "weight" attribute with FR layout (weights inverted for attraction)
+process_weights_for_layout(g, network_layout = "fr", edge_weights = NULL)
+
+# Use custom attribute with KK layout (weights used as-is for repulsion)
+igraph::E(g)$confidence <- c(0.9, 0.3, 0.7, 0.1)
+process_weights_for_layout(g, network_layout = "kk", edge_weights = "confidence")
+
+# Explicitly provide weights
+process_weights_for_layout(g, network_layout = "drl", edge_weights = c(0.2, 0.4, 0.6, 0.8))
+
+# Explicitly use no weights
+process_weights_for_layout(g, network_layout = "fr", edge_weights = NA)
+} # }
+```
