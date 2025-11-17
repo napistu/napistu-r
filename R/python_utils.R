@@ -55,9 +55,7 @@ convert_napistu_graph <- function (napistu_graph, napistu_list) {
     checkmate::assert_class(napistu_graph, "igraph.Graph")
     validate_napistu_list(napistu_list)
     
-    graph_tuple <- napistu_list$python_modules$napistu$network$ig_utils$graph_to_pandas_dfs(
-        napistu_graph
-    ) %>%
+    graph_tuple <- napistu_graph$to_pandas_dfs() %>%
         purrr::map(tibble::as_tibble)
     
     names(graph_tuple) <- c("vertices", "edges")

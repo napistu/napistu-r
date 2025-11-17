@@ -9,7 +9,8 @@ create_neighborhood_table(
   species_id,
   network_type = "hourglass",
   max_steps = 3L,
-  max_neighbors = 10L
+  max_neighbors = 10L,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -55,6 +56,9 @@ if \code{napistu_graph} is undirected).
 
 \item{max_neighbors}{prune to this number of upstream regulators and
 downstream targets}
+
+\item{verbose}{Logical scalar; if TRUE (default), prints informative messages
+about the current operation progress. If FALSE, runs silently.}
 }
 \value{
 a tibble containing one row per neighborhood with nested lists as attributes:
@@ -80,6 +84,6 @@ create_neighborhood_table(
     species_id,
     napistu_list = napistu_list,
     network_type = "hourglass",
-    max_steps = 5L
+    max_steps = 5L,
 )
 }

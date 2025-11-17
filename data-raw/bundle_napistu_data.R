@@ -16,3 +16,14 @@ x <- napistu$gcs$downloads$load_public_napistu_asset(
 )
 
 file.remove(file.path(OUT_PATH, glue::glue("{ASSET_NAME}.tar.gz")))
+
+resource_fork_files <- list.files(
+    file.path(OUT_PATH, ASSET_NAME),
+    pattern = "^\\._", 
+    recursive = TRUE, 
+    full.names = TRUE,
+    all.files = TRUE
+)
+if (length(resource_fork_files) > 0) {
+    file.remove(resource_fork_files)
+}

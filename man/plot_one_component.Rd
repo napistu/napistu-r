@@ -11,11 +11,13 @@ plot_one_component(
   score_label = NULL,
   score_palette = NULL,
   join_scores_on = "name",
-  max_labeled_species = 20,
+  vertex_size = 6,
   network_layout = "fr",
   edge_weights = NULL,
   edge_width = 0.5,
-  vertex_size = 6
+  show_edges_if = NULL,
+  max_labeled_species = 20,
+  target_plot_width = 6
 )
 }
 \arguments{
@@ -55,12 +57,16 @@ and the merging attribute specified in `join_on`}
 
 \item{score_label}{optional, name of disease being overlaid}
 
-\item{score_palette}{optional, color palette for scores}
+\item{score_palette}{optional, color palette for scores. If provided this can be a string defining built-in palettes or a custom palette
+\describe{
+    \item{log2 fold-change}{A blue -> black -> yellow color palette which is symmetric around zero}
+    \item{indication scores}{A gray -> yellow -> orange -> red palette ranging from 0-1}
+    \item{otherwise}{A `Scale` object defining a custom palette}
+}}
 
 \item{join_scores_on}{variable to use when merging vertices and score}
 
-\item{max_labeled_species}{the number of vertices to try to label. Some
-labels may be dropped to improve clarity.}
+\item{vertex_size}{vertices' size}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
 
@@ -69,7 +75,25 @@ NULL to use graph's "weight" attribute, or NA to explicitly use no weights}
 
 \item{edge_width}{width of edges on graph}
 
-\item{vertex_size}{vertices' size}
+\item{show_edges_if}{A named list containing filters to apply based on edge 
+attributes. Each element should be a named list with:
+\itemize{
+  \item \code{cutoff}: Numeric value specifying the threshold
+  \item \code{retain}: Character string, either "above" or "below"
+}
+Example format:
+\code{list(
+  weight = list(cutoff = 0.5, retain = "above"),
+  correlation = list(cutoff = 0.9, retain = "below")
+)}}
+
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
+
+\item{target_plot_width}{optional, specification for how large the planned plot is.
+knowing this helps to allow for more labels in a large plot where obscured
+labels will be filtered.}
 }
 \description{
 Plot One Component
@@ -82,11 +106,24 @@ subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_component
 component_list <- subgraph_list[[1]]
 score_overlay <- tibble::tibble(name = sample(subgraph_vertices, 20)) \%>\%
     dplyr::mutate(score = abs(stats::rnorm(dplyr::n())))
+
 plot_one_component(
     napistu_list,
     component_list,
     score_overlay = score_overlay,
     score_palette = "log2 fold-change",
-    edge_width = 0.5
+    edge_width = 0.5,
+    target_plot_width = 6
+)
+
+# advanced features
+plot_one_component(
+    napistu_list,
+    component_list,
+    score_overlay = score_overlay,
+    score_palette = viridis::scale_color_viridis(),
+    vertex_size = 2,
+    edge_width = 0.5,
+    show_edges_if = list(weight = list(cutoff = 0.6, retain = "below"))
 )
 }

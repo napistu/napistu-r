@@ -4,7 +4,13 @@
 \alias{prepare_rendering}
 \title{Prepare Rendering}
 \usage{
-prepare_rendering(r_graph, reaction_sources, network_layout, edge_weights)
+prepare_rendering(
+  r_graph,
+  reaction_sources,
+  network_layout,
+  edge_weights,
+  target_plot_width = 6
+)
 }
 \arguments{
 \item{r_graph}{an R igraph network}
@@ -12,6 +18,10 @@ prepare_rendering(r_graph, reaction_sources, network_layout, edge_weights)
 \item{reaction_sources}{an optional mapping from `r_id` to `pathway_id` and `name`.}
 
 \item{network_layout}{method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)}
+
+\item{target_plot_width}{optional, specification for how large the planned plot is.
+knowing this helps to allow for more labels in a large plot where obscured
+labels will be filtered.}
 }
 \value{
 a list containing

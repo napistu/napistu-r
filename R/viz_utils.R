@@ -10,25 +10,10 @@
 prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_on = "s_id") {
     
     checkmate::assert_data_frame(vertices)
-    checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
+    validate_score_overlay_and_join_scores_on(score_overlay, join_scores_on)
     checkmate::assert_choice(join_scores_on, colnames(vertices))
     
     if (!is.null(score_overlay)) {
-        checkmate::assertDataFrame(score_overlay)
-        if (!(join_scores_on %in% colnames(score_overlay))) {
-            cli::cli_abort(
-                "{.field {join_scores_on}} is not present in {.arg score_overlay} but
-                you are trying to join on {join_scores_on}"
-            )
-        }
-        
-        if (!("score" %in% colnames(score_overlay))) {
-            cli::cli_abort(
-                "{.field score} is missing from {.arg score_overlay}.
-                It must be included if score_overlay is provided"
-            )
-        }
-        
         vertices <- vertices %>%
             dplyr::left_join(
                 score_overlay %>%
@@ -46,8 +31,7 @@ prepare_score_overlays <- function (vertices, score_overlay = NULL, join_scores_
 #' visually appealing ggtext labels.
 #' 
 #' @param vertices a table of the vertices to plot
-#' @param max_labeled_species the number of vertices to try to label. Some
-#'   labels may be dropped to improve clarity.
+#' @inheritParams validate_max_labeled_species
 #' @param node_types_to_label what `node_type`s in `vertices` to consider for labeling
 #' @param always_label always include these vertices regardless of their priority. Provide vertex names (generally starting with SC or R).
 #'
@@ -61,7 +45,7 @@ label_vertices <- function(
 ) {
     
     checkmate::assert_data_frame(vertices)
-    checkmate::assert_integerish(max_labeled_species)
+    validate_max_labeled_species(max_labeled_species)
     checkmate::assert_character(node_types_to_label)
     checkmate::assert_character(always_label, null.ok = TRUE)
                                  
@@ -158,6 +142,7 @@ stub_grob <- function (stub_str) {
 #' @param r_graph an R igraph network
 #' @param reaction_sources an optional mapping from `r_id` to `pathway_id` and `name`. 
 #' @inheritParams get_layout_properties
+#' @inheritParams validate_target_plot_width
 #' 
 #' @returns a list containing
 #' \describe{
@@ -166,9 +151,10 @@ stub_grob <- function (stub_str) {
 #'     \item{pathway_coords}{The bounding box of reaction's assigned to each pathway}
 #' }
 #' @keywords internal
-prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_weights) {
+prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_weights, target_plot_width = 6) {
     
     checkmate::assert_class(r_graph, "igraph")
+    validate_target_plot_width(target_plot_width)
     
     gg_network_layout <- layout_with_reaction_sources(
         r_graph,
@@ -178,7 +164,7 @@ prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_w
     network_grob <- ggraph::ggraph(graph = gg_network_layout)
     
     # find obscured labels due to overplotting
-    obscured_labels <- find_obscured_labels(gg_network_layout)
+    obscured_labels <- find_obscured_labels(gg_network_layout, target_plot_width)
     graph_height <- diff(range(gg_network_layout$y))
     vertices_df <- tibble::as_tibble(gg_network_layout) %>%
         dplyr::mutate(
@@ -204,7 +190,7 @@ prepare_rendering <- function (r_graph, reaction_sources, network_layout, edge_w
 
 #' Get Layout Properties
 #'
-#' @param network_layout method to used for creating a network layout (e.g., `fr`, `kk`, `drl`)
+#' @inheritParams validate_network_layout
 #' 
 #' @returns a list containing:
 #' \describe{
@@ -386,7 +372,7 @@ layout_with_reaction_sources <- function(r_graph, network_layout = "fr", edge_we
     # perform network layout
     network_layout_coords <- do.call(
         layout_fxn,
-        list(graph = r_graph, weights = edge_weights, dim = 2)
+        list(graph = r_graph, weights = processed_edge_weights, dim = 2)
     )
     
     # pull out vertex coordinates to provide more flexibility
@@ -442,7 +428,12 @@ layout_pathway_sources <- function(gg_network_layout, reaction_sources, max_path
     pathway_coords
 }
 
-find_obscured_labels <- function(gg_network_layout) {
+find_obscured_labels <- function(gg_network_layout, target_plot_width) {
+    
+    checkmate::assert_class(gg_network_layout, "layout_tbl_graph")
+    validate_target_plot_width(target_plot_width)
+    
+    character_scale <- 6 / target_plot_width
     plot_char_width <- 100
     plot_char_height <- 50
     graph_width <- diff(range(gg_network_layout$x))
@@ -465,8 +456,8 @@ find_obscured_labels <- function(gg_network_layout) {
         dplyr::mutate(
             row_id = 1:dplyr::n(),
             # adding characters to width and height to represent box
-            w = graph_width * ((max_width + 2) / plot_char_width),
-            h = graph_height * ((n_lines + 1) / plot_char_height),
+            w = graph_width * ((max_width + 2) / plot_char_width) * character_scale,
+            h = graph_height * ((n_lines + 1) / plot_char_height) * character_scale,
             x_min = x - w / 2,
             x_max = x + w / 2,
             y_min = y - h / 2,
@@ -618,7 +609,11 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
         color_by <- rlang::sym("score")
         
         # add the score palette
-        score_palette_obj <- select_score_overlay_palette(score_palette)
+        if (inherits(score_palette, "Scale")) {
+            score_palette_obj <- score_palette
+        } else {
+            score_palette_obj <- select_score_overlay_palette(score_palette)
+        }
         out_grob <- grob + score_palette_obj
     } else {
         color_by <- rlang::quo(factor(node_orientation))
@@ -645,6 +640,7 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
 #' 
 #' @param grob a ggplot2 grob
 #' @param edge_width width of edges on graph
+#' @inheritParams validate_show_edges_if
 #' @param vertex_size vertex size in ggplot2 units (should match the size used in geom_node_point)
 #' @param arrow_scale_factor multiplier for arrow size relative to edge width (default: 2.5)
 #' @param vertex_cap_scale multiplier for vertex cap relative to vertex size (default: 0.02)
@@ -655,12 +651,22 @@ add_node_color_palette <- function (grob, vertices_df, score_palette) {
 add_edges_by_reversibility <- function(
     grob,
     edge_width,
+    show_edges_if = NULL,
     vertex_size = 6, 
     arrow_scale_factor = 0.1,
     vertex_cap_scale = 0.02,
     min_arrow_size = 0.02, 
     max_arrow_size = 1
 ) {
+   
+    checkmate::assert_class(grob, "ggplot")
+    checkmate::assert_number(edge_width, lower = 0)
+    validate_show_edges_if(show_edges_if)
+    checkmate::assert_number(vertex_size, lower = 0)
+    checkmate::assert_number(arrow_scale_factor, lower = 0)
+    checkmate::assert_number(vertex_cap_scale, lower = 0)
+    checkmate::assert_number(min_arrow_size, lower = 0)
+    checkmate::assert_number(max_arrow_size, lower = min_arrow_size)
     
     # Arrow size scales with edge width
     base_arrow_size <- edge_width * arrow_scale_factor
@@ -673,7 +679,7 @@ add_edges_by_reversibility <- function(
     out <- grob +
         # add edges - irreversible with scalable arrows positioned at vertex edge
         ggraph::geom_edge_link(
-            data = ggraph_get_edges_by_reversibility(FALSE),
+            data = ggraph_get_edges_by_reversibility(FALSE, show_edges_if),
             color = "gray25",
             arrow = grid::arrow(
                 type = "closed", 
@@ -685,7 +691,7 @@ add_edges_by_reversibility <- function(
         ) +
         # add edges - reversible (no arrows)
         ggraph::geom_edge_link(
-            data = ggraph_get_edges_by_reversibility(TRUE),
+            data = ggraph_get_edges_by_reversibility(TRUE, show_edges_if),
             color = "gray25",
             edge_width = edge_width
         )
@@ -726,6 +732,7 @@ add_node_names_and_themes <- function (grob, vertices_df, plot_title) {
 
 ggraph_get_edges_by_reversibility <- function (
     is_reversible,
+    show_edges_if,
     format = "short",
     collapse = "none",
     ...
@@ -734,6 +741,7 @@ ggraph_get_edges_by_reversibility <- function (
     # modification of ggraph::get_edges to include filtering to subsets of edges
     
     checkmate::assertLogical(is_reversible, len = 1)
+    validate_show_edges_if(show_edges_if)
     checkmate::assertString(format)
     checkmate::assertString(collapse)
     
@@ -760,6 +768,11 @@ ggraph_get_edges_by_reversibility <- function (
         edges <- edges %>%
             dplyr::filter(r_isreversible == is_reversible)
         
+        # filter based on `show_edges_if`
+        if (nrow(edges) > 0 && !is.null(show_edges_if)) {
+            edges <- apply_edge_filters(edges, show_edges_if)
+        }
+        
         edges <- switch(
             collapse,
             none = edges,
@@ -785,12 +798,107 @@ ggraph_get_edges_by_reversibility <- function (
     }
 }
 
+#' Apply Edge Filtering Based on Show Edges If Specification
+#' 
+#' Takes a tibble containing edge data and applies filters based on a 
+#' show_edges_if specification. Validates that all required attributes are
+#' present in the tibble before applying filters.
+#' 
+#' @param edges_tibble A tibble containing edge data with attribute columns
+#' @param show_edges_if A named list containing filters to apply based on edge 
+#'   attributes. Each element should be a named list with:
+#'   \itemize{
+#'     \item \code{cutoff}: Numeric value specifying the threshold
+#'     \item \code{retain}: Character string, either "above" or "below"
+#'   }
+#'   See \code{\link{validate_show_edges_if}} for detailed format requirements.
+#' 
+#' @return A filtered tibble containing only edges that pass all specified filters
+#' 
+#' @keywords internal
+apply_edge_filters <- function(edges_tibble, show_edges_if) {
+    
+    # Validate the show_edges_if specification
+    validate_show_edges_if(show_edges_if)
+    
+    if (is.null(show_edges_if)) {
+        cli::cli_alert_warning("{.arg show_edges_if} was NULL returning all edges")
+        return(edges_tibble)
+    }
+    
+    # Check if input is a tibble/data.frame
+    checkmate::assert_data_frame(edges_tibble, 
+                                 .var.name = "edges_tibble")
+    
+    # Check if tibble is not empty
+    if (nrow(edges_tibble) == 0) {
+        cli::cli_warn("edges_tibble is empty, returning empty tibble")
+        return(edges_tibble)
+    }
+    
+    # Get required attributes from show_edges_if
+    required_attrs <- names(show_edges_if)
+    
+    # Check if all required attributes are present in the tibble
+    missing_attrs <- setdiff(required_attrs, names(edges_tibble))
+    if (length(missing_attrs) > 0) {
+        cli::cli_abort("The following required attributes are missing from edges_tibble: {.field {missing_attrs}}")
+    }
+    
+    # Check if required attributes contain only numeric values and handle NAs
+    for (attr_name in required_attrs) {
+        checkmate::assert_numeric(edges_tibble[[attr_name]],
+                                  .var.name = sprintf("edges_tibble$%s", attr_name))
+        
+        # Check for NA values and inform user they will be retained
+        na_count <- sum(is.na(edges_tibble[[attr_name]]))
+        if (na_count > 0) {
+            cli::cli_alert_warning("Attribute {.field {attr_name}} contains {na_count} NA value{?s}. These edges will be retained regardless of filter criteria.")
+        }
+    }
+    
+    # Apply filters sequentially
+    filtered_tibble <- edges_tibble
+    
+    for (attr_name in required_attrs) {
+        # Extract filter specification and create symbols
+        filter_spec <- show_edges_if[[attr_name]]
+        cutoff_val <- filter_spec$cutoff
+        retain <- filter_spec$retain
+        attr_sym <- rlang::sym(attr_name)
+        
+        if (retain == "above") {
+            # Keep edges with attribute value >= cutoff OR NA values
+            filtered_tibble <- dplyr::filter(filtered_tibble, 
+                                             is.na(!!attr_sym) | !!attr_sym >= !!cutoff_val)
+        } else if (retain == "below") {
+            # Keep edges with attribute value <= cutoff OR NA values
+            filtered_tibble <- dplyr::filter(filtered_tibble, 
+                                             is.na(!!attr_sym) | !!attr_sym <= !!cutoff_val)
+        }
+    }
+    
+    return(filtered_tibble)
+}
+
 add_sources_to_graph <- function (vertices, edges, reaction_sources) {
     
     checkmate::assert_data_frame(vertices)
     checkmate::assert_data_frame(edges)
     
+    edgelist_veritices <- unique(c(edges$from, edges$to))
+    extra_edgelist_veritices <- setdiff(edgelist_veritices, vertices$name)
+    if (length(extra_edgelist_veritices) > 0) {
+        cli::cli_abort("{length(extra_edgelist_veritices) vertices were present in edges but not vertices")
+    }
+    
     if (!is.null(reaction_sources) && nrow(reaction_sources) > 0) {
+        
+        extra_source_vertices <- setdiff(reaction_sources$r_id, vertices$name)
+        if (length(extra_source_vertices) > 0) {
+            cli::cli_abort("{length(extra_source_vertices)} vertices were present in reaction_sources but not vertices")
+        }
+        
         edges <- edges %>%
             dplyr::bind_rows(
                 reaction_sources %>%

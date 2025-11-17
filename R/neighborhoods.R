@@ -2,16 +2,11 @@
 #'
 #' @inheritParams validate_napistu_list
 #' @param species_id species identifier for focal node
-#' @param network_type what type of neighborhood should be formed (ignored
-#'   if \code{napistu_graph} is undirected).
-#'   \describe{
-#'     \item{downstream}{descendants of the focal node}
-#'     \item{upstream}{ancestors of the focal node}
-#'     \item{hourglass}{descendants and ancestors of focal node}
-#'   }
+#' @inheritParams validate_neighborhoods_network_type
 #' @param max_steps number of steps away from focal node allowed
 #' @param max_neighbors prune to this number of upstream regulators and
 #'   downstream targets
+#' @inheritParams validate_verbose
 #'
 #' @returns a tibble containing one row per neighborhood with nested lists as attributes:
 #' \describe{
@@ -33,7 +28,7 @@
 #'     species_id,
 #'     napistu_list = napistu_list,
 #'     network_type = "hourglass",
-#'     max_steps = 5L
+#'     max_steps = 5L,
 #' )
 #' @export
 create_neighborhood_table <- function(
@@ -41,7 +36,8 @@ create_neighborhood_table <- function(
     species_id,
     network_type = "hourglass",
     max_steps = 3L,
-    max_neighbors = 10L
+    max_neighbors = 10L,
+    verbose = FALSE
 ) {
     
     validate_napistu_list(napistu_list)
@@ -52,9 +48,10 @@ create_neighborhood_table <- function(
     precomputed_distances <- load_optional_list_value(napistu_list, "precomputed_distances")
     
     checkmate::assertCharacter(species_id, len = 1)
-    checkmate::assertChoice(network_type, c("downstream", "upstream", "hourglass"))
+    validate_neighborhoods_network_type(network_type)
     checkmate::assertInteger(max_steps, len = 1, lower = 1)
     checkmate::assertInteger(max_neighbors, len = 1, lower = 1)
+    validate_verbose(verbose)
     
     cli::cli_alert_info("Starting create_neighborhood_table")
     
@@ -95,7 +92,8 @@ create_neighborhood_table <- function(
         order = max_steps,
         network_type = network_type,
         top_n = max_neighbors,
-        min_pw_size = 1L
+        min_pw_size = 1L,
+        verbose = verbose
     )
     
     cli::cli_alert_info("Extracting neighborhood attributes")
@@ -241,14 +239,15 @@ plot_neighborhoods <- function(
 #' @param sc_id compartmentalized species identifier of focal node
 #' @param sc_name name of focal node
 #' @inheritParams create_neighborhood_table
-#' @inheritParams prepare_score_overlays
+#' @inheritParams validate_score_overlay_and_join_scores_on
 #' @param score_label optional, name of disease being overlaid
-#' @param score_palette optional, color palette for scores
-#' @param join_scores_on attribute to use when merging score_overlays and vertices
-#' @param max_labeled_species maximum number of species to label (to avoid overplotting)
-#' @inheritParams prepare_rendering
+#' @inheritParams validate_score_palette
+#' @inheritParams validate_vertex_size
+#' @inheritParams validate_network_layout
 #' @inheritParams add_edges_by_reversibility
 #' @inheritParams process_weights_for_layout
+#' @inheritParams validate_max_labeled_species
+#' @inheritParams validate_target_plot_width
 #'
 #' @returns a ggplot2 grob
 #'
@@ -302,7 +301,22 @@ plot_neighborhoods <- function(
 #'     sc_id,
 #'     sc_name,
 #'     score_overlay = score_overlay,
-#'     score_palette = "log2 fold-change"
+#'     score_palette = "log2 fold-change",
+#'     edge_width = 0.5
+#' )
+#' 
+#' # advanced features
+#' plot_one_neighborhood(
+#'     napistu_list,
+#'     vertices,
+#'     edges,
+#'     reaction_sources,
+#'     sc_id,
+#'     sc_name,
+#'     score_overlay = score_overlay,
+#'     score_palette = viridis::scale_color_viridis(),
+#'     edge_width = 0.5,
+#'     show_edges_if = list(weight = list(cutoff = 0.6, retain = "below"))
 #' )
 #' @export
 plot_one_neighborhood <- function(
@@ -316,10 +330,13 @@ plot_one_neighborhood <- function(
     score_label = NULL,
     score_palette = NULL,
     join_scores_on = "s_id",
-    max_labeled_species = 30L,
+    vertex_size = 6,
     network_layout = "fr",
     edge_weights = NULL,
-    edge_width = 0.5
+    edge_width = 0.5,
+    show_edges_if = NULL,
+    max_labeled_species = 30L,
+    target_plot_width = 6
 ) {
     
     validate_napistu_list(napistu_list)
@@ -328,13 +345,16 @@ plot_one_neighborhood <- function(
     checkmate::assert_data_frame(edges)
     stopifnot(class(sc_id) %in% c("factor", "character"), length(sc_id) == 1)
     stopifnot(class(sc_name) %in% c("factor", "character"), length(sc_name) == 1)
-    checkmate::assert_data_frame(score_overlay, null.ok = TRUE)
+    validate_score_overlay_and_join_scores_on(score_overlay, join_scores_on)
     checkmate::assert_string(score_label, null.ok = TRUE)
-    checkmate::assert_string(score_palette, null.ok = TRUE)
-    checkmate::assert_character(join_scores_on, min.len = 1)
+    validate_score_palette(score_palette, score_overlay)
+    validate_vertex_size(vertex_size)
     checkmate::assert_integerish(max_labeled_species, len = 1, min = 1)
     checkmate::assert_string(network_layout)
-    checkmate::assert_numeric(edge_width, len = 1)
+    checkmate::assert_numeric(edge_width, len = 1, min = 0)
+    validate_show_edges_if(show_edges_if)
+    validate_max_labeled_species(max_labeled_species)
+    validate_target_plot_width(target_plot_width)
     
     cli::cli_alert_info("Starting plot_one_neighborhood")
     
@@ -380,8 +400,11 @@ plot_one_neighborhood <- function(
         score_label = score_label,
         score_palette = score_palette,
         network_layout = network_layout,
+        vertex_size = vertex_size,
         edge_weights = edge_weights,
-        edge_width = edge_width
+        edge_width = edge_width,
+        show_edges_if = show_edges_if,
+        target_plot_width = target_plot_width
     )
 }
 
@@ -391,16 +414,21 @@ plot_one_neighborhood_render <- function(
     score_label = NULL,
     score_palette = NULL,
     network_layout = "fr",
+    vertex_size = 6,
     edge_weights = NULL,
-    edge_width = 0.5
+    edge_width = 0.5,
+    show_edges_if = NULL,
+    target_plot_width = 6
 ) {
     
     rendering_prep_list <- prepare_rendering(
         neighborhood_network,
         reaction_sources = reaction_sources,
         network_layout = network_layout,
-        edge_weights = edge_weights
+        edge_weights = edge_weights,
+        target_plot_width = target_plot_width
     )
+    
     neighborhood_grob <- rendering_prep_list$network_grob
     vertices_df <- rendering_prep_list$vertices_df
     pathway_coords <- rendering_prep_list$pathway_coords
@@ -437,7 +465,14 @@ plot_one_neighborhood_render <- function(
     color_by <- color_scheme$color_by
     neighborhood_grob <- color_scheme$grob
     
-    neighborhood_grob <- add_edges_by_reversibility(neighborhood_grob, edge_width)
+    if (!is.na(edge_width) && edge_width > 0) {
+        neighborhood_grob <- add_edges_by_reversibility(
+            neighborhood_grob,
+            edge_width,
+            show_edges_if,
+            vertex_size = vertex_size
+        )
+    }
     
     # neighborhood-specific plotting
     
@@ -446,37 +481,35 @@ plot_one_neighborhood_render <- function(
         ggraph::geom_node_point(
             data = focal_species,
             aes(x = x, y = y),
-            size = 6.5,
+            size = vertex_size * 1.1,
             color = "black"
         ) +
         # add focal nodes
-        ggraph::geom_node_point(aes(
-            shape = factor(node_type),
-            color = !!color_by,
-            size = 6
-        )) +
+        ggraph::geom_node_point(
+            aes(shape = factor(node_type), color = !!color_by),
+            size = vertex_size
+        )+
         # add number of steps
         geom_text(
             data = focal_species,
             aes(x = x, y = y, label = path_length),
-            color = "gray10"
+            color = "gray10",
+            size = vertex_size
         ) +
         geom_text(
             data = neighbors %>% dplyr::filter(path_length <= 9),
-            aes(
-                x = x,
-                y = y,
-                label = path_length
-            ),
-            color = "gray70"
+            aes(x = x, y = y, label = path_length),
+            color = "gray70",
+            size = vertex_size * 0.95
         )
     
     neighborhood_grob <- add_node_names_and_themes(
         neighborhood_grob,
         vertices_df,
         plot_title
-        )
+    )
     
+    neighborhood_grob
     return(neighborhood_grob)
 }
 

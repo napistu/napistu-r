@@ -51,8 +51,9 @@ and the merging attribute specified in `join_on`}
 
 \item{join_scores_on}{variable to use when merging vertices and score}
 
-\item{max_labeled_species}{the number of vertices to try to label. Some
-labels may be dropped to improve clarity.}
+\item{max_labeled_species}{maximum number of species to label (to avoid
+overplotting). Labels which are likely to overlap are removed based on the
+graph's layout and the value of `target_plot_width`.}
 
 \item{...}{additional arguments to pass to \link{plot_one_component}}
 }
