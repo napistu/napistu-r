@@ -17,4 +17,10 @@ A `python_list` containing Python modules and environment info
 \description{
 Setup Python Environment
 }
+\examples{
+\dontrun{
+    napistu_config <- create_napistu_config()
+    setup_python_env(napistu_config)
+}
+}
 \keyword{internal}

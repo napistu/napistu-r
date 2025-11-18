@@ -1,9 +1,68 @@
+#' Get installed Python packages from pip
+#'
+#' Retrieves the list of installed Python packages in the current reticulate
+#' environment using `pip freeze`. Returns results in a tidy format with
+#' separate columns for package names and versions.
+#'
+#' @return A tibble with three columns:
+#'   \item{package}{Package name (character)}
+#'   \item{version}{Package version (character)}
+#'   \item{full}{Full pip freeze output format "package==version" (character)}
+#'
+#' @details
+#' This function calls `pip freeze` using the Python executable that reticulate
+#' is currently configured to use (via `reticulate::py_exe()`). It parses the
+#' output into a tidy format, splitting package names and versions.
+#'
+#' The function assumes packages follow the standard pip format of
+#' "package==version". Edge cases like git URLs or local paths may not parse
+#' correctly but will still appear in the `full` column.
+#'
+#' @examples
+#' \dontrun{
+#' # Get all installed packages
+#' installed <- get_pip_packages()
+#'
+#' # Check for specific packages
+#' required <- c("numpy", "pandas", "scipy")
+#' installed |>
+#'   dplyr::filter(package %in% required)
+#'
+#' # Find missing packages
+#' missing <- setdiff(required, installed$package)
+#' }
+#'
+#' @seealso [reticulate::py_list_packages()], [reticulate::py_exe()]
+#' @keywords internal
+get_pip_packages <- function() {
+    pip_output <- system2(
+        reticulate::py_exe(),
+        args = c("-m", "pip", "freeze"),
+        stdout = TRUE
+    )
+    
+    tibble::tibble(full = pip_output) |>
+        tidyr::separate(
+            col = full,
+            into = c("package", "version"),
+            sep = "==",
+            remove = FALSE,
+            fill = "right"
+        )
+}
+
 #' Setup Python Environment
 #'
 #' @param napistu_config Napistu configuration object
 #' @param verbose provide extra logging
 #' 
 #' @return A `python_list` containing Python modules and environment info
+#' 
+#' @examples
+#' \dontrun{
+#'     napistu_config <- create_napistu_config()
+#'     setup_python_env(napistu_config)
+#' }
 #' @keywords internal
 setup_python_env <- function(napistu_config, verbose = TRUE) {
     
@@ -98,8 +157,10 @@ configure_existing_python <- function(python_config, verbose = TRUE) {
 #' @keywords internal
 validate_and_import_modules <- function(verbose = TRUE) {
     
+    validate_verbose(verbose)
+    
     required_modules <- NAPISTU_CONSTANTS$REQUIRED_PYTHON_MODULES
-    installed_modules <- reticulate::py_list_packages()
+    installed_modules <- get_pip_packages()
     
     # Check for presence of all required modules
     missing_modules <- setdiff(names(required_modules), stringr::str_trim(installed_modules$package))
@@ -116,7 +177,7 @@ validate_and_import_modules <- function(verbose = TRUE) {
         if (!is.na(min_version)) {
             installed_version <- installed_modules[
                 installed_modules$package == module_name, "version"
-            ]
+            ][[1]]
             if (length(installed_version) == 0) {
                 cli::cli_warn(
                     "Python module {module_name} requires at least version {min_version} but its version could not be determined"
