@@ -13,7 +13,7 @@ create_napistu_config(python_config = list(), assets_config = list())
   installation can be established on-the-fly.
 
   \describe{
-       \item{virtual_env}{Optional, path to a virtual environment}
+       \item{virtualenv}{Optional, path to a virtual environment}
        \item{conda}{
            Optional, path to a conda executable. This can be found with
            `reticulate::conda_exe()`. If defined, the `conda_env_name` should
@@ -53,6 +53,10 @@ with `napistu-r` will be used.
         Optional, path to a .parquet file containing pairwise distances
         between molecular species. Defining this can speed up the calculation
         of shortest paths and neighborhoods.
+    }
+    \item{reactions_source_total_counts}{
+        Optional, path to a .tsv file containing the total counts of reactions
+        by source pathway.
     }
 }}
 }

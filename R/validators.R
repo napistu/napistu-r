@@ -55,6 +55,10 @@ validate_napistu_config <- function(napistu_config) {
 #'         between molecular species. Defining this can speed up the calculation
 #'         of shortest paths and neighborhoods.
 #'     }
+#'     \item{reactions_source_total_counts}{
+#'         Optional, path to a .tsv file containing the total counts of reactions
+#'         by source pathway.
+#'     }
 #' }
 #' @param minimal_validation If TRUE then only the structure of `assets_config` will
 #' be validated. If FALSE then the definition and existence of required assets
@@ -88,7 +92,7 @@ validate_assets_config <- function (assets_config, minimal_validation = FALSE) {
 #'     installation can be established on-the-fly.
 #'   
 #'     \describe{
-#'          \item{virtual_env}{Optional, path to a virtual environment}
+#'          \item{virtualenv}{Optional, path to a virtual environment}
 #'          \item{conda}{
 #'              Optional, path to a conda executable. This can be found with
 #'              `reticulate::conda_exe()`. If defined, the `conda_env_name` should

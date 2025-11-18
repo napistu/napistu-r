@@ -33,8 +33,12 @@ load_optional_list_value <- function (l, value) {
 
 #' Convert a path to an absolute path
 #'
-#' If the path is already absolute (begins with "/"), it is returned as-is.
-#' If the path is relative, it is converted to an absolute path using normalizePath().
+#' \itemize{
+#'   \item If the path is already absolute (begins with "/"), it is returned as-is.
+#'   \item If the path is relative to a home directory (begins with "~"), expand using
+#' the home directory path
+#'   \item If the path is relative, it is converted to an absolute path using normalizePath().
+#' }
 #'
 #' @param unresolved_path Character string representing a file or directory path
 #'
@@ -45,9 +49,12 @@ ensure_absolute_path <- function(unresolved_path) {
     # Check if path is NULL or empty
     checkmate::assert_string(unresolved_path)
     
-    # Check if the path already starts with "/"
     if (substr(unresolved_path, 1, 1) == "/") {
+        # Check if the path already starts with "/"
         return(unresolved_path)  # Already absolute, return as-is
+    } else if (substr(unresolved_path, 1, 1) == "~"){
+        # Detect tilde and replace with home directory
+        return(stringr::str_replace(unresolved_path, "^~", Sys.getenv("HOME")))
     } else {
         # Convert relative path to absolute
         return(file.path(getwd(), unresolved_path))
