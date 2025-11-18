@@ -79,7 +79,7 @@ setup_napistu_list(create_napistu_config())
 #> No Python configuration specified, setting up conda environment
 #> Creating conda environment "napistu-env" with Python 3.11
 #> + /usr/share/miniconda/bin/conda create --yes --name napistu-env 'python=3.11' pip --quiet -c conda-forge
-#> Installing napistu>=0.7.9 in conda environment
+#> Installing napistu>=0.8.1 in conda environment
 #> ✔ Conda environment "napistu-env" created successfully
 #> ℹ It can be removed with cleanup_napistu()
 #> No assets configuration specified, loading bundled package data

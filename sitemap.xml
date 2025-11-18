@@ -29,6 +29,7 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/get_conda_installation.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/get_configured_asset_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/get_layout_properties.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/get_pip_packages.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/index.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/label_vertices.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/layout_with_reaction_sources.html</loc></url>
@@ -76,6 +77,8 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_asset_paths.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_assets_config.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_conda_executable.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_env_name.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/validate_env_type.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_max_labeled_species.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_napistu_config.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/validate_napistu_list.html</loc></url>
