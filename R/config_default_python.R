@@ -273,7 +273,7 @@ create_conda_environment <- function(env_name, conda_exe, python_version = "3.11
     }, error = function(e) {
         cli::cli_abort("Failed to create conda environment: {e$message}")
         if (reticulate::condaenv_exists(env_name, conda = conda_exe)) {
-            reticulate::conda_remove(envname)
+            reticulate::conda_remove(env_name)
         }
     })
 }

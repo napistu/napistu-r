@@ -157,7 +157,7 @@ validate_env_name <- function (env_name) {
 #' @returns Invisible TURE if valid, throws error if invalid
 #' 
 #' @keywords internal
-validate_env_type <- function (validate_env_type) {
+validate_env_type <- function (env_type) {
     checkmate::assertChoice(env_type, choices = c("conda", "virtualenv", "python"))
 }
 

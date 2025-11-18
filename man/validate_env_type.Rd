@@ -4,7 +4,7 @@
 \alias{validate_env_type}
 \title{Validate Python Environment Type}
 \usage{
-validate_env_type(validate_env_type)
+validate_env_type(env_type)
 }
 \arguments{
 \item{env_type}{Either "conda", "virtualenv", or "python"}
