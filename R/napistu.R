@@ -43,6 +43,7 @@ utils::globalVariables(c(
     "ensembl_gene",
     "exists_in_context",
     "from",
+    "full",
     "gene",
     "geneticConstraint",
     "ggtext_label",

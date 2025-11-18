@@ -139,6 +139,28 @@ validate_python_config <- function (python_config) {
     return(invisible(TRUE))
 }
 
+#' Validate Python Environment Name
+#' 
+#' @param env_name The python environment name (a conda name or venv path)
+#' 
+#' @returns Invisible TURE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_env_name <- function (env_name) {
+    checkmate::assertString(env_name)
+}
+
+#' Validate Python Environment Type
+#' 
+#' @param env_type Either "conda", "virtualenv", or "python"
+#' 
+#' @returns Invisible TURE if valid, throws error if invalid
+#' 
+#' @keywords internal
+validate_env_type <- function (env_type) {
+    checkmate::assertChoice(env_type, choices = c("conda", "virtualenv", "python"))
+}
+
 #' Validate Asset Paths
 #' 
 #' @param asset_paths List containing the paths of to-be-loaded assets
