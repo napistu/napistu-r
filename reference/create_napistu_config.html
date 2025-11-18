@@ -50,7 +50,7 @@
   the `napistu_config`. This can be the system python, a virtual environment
   or conda. If `python_config` is an empty list, a miniconda environment and
   installation can be established on-the-fly.</p>
-<p></p><dl><dt>virtual_env</dt>
+<p></p><dl><dt>virtualenv</dt>
 <dd><p>Optional, path to a virtual environment</p></dd>
 
        <dt>conda</dt>
@@ -93,6 +93,10 @@ with `napistu-r` will be used.</p>
 <dd><p>Optional, path to a .parquet file containing pairwise distances
         between molecular species. Defining this can speed up the calculation
         of shortest paths and neighborhoods.</p></dd>
+
+    <dt>reactions_source_total_counts</dt>
+<dd><p>Optional, path to a .tsv file containing the total counts of reactions
+        by source pathway.</p></dd>
 
 
 </dl></dd>

@@ -43,6 +43,11 @@ validate_assets_config(assets_config, minimal_validation = FALSE)
       between molecular species. Defining this can speed up the
       calculation of shortest paths and neighborhoods.
 
+  reactions_source_total_counts
+
+  :   Optional, path to a .tsv file containing the total counts of
+      reactions by source pathway.
+
 - minimal_validation:
 
   If TRUE then only the structure of \`assets_config\` will be

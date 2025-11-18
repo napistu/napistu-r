@@ -43,6 +43,11 @@ get_configured_asset_paths(assets_config, verbose = TRUE)
       between molecular species. Defining this can speed up the
       calculation of shortest paths and neighborhoods.
 
+  reactions_source_total_counts
+
+  :   Optional, path to a .tsv file containing the total counts of
+      reactions by source pathway.
+
 - verbose:
 
   Logical scalar; if TRUE (default), prints informative messages about

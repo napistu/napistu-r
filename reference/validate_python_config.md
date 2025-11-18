@@ -17,7 +17,7 @@ validate_python_config(python_config)
   environment or conda. If \`python_config\` is an empty list, a
   miniconda environment and installation can be established on-the-fly.
 
-  virtual_env
+  virtualenv
 
   :   Optional, path to a virtual environment
 

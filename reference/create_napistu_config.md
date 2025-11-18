@@ -17,7 +17,7 @@ create_napistu_config(python_config = list(), assets_config = list())
   environment or conda. If \`python_config\` is an empty list, a
   miniconda environment and installation can be established on-the-fly.
 
-  virtual_env
+  virtualenv
 
   :   Optional, path to a virtual environment
 
@@ -69,6 +69,11 @@ create_napistu_config(python_config = list(), assets_config = list())
   :   Optional, path to a .parquet file containing pairwise distances
       between molecular species. Defining this can speed up the
       calculation of shortest paths and neighborhoods.
+
+  reactions_source_total_counts
+
+  :   Optional, path to a .tsv file containing the total counts of
+      reactions by source pathway.
 
 ## Value
 
