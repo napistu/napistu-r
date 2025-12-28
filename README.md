@@ -1,8 +1,9 @@
 # Napistu in R!
 
 <!-- badges: start -->
+[![pkgdown site](https://github.com/napistu/napistu-r/actions/workflows/pkgdown.yaml/badge.svg)](https://napistu.github.io/napistu-r/)
 [![R-CMD-check](https://github.com/napistu/napistu-r/actions/workflows/R-CMD-check-PR.yaml/badge.svg)](https://github.com/napistu/napistu-r/actions/workflows/R-CMD-check-PR.yaml)
-[![pkgdown](https://github.com/napistu/napistu-r/actions/workflows/pkgdown.yaml/badge.svg)](https://napistu.github.io/napistu-r/)
+[![pkgdown](https://github.com/napistu/napistu-r/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/napistu/napistu-r/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 The `napistu` R package which is part of the [Napitsu project](https://github.com/napistu/napistu).
