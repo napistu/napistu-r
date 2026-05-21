@@ -42,7 +42,7 @@ Suggests:
     googleCloudStorageR,
     ggraph,
     ggtext,
-    httr,
+    httr2,
     igraph,
     kableExtra,
     knitr,
