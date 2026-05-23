@@ -6,7 +6,11 @@ disease/phenotype associations for a set of genes.
 ## Usage
 
 ``` r
-query_open_targets_targets(target_ensembl_gene_ids, post_n_genes = 10)
+query_open_targets_targets(
+  target_ensembl_gene_ids,
+  post_n_genes = 10,
+  verbose = FALSE
+)
 ```
 
 ## Arguments
@@ -18,6 +22,10 @@ query_open_targets_targets(target_ensembl_gene_ids, post_n_genes = 10)
 - post_n_genes:
 
   separate queries into posts of this number of genes
+
+- verbose:
+
+  print the request body and raw response for each batch
 
 ## Value
 
@@ -40,12 +48,12 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases
 #> [[1]]$associatedDiseases$count
-#> [1] 155
+#> [1] 166
 #> 
 #> [[1]]$associatedDiseases$rows
 #> [[1]]$associatedDiseases$rows[[1]]
 #> [[1]]$associatedDiseases$rows[[1]]$score
-#> [1] 0.7745653
+#> [1] 0.8246344
 #> 
 #> [[1]]$associatedDiseases$rows[[1]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[1]]$datatypeScores[[1]]
@@ -53,7 +61,15 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[1]]$datatypeScores[[1]]$score
-#> [1] 0.8949783
+#> [1] 0.9325183
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[1]]$datatypeScores[[2]]
+#> [[1]]$associatedDiseases$rows[[1]]$datatypeScores[[2]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[1]]$associatedDiseases$rows[[1]]$datatypeScores[[2]]$score
+#> [1] 0.8651953
 #> 
 #> 
 #> 
@@ -78,7 +94,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]
 #> [[1]]$associatedDiseases$rows[[2]]$score
-#> [1] 0.6733895
+#> [1] 0.7830533
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[1]]
@@ -86,7 +102,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[1]]$score
-#> [1] 0.193249
+#> [1] 0.1933138
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[2]]
@@ -94,6 +110,14 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[2]]$score
+#> [1] 0.856228
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[3]]
+#> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[3]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[1]]$associatedDiseases$rows[[2]]$datatypeScores[[3]]$score
 #> [1] 0.8827042
 #> 
 #> 
@@ -106,17 +130,17 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "leukoencephalopathy with vanishing white matter"
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$disease$description
-#> [1] "A new leukoencephalopathy, the CACH syndrome (Childhood Ataxia with Central nervous system Hypomyelination) or VWM (Vanishing White Matter) was identified on clinical and MRI criteria. Classically, this disease is characterized by (1) an onset between 2 and 5 years of age, with a cerebello-spastic syndrome exacerbated by episodes of fever or head trauma leading to death after 5 to 10 years of disease evolution, (2) a diffuse involvement of the white matter on cerebral MRI with a CSF-like signal intensity (cavitation), (3) a recessive autosomal mode of inheritance, (4) neuropathologic findings consistent with a cavitating orthochromatic leukodystrophy with increased number of oligodendrocytes with sometimes \"foamy'' aspect."
+#> [1] "A new leukoencephalopathy, the CACH syndrome (Childhood Ataxia with Central nervous system Hypomyelination) or VWM (Vanishing White Matter) was identified on clinical and MRI criteria. Classically, this disease is characterized by (1) an onset between 2 and 5 years of age, with a cerebello-spastic syndrome exacerbated by episodes of fever or head trauma leading to death after 5 to 10 years of disease evolution, (2) a diffuse involvement of the white matter on cerebral MRI with a CSF-like signal intensity (cavitation), (3) a recessive autosomal mode of inheritance, (4) neuropathologic findings consistent with a cavitating orthochromatic leukodystrophy with increased number of oligodendrocytes with sometimes �foamy'' aspect."
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "nervous system disease"
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[2]]
 #> [[1]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[2]]$name
-#> [1] "nervous system disease"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -124,7 +148,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]
 #> [[1]]$associatedDiseases$rows[[3]]$score
-#> [1] 0.597687
+#> [1] 0.7200241
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[1]]
@@ -132,7 +156,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[1]]$score
-#> [1] 0.1667585
+#> [1] 0.1345052
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[2]]
@@ -140,29 +164,37 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[2]]$score
-#> [1] 0.7835553
+#> [1] 0.6079308
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]
+#> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[1]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]$score
+#> [1] 0.9631731
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$disease
 #> [[1]]$associatedDiseases$rows[[3]]$disease$id
-#> [1] "EFO_0700130"
+#> [1] "MONDO_0020507"
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$disease$name
-#> [1] "ovarioleukodystrophy"
+#> [1] "leukoencephalopathy with vanishing white matter 1"
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$disease$description
-#> [1] "The \"ovarioleukodystrophies\" comprise a group of rare leukodystrophies associated with primary or premature ovarian failure."
+#> [1] "Any leukoencephalopathy with vanishing white matter in which the cause of the disease is a variation in the EIF2B1 gene."
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "nervous system disease"
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[2]]
 #> [[1]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[2]]$name
-#> [1] "disorder of visual system"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -170,35 +202,35 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]
 #> [[1]]$associatedDiseases$rows[[4]]$score
-#> [1] 0.5507269
+#> [1] 0.6443069
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[1]]$id
-#> [1] "literature"
+#> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[1]]$score
-#> [1] 0.0802735
+#> [1] 0.9078533
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[2]]
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[2]]$id
-#> [1] "affected_pathway"
+#> [1] "genetic_literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$datatypeScores[[2]]$score
-#> [1] 0.9018902
+#> [1] 0.6079308
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$disease
 #> [[1]]$associatedDiseases$rows[[4]]$disease$id
-#> [1] "EFO_0005772"
+#> [1] "MONDO_0957870"
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$disease$name
-#> [1] "neurodegenerative disease"
+#> [1] "leukoencephalopathy with vanishing white matter 2"
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$disease$description
-#> [1] "A disorder of the central nervous system characterized by gradual and progressive loss of neural tissue and neurologic function."
+#> NULL
 #> 
 #> [[1]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[1]]
@@ -206,12 +238,17 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "nervous system disease"
 #> 
 #> 
+#> [[1]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[2]]$name
+#> [1] "genetic, familial or congenital disease"
+#> 
+#> 
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]
 #> [[1]]$associatedDiseases$rows[[5]]$score
-#> [1] 0.5040614
+#> [1] 0.597687
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[1]]
@@ -219,7 +256,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[1]]$score
-#> [1] 0.1345052
+#> [1] 0.1667585
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[2]]
@@ -230,16 +267,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] 0.6079308
 #> 
 #> 
+#> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[3]]
+#> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[3]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[1]]$associatedDiseases$rows[[5]]$datatypeScores[[3]]$score
+#> [1] 0.8274614
+#> 
+#> 
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$disease
 #> [[1]]$associatedDiseases$rows[[5]]$disease$id
-#> [1] "MONDO_0020507"
+#> [1] "EFO_0700130"
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$disease$name
-#> [1] "leukoencephalopathy with vanishing white matter 1"
+#> [1] "ovarioleukodystrophy"
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$disease$description
-#> [1] "Any leukoencephalopathy with vanishing white matter in which the cause of the disease is a variation in the EIF2B1 gene."
+#> [1] "The �ovarioleukodystrophies� comprise a group of rare leukodystrophies associated with primary or premature ovarian failure."
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[1]]
@@ -249,7 +294,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[2]]
 #> [[1]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[2]]$name
-#> [1] "nervous system disease"
+#> [1] "disorder of visual system"
 #> 
 #> 
 #> 
@@ -257,7 +302,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]
 #> [[1]]$associatedDiseases$rows[[6]]$score
-#> [1] 0.4161469
+#> [1] 0.5507284
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores[[1]]
@@ -265,32 +310,32 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores[[1]]$score
-#> [1] 0.01215862
+#> [1] 0.08032163
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]$id
-#> [1] "genetic_association"
+#> [1] "affected_pathway"
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]$score
-#> [1] 0.6839221
+#> [1] 0.9018902
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$disease
 #> [[1]]$associatedDiseases$rows[[6]]$disease$id
-#> [1] "HP_0008209"
+#> [1] "EFO_0005772"
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$disease$name
-#> [1] "Premature ovarian insufficiency"
+#> [1] "neurodegenerative disease"
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$disease$description
-#> [1] "Amenorrhea due to loss of ovarian function before the age of 40. Primary ovarian insuficiency (POI) is a state of female hypergonadotropic hypogonadism. It can manifest as primary amenorrhea with onset before menarche or secondary amenorrhea."
+#> [1] "A disorder of the central nervous system characterized by gradual and progressive loss of neural tissue and neurologic function."
 #> 
 #> [[1]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[1]]$name
-#> [1] "phenotype"
+#> [1] "nervous system disease"
 #> 
 #> 
 #> 
@@ -298,37 +343,40 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]
 #> [[1]]$associatedDiseases$rows[[7]]$score
-#> [1] 0.3695799
+#> [1] 0.4161469
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]$score
-#> [1] 0.6079308
+#> [1] 0.01215862
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]
+#> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[1]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]$score
+#> [1] 0.6839221
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$disease
 #> [[1]]$associatedDiseases$rows[[7]]$disease$id
-#> [1] "MONDO_0015520"
+#> [1] "HP_0008209"
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$disease$name
-#> [1] "late infantile CACH syndrome"
+#> [1] "Premature ovarian insufficiency"
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$disease$description
-#> NULL
+#> [1] "Amenorrhea due to loss of ovarian function before the age of 40. Primary ovarian insuficiency (POI) is a state of female hypergonadotropic hypogonadism. It can manifest as primary amenorrhea with onset before menarche or secondary amenorrhea."
 #> 
 #> [[1]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
-#> 
-#> 
-#> [[1]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[2]]
-#> [[1]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[2]]$name
-#> [1] "nervous system disease"
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -350,10 +398,10 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[8]]$disease
 #> [[1]]$associatedDiseases$rows[[8]]$disease$id
-#> [1] "MONDO_0015521"
+#> [1] "MONDO_0015520"
 #> 
 #> [[1]]$associatedDiseases$rows[[8]]$disease$name
-#> [1] "juvenile or adult CACH syndrome"
+#> [1] "late infantile CACH syndrome"
 #> 
 #> [[1]]$associatedDiseases$rows[[8]]$disease$description
 #> NULL
@@ -388,10 +436,10 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[9]]$disease
 #> [[1]]$associatedDiseases$rows[[9]]$disease$id
-#> [1] "MONDO_0015519"
+#> [1] "MONDO_0015521"
 #> 
 #> [[1]]$associatedDiseases$rows[[9]]$disease$name
-#> [1] "congenital or early infantile CACH syndrome"
+#> [1] "juvenile or adult CACH syndrome"
 #> 
 #> [[1]]$associatedDiseases$rows[[9]]$disease$description
 #> NULL
@@ -399,12 +447,12 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [[1]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "nervous system disease"
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[2]]
 #> [[1]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[2]]$name
-#> [1] "nervous system disease"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -412,7 +460,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]
 #> [[1]]$associatedDiseases$rows[[10]]$score
-#> [1] 0.3400135
+#> [1] 0.3695799
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[10]]$datatypeScores[[1]]
@@ -420,24 +468,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$datatypeScores[[1]]$score
-#> [1] 0.5592963
+#> [1] 0.6079308
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$disease
 #> [[1]]$associatedDiseases$rows[[10]]$disease$id
-#> [1] "MONDO_0019019"
+#> [1] "MONDO_0015519"
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$disease$name
-#> [1] "osteogenesis imperfecta"
+#> [1] "congenital or early infantile CACH syndrome"
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$disease$description
-#> [1] "Osteogenesis imperfecta (OI) comprises a heterogeneous group of genetic disorders characterized by increased bone fragility, low bone mass, and susceptibility to bone fractures with variable severity."
+#> NULL
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas[[1]]$name
-#> [1] "musculoskeletal or connective tissue disease"
+#> [1] "nervous system disease"
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas[[2]]
@@ -450,7 +498,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]
 #> [[1]]$associatedDiseases$rows[[11]]$score
-#> [1] 0.3382305
+#> [1] 0.3400135
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[11]]$datatypeScores[[1]]
@@ -458,19 +506,19 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$datatypeScores[[1]]$score
-#> [1] 0.5563635
+#> [1] 0.5592963
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$disease
 #> [[1]]$associatedDiseases$rows[[11]]$disease$id
-#> [1] "EFO_0000508"
+#> [1] "MONDO_0019019"
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$disease$name
-#> [1] "genetic disorder"
+#> [1] "osteogenesis imperfecta"
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$disease$description
-#> [1] "Genetic diseases are diseases in which inherited genes predispose to increased risk. The genetic disorders associated with cancer often result from an alteration or mutation in a single gene. The diseases range from rare dominant cancer family syndrome to familial tendencies in which low-penetrance genes may interact with other genes or environmental factors to induce cancer. Research may involve clinical, epidemiologic, and laboratory studies of persons, families, and populations at high risk of these disorders."
+#> [1] "Osteogenesis imperfecta (OI) comprises a heterogeneous group of genetic disorders characterized by increased bone fragility, low bone mass, and susceptibility to bone fractures with variable severity."
 #> 
 #> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[1]]
@@ -478,12 +526,22 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic, familial or congenital disease"
 #> 
 #> 
+#> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[2]]$name
+#> [1] "musculoskeletal or connective tissue disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[3]]
+#> [[1]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[3]]$name
+#> [1] "phenotype"
+#> 
+#> 
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]
 #> [[1]]$associatedDiseases$rows[[12]]$score
-#> [1] 0.3326219
+#> [1] 0.3393817
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[12]]$datatypeScores[[1]]
@@ -491,24 +549,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$datatypeScores[[1]]$score
-#> [1] 0.5471377
+#> [1] 0.5582571
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$disease
 #> [[1]]$associatedDiseases$rows[[12]]$disease$id
-#> [1] "HP_0000707"
+#> [1] "EFO_0000508"
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$disease$name
-#> [1] "Abnormality of the nervous system"
+#> [1] "genetic disorder"
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$disease$description
-#> [1] "An abnormality of the nervous system."
+#> [1] "Genetic diseases are diseases in which inherited genes predispose to increased risk. The genetic disorders associated with cancer often result from an alteration or mutation in a single gene. The diseases range from rare dominant cancer family syndrome to familial tendencies in which low-penetrance genes may interact with other genes or environmental factors to induce cancer. Research may involve clinical, epidemiologic, and laboratory studies of persons, families, and populations at high risk of these disorders."
 #> 
 #> [[1]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[1]]$name
-#> [1] "phenotype"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -516,40 +574,32 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]
 #> [[1]]$associatedDiseases$rows[[13]]$score
-#> [1] 0.2930104
+#> [1] 0.3326219
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]$id
-#> [1] "literature"
-#> 
-#> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]$score
-#> [1] 0.0729517
-#> 
-#> 
-#> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]
-#> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]$id
 #> [1] "genetic_association"
 #> 
-#> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]$score
-#> [1] 0.4783322
+#> [[1]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]$score
+#> [1] 0.5471377
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]$disease
 #> [[1]]$associatedDiseases$rows[[13]]$disease$id
-#> [1] "EFO_0001645"
+#> [1] "HP_0000707"
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]$disease$name
-#> [1] "coronary artery disease"
+#> [1] "Abnormality of the nervous system"
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]$disease$description
-#> [1] "Thickening and loss of elasticity of the CORONARY ARTERIES, leading to progressive arterial insufficiency (CORONARY DISEASE)."
+#> [1] "An abnormality of the nervous system."
 #> 
 #> [[1]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[1]]$name
-#> [1] "cardiovascular disease"
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -557,37 +607,40 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]
 #> [[1]]$associatedDiseases$rows[[14]]$score
-#> [1] 0.2878425
+#> [1] 0.3294746
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[1]]$id
-#> [1] "affected_pathway"
+#> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[1]]$score
-#> [1] 0.473479
+#> [1] 0.0729517
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[2]]
+#> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[1]]$associatedDiseases$rows[[14]]$datatypeScores[[2]]$score
+#> [1] 0.538313
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$disease
 #> [[1]]$associatedDiseases$rows[[14]]$disease$id
-#> [1] "MONDO_0002561"
+#> [1] "EFO_0001645"
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$disease$name
-#> [1] "lysosomal storage disease"
+#> [1] "coronary artery disease"
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$disease$description
-#> [1] "A metabolic disorder caused by mutations in proteins critical for lysosomal function, including lysosomal enzymes, lysosomal integral membrane proteins, and proteins involved in the post-translational modification and trafficking of lysosomal proteins."
+#> [1] "Thickening and loss of elasticity of the CORONARY ARTERIES, leading to progressive arterial insufficiency (CORONARY DISEASE)."
 #> 
 #> [[1]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[1]]$name
-#> [1] "nutritional or metabolic disease"
-#> 
-#> 
-#> [[1]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[2]]
-#> [[1]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[2]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "cardiovascular disease"
 #> 
 #> 
 #> 
@@ -595,32 +648,37 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]
 #> [[1]]$associatedDiseases$rows[[15]]$score
-#> [1] 0.2569327
+#> [1] 0.2878425
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[15]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[15]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "affected_pathway"
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$datatypeScores[[1]]$score
-#> [1] 0.4226348
+#> [1] 0.473479
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$disease
 #> [[1]]$associatedDiseases$rows[[15]]$disease$id
-#> [1] "OBA_1000110"
+#> [1] "MONDO_0002561"
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$disease$name
-#> [1] "bone tissue density"
+#> [1] "lysosomal storage disease"
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$disease$description
-#> [1] "The mass density of a bone tissue."
+#> [1] "A metabolic disorder caused by mutations in proteins critical for lysosomal function, including lysosomal enzymes, lysosomal integral membrane proteins, and proteins involved in the post-translational modification and trafficking of lysosomal proteins."
 #> 
 #> [[1]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "genetic, familial or congenital disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[2]]$name
+#> [1] "nutritional or metabolic disease"
 #> 
 #> 
 #> 
@@ -628,7 +686,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]
 #> [[1]]$associatedDiseases$rows[[16]]$score
-#> [1] 0.1896323
+#> [1] 0.2301928
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[16]]$datatypeScores[[1]]
@@ -636,24 +694,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$datatypeScores[[1]]$score
-#> [1] 0.2495446
+#> [1] 0.3786497
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$disease
 #> [[1]]$associatedDiseases$rows[[16]]$disease$id
-#> [1] "EFO_0004527"
+#> [1] "EFO_0005422"
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$disease$name
-#> [1] "mean corpuscular hemoglobin"
+#> [1] "skin aging"
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$disease$description
-#> [1] "The MCH is  the average mass of hemoglobin per red blood cell in a sample of blood and is calculated by dividing the total mass of hemoglobin by the RBC count"
+#> [1] "The gradual irreversible changes in structure of skin that occur as a result of the passage of time.. In humans, skin aging can be precipitated as a result of weather and sun exposure, and expresses through the appearance of wrinkles and localised changes in skin pigmentation"
 #> 
 #> [[1]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "biological_process"
 #> 
 #> 
 #> 
@@ -661,7 +719,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]
 #> [[1]]$associatedDiseases$rows[[17]]$score
-#> [1] 0.1831362
+#> [1] 0.1291967
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[17]]$datatypeScores[[1]]
@@ -669,24 +727,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$datatypeScores[[1]]$score
-#> [1] 0.3012452
+#> [1] 0.2125187
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$disease
 #> [[1]]$associatedDiseases$rows[[17]]$disease$id
-#> [1] "EFO_0010626"
+#> [1] "HP_0000924"
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$disease$name
-#> [1] "placenta growth factor measurement"
+#> [1] "Abnormality of the skeletal system"
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$disease$description
-#> [1] "quantification of placenta growth factor in a sample"
+#> [1] "An abnormality of the skeletal system."
 #> 
 #> [[1]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -694,7 +752,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]
 #> [[1]]$associatedDiseases$rows[[18]]$score
-#> [1] 0.1511099
+#> [1] 0.0819928
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[18]]$datatypeScores[[1]]
@@ -702,24 +760,34 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$datatypeScores[[1]]$score
-#> [1] 0.2485642
+#> [1] 0.1348719
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$disease
 #> [[1]]$associatedDiseases$rows[[18]]$disease$id
-#> [1] "OBA_0003460"
+#> [1] "EFO_0004213"
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$disease$name
-#> [1] "erythrocyte volume"
+#> [1] "otosclerosis"
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$disease$description
-#> [1] "The volume of a erythrocyte."
+#> [1] "Formation of spongy bone in the labyrinth capsule which can progress toward the stapes (stapedial fixation) or anteriorly toward the cochlea leading to conductive, sensorineural, or mixed hearing loss. Several genes are associated with familial otosclerosis with varied clinical signs."
 #> 
 #> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "disorder of ear"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[2]]$name
+#> [1] "nervous system disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[3]]
+#> [[1]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -727,32 +795,45 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]
 #> [[1]]$associatedDiseases$rows[[19]]$score
-#> [1] 0.1359433
+#> [1] 0.06788977
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]$score
-#> [1] 0.2236163
+#> [1] 0.5583676
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]
+#> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[1]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]$score
+#> [1] 0
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$disease
 #> [[1]]$associatedDiseases$rows[[19]]$disease$id
-#> [1] "OBA_0005494"
+#> [1] "MONDO_0008903"
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$disease$name
-#> [1] "aging rate"
+#> [1] "lung cancer"
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$disease$description
-#> [1] "The rate of the aging process."
+#> [1] "A malignant neoplasm involving the lung."
 #> 
 #> [[1]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "respiratory or thoracic disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[2]]$name
+#> [1] "cancer or benign tumor"
 #> 
 #> 
 #> 
@@ -760,7 +841,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]
 #> [[1]]$associatedDiseases$rows[[20]]$score
-#> [1] 0.1342753
+#> [1] 0.06660039
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[20]]$datatypeScores[[1]]
@@ -768,24 +849,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$datatypeScores[[1]]$score
-#> [1] 0.2208727
+#> [1] 0.1095526
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$disease
 #> [[1]]$associatedDiseases$rows[[20]]$disease$id
-#> [1] "EFO_0004627"
+#> [1] "EFO_0009959"
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$disease$name
-#> [1] "IGF-1 measurement"
+#> [1] "diverticular disease"
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$disease$description
-#> [1] "Is the quantification of Insulin-like growth factor 1 (IGF-1), also called somatomedin C. IGF-1 is a hormone similar in molecular structure to insulin. It plays an important role in childhood growth and continues to have anabolic effects in adults. Levels of IGF-1 are known to increase in some cancers."
+#> [1] "A complex disorder characterised by mucosal outpouchings (diverticulae) of the colonic wall which can become infected and inflamed leading to diverticulitis, perforation and bleeding."
 #> 
 #> [[1]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "gastrointestinal disease"
 #> 
 #> 
 #> 
@@ -793,7 +874,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]
 #> [[1]]$associatedDiseases$rows[[21]]$score
-#> [1] 0.09813727
+#> [1] 0.05878022
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[21]]$datatypeScores[[1]]
@@ -801,24 +882,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$datatypeScores[[1]]$score
-#> [1] 0.1614284
+#> [1] 0.096689
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$disease
 #> [[1]]$associatedDiseases$rows[[21]]$disease$id
-#> [1] "EFO_0009270"
+#> [1] "EFO_0004214"
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$disease$name
-#> [1] "heel bone mineral density"
+#> [1] "Abdominal Aortic Aneurysm"
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$disease$description
-#> [1] "Quantification of the mineral density of the heel bone"
+#> [1] "Enlargement and ballooning of the vessel that supplies arterial blood to the abdomen, pelvis and legs."
 #> 
 #> [[1]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "cardiovascular disease"
 #> 
 #> 
 #> 
@@ -826,7 +907,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]
 #> [[1]]$associatedDiseases$rows[[22]]$score
-#> [1] 0.07398726
+#> [1] 0.0532001
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[22]]$datatypeScores[[1]]
@@ -834,34 +915,29 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$datatypeScores[[1]]$score
-#> [1] 0.1217034
+#> [1] 0.08751012
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$disease
 #> [[1]]$associatedDiseases$rows[[22]]$disease$id
-#> [1] "EFO_0004213"
+#> [1] "MONDO_0021201"
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$disease$name
-#> [1] "otosclerosis"
+#> [1] "skin infection"
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$disease$description
-#> [1] "Formation of spongy bone in the labyrinth capsule which can progress toward the stapes (stapedial fixation) or anteriorly toward the cochlea leading to conductive, sensorineural, or mixed hearing loss. Several genes are associated with familial otosclerosis with varied clinical signs."
+#> [1] "An inflammatory process affecting the skin, caused by bacteria, viruses, parasites, or fungi. Examples of bacterial infection include carbuncles, furuncles, impetigo, erysipelas, and abscesses. Examples of viral infection include shingles, warts, molluscum contagiosum, and pityriasis rosea. Examples of parasitic infection include scabies and lice. Examples of fungal infection include athlete's foot, yeast infection, and ringworm."
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[1]]$name
-#> [1] "disorder of ear"
+#> [1] "infectious disease"
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[2]]
 #> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[2]]$name
-#> [1] "nervous system disease"
-#> 
-#> 
-#> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[3]]
-#> [[1]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[3]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "integumentary system disease"
 #> 
 #> 
 #> 
@@ -869,37 +945,32 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]
 #> [[1]]$associatedDiseases$rows[[23]]$score
-#> [1] 0.06788977
+#> [1] 0.0532001
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]$id
-#> [1] "literature"
+#> [1] "genetic_association"
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]$score
-#> [1] 0.5583676
+#> [1] 0.08751012
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$disease
 #> [[1]]$associatedDiseases$rows[[23]]$disease$id
-#> [1] "MONDO_0008903"
+#> [1] "EFO_0010692"
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$disease$name
-#> [1] "lung cancer"
+#> [1] "subcutaneous tissue infection"
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$disease$description
-#> [1] "A malignant neoplasm involving the lung."
+#> [1] "Any infection of the subcutaneous tissue."
 #> 
 #> [[1]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[1]]$name
-#> [1] "respiratory or thoracic disease"
-#> 
-#> 
-#> [[1]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[2]]
-#> [[1]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[2]]$name
-#> [1] "cancer or benign tumor"
+#> [1] "infectious disease"
 #> 
 #> 
 #> 
@@ -907,32 +978,37 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]
 #> [[1]]$associatedDiseases$rows[[24]]$score
-#> [1] 0.06432784
+#> [1] 0.04743968
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[24]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[24]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$datatypeScores[[1]]$score
-#> [1] 0.1058144
+#> [1] 0.3901734
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$disease
 #> [[1]]$associatedDiseases$rows[[24]]$disease$id
-#> [1] "EFO_0006335"
+#> [1] "EFO_1001951"
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$disease$name
-#> [1] "systolic blood pressure"
+#> [1] "colorectal carcinoma"
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$disease$description
-#> [1] "The blood pressure during the contraction of the left ventricle of the heart."
+#> [1] "A malignant epithelial neoplasm that arises from the colon or rectum and invades through the muscularis mucosa into the submucosa. The vast majority are adenocarcinomas."
 #> 
 #> [[1]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[2]]$name
+#> [1] "cancer or benign tumor"
 #> 
 #> 
 #> 
@@ -940,32 +1016,37 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]
 #> [[1]]$associatedDiseases$rows[[25]]$score
-#> [1] 0.05907112
+#> [1] 0.04342563
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$datatypeScores
 #> [[1]]$associatedDiseases$rows[[25]]$datatypeScores[[1]]
 #> [[1]]$associatedDiseases$rows[[25]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$datatypeScores[[1]]$score
-#> [1] 0.0971675
+#> [1] 0.3571593
 #> 
 #> 
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$disease
 #> [[1]]$associatedDiseases$rows[[25]]$disease$id
-#> [1] "EFO_0005763"
+#> [1] "EFO_0000571"
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$disease$name
-#> [1] "pulse pressure measurement"
+#> [1] "lung adenocarcinoma"
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$disease$description
-#> [1] "quantification of the difference between systolic blood pressure and diastolic blood pressure. Higher PP is associated with left ventricle hypertrophy and the increased intimal thickness of the carotid artery, which represent early target organ damage in cardiovascular diseases"
+#> [1] "A carcinoma that arises from the lung and is characterized by the presence of malignant glandular epithelial cells. There is a male predilection with a male to female ratio of 2:1. Usually lung adenocarcinoma is asymptomatic and is identified through screening studies or as an incidental radiologic finding. If clinical symptoms are present they include shortness of breath, cough, hemoptysis, chest pain, and fever. Tobacco smoke is a known risk factor."
 #> 
 #> [[1]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas
 #> [[1]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[1]]
 #> [[1]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "respiratory or thoracic disease"
+#> 
+#> 
+#> [[1]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[2]]
+#> [[1]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[2]]$name
+#> [1] "cancer or benign tumor"
 #> 
 #> 
 #> 
@@ -1355,13 +1436,35 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> 
 #> [[1]]$chemicalProbes
-#> list()
+#> [[1]]$chemicalProbes[[1]]
+#> [[1]]$chemicalProbes[[1]]$id
+#> [1] "DNL343"
 #> 
-#> [[1]]$knownDrugs
-#> [[1]]$knownDrugs$count
-#> [1] 0
+#> [[1]]$chemicalProbes[[1]]$control
+#> [1] ""
 #> 
-#> [[1]]$knownDrugs$rows
+#> [[1]]$chemicalProbes[[1]]$drugId
+#> NULL
+#> 
+#> [[1]]$chemicalProbes[[1]]$mechanismOfAction
+#> [[1]]$chemicalProbes[[1]]$mechanismOfAction[[1]]
+#> [1] "activator"
+#> 
+#> 
+#> [[1]]$chemicalProbes[[1]]$isHighQuality
+#> [1] TRUE
+#> 
+#> [[1]]$chemicalProbes[[1]]$urls
+#> [[1]]$chemicalProbes[[1]]$urls[[1]]
+#> [[1]]$chemicalProbes[[1]]$urls[[1]]$url
+#> [1] "http://www.chemicalprobes.org/"
+#> 
+#> 
+#> 
+#> 
+#> 
+#> [[1]]$drugAndClinicalCandidates
+#> [[1]]$drugAndClinicalCandidates$rows
 #> list()
 #> 
 #> 
@@ -1378,12 +1481,12 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases
 #> [[2]]$associatedDiseases$count
-#> [1] 477
+#> [1] 511
 #> 
 #> [[2]]$associatedDiseases$rows
 #> [[2]]$associatedDiseases$rows[[1]]
 #> [[2]]$associatedDiseases$rows[[1]]$score
-#> [1] 0.4802271
+#> [1] 0.5212055
 #> 
 #> [[2]]$associatedDiseases$rows[[1]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[1]]$datatypeScores[[1]]
@@ -1391,7 +1494,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[1]]$datatypeScores[[1]]$score
-#> [1] 0.2372838
+#> [1] 0.7064825
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[1]]$datatypeScores[[2]]
@@ -1407,7 +1510,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[1]]$datatypeScores[[3]]$score
-#> [1] 0.7776787
+#> [1] 0.8216251
 #> 
 #> 
 #> 
@@ -1432,37 +1535,70 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "musculoskeletal or connective tissue disease"
 #> 
 #> 
+#> [[2]]$associatedDiseases$rows[[1]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[1]]$disease$therapeuticAreas[[3]]$name
+#> [1] "phenotype"
+#> 
+#> 
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]
 #> [[2]]$associatedDiseases$rows[[2]]$score
-#> [1] 0.4781718
+#> [1] 0.5060445
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[1]]$score
-#> [1] 0.7865563
+#> [1] 0.4633332
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$datatypeScores[[2]]$score
+#> [1] 0.809238
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$disease
 #> [[2]]$associatedDiseases$rows[[2]]$disease$id
-#> [1] "EFO_0004842"
+#> [1] "MONDO_0005147"
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$disease$name
-#> [1] "eosinophil count"
+#> [1] "type 1 diabetes mellitus"
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$disease$description
-#> [1] "The number of granulocytes (polymorphonuclear leukocytes) in a specified volume of blood, usually 1 cubic millimeter."
+#> [1] "A chronic condition characterized by minimal or absent production of insulin by the pancreas."
 #> 
 #> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "endocrine system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[2]]$name
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[3]]$name
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[4]]
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[4]]$name
+#> [1] "nutritional or metabolic disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[5]]
+#> [[2]]$associatedDiseases$rows[[2]]$disease$therapeuticAreas[[5]]$name
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -1470,7 +1606,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]
 #> [[2]]$associatedDiseases$rows[[3]]$score
-#> [1] 0.4637505
+#> [1] 0.4843617
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[1]]
@@ -1478,27 +1614,35 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[1]]$score
-#> [1] 0.1320306
+#> [1] 0.09342821
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[2]]
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[2]]$id
-#> [1] "genetic_association"
+#> [1] "animal_model"
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[2]]$score
-#> [1] 0.7562328
+#> [1] 0.2926579
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]
+#> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[3]]$datatypeScores[[3]]$score
+#> [1] 0.7800291
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$disease
 #> [[2]]$associatedDiseases$rows[[3]]$disease$id
-#> [1] "EFO_0000676"
+#> [1] "EFO_0005140"
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$disease$name
-#> [1] "psoriasis"
+#> [1] "autoimmune disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$disease$description
-#> [1] "An autoimmune condition characterized by red, well-delineated plaques with silvery scales that are usually on the extensor surfaces and scalp. They can occasionally present with these manifestations: pustules; erythema and scaling in intertriginous areas, and erythroderma, that are often distributed on extensor surfaces and scalp."
+#> [1] "Autoimmune disease or disorder is a disease characterized by an immune response of an organism against parts of itself causing pathology e.g. Graves' disease."
 #> 
 #> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[1]]
@@ -1506,22 +1650,12 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "immune system disease"
 #> 
 #> 
-#> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[2]]
-#> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[2]]$name
-#> [1] "genetic, familial or congenital disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[3]]
-#> [[2]]$associatedDiseases$rows[[3]]$disease$therapeuticAreas[[3]]$name
-#> [1] "integumentary system disease"
-#> 
-#> 
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]
 #> [[2]]$associatedDiseases$rows[[4]]$score
-#> [1] 0.4609477
+#> [1] 0.4842303
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[4]]$datatypeScores[[1]]
@@ -1529,7 +1663,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$datatypeScores[[1]]$score
-#> [1] 0.4626507
+#> [1] 0.2369199
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$datatypeScores[[2]]
@@ -1537,44 +1671,34 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$datatypeScores[[2]]$score
-#> [1] 0.7350914
+#> [1] 0.7846761
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease
 #> [[2]]$associatedDiseases$rows[[4]]$disease$id
-#> [1] "MONDO_0005147"
+#> [1] "EFO_0000384"
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease$name
-#> [1] "type 1 diabetes mellitus"
+#> [1] "Crohn's disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease$description
-#> [1] "A chronic condition characterized by minimal or absent production of insulin by the pancreas."
+#> [1] "A gastrointestinal disorder characterized by chronic inflammation involving all layers of the intestinal wall, noncaseating granulomas affecting the intestinal wall and regional lymph nodes, and transmural fibrosis. Crohn disease most commonly involves the terminal ileum; the colon is the second most common site of involvement."
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[1]]$name
-#> [1] "pancreas disease"
+#> [1] "immune system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[2]]
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[2]]$name
-#> [1] "endocrine system disease"
+#> [1] "gastrointestinal disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[3]]
 #> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[3]]$name
-#> [1] "gastrointestinal disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[4]]
-#> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[4]]$name
-#> [1] "immune system disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[5]]
-#> [[2]]$associatedDiseases$rows[[4]]$disease$therapeuticAreas[[5]]$name
-#> [1] "nutritional or metabolic disease"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1582,7 +1706,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]
 #> [[2]]$associatedDiseases$rows[[5]]$score
-#> [1] 0.4472464
+#> [1] 0.4789509
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[5]]$datatypeScores[[1]]
@@ -1590,7 +1714,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$datatypeScores[[1]]$score
-#> [1] 0.236859
+#> [1] 0.1320306
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$datatypeScores[[2]]
@@ -1598,34 +1722,34 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$datatypeScores[[2]]$score
-#> [1] 0.7238434
+#> [1] 0.7812363
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease
 #> [[2]]$associatedDiseases$rows[[5]]$disease$id
-#> [1] "EFO_0000384"
+#> [1] "EFO_0000676"
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease$name
-#> [1] "Crohn's disease"
+#> [1] "psoriasis"
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease$description
-#> [1] "A gastrointestinal disorder characterized by chronic inflammation involving all layers of the intestinal wall, noncaseating granulomas affecting the intestinal wall and regional lymph nodes, and transmural fibrosis. Crohn disease most commonly involves the terminal ileum; the colon is the second most common site of involvement."
+#> [1] "An autoimmune condition characterized by red, well-delineated plaques with silvery scales that are usually on the extensor surfaces and scalp. They can occasionally present with these manifestations: pustules; erythema and scaling in intertriginous areas, and erythroderma, that are often distributed on extensor surfaces and scalp."
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "immune system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[2]]
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[2]]$name
-#> [1] "immune system disease"
+#> [1] "integumentary system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[3]]
 #> [[2]]$associatedDiseases$rows[[5]]$disease$therapeuticAreas[[3]]$name
-#> [1] "gastrointestinal disease"
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1633,32 +1757,50 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]
 #> [[2]]$associatedDiseases$rows[[6]]$score
-#> [1] 0.4383893
+#> [1] 0.4772409
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[1]]$score
-#> [1] 0.7211171
+#> [1] 0.3875231
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[6]]$datatypeScores[[2]]$score
+#> [1] 0.7656488
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$disease
 #> [[2]]$associatedDiseases$rows[[6]]$disease$id
-#> [1] "EFO_0004509"
+#> [1] "EFO_0003767"
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$disease$name
-#> [1] "hemoglobin measurement"
+#> [1] "inflammatory bowel disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$disease$description
-#> [1] "Hemoglobin measurement is a measure of the quantity of the metallo protein hemoglobin in blood often used in the diagnosis of anaemia."
+#> [1] "A spectrum of small and large bowel inflammatory diseases of unknown etiology. It includes Crohn's disease, ulcerative colitis, and colitis of indeterminate type."
 #> 
 #> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[2]]$name
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[6]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1666,15 +1808,31 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[7]]
 #> [[2]]$associatedDiseases$rows[[7]]$score
-#> [1] 0.4327832
+#> [1] 0.4341924
 #> 
 #> [[2]]$associatedDiseases$rows[[7]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[1]]$score
-#> [1] 0.5695164
+#> [1] 0.1067901
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[2]]$score
+#> [1] 0.4156386
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[3]]
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[3]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[2]]$associatedDiseases$rows[[7]]$datatypeScores[[3]]$score
+#> [1] 0.6079308
 #> 
 #> 
 #> 
@@ -1691,17 +1849,22 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[1]]$name
-#> [1] "musculoskeletal or connective tissue disease"
+#> [1] "immune system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[2]]
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[2]]$name
-#> [1] "immune system disease"
+#> [1] "urinary system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[3]]
 #> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[3]]$name
-#> [1] "urinary system disease"
+#> [1] "musculoskeletal or connective tissue disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[4]]
+#> [[2]]$associatedDiseases$rows[[7]]$disease$therapeuticAreas[[4]]$name
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -1709,7 +1872,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]
 #> [[2]]$associatedDiseases$rows[[8]]$score
-#> [1] 0.4327665
+#> [1] 0.4231873
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[8]]$datatypeScores[[1]]
@@ -1717,7 +1880,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$datatypeScores[[1]]$score
-#> [1] 0.3482714
+#> [1] 0.03039654
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$datatypeScores[[2]]
@@ -1725,34 +1888,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$datatypeScores[[2]]$score
-#> [1] 0.6944544
+#> [1] 0.6945911
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$disease
 #> [[2]]$associatedDiseases$rows[[8]]$disease$id
-#> [1] "EFO_0003767"
+#> [1] "EFO_0004705"
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$disease$name
-#> [1] "inflammatory bowel disease"
+#> [1] "hypothyroidism"
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$disease$description
-#> [1] "A spectrum of small and large bowel inflammatory diseases of unknown etiology. It includes Crohn's disease, ulcerative colitis, and colitis of indeterminate type."
+#> [1] "Abnormally low levels of thyroid hormone."
 #> 
 #> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[1]]$name
-#> [1] "genetic, familial or congenital disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[2]]
-#> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[2]]$name
-#> [1] "immune system disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[3]]
-#> [[2]]$associatedDiseases$rows[[8]]$disease$therapeuticAreas[[3]]$name
-#> [1] "gastrointestinal disease"
+#> [1] "endocrine system disease"
 #> 
 #> 
 #> 
@@ -1760,7 +1913,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]
 #> [[2]]$associatedDiseases$rows[[9]]$score
-#> [1] 0.4271177
+#> [1] 0.4096991
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[1]]
@@ -1768,40 +1921,42 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[1]]$score
-#> [1] 0.09330685
+#> [1] 0.705681
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[2]]
 #> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[2]]$id
-#> [1] "animal_model"
-#> 
-#> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[2]]$score
-#> [1] 0.2926579
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[3]]
-#> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[3]]$id
 #> [1] "genetic_association"
 #> 
-#> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[3]]$score
-#> [1] 0.6858699
+#> [[2]]$associatedDiseases$rows[[9]]$datatypeScores[[2]]$score
+#> [1] 0.6386398
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$disease
 #> [[2]]$associatedDiseases$rows[[9]]$disease$id
-#> [1] "EFO_0005140"
+#> [1] "EFO_0000729"
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$disease$name
-#> [1] "autoimmune disease"
+#> [1] "ulcerative colitis"
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$disease$description
-#> [1] "Autoimmune disease or disorder is a disease characterized by an immune response of an organism against parts of itself causing pathology e.g. Graves' disease."
+#> [1] "An inflammatory bowel disease involving the mucosal surface of the large intestine and rectum. It may present with an acute or slow onset and follows an intermittent or continuous course. Signs and symptoms include abdominal pain, diarrhea, fever, weight loss, and intestinal hemorrhage."
 #> 
 #> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[1]]$name
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[2]]$name
 #> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[9]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1809,7 +1964,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]
 #> [[2]]$associatedDiseases$rows[[10]]$score
-#> [1] 0.4193997
+#> [1] 0.4074056
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[10]]$datatypeScores[[1]]
@@ -1817,7 +1972,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$datatypeScores[[1]]$score
-#> [1] 0.7055879
+#> [1] 0.09068809
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$datatypeScores[[2]]
@@ -1825,19 +1980,19 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$datatypeScores[[2]]$score
-#> [1] 0.6546013
+#> [1] 0.6656169
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$disease
 #> [[2]]$associatedDiseases$rows[[10]]$disease$id
-#> [1] "EFO_0000729"
+#> [1] "EFO_0001060"
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$disease$name
-#> [1] "ulcerative colitis"
+#> [1] "celiac disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$disease$description
-#> [1] "An inflammatory bowel disease involving the mucosal surface of the large intestine and rectum. It may present with an acute or slow onset and follows an intermittent or continuous course. Signs and symptoms include abdominal pain, diarrhea, fever, weight loss, and intestinal hemorrhage."
+#> [1] "An autoimmune genetic disorder with an unknown pattern of inheritance that primarily affects the digestive tract. It is caused by intolerance to dietary gluten. Consumption of gluten protein triggers an immune response which damages small intestinal villi and prevents adequate absorption of nutrients. Clinical signs include abdominal cramping, diarrhea or constipation and weight loss. If untreated, the clinical course may progress to malnutrition, anemia, osteoporosis and an increased risk of intestinal malignancies. However, the prognosis is favorable with successful avoidance of gluten in the diet."
 #> 
 #> [[2]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[10]]$disease$therapeuticAreas[[1]]
@@ -1860,32 +2015,45 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]
 #> [[2]]$associatedDiseases$rows[[11]]$score
-#> [1] 0.4158367
+#> [1] 0.3887307
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[1]]$score
-#> [1] 0.6840199
+#> [1] 0.6300325
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[2]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[2]]$associatedDiseases$rows[[11]]$datatypeScores[[2]]$score
+#> [1] 0.6079308
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$disease
 #> [[2]]$associatedDiseases$rows[[11]]$disease$id
-#> [1] "OBA_0003460"
+#> [1] "EFO_0005856"
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$disease$name
-#> [1] "erythrocyte volume"
+#> [1] "arthritis"
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$disease$description
-#> [1] "The volume of a erythrocyte."
+#> [1] "Arthritis (from Greek arthro-, joint + -itis, inflammation; plural: arthritides) is a form of joint disorder that involves inflammation of one or more joints."
 #> 
 #> [[2]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "musculoskeletal or connective tissue disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[11]]$disease$therapeuticAreas[[2]]$name
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -1893,32 +2061,58 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]
 #> [[2]]$associatedDiseases$rows[[12]]$score
-#> [1] 0.4152994
+#> [1] 0.3821172
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[1]]$score
-#> [1] 0.683136
+#> [1] 0.03799567
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[2]]$id
+#> [1] "animal_model"
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[2]]$score
+#> [1] 0.3955721
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[3]]
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[3]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$datatypeScores[[3]]$score
+#> [1] 0.6079308
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$disease
 #> [[2]]$associatedDiseases$rows[[12]]$disease$id
-#> [1] "EFO_0004348"
+#> [1] "MONDO_0015517"
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$disease$name
-#> [1] "hematocrit"
+#> [1] "common variable immunodeficiency"
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$disease$description
-#> [1] "The volume of packed RED BLOOD CELLS in a blood specimen. The volume is measured by centrifugation in a tube with graduated markings, or with automated blood cell counters. It is an indicator of erythrocyte status in disease. For example, ANEMIA shows a low value; POLYCYTHEMIA, a high value."
+#> [1] "Common variable immunodeficiency (CVID) comprises a heterogeneous group of diseases characterized by a significant hypogammaglobulinemia of unknown cause, failure to produce specific antibodies after immunizations and susceptibility to bacterial infections, predominantly caused by encapsulated bacteria."
 #> 
 #> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[2]]$name
+#> [1] "hematologic disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[12]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1926,32 +2120,45 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]
 #> [[2]]$associatedDiseases$rows[[13]]$score
-#> [1] 0.4135607
+#> [1] 0.3705038
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[1]]$score
-#> [1] 0.6802759
+#> [1] 0.03039654
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]$id
+#> [1] "genetic_literature"
+#> 
+#> [[2]]$associatedDiseases$rows[[13]]$datatypeScores[[2]]$score
+#> [1] 0.6079308
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$disease
 #> [[2]]$associatedDiseases$rows[[13]]$disease$id
-#> [1] "EFO_0004587"
+#> [1] "MONDO_0004670"
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$disease$name
-#> [1] "lymphocyte count"
+#> [1] "lupus erythematosus"
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$disease$description
-#> [1] "A quantification of lymphocytes in blood."
+#> [1] "An autoimmune, connective tissue chronic inflammatory disorder affecting the skin, joints, kidneys, lungs, heart, and the peripheral blood cells. It is more commonly seen in women than men. Variants include discoid and systemic lupus erythematosus."
 #> 
 #> [[2]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[13]]$disease$therapeuticAreas[[2]]$name
+#> [1] "musculoskeletal or connective tissue disease"
 #> 
 #> 
 #> 
@@ -1959,7 +2166,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]
 #> [[2]]$associatedDiseases$rows[[14]]$score
-#> [1] 0.4017471
+#> [1] 0.3640189
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[14]]$datatypeScores[[1]]
@@ -1967,24 +2174,34 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$datatypeScores[[1]]$score
-#> [1] 0.6608435
+#> [1] 0.5987835
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$disease
 #> [[2]]$associatedDiseases$rows[[14]]$disease$id
-#> [1] "EFO_0007837"
+#> [1] "EFO_1001494"
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$disease$name
-#> [1] "anti-citrullinated protein antibody seropositivity"
+#> [1] "psoriasis vulgaris"
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$disease$description
-#> [1] "anti-citrullinated protein antibody seropositivity is the result of a measurement of circulating anti-cyclic citrullinated peptide antibodies"
+#> [1] "Plaque psoriasis is the most common presentation of psoriasis. It presents as small to large, well demarcated, red, scaly and thickened areas of skin. It most likely to affect elbows, knees, and lower back but may arise on any part of the body."
 #> 
 #> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[2]]$name
+#> [1] "integumentary system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[14]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -1992,7 +2209,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]
 #> [[2]]$associatedDiseases$rows[[15]]$score
-#> [1] 0.4017471
+#> [1] 0.3624806
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[15]]$datatypeScores[[1]]
@@ -2000,24 +2217,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$datatypeScores[[1]]$score
-#> [1] 0.6608435
+#> [1] 0.596253
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$disease
 #> [[2]]$associatedDiseases$rows[[15]]$disease$id
-#> [1] "EFO_0007791"
+#> [1] "EFO_0000701"
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$disease$name
-#> [1] "rheumatoid factor seropositivity measurement"
+#> [1] "skin disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$disease$description
-#> [1] "rheumatoid factor seropositivity is the result of a measurement of circulating  autoantibodies called rheumatoid factors that contribute to a number of autoimmune diseases including rheumatoid arthritis"
+#> [1] "Any deviation from the normal structure or function of the skin or subcutaneous tissue that is manifested by a characteristic set of symptoms and signs."
 #> 
 #> [[2]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[15]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "integumentary system disease"
 #> 
 #> 
 #> 
@@ -2025,32 +2242,40 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]
 #> [[2]]$associatedDiseases$rows[[16]]$score
-#> [1] 0.4000243
+#> [1] 0.3385734
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[1]]$score
-#> [1] 0.6580096
+#> [1] 0.2294939
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[16]]$datatypeScores[[2]]$score
+#> [1] 0.5454528
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$disease
 #> [[2]]$associatedDiseases$rows[[16]]$disease$id
-#> [1] "EFO_0004458"
+#> [1] "MONDO_0002406"
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$disease$name
-#> [1] "C-reactive protein measurement"
+#> [1] "dermatitis"
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$disease$description
-#> [1] "C-reactive protein (CRP) measurement is a measurement of the level of C-reactive protein in the blood.  Levels are known to rise in response to inflammation, CRP is therefore used as a clinical measure of inflammation. The measurement is used in the process of clinical diagnosis as high levels of CRP are associated with cardiovascular disease, diabetes and hypertension and in some cancers."
+#> [1] "An inflammatory process affecting the skin. Signs include red rash, itching, and blister formation. Representative examples are contact dermatitis, atopic dermatitis, and seborrheic dermatitis."
 #> 
 #> [[2]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[16]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "integumentary system disease"
 #> 
 #> 
 #> 
@@ -2058,7 +2283,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]
 #> [[2]]$associatedDiseases$rows[[17]]$score
-#> [1] 0.3880588
+#> [1] 0.3308293
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[17]]$datatypeScores[[1]]
@@ -2066,7 +2291,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$datatypeScores[[1]]$score
-#> [1] 0.6079308
+#> [1] 0.7118589
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$datatypeScores[[2]]
@@ -2074,24 +2299,34 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$datatypeScores[[2]]$score
-#> [1] 0.6079308
+#> [1] 0.5085962
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$disease
 #> [[2]]$associatedDiseases$rows[[17]]$disease$id
-#> [1] "HP_0001369"
+#> [1] "EFO_0003872"
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$disease$name
-#> [1] "Arthritis"
+#> [1] "colitis"
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$disease$description
-#> [1] "Inflammation of a joint."
+#> [1] "Inflammation of the colon."
 #> 
 #> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[1]]$name
-#> [1] "phenotype"
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[2]]$name
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[17]]$disease$therapeuticAreas[[3]]$name
+#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -2099,7 +2334,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]
 #> [[2]]$associatedDiseases$rows[[18]]$score
-#> [1] 0.3783412
+#> [1] 0.3143982
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[1]]
@@ -2107,55 +2342,32 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[1]]$score
-#> [1] 0.03039654
+#> [1] 0.2084864
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[2]]
 #> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[2]]$id
-#> [1] "animal_model"
-#> 
-#> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[2]]$score
-#> [1] 0.2747239
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[3]]
-#> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[3]]$id
 #> [1] "genetic_association"
 #> 
-#> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[3]]$score
-#> [1] 0.6079308
+#> [[2]]$associatedDiseases$rows[[18]]$datatypeScores[[2]]$score
+#> [1] 0.5067368
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$disease
 #> [[2]]$associatedDiseases$rows[[18]]$disease$id
-#> [1] "MONDO_0015517"
+#> [1] "EFO_0000707"
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$disease$name
-#> [1] "common variable immunodeficiency"
+#> [1] "squamous cell carcinoma"
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$disease$description
-#> [1] "Common variable immunodeficiency (CVID) comprises a heterogeneous group of diseases characterized by a significant hypogammaglobulinemia of unknown cause, failure to produce specific antibodies after immunizations and susceptibility to bacterial infections, predominantly caused by encapsulated bacteria."
+#> [1] "A carcinoma arising from squamous epithelial cells. Morphologically, it is characterized by the proliferation of atypical, often pleomorphic squamous cells. Squamous cell carcinomas are graded by the degree of cellular differentiation as well, moderately, or poorly differentiated. Well differentiated carcinomas are usually associated with keratin production and the presence of intercellular bridges between adjacent cells. Representative examples are lung squamous cell carcinoma, skin squamous cell carcinoma, and cervical squamous cell carcinoma."
 #> 
 #> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[1]]$name
-#> [1] "immune system disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[2]]
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[2]]$name
 #> [1] "cancer or benign tumor"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[3]]
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[3]]$name
-#> [1] "hematologic disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[4]]
-#> [[2]]$associatedDiseases$rows[[18]]$disease$therapeuticAreas[[4]]$name
-#> [1] "genetic, familial or congenital disease"
 #> 
 #> 
 #> 
@@ -2163,32 +2375,40 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]
 #> [[2]]$associatedDiseases$rows[[19]]$score
-#> [1] 0.3745147
+#> [1] 0.3097457
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[1]]$score
-#> [1] 0.6160483
+#> [1] 0.01823792
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[19]]$datatypeScores[[2]]$score
+#> [1] 0.5085962
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$disease
 #> [[2]]$associatedDiseases$rows[[19]]$disease$id
-#> [1] "EFO_0803539"
+#> [1] "MONDO_0043579"
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$disease$name
-#> [1] "basophil measurement"
+#> [1] "enteritis"
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$disease$description
-#> [1] "Quantification of some aspect of basophils, such as function, quantity or composition."
+#> [1] "Inflammation of the small intestine."
 #> 
 #> [[2]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[19]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "gastrointestinal disease"
 #> 
 #> 
 #> 
@@ -2196,7 +2416,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]
 #> [[2]]$associatedDiseases$rows[[20]]$score
-#> [1] 0.3710447
+#> [1] 0.3080609
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[20]]$datatypeScores[[1]]
@@ -2204,34 +2424,29 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$datatypeScores[[1]]$score
-#> [1] 0.6103403
+#> [1] 0.5067368
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$disease
 #> [[2]]$associatedDiseases$rows[[20]]$disease$id
-#> [1] "EFO_1001494"
+#> [1] "EFO_0002916"
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$disease$name
-#> [1] "psoriasis vulgaris"
+#> [1] "esophageal carcinoma"
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$disease$description
-#> [1] "Plaque psoriasis is the most common presentation of psoriasis. It presents as small to large, well demarcated, red, scaly and thickened areas of skin. It most likely to affect elbows, knees, and lower back but may arise on any part of the body."
+#> [1] "Esophageal carcinoma (EC) is a tumor arising in the epithelial cells lining the esophagus and can be divided into two subtypes: esophageal squamous cell carcinoma (ESCC) and esophageal adenocarcinoma (EAC)."
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[1]]$name
-#> [1] "integumentary system disease"
+#> [1] "gastrointestinal disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[2]]
 #> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[2]]$name
-#> [1] "immune system disease"
-#> 
-#> 
-#> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[3]]
-#> [[2]]$associatedDiseases$rows[[20]]$disease$therapeuticAreas[[3]]$name
-#> [1] "genetic, familial or congenital disease"
+#> [1] "cancer or benign tumor"
 #> 
 #> 
 #> 
@@ -2239,7 +2454,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]
 #> [[2]]$associatedDiseases$rows[[21]]$score
-#> [1] 0.3703172
+#> [1] 0.3061254
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[21]]$datatypeScores[[1]]
@@ -2247,24 +2462,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$datatypeScores[[1]]$score
-#> [1] 0.6091437
+#> [1] 0.5035531
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$disease
 #> [[2]]$associatedDiseases$rows[[21]]$disease$id
-#> [1] "EFO_0004305"
+#> [1] "HP_0002024"
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$disease$name
-#> [1] "erythrocyte count"
+#> [1] "Malabsorption"
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$disease$description
-#> [1] "The number of red blood cells per unit volume in a sample of venous blood."
+#> [1] "Impaired ability to absorb one or more nutrients from the intestine."
 #> 
 #> [[2]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[21]]$disease$therapeuticAreas[[1]]$name
-#> [1] "measurement"
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -2272,37 +2487,50 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]
 #> [[2]]$associatedDiseases$rows[[22]]$score
-#> [1] 0.3695799
+#> [1] 0.2834916
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[1]]$score
-#> [1] 0.6079308
+#> [1] 0.06079308
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[22]]$datatypeScores[[2]]$score
+#> [1] 0.4632826
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$disease
 #> [[2]]$associatedDiseases$rows[[22]]$disease$id
-#> [1] "MONDO_0004670"
+#> [1] "EFO_0004268"
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$disease$name
-#> [1] "lupus erythematosus"
+#> [1] "sclerosing cholangitis"
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$disease$description
-#> [1] "An autoimmune, connective tissue chronic inflammatory disorder affecting the skin, joints, kidneys, lungs, heart, and the peripheral blood cells. It is more commonly seen in women than men. Variants include discoid and systemic lupus erythematosus."
+#> [1] "A chronic, autoimmune inflammatory liver disorder characterized by narrowing and scarring of the lumen of the bile ducts. It is often seen in patients with ulcerative colitis. Signs and symptoms include jaundice, fatigue, and malabsorption. It may lead to cirrhosis and liver failure."
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[1]]$name
-#> [1] "musculoskeletal or connective tissue disease"
+#> [1] "endocrine system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[2]]
 #> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[2]]$name
-#> [1] "immune system disease"
+#> [1] "gastrointestinal disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[22]]$disease$therapeuticAreas[[3]]$name
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -2310,32 +2538,50 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]
 #> [[2]]$associatedDiseases$rows[[23]]$score
-#> [1] 0.3695799
+#> [1] 0.2822905
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]
 #> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]$id
-#> [1] "genetic_association"
+#> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[1]]$score
-#> [1] 0.6079308
+#> [1] 0.02127758
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[2]]
+#> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[2]]$id
+#> [1] "genetic_association"
+#> 
+#> [[2]]$associatedDiseases$rows[[23]]$datatypeScores[[2]]$score
+#> [1] 0.4632826
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$disease
 #> [[2]]$associatedDiseases$rows[[23]]$disease$id
-#> [1] "EFO_0005856"
+#> [1] "EFO_0003898"
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$disease$name
-#> [1] "arthritis"
+#> [1] "ankylosing spondylitis"
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$disease$description
-#> [1] "Arthritis (from Greek arthro-, joint + -itis, inflammation; plural: arthritides) is a form of joint disorder that involves inflammation of one or more joints."
+#> [1] "An autoimmune chronic inflammatory disorder characterized by inflammation in the vertebral joints of the spine and sacroiliac joints. It predominantly affects young males. Patients present with stiffness and pain in the spine."
 #> 
 #> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[1]]$name
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[2]]$name
 #> [1] "musculoskeletal or connective tissue disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[3]]
+#> [[2]]$associatedDiseases$rows[[23]]$disease$therapeuticAreas[[3]]$name
+#> [1] "phenotype"
 #> 
 #> 
 #> 
@@ -2343,7 +2589,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]
 #> [[2]]$associatedDiseases$rows[[24]]$score
-#> [1] 0.361915
+#> [1] 0.2776587
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[24]]$datatypeScores[[1]]
@@ -2351,7 +2597,7 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "literature"
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$datatypeScores[[1]]$score
-#> [1] 0.09004494
+#> [1] 0.07193848
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$datatypeScores[[2]]
@@ -2359,24 +2605,24 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$datatypeScores[[2]]$score
-#> [1] 0.5908204
+#> [1] 0.4531306
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$disease
 #> [[2]]$associatedDiseases$rows[[24]]$disease$id
-#> [1] "EFO_0001060"
+#> [1] "EFO_0001421"
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$disease$name
-#> [1] "celiac disease"
+#> [1] "liver disease"
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$disease$description
-#> [1] "An autoimmune genetic disorder with an unknown pattern of inheritance that primarily affects the digestive tract. It is caused by intolerance to dietary gluten. Consumption of gluten protein triggers an immune response which damages small intestinal villi and prevents adequate absorption of nutrients. Clinical signs include abdominal cramping, diarrhea or constipation and weight loss. If untreated, the clinical course may progress to malnutrition, anemia, osteoporosis and an increased risk of intestinal malignancies. However, the prognosis is favorable with successful avoidance of gluten in the diet."
+#> [1] "Pathological processes of the LIVER."
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[1]]$name
-#> [1] "immune system disease"
+#> [1] "endocrine system disease"
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[2]]
@@ -2384,17 +2630,12 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "gastrointestinal disease"
 #> 
 #> 
-#> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[3]]
-#> [[2]]$associatedDiseases$rows[[24]]$disease$therapeuticAreas[[3]]$name
-#> [1] "genetic, familial or congenital disease"
-#> 
-#> 
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]
 #> [[2]]$associatedDiseases$rows[[25]]$score
-#> [1] 0.3377977
+#> [1] 0.2677296
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$datatypeScores
 #> [[2]]$associatedDiseases$rows[[25]]$datatypeScores[[1]]
@@ -2402,23 +2643,28 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> [1] "genetic_association"
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$datatypeScores[[1]]$score
-#> [1] 0.5556516
+#> [1] 0.4403949
 #> 
 #> 
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$disease
 #> [[2]]$associatedDiseases$rows[[25]]$disease$id
-#> [1] "EFO_0004705"
+#> [1] "EFO_0003779"
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$disease$name
-#> [1] "hypothyroidism"
+#> [1] "Hashimoto's thyroiditis"
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$disease$description
-#> [1] "Abnormally low levels of thyroid hormone."
+#> [1] "An autoimmune disorder caused by the production of autoantibodies against thyroid tissue. There is progressive destruction of the thyroid follicles leading to hypothyroidism."
 #> 
 #> [[2]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas
 #> [[2]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[1]]
 #> [[2]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[1]]$name
+#> [1] "immune system disease"
+#> 
+#> 
+#> [[2]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[2]]
+#> [[2]]$associatedDiseases$rows[[25]]$disease$therapeuticAreas[[2]]$name
 #> [1] "endocrine system disease"
 #> 
 #> 
@@ -2836,11 +3082,8 @@ query_open_targets_targets(target_ensembl_gene_ids)
 #> 
 #> 
 #> 
-#> [[2]]$knownDrugs
-#> [[2]]$knownDrugs$count
-#> [1] 0
-#> 
-#> [[2]]$knownDrugs$rows
+#> [[2]]$drugAndClinicalCandidates
+#> [[2]]$drugAndClinicalCandidates$rows
 #> list()
 #> 
 #> 

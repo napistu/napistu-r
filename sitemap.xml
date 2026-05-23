@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://napistu.github.io/napistu-r/404.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/LICENSE-text.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/LICENSE.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/authors.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/index.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/add_edges_by_reversibility.html</loc></url>
@@ -10,6 +11,8 @@
 <url><loc>https://napistu.github.io/napistu-r/reference/bioconductor_org_function.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/bioconductor_org_library.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/bioconductor_org_package_prefix.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/build_targets_query.html</loc></url>
+<url><loc>https://napistu.github.io/napistu-r/reference/check_open_targets_schema.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/cleanup_napistu.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/conda_env_exists.html</loc></url>
 <url><loc>https://napistu.github.io/napistu-r/reference/configure_existing_python.html</loc></url>

@@ -171,10 +171,10 @@ setup_napistu_list(create_napistu_config())
 #> ℹ Loading sbml_dfs from sbml_dfs.pkl
 #> Error in value[[3L]](cond): Failed to load sbml_dfs from
 #> /home/runner/work/_temp/Library/napistu.r/extdata/test_pathway/sbml_dfs.pkl:
-#> ImportError: /usr/lib/x86_64-linux-gnu/libcrypto.so.3: version `OPENSSL_3.3.0'
-#> not found (required by
-#> /usr/share/miniconda/envs/napistu-env/lib/python3.11/lib-dynload/_ssl.cpython-311-x86_64-linux-gnu.so)
-#> Run `reticulate::py_last_error()` for details.
+#> ImportError:
+#> /usr/share/miniconda/envs/napistu-env/lib/python3.11/lib-dynload/pyexpat.cpython-311-x86_64-linux-gnu.so:
+#> undefined symbol: XML_SetAllocTrackerActivationThreshold Run
+#> `reticulate::py_last_error()` for details.
 subgraph_vertices <- sample(napistu_list$napistu_graph$vs["name"], 100)
 #> Error: object 'napistu_list' not found
 subgraph_list <- define_subgraphs(napistu_list, subgraph_vertices, max_components = 2)

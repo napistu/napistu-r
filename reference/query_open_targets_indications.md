@@ -6,7 +6,11 @@ disease/phenotype of interest across a set of genes.
 ## Usage
 
 ``` r
-query_open_targets_indications(target_ensembl_gene_ids, disease_id)
+query_open_targets_indications(
+  target_ensembl_gene_ids,
+  disease_id,
+  verbose = FALSE
+)
 ```
 
 ## Arguments
@@ -18,6 +22,10 @@ query_open_targets_indications(target_ensembl_gene_ids, disease_id)
 - disease_id:
 
   A disease to search from the EFO ontology
+
+- verbose:
+
+  print the request body and raw response
 
 ## Value
 
@@ -42,7 +50,7 @@ query_open_targets_indications(target_ensembl_gene_ids, disease_id)
 #> $target_scores$rows
 #> $target_scores$rows[[1]]
 #> $target_scores$rows[[1]]$score
-#> [1] 0.5017455
+#> [1] 0.4969143
 #> 
 #> $target_scores$rows[[1]]$target
 #> $target_scores$rows[[1]]$target$id
@@ -58,7 +66,7 @@ query_open_targets_indications(target_ensembl_gene_ids, disease_id)
 #> 
 #> $target_scores$rows[[2]]
 #> $target_scores$rows[[2]]$score
-#> [1] 0.4649748
+#> [1] 0.4708346
 #> 
 #> $target_scores$rows[[2]]$target
 #> $target_scores$rows[[2]]$target$id

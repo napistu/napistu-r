@@ -68,6 +68,7 @@ A Shiny app
 ## Examples
 
 ``` r
+
 if (interactive()) {
     setup_napistu_list(create_napistu_config())
     shiny_neighborhood_test(napistu_list)

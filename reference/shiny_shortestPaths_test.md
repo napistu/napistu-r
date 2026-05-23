@@ -68,6 +68,7 @@ a shiny app
 ## Examples
 
 ``` r
+
 if (interactive()) {
   setup_napistu_list(create_napistu_config())
   shiny_shortestPaths_test(napistu_list)

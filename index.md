@@ -20,6 +20,7 @@ This package can be installed in several ways:
         (or devtools) from GitHub:
 
 ``` r
+
 remotes::install_github("napistu/napistu-r")
 ```
 
