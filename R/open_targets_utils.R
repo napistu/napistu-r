@@ -228,7 +228,7 @@ query_open_targets_targets <- function(
 #' API changes a field name.
 #'
 #' @returns a single character string containing the GraphQL query
-#' @export
+#' @keywords internal
 build_targets_query <- function() {
     'query getTargets($ensemblIds: [String!]!) {
   targets(ensemblIds: $ensemblIds) {
@@ -278,7 +278,7 @@ build_targets_query <- function() {
 #'
 #' @returns invisibly, a named list of logical vectors (one per type) indicating
 #'   which expected fields are present
-#' @export
+#' @keywords internal
 check_open_targets_schema <- function() {
     results <- purrr::imap(OT_EXPECTED_FIELDS, function(fields, type_name) {
         query <- sprintf('{ __type(name: "%s") { fields { name } } }', type_name)

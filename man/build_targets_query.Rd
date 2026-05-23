@@ -15,3 +15,4 @@ comment in the query body names the format function that processes that
 section, making it easy to locate what needs updating when the Open Targets
 API changes a field name.
 }
+\keyword{internal}
