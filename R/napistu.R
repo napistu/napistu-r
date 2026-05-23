@@ -6,7 +6,7 @@
 #' @description R functions for the Napistu project supporting the creation, transformation, and network-based interrogation of biological pathways.
 #'
 #' @importFrom dplyr %>%
-#' @importFrom rlang :=
+#' @importFrom rlang := %||%
 #' @import ggplot2
 #' @import shiny
 #' @importFrom rlang .data
@@ -37,6 +37,7 @@ utils::globalVariables(c(
     "disease_name",
     "diseases",
     "drug",
+    "drugAndClinicalCandidates",
     "edges",
     "efo_diseases",
     "ensembl_id",

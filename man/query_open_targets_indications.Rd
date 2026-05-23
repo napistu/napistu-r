@@ -4,12 +4,18 @@
 \alias{query_open_targets_indications}
 \title{Query Open Targets - Indications}
 \usage{
-query_open_targets_indications(target_ensembl_gene_ids, disease_id)
+query_open_targets_indications(
+  target_ensembl_gene_ids,
+  disease_id,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{target_ensembl_gene_ids}{a character vector of ensembl gene names}
 
 \item{disease_id}{A disease to search from the EFO ontology}
+
+\item{verbose}{print the request body and raw response}
 }
 \value{
 a list of target attributes

@@ -4,10 +4,12 @@
 \alias{summarize_open_targets_targets}
 \title{Summarize Open Targets - Targets}
 \usage{
-summarize_open_targets_targets(target_ensembl_gene_ids)
+summarize_open_targets_targets(target_ensembl_gene_ids, verbose = FALSE)
 }
 \arguments{
 \item{target_ensembl_gene_ids}{a character vector of ensembl gene names}
+
+\item{verbose}{print the request body and raw response for each batch}
 }
 \value{
 a list containing:

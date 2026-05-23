@@ -4,12 +4,18 @@
 \alias{query_open_targets_targets}
 \title{Query Open Targets - Targets}
 \usage{
-query_open_targets_targets(target_ensembl_gene_ids, post_n_genes = 10)
+query_open_targets_targets(
+  target_ensembl_gene_ids,
+  post_n_genes = 10,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{target_ensembl_gene_ids}{a character vector of ensembl gene names}
 
 \item{post_n_genes}{separate queries into posts of this number of genes}
+
+\item{verbose}{print the request body and raw response for each batch}
 }
 \value{
 a list of target attributes
